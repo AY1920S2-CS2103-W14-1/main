@@ -9,7 +9,15 @@
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#introduction">1. Introduction</a></li>
+<li><a href="#introduction">1. Introduction</a>
+<ul class="sectlevel2">
+<li><a href="#adding-a-homework-code-add-homework-code">1.1. Adding a homework: <code>add homework</code></a></li>
+<li><a href="#listing-all-homework-code-list-homework-code">1.2. Listing all homework : <code>list homework</code></a></li>
+<li><a href="#listing-all-homework-for-a-course-code-list-homework-code">1.3. Listing all homework for a course: <code>list homework</code></a></li>
+<li><a href="#editing-a-homework-code-edit-homework-code">1.4. Editing a homework : <code>edit homework</code></a></li>
+<li><a href="#locating-homework-by-keyword-id-deadline-code-find-homework-code">1.5. Locating homework by KEYWORD/ID/DEADLINE: <code>find homework</code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -17,554 +25,128 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook Level 3 (AB3) is for those who <strong>prefer to use a desktop app for managing contacts</strong>. More importantly, AB3 is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <a href="#Quick Start">[Quick Start]</a> to get started. Enjoy!</p>
+<p>Code Camp X (CCX) is for those who <strong>prefer to use a desktop app to manage the administrative tasks of running a coding camp</strong>.
+More importantly, CCX is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, CCX can allow you to manage your camp&#8217;s administrative tasks faster than traditional GUI apps.
+Interested? Jump to the <a href="#Quick Start">[Quick Start]</a> to get started. Enjoy!</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Define a very specific <em>target user profile</em>.</p>
-</li>
-</ol>
-</div>
+<div class="sect2">
+<h3 id="adding-a-homework-code-add-homework-code"><a class="link" href="#adding-a-homework-code-add-homework-code">1.1. Adding a homework: <code>add homework</code></a></h3>
 <div class="paragraph">
-<p>Coding bootcamp
-(Reasonable to assume that officers are educated enough to prefer typing)</p>
+<p>Adds a homework to the list of homework<br>
+Format: <code>add homework n/NAME d/DEADLINE</code></p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Define a clear <em>value proposition</em> that matches the target user profile i.e., what problem does the product solve? How does it make the the user&#8217;s life easier?</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>[Staff Management]</strong> Helps the owner to schedule teachers</p>
-</li>
-<li>
-<p><strong>[Student Management]</strong> Helps the owner to keep track of students progress</p>
-</li>
-<li>
-<p><strong>[Finances Management]</strong> Helps the owner to track finances (profits and expenses)</p>
-</li>
-<li>
-<p><strong>[Courses Management]</strong> Schedule courses</p>
+<p><code>add n/Function Programming Assignment d/2020-01-30</code></p>
 </li>
 </ul>
 </div>
-</li>
-</ol>
+</div>
+<div class="sect2">
+<h3 id="listing-all-homework-code-list-homework-code"><a class="link" href="#listing-all-homework-code-list-homework-code">1.2. Listing all homework : <code>list homework</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all homework.<br>
+Format: <code>list homework</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-homework-for-a-course-code-list-homework-code"><a class="link" href="#listing-all-homework-for-a-course-code-list-homework-code">1.3. Listing all homework for a course: <code>list homework</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all homework assigned to a course.<br>
+Format: <code>list homework c/courseID</code></p>
 </div>
 <div class="paragraph">
-<p>Hierarchy: Owner &#8594; Admin Staff&#8594; Teachers &#8594; Students &#8594; Progress<br>
-Each owner has a few teachers, each admin staff takes care of a few teachers, each teachers has a few students, each students has a progress</p>
+<p>Examples:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p>Optimize the product to the chosen target users i.e., add features that are especially/only applicable for target users (to make the app especially attractive to them).
-Sheng Xue: I will try to organise in terms of when the feature should be done. I.e For each of the 4 functions, those on top should be done early, and those on the bottom will be done later.<br>
-<strong>[Staff Management]</strong><br>
-<strong>[Must-have] [Week 7]</strong><br>
-As an owner, I want to be able to add and delete teachers, so I can hire and fire teachers.</p>
+<p>`list homework c/001'</p>
 </li>
-</ol>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-homework-code-edit-homework-code"><a class="link" href="#editing-a-homework-code-edit-homework-code">1.4. Editing a homework : <code>edit homework</code></a></h3>
+<div class="paragraph">
+<p>Edits an existing person in the address book.<br>
+Format: <code>edit homework HOMEWORKID [n/NAME] [d/DEADLINE]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the homework with the specified `HOMEWORKID'. The homeworkID <strong>must exists</strong> in the list of homework.</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 001 n/Machine Learning Assignment e/2020-02-30</code><br>
+Edits the name and deadline of the homework with ID of 001 to be <code>Machine Learning Assignment</code> and <code>2020-02-30</code> respectively.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-homework-by-keyword-id-deadline-code-find-homework-code"><a class="link" href="#locating-homework-by-keyword-id-deadline-code-find-homework-code">1.5. Locating homework by KEYWORD/ID/DEADLINE: <code>find homework</code></a></h3>
+<div class="paragraph">
+<p>Finds homework with the any of the given keywords/ID/deadline<br>
+Format: `find homework [k/KEYWORDS] [id/HOMEWORKID] [d/DEADLINE]</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+</li>
+<li>
+<p>Only 1 of the parameters can be present</p>
+</li>
+<li>
+<p>HOMEWORKID must be valid.</p>
+</li>
+<li>
+<p>DEADLINE must be properly formatted</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<p><strong>[Must-have] [Week 7]</strong><br>
-As a user, I want to be able to promote or fire my teachers in the system.</p>
+<p>Examples:</p>
 </div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 8]</strong><br>
-As a user, I want to be able to edit the details of the teachers such as their incomes, so that their incomes will be automatically deducted from the finances of the tuition centre (STAFF&gt;FINANCE)</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 9]</strong><br>
-As a user, I can specify the availability of the teachers, so that I can easily assign available teachers to teach specific courses. (STAFF &#8594; COURSES)</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 10]</strong><br>
-As a user, I can specify the skill levels and the courses that the teachers can teach.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 11]</strong><br>
-As a user, I want to mark the attendance of my teachers, so that I can track their number of work hours</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 12]</strong><br>
-As a user, I want to be able to give bonuses or raises based on the teachers’ performance so as to encourage better performance by the teacher.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 13]</strong><br>
-As a user, I want to know who are the backup teachers in case the one on duty is not available (sick or leave) so that we can ensure that all classes can be taught</p>
-</div>
-<div class="paragraph">
-<p><strong>[Student Management]</strong><br>
-<strong>[Must-have] [Week 7]</strong><br>
-As an owner, I want to add or drop students based on the sign ups and quitting of the students.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 7]</strong><br>
-As a user, I want to edit the student’s details such as the courses that they are taking and their parent’s contact, so that I can contact them whenever necessary.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 8]</strong><br>
-As a user, I want to be able to track the amount of homework done so as to ensure that the students are kept up to speed with the learning material</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 8]</strong><br>
-As a user, I want to know be able to key in the test scores of the students over the period of the course, so that I can understand the effectiveness of the materials taught.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 9]</strong><br>
-As a user, I want to know how many students I have during each month, so that I can track if sign-up rates have been reached.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 10]</strong><br>
-As a user, I want to be able to key in the feedback of each student at the end of each week, so that I can better understand what kind of improvements I should make.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 11]</strong><br>
-As a user, I want to mark the attendance of my students for each class, so that I can track the attendance of each class and students.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 12]</strong><br>
-As a user, I want to compare students’ performance in a class, so that I can have an overall view of the class performance.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 12]</strong><br>
-As a user, I want to make analysis based on student sign-up/ drop out rate, so that I can know the current running business makes money</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 13]</strong><br>
-As a user, I want to save student’s birthday, so that I can have a “surprise birthday party” for students</p>
-</div>
-<div class="paragraph">
-<p><strong>[Finances Management]</strong><br>
-<strong>[Must-have] [Week 7]</strong><br>
-As a user, I want to be able to automate the spendings of the tuition centre due to the salary of the staff, so that I do not need to manually deduct the savings from the salary at the end of the month.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 7]</strong><br>
-As a user, I want to be able to automate the income generated by each of the students according to the course fees payable by the students, so that I do not need to manually add the income generated at the end of the month.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 8]</strong><br>
-As a user, I want to be able to know how much we are spending by adding the name and price of the items or services bought.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 9]</strong><br>
-As a user, I want to tag each of the spendings of the tuition centre with the priority levels, such as “must-have”, “nice-to-have”, or “not-needed”, so that I can evaluate the spendings of the tuition centre.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 10]</strong><br>
-As a user, I want to be able to know how much we are earning by adding the various sources of income such as through students course fees, or miscellaneous sources like textbook sales.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 11]</strong><br>
-As a user, I want to be able to tag each of the spendings with the department that they are from, so that I can better understand which department is spending on what types of goods and services.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 12]</strong><br>
-As a user, I can view the statistics of the finances at periods such as day, week of month, so that I can better plan ahead.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 13]</strong><br>
-As a user, I want to be able to track the payment status of each customer so that we can ensure that all customers have paid on time.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Courses Management]</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 7]</strong><br>
-As a user, I can add or remove courses from the system.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 7]</strong><br>
-As a user, I should be able to edit the course details, especially the costs of the courses, so that I can automate the income generated from these courses.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 8]</strong><br>
-As a user, there can be multiple ongoing sessions of each course in a period of time, and I can assign students and teachers to these course sessions.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 8]</strong><br>
-As a user, I can assign the classrooms for each course session, so that I can better plan out the location requirements.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 9]</strong><br>
-As a user, I can add logistics requirements of the courses such as scissors, electronic equipment, so that I can better plan out my logistics.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 9]</strong><br>
-As a user, I can add the course’s curriculum and homework requirements to the students when they are added, so that I can keep track of the student’s progress.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Must-have] [Week 10]</strong><br>
-As a user, I can add the feedback and review ratings of the courses, so that I can keep track of the course’s satisfaction ratings.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 10]</strong><br>
-As a user, I can clone a current copy of the course session, so that I do not need to start from scratch every time I am adding a new course session.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 11]</strong><br>
-As a user, I can look at the overview of the courses to see which courses are the most popular or sustainable, so that I can better plan out potential future courses or make changes to existing ones.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 12</strong><br>
-As a user, I am able to add a list of teachers who are experienced with each of the courses, so that I can prioritise those teachers when I am assigning teachers for a course.</p>
-</div>
-<div class="paragraph">
-<p><strong>[Nice-To-Have] [Week 13]</strong><br>
-As a user, I am assign the teachers to each course based on their own preferences.</p>
-</div>
-<div class="paragraph">
-<p>Group: AY1920S2-CS2103-W14-1<br>
-<u>User Guide for </u><u><strong>Code Camp X</strong></u><u>:</u></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p>Overview of Code Camp X</p>
+<p><code>find k/Machine</code><br>
+Returns any homework with <code>Machine</code> in its name such as - <code>Machine Learning Assignment</code>, <code>Reinforcement Learning Assignment</code></p>
 </li>
 <li>
-<p>Features</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Student Population Management</p>
-</li>
-<li>
-<p>Teachers and Staff Management</p>
-</li>
-<li>
-<p>Course and Curriculum Management</p>
-</li>
-<li>
-<p>Finance and Payment Tracking</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Track total revenue and expenses</p>
-</li>
-<li>
-<p>Track student’s payment and whether it’s on time</p>
-</li>
-<li>
-<p>Track payroll</p>
-</li>
-<li>
-<p>Track profitability by course</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Commands</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><u><strong>General</strong></u> Commands
-<em>See the specific feature sections for possible parameters</em></p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p><u><em>add</em></u> command
-Command: ‘add &lt;object&gt; &lt;parameters&gt;’<br>
-Description: This will add a respective object into the
-corresponding list.</p>
-</li>
-<li>
-<p><u><em>delete</em></u> command
-Command: ‘add &lt;object&gt; &lt;objectIndex&gt;’<br>
-Description: This will delete a specified object from the corresponding list</p>
-</li>
-<li>
-<p><u><em>edit</em></u> command
-Command: ‘add &lt;object&gt; &lt;objectIndex&gt; &lt;parameters&gt;’<br>
-Description: This will edit parameters of the specified object</p>
-</li>
-<li>
-<p><u>_find _</u>command
-Command: ‘find &lt;object&gt; &lt;parameters&gt;’<br>
-Description: This will search the corresponding lists for all object names which matches the objectDescription.</p>
-</li>
-<li>
-<p><u><em>help</em></u> command
-Command: ‘help’<br>
-Description: This will bring up all possible commands for you to know what commands and parameters to use.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p><u><strong>Student Management</strong></u> Commands</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Adding a student
-Command: 	‘add-student&lt;parameters&gt;’<br>
-Parameters:</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>‘n/ &lt;new student’s name&gt;’</p>
-</li>
-<li>
-<p>co/ &lt;new course name&gt;’</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Deleting a student
-Command: 	‘delete-student studentIndex’</p>
-</li>
-<li>
-<p>Editing a student details
-Command: 	‘edit-student studentIndex &lt;parameters&gt;’<br>
-Parameters:</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>‘n/ &lt;new student name&gt;’</p>
-</li>
-<li>
-<p>‘co/ &lt;new course name&gt;’</p>
-</li>
-<li>
-<p>‘cu/ &lt;new curriculum assignment&gt;’</p>
-</li>
-<li>
-<p>‘pp/ &lt;new payment plan&gt;’</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Finding for a student entry by specified parameters
-Command: 	‘find-student &lt;parameters&gt;’<br>
-Parameters:</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>‘sn/ &lt;studentName&gt;’ - find by student name</p>
-</li>
-<li>
-<p>‘co/ &lt;courseName&gt;’ - find students taking similar courses</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Assigning a student for a course
-Command: 	‘assign student studentID courseID’<br>
-Note: A Course Fee will be assigned to the student when he/she is assigned to a course</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><u><strong>Teachers and Staff</strong></u> Management Commands</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Adding a teacher
-Command: 	‘add-teacher &lt;parameters&gt;’<br>
-Parameters:</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>‘n/ &lt;new teacher’s name&gt;’</p>
-</li>
-<li>
-<p>‘s/ &lt;new teacher’s salary&gt;’</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Deleting a teacher
-Command: 	‘delete-teacher studentIndex’</p>
-</li>
-<li>
-<p>Editing a teacher details
-Command: 	‘edit-teacher teacherIndex &lt;parameters&gt;’<br>
-Parameters:</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>‘n/ &lt;new teacher name&gt;’</p>
-</li>
-<li>
-<p>‘co/ &lt;new course name taught&gt;’</p>
-</li>
-<li>
-<p>‘s/ &lt;new teacher’s salary&gt;’</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Finding for teachers entry by specified parameters
-Command: 	‘find-student &lt;parameters&gt;’<br>
-Parameters:</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>‘n/ &lt;teacher’s name&gt;’ - find by teacher’s name</p>
-</li>
-<li>
-<p>‘co/ &lt;course taught&gt;’ - find teachers by similar courses taught</p>
-</li>
-<li>
-<p>‘s/ &lt;value&gt;’ - find teachers who earn within the specified values</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Assigning a teacher to a course
-Command: 	‘assign teacher teacherID courseID’</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><u><strong>Course and Curriculum</strong></u> Management Commands</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Adding a course
-Command: ‘add-course &lt;parameters&gt;’<br>
-Parameters:</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>‘n/ &lt;course name&gt;’</p>
-</li>
-<li>
-<p>‘cid/ &lt;course id&gt;’</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Adding a curriculum
-Description: Curriculum is a list of tasks and its respective deadlines to be done by<br>
-Command: ‘add-curriculum &lt;parameters&gt;’<br>
-Parameters:</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>‘currID/ &lt;curriculum id&gt;’</p>
-</li>
-<li>
-<p>‘currDesc/ &lt;varargs of task names&gt;’</p>
-</li>
-<li>
-<p>‘taskDL/ &lt;varargs of deadlines&gt;’
-Note: the number of currDesc and taskDL must match, else error will be thrown.</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Assigning objects to a course
-Description: Each course must have a curriculum to be taught, an accompanying teacher, and students to be taught<br>
-Command: ‘assign course &lt;parameters&gt;’<br>
-Parameters:</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>‘currID/ &lt;curriculum id&gt;’</p>
-</li>
-<li>
-<p>‘sID/ &lt;studentID&gt;’</p>
-</li>
-<li>
-<p>‘tID/ &lt;teacherID&gt;’</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Editing a course
-Command: ‘edit-course &lt;parameters&gt;’<br>
-Parameters:</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>‘cn/ &lt;course name&gt;’</p>
-</li>
-<li>
-<p>‘currID/ &lt;curriculumID&gt;’</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><u><strong>Finance and Payment</strong></u> Tracking Commands</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Adding a FinanceInfo
-Command: ‘add-finance &lt;parameters&gt;’<br>
-Parameters:</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>‘n/ &lt;finance name&gt;’</p>
-</li>
-<li>
-<p>a/ amount</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Editing a FinanceInfo
-Command: ‘add-finance&lt;parameters&gt;’<br>
-Parameters:</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>‘n/ &lt;finance name&gt;’</p>
-</li>
-<li>
-<p>a/ amount</p>
+<p><code>find d/2020-01-30</code><br>
+Returns any homework with a deadline of <code>2020-01-30</code></p>
 </li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Student: <br>
-Name ‘n/ &lt;new student’s name&gt;’ <br>
-AssignedCourse co/ &lt;new course name&gt;’</p>
-</div>
-<div class="paragraph">
-<p>Teacher<br>
-Name n/ &lt;new teacher’s name&gt;’<br>
-Salary ‘s/ &lt;new teacher’s salary&gt;’</p>
-</div>
-<div class="paragraph">
-<p>Course ‘n/ &lt;course name&gt;’<br>
-Name ‘n/ &lt;course name&gt;’<br>
-ID ‘cid/ &lt;course id&gt;’</p>
-</div>
-<div class="paragraph">
-<p>Finance<br>
-‘Name n/ &lt;finance name&gt;’<br>
-a/ amount</p>
+</ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-10 08:58:46 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-10 13:18:02 UTC</div></div></div></body></html>

@@ -650,7 +650,12 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Value proposition</strong>: manage contacts faster than a typical mouse/GUI driven app</p>
+<p><strong>Value proposition</strong>:
+* Manage the addition and removal of students quickly
+* Manage the addition and removal of courses quickly
+* Manage the addition and removal of homework and progress quickly
+* Check the financial status of courses
+* Track student progress for courses quickly</p>
 </div>
 </div>
 </div>
@@ -685,32 +690,80 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add a new person</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a homework with a deadline</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">delete a person</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">remove entries that I no longer need</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">find a person by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate details of persons without having to go through the entire list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list all homework tasks</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hide <a href="#private-contact-detail">private contact details</a> by default</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">minimize chance of someone else seeing them by accident</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list all homework to be done for a course</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find a particular homework</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate the details of the homework without going through the whole list of all homeworks</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit a homework&#8217;s detail</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quickly change the details of the homework without creating a new entry and deleting the old one</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assign a homework to course</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assign a list of homework to course</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quickly add all homeworks to a course without going through them one by one</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">for every student added to a course, assign a list of progress items to them automatically based on the homework for the course</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">make it more convenient for the administrative staff to assign students to courses</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">track the progress of an individual student</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to ensure that students are caught up on study materials</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">track the progress of all students in a particular course</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to get an overview understanding of all students' progress in a course</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mark as done the homework of a student</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mark as done the homework of a few/all students for a particular week</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quickly mark students' homework as done without iterating through all of the homework</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">get notified if there is a student with too many undone homework</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">help to easily inform the teachers on the student progress</p></td>
 </tr>
 </tbody>
 </table>
@@ -723,25 +776,64 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is the <code>Code Camp X</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
+<h3 id="use-case-1-adding-a-homework" class="discrete">Use Case 1: Adding a homework</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to list persons</p>
+<p>User inputs an 'add homework' command with name and deadline</p>
 </li>
 <li>
-<p>AddressBook shows a list of persons</p>
+<p>CCX adds the homework into the system
++ Use case ends.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. No name/deadline is provided.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>User requests to delete a specific person in the list</p>
+<p>1b. The Date deadline is wrongly formatted.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. CCX shows an error message.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-2-listing-all-homework" class="discrete">Use Case 2: Listing all homework</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see all homework</p>
 </li>
 <li>
-<p>AddressBook deletes the person</p>
+<p>CCX outputs all homework in its database</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -754,19 +846,520 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. The list is empty.</p>
+<p>1a. List is empty.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
+</ul>
+</div>
+<h3 id="use-case-3-deleting-a-homework" class="discrete">Use Case 3: Deleting a homework</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>3a. The given index is invalid.</p>
+<p>User sees all homework using UC2</p>
+</li>
+<li>
+<p>User requests to delete homework using its respective homeworkID</p>
+</li>
+<li>
+<p>CCX finds the homework using UC4</p>
+</li>
+<li>
+<p>CCX removes the homework from the system</p>
+</li>
+<li>
+<p>CCX outputs a success message with the details for the homework</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. AddressBook shows an error message.</p>
+<p>2a. homeworkID does not exist.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a1. CCX shows an error message.</p>
 <div class="paragraph">
-<p>Use case resumes at step 2.</p>
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-4-finding-a-homework-by-homeworkid" class="discrete">Use Case 4: Finding a homework by homeworkID</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User sees all homework using UC2</p>
+</li>
+<li>
+<p>User requests to view a homework using its respective homeworkID</p>
+</li>
+<li>
+<p>CCX searches the the system for the relevant homework</p>
+</li>
+<li>
+<p>CCX outputs a success message with the details for the homework</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. homeworkID does not exist.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-5-edit-a-homework-using-homeworkid" class="discrete">Use Case 5: Edit a homework using homeworkID</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User sees all homework using UC2</p>
+</li>
+<li>
+<p>CCX outputs the whole list of homework</p>
+</li>
+<li>
+<p>User requests to edit a homework using its respective homeworkID</p>
+</li>
+<li>
+<p>CCX finds for the specific homework using UC4</p>
+</li>
+<li>
+<p>CCX changes the details of the homework</p>
+</li>
+<li>
+<p>CCX outputs a success message with the updated details for the homework</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. homeworkID does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3b. New deadline provided is not properly formatted.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3c. No new details are provided.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3c1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-6-assign-a-homework-to-a-course" class="discrete">Use Case 6: Assign a homework to a course</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see homework using UC2</p>
+</li>
+<li>
+<p>CCX outputs the whole list of homework</p>
+</li>
+<li>
+<p>User requests to see all courses using <strong>UC??</strong></p>
+</li>
+<li>
+<p>User requests to assign a homework to a course using their respective IDs</p>
+</li>
+<li>
+<p>CCX adds the homeworkID into the course&#8217;s list of homework</p>
+</li>
+<li>
+<p>CCX outputs a success message with the successful addition of homework</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a. homeworkID does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>4b. courseID does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4b1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-7-assign-several-homework-to-a-course" class="discrete">Use Case 7: Assign several homework to a course</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see homework using UC2</p>
+</li>
+<li>
+<p>CCX outputs the whole list of homework</p>
+</li>
+<li>
+<p>User requests to see all courses using <strong>UC??</strong></p>
+</li>
+<li>
+<p>User requests to assign a list of homework to a course using their respective IDs</p>
+</li>
+<li>
+<p>CCX adds the list of homeworkID into the course&#8217;s list of homework</p>
+</li>
+<li>
+<p>CCX outputs a success message with the successful addition of homework</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a. Any one of the homeworkID does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>4b. courseID does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4b1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-8-signup-a-student-to-a-course" class="discrete">Use Case 8: Signup a student to a course</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see all students using <strong>UC??</strong></p>
+</li>
+<li>
+<p>CCX outputs the whole list of students</p>
+</li>
+<li>
+<p>User requests to see all courses using <strong>UC??</strong></p>
+</li>
+<li>
+<p>User requests to signup a student to a course using their respective IDs</p>
+</li>
+<li>
+<p>CCX finds all homework assigned to the course</p>
+</li>
+<li>
+<p>CCX creates a Progress object for each homework and ties it to the student ID</p>
+</li>
+<li>
+<p>CCX adds the Progress object into the system</p>
+</li>
+<li>
+<p>CCX outputs a success message</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a. studentID does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>4b. courseID does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4b1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-9-view-progress-for-a-particular-student-for-a-certain-course" class="discrete">Use Case 9: View progress for a particular student, for a certain course</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see all students using <strong>UC??</strong></p>
+</li>
+<li>
+<p>CCX outputs the whole list of students</p>
+</li>
+<li>
+<p>User requests to see all courses using <strong>UC??</strong></p>
+</li>
+<li>
+<p>User requests to view the progress for a student, for a course using their respective IDs</p>
+</li>
+<li>
+<p>CCX finds all Progress objects using the courseID and studentID</p>
+</li>
+<li>
+<p>CCX outputs all the respective Progress objects</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a. studentID does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>4b. courseID does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4b1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>4c. Student is not assigned to the course.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4c1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-10-view-progress-for-all-students-for-a-certain-course" class="discrete">Use Case 10: View progress for all students, for a certain course</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see all courses using <strong>UC??</strong></p>
+</li>
+<li>
+<p>User requests to view the progress for all students for a course using their respective IDs using UC9</p>
+</li>
+<li>
+<p>CCX finds all Progress objects using the courseID and studentID</p>
+</li>
+<li>
+<p>CCX outputs all the respective Progress objects</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. courseID does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-11-mark-a-student-s-progress-object-as-done" class="discrete">Use Case 11: Mark a student&#8217;s Progress object as done</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see a student&#8217;s Progress for a certain course using UC9</p>
+</li>
+<li>
+<p>User requests to view the mark a particular Progress as 'Done' using the progressID</p>
+</li>
+<li>
+<p>CCX outputs a success message with the updated Progress object</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. progressID does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
 </div>
 </li>
 </ul>
@@ -805,13 +1398,17 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="sectionbody">
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="mainstream-os"></a> Mainstream OS</dt>
+<dt class="hdlist1"><strong>Homework</strong> </dt>
 <dd>
-<p>Windows, Linux, Unix, OS-X</p>
+<p>A task that is to be done before a certain date</p>
 </dd>
-<dt class="hdlist1"><a id="private-contact-detail"></a> Private contact detail</dt>
+<dt class="hdlist1"><strong>Progress</strong> </dt>
 <dd>
-<p>A contact detail that is not meant to be shared with others</p>
+<p>An object that contains a homework, a isDone boolean and is tied to student.</p>
+</dd>
+<dt class="hdlist1"><strong>Signup</strong> </dt>
+<dd>
+<p>Officially adds a paying student to a course</p>
 </dd>
 </dl>
 </div>
@@ -963,4 +1560,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-10 08:58:46 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-10 13:18:02 UTC</div></div></div></body></html>
