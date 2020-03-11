@@ -13,6 +13,10 @@
 <ul class="sectlevel2">
 <li><a href="#homework">1.1. Homework</a></li>
 <li><a href="#finance">1.2. Finance</a></li>
+<li><a href="#course">1.3. Course</a></li>
+<li><a href="#student">1.4. Student</a></li>
+<li><a href="#teacher">1.5. Teacher</a></li>
+<li><a href="#staff">1.6. Staff</a></li>
 </ul>
 </li>
 </ul>
@@ -252,5 +256,162 @@ Returns any finance with an amount of <code>200</code></p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="course"><a class="link" href="#course">1.3. Course</a></h3>
+<div class="sect3">
+<h4 id="add-a-course-code-add-course-code"><a class="link" href="#add-a-course-code-add-course-code">1.3.1. Add a course: <code>add course</code></a></h4>
+<div class="paragraph">
+<p>Add a new course to the list of course<br>
+Format: <code>add course n/NAME</code>
+Example:</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-11 00:59:57 UTC</div></div></div></body></html>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add course n/Programming Methodology</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="list-all-courses-code-list-course-code"><a class="link" href="#list-all-courses-code-list-course-code">1.3.2. List all courses: <code>list course</code></a></h4>
+<div class="paragraph">
+<p>Shows a list of all courses
+Format: <code>list course</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="list-all-students-in-a-course-code-list-course-student-code"><a class="link" href="#list-all-students-in-a-course-code-list-course-student-code">1.3.3. List all students in a course: <code>list course student</code></a></h4>
+<div class="paragraph">
+<p>Shows a list of all students in a course<br>
+Format: <code>list c/courseID --students</code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="student"><a class="link" href="#student">1.4. Student</a></h3>
+<div class="sect3">
+<h4 id="add-a-student-code-add-student-code"><a class="link" href="#add-a-student-code-add-student-code">1.4.1. Add a student: <code>add student</code></a></h4>
+<div class="paragraph">
+<p>Add a new student to the list of student<br>
+Format: <code>add student n/NAME</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add student n/Jon Snow</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-a-student-code-remove-student-code"><a class="link" href="#remove-a-student-code-remove-student-code">1.4.2. Remove a student: <code>remove student</code></a></h4>
+<div class="paragraph">
+<p>Remove a student from the list of students<br>
+Format: <code>remove student studentID</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="list-all-students-code-list-student-code"><a class="link" href="#list-all-students-code-list-student-code">1.4.3. List all students: <code>list student</code></a></h4>
+<div class="paragraph">
+<p>Shows a list of all students
+Format: <code>list course</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-information-about-a-student-code-edit-student-code"><a class="link" href="#edit-information-about-a-student-code-edit-student-code">1.4.4. Edit information about a student: <code>edit student</code></a></h4>
+<div class="paragraph">
+<p>Edits an existing student in the student list
+Format: <code>edit student s/studentID [n/NAME] [d/DESCRIPTION]</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit A0131120E n/Aegon Targaryen d/Son of Lyanna Stark and Rhaegar Targaryen</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="assign-a-student-to-a-course-code-assign-student-to-course-code"><a class="link" href="#assign-a-student-to-a-course-code-assign-student-to-course-code">1.4.5. Assign a student to a course: <code>assign student to course</code></a></h4>
+<div class="paragraph">
+<p>Assign an existing student in the student list to a course in the course list
+Format: <code>assign student s/studentID course c/courseID</code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="teacher"><a class="link" href="#teacher">1.5. Teacher</a></h3>
+<div class="sect3">
+<h4 id="add-a-teacher-code-add-teacher-code"><a class="link" href="#add-a-teacher-code-add-teacher-code">1.5.1. Add a teacher: <code>add teacher</code></a></h4>
+<div class="paragraph">
+<p>Add a new teacher to the list of teachers<br>
+Format: <code>add teacher n/NAME</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add teacher n/Ned Stark</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-a-teacher-code-remove-staff-code"><a class="link" href="#remove-a-teacher-code-remove-staff-code">1.5.2. Remove a teacher: <code>remove staff</code></a></h4>
+<div class="paragraph">
+<p>Remove a teacher from the list of teachers<br>
+Format: <code>remove teacher teacherID</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-information-about-a-teacher-code-edit-teacher-code"><a class="link" href="#edit-information-about-a-teacher-code-edit-teacher-code">1.5.3. Edit information about a teacher: <code>edit teacher</code></a></h4>
+<div class="paragraph">
+<p>Edit an existing teacher in the teachers list
+Format: <code>edit teacher s/teacherID [n/NAME] [d/DESCRIPTION]</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit A0131120E n/Ned Stark d/Lord of Winterfell</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="assign-a-teacher-to-a-course-code-assign-teacher-to-course-code"><a class="link" href="#assign-a-teacher-to-a-course-code-assign-teacher-to-course-code">1.5.4. Assign a teacher to a course: <code>assign teacher to course</code></a></h4>
+<div class="paragraph">
+<p>Assign an existing teacher in the teacher list to a course in the course list
+Format: <code>assign teacher s/teacherID course c/courseID</code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="staff"><a class="link" href="#staff">1.6. Staff</a></h3>
+<div class="sect3">
+<h4 id="add-a-staff-code-add-staff-code"><a class="link" href="#add-a-staff-code-add-staff-code">1.6.1. Add a staff: <code>add staff</code></a></h4>
+<div class="paragraph">
+<p>Add a new staff to the list of staffs<br>
+Format: <code>add staff n/NAME</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-a-staff-code-add-staff-code"><a class="link" href="#remove-a-staff-code-add-staff-code">1.6.2. Remove a staff: <code>add staff</code></a></h4>
+<div class="paragraph">
+<p>Remove a new staff to the list of staffs<br>
+Format: <code>remove staff staffID</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-information-about-a-staff-code-edit-staff-code"><a class="link" href="#edit-information-about-a-staff-code-edit-staff-code">1.6.3. Edit information about a staff: <code>edit staff</code></a></h4>
+<div class="paragraph">
+<p>Edit an existing teacher in the staff list<br>
+Format: <code>edit staff s/teacherID [n/NAME] [d/DESCRIPTION]</code></p>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-11 01:02:13 UTC</div></div></div></body></html>
