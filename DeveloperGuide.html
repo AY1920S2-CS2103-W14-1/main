@@ -24,10 +24,12 @@
 <ul class="sectlevel2">
 <li><a href="#assigning-linking-2-entities">3.1. Assigning/ linking 2 entities</a></li>
 <li><a href="#proposed-tracking-student-progress-feature">3.2. [Proposed] Tracking Student Progress Feature</a></li>
-<li><a href="#proposed-undo-redo-feature">3.3. [Proposed] Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#proposed-managing-teacher-and-staff-feature">3.3. [Proposed] Managing Teacher and Staff Feature</a></li>
+<li><a href="#proposed-tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">3.4. [Proposed] Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></li>
+<li><a href="#proposed-undo-redo-feature">3.5. [Proposed] Undo/Redo feature</a></li>
+<li><a href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -419,9 +421,60 @@ Please see the sequence diagram for a better understanding.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">3.3. [Proposed] Undo/Redo feature</a></h3>
+<h3 id="proposed-managing-teacher-and-staff-feature"><a class="link" href="#proposed-managing-teacher-and-staff-feature">3.3. [Proposed] Managing Teacher and Staff Feature</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">3.3.1. Proposed Implementation</a></h4>
+<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">3.3.1. Proposed implementation</a></h4>
+<div class="paragraph">
+<p>This feature is implemented with two main classes - <code>Teacher</code> and <code>Staff</code>.</p>
+</div>
+<div class="paragraph">
+<p>One of the features is to take note of all the <code>classes</code> that a <code>teacher</code> has taught. When a course is marked as done, the class is automatically added into <code>teacher</code> list of taught course.</p>
+</div>
+<div class="paragraph">
+<p>Another feature is to keep track of salary payment for <code>Teacher</code> and <code>Staff</code>. Both <code>teacher</code> and <code>staff</code> are paid by monthly or by their amount of work. If paying based on amount of work, a <code>teacher</code> is paid
+through the <code>course</code> he teaches and a <code>staff</code> is paid by miscellaneous payments.</p>
+</div>
+<div class="paragraph">
+<p>Certain approaches have some certain pros and cons. It depends on how the user want to pay to <code>teacher</code> and <code>staff</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings"><a class="link" href="#proposed-tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">3.4. [Proposed] Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation-3"><a class="link" href="#proposed-implementation-3">3.4.1. Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue. Teacher payments are tracked by courses, where the teacher is paid for each course taught. Student earnings are also tracked by courses, where the student pays for each course taken.</p>
+</div>
+<div class="paragraph">
+<p>This feature is implemented with two main classes - <code>CourseStudent</code> and <code>CourseTeacher</code>, both of which is controlled by a
+<code>CourseStudentAddressBook</code> and <code>CourseTeacherAddressBook</code> respectively. Please see the following class diagram
+which proposes the associations between the four classes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/FinanceDiagram.png" alt="FinanceDiagram">
+</div>
+<div class="title">Figure 12. Class diagram of CourseStudent and CourseTeacher</div>
+</div>
+<div class="paragraph">
+<p><code>CourseStudent</code> will be created and stored in <code>CourseStudentAddressBook</code> whenever a course is assigned to a student, ensuring that <code>Course</code> exists in <code>CourseAddressBook</code> and <code>Student</code> exists in <code>StudentAddressBook</code>.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, <code>CourseTeacher</code> will be created and added to <code>CourseTeacherAddressBook</code> whenever a course is assigned to a teacher, ensuring that <code>Course</code> exists in <code>CourseAddressBook</code> and <code>Teacher</code> exists in <code>TeacherAddressBook</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>PayCourseStudent</code> Command will access <code>CourseStudentAddressBook</code> to ensure that isPaid is false, before creating the corresponding <code>Finance</code> object to be stored in <code>FinanceAddressBook</code>. The is similar for <code>PayCourseTeacher</code> Command.</p>
+</div>
+<div class="paragraph">
+<p><code>PayMiscellaneous</code> Command will create a corresponding <code>Finance</code> object to be stored in <code>FinanceAddressBook</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">3.5. [Proposed] Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation-4"><a class="link" href="#proposed-implementation-4">3.5.1. Proposed Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -563,7 +616,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -633,20 +686,20 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -677,7 +730,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2269,7 +2322,7 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 12. Structure of Commands and Parser</div>
+<div class="title">Figure 13. Structure of Commands and Parser</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">H.1. Design considerations:</a></h4>
@@ -2286,4 +2339,4 @@ its ID and its entity name (e.g course, student, teacher, etc). So we have Assig
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-25 03:22:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-25 06:21:32 UTC</div></div></div></body></html>
