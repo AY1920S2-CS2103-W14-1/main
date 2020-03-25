@@ -168,7 +168,6 @@ its ID and its entity name (e.g course, student, teacher, etc). So we have Assig
 
 - A factory design pattern to select which assign command based on the AssignDescriptor content.
 
-
 === [Proposed] Tracking Student Progress Feature
 ==== Proposed Implementation
 
@@ -196,6 +195,27 @@ Future Functionality Include
 * For a `Course`, mark all `Progress` objects with the same assignment ID as done
 * Allow for seamless removal of `Student` from course
 * Allow for seamless deletion of `Assignment` from the addressbook
+
+=== [Proposed] Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings
+==== Proposed Implementation
+
+Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue. Teacher payments are tracked by courses, where the teacher is paid for each course taught. Student earnings are also tracked by courses, where the student pays for each course taken.
+
+This feature is implemented with two main classes - `CourseStudent` and `CourseTeacher`, both of which is controlled by a
+`CourseStudentAddressBook` and `CourseTeacherAddressBook` respectively. Please see the following class diagram
+which proposes the associations between the four classes.
+
+.Class diagram of CourseStudent and CourseTeacher
+image::FinanceDiagram.png[]
+
+`CourseStudent` will be created and stored in `CourseStudentAddressBook` whenever a course is assigned to a student, ensuring that `Course` exists in `CourseAddressBook` and `Student` exists in `StudentAddressBook`.
+
+Similarly, `CourseTeacher` will be created and added to `CourseTeacherAddressBook` whenever a course is assigned to a teacher, ensuring that `Course` exists in `CourseAddressBook` and `Teacher` exists in `TeacherAddressBook`.
+
+`PayCourseStudent` Command will access `CourseStudentAddressBook` to ensure that isPaid is false, before creating the corresponding `Finance` object to be stored in `FinanceAddressBook`. The is similar for `PayCourseTeacher` Command.
+
+`PayMiscellaneous` Command will create a corresponding `Finance` object to be stored in `FinanceAddressBook`.
+
 
 // tag::undoredo[]
 === [Proposed] Undo/Redo feature
@@ -305,6 +325,18 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 === Configuration
 
 Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
+
+=== [Proposed] Managing Teacher and Staff Feature
+
+==== Proposed implementation
+This feature is implemented with two main classes - `Teacher` and `Staff`.
+
+One of the features is to take note of all the `classes` that a `teacher` has taught. When a course is marked as done, the class is automatically added into `teacher` list of taught course.
+
+Another feature is to keep track of salary payment for `Teacher` and `Staff`. Both `teacher` and `staff` are paid by monthly or by their amount of work. If paying based on amount of work, a `teacher` is paid
+through the `course` he teaches and a `staff` is paid by miscellaneous payments.
+
+Certain approaches have some certain pros and cons. It depends on how the user want to pay to `teacher` and `staff`.
 
 == Documentation
 
