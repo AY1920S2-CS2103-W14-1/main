@@ -21,7 +21,7 @@ public class Assignment {
 
   // Identity fields
   private final Name name;
-  private final ID id;
+  private final ID assignmentId;
   private final Deadline deadline;
   private final Set<Tag> tags = new HashSet<>();
 
@@ -31,7 +31,7 @@ public class Assignment {
   public Assignment(Name name, ID id, Deadline deadline, Set<Tag> tags) {
     requireAllNonNull(name, id, deadline, tags);
     this.name = name;
-    this.id = id;
+    this.assignmentId = id;
     this.deadline = deadline;
     this.tags.addAll(tags);
   }
@@ -41,7 +41,7 @@ public class Assignment {
   }
 
   public ID getId() {
-    return id;
+    return assignmentId;
   }
 
   public Deadline getDeadline() {
@@ -95,7 +95,7 @@ public class Assignment {
   @Override
   public int hashCode() {
     // use this method for custom fields hashing instead of implementing your own
-    return Objects.hash(name, id, deadline, tags);
+    return Objects.hash(name, assignmentId, deadline, tags);
   }
 
   @Override

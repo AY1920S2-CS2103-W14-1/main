@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
@@ -15,16 +14,18 @@
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <FlowPane fx:id="tags" />
       <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
+            <Label fx:id="id" text="\$id" />
         <Label fx:id="assignmentName" styleClass="cell_big_label" text="\$name" />
       </HBox>
+         <HBox alignment="CENTER_LEFT" prefHeight="12.0" prefWidth="62.0">
+            <children>
+               <Label fx:id="assignmentID" text="\$assignmentID" />
+            </children>
+         </HBox>
       <HBox>
-        <Label fx:id="assignmentDeadline" styleClass="cell_small_label" text="\$deadline" />
+            <children>
+           <Label fx:id="assignmentDeadline" styleClass="cell_small_label" text="\$deadline" />
+            </children>
       </HBox>
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
