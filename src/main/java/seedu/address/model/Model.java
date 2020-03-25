@@ -12,6 +12,7 @@ import seedu.address.model.modelCourseStudent.CourseStudent;
 import seedu.address.model.modelCourseStudent.ReadOnlyCourseStudentAddressBook;
 import seedu.address.model.modelFinance.Finance;
 import seedu.address.model.modelFinance.ReadOnlyFinanceAddressBook;
+import seedu.address.model.modelStaff.Staff;
 import seedu.address.model.modelStudent.ReadOnlyStudentAddressBook;
 import seedu.address.model.modelStudent.Student;
 import seedu.address.model.modelTeacher.ReadOnlyTeacherAddressBook;
@@ -28,6 +29,7 @@ public interface Model {
    */
   Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
   Predicate<Teacher> PREDICATE_SHOW_ALL_TEACHERS = unused -> true;
+  Predicate<Staff> PREDICATE_SHOW_ALL_STAFFS = unused -> true;
   Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
   Predicate<Finance> PREDICATE_SHOW_ALL_FINANCES = unused -> true;
   Predicate<Course> PREDICATE_SHOW_ALL_COURSES = unused -> true;
@@ -171,6 +173,31 @@ public interface Model {
    * Returns the user prefs' address book file path.
    */
   Path getStudentAddressBookFilePath();
+
+  /// For Staff
+
+  /**
+   * Adds the given staff. {@code staff} must not already exist in the address book.
+   */
+  void addStaff(Staff staff);
+
+  /**
+   * Returns true if a staff with the same identity as {@code staff} exists in the address
+   * book.
+   */
+  boolean hasStaff(Staff staff);
+
+  /**
+   * Returns an unmodifiable view of the filtered staff list
+   */
+  ObservableList<Staff> getFilteredStaffList();
+
+  /**
+   * Updates the filter of the filtered staff list to filter by the given {@code predicate}.
+   *
+   * @throws NullPointerException if {@code predicate} is null.
+   */
+  void updateFilteredStaffList(Predicate<Staff> predicate);
 
   /**
    * Sets the user prefs' address book file path.

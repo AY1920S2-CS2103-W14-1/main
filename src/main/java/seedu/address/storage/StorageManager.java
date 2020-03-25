@@ -13,12 +13,14 @@ import seedu.address.model.modelAssignment.ReadOnlyAssignmentAddressBook;
 import seedu.address.model.modelCourse.ReadOnlyCourseAddressBook;
 import seedu.address.model.modelCourseStudent.ReadOnlyCourseStudentAddressBook;
 import seedu.address.model.modelFinance.ReadOnlyFinanceAddressBook;
+import seedu.address.model.modelStaff.ReadOnlyStaffAddressBook;
 import seedu.address.model.modelStudent.ReadOnlyStudentAddressBook;
 import seedu.address.model.modelTeacher.ReadOnlyTeacherAddressBook;
 import seedu.address.storage.storageAssignments.AssignmentAddressBookStorage;
 import seedu.address.storage.storageCourse.CourseAddressBookStorage;
 import seedu.address.storage.storageCourseStudent.CourseStudentAddressBookStorage;
 import seedu.address.storage.storageFinance.FinanceAddressBookStorage;
+import seedu.address.storage.storageStaff.StaffAddressBookStorage;
 import seedu.address.storage.storageStudent.StudentAddressBookStorage;
 import seedu.address.storage.storageTeacher.TeacherAddressBookStorage;
 
@@ -30,6 +32,7 @@ public class StorageManager implements Storage {
   private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
   private AddressBookStorage addressBookStorage;
   private TeacherAddressBookStorage teacherAddressBookStorage;
+  private StaffAddressBookStorage staffAddressBookStorage;
   private StudentAddressBookStorage studentAddressBookStorage;
   private FinanceAddressBookStorage financeAddressBookStorage;
   private CourseAddressBookStorage courseAddressBookStorage;
@@ -41,6 +44,7 @@ public class StorageManager implements Storage {
 
   public StorageManager(AddressBookStorage addressBookStorage,
       TeacherAddressBookStorage teacherAddressBookStorage,
+      StaffAddressBookStorage staffAddressBookStorage,
       StudentAddressBookStorage studentAddressBookStorage,
       FinanceAddressBookStorage financeAddressBookStorage,
       CourseAddressBookStorage courseAddressBookStorage,
@@ -51,6 +55,7 @@ public class StorageManager implements Storage {
     super();
     this.addressBookStorage = addressBookStorage;
     this.teacherAddressBookStorage = teacherAddressBookStorage;
+    this.staffAddressBookStorage = staffAddressBookStorage;
     this.studentAddressBookStorage = studentAddressBookStorage;
     this.financeAddressBookStorage = financeAddressBookStorage;
     this.courseAddressBookStorage = courseAddressBookStorage;
@@ -139,6 +144,40 @@ public class StorageManager implements Storage {
       throws IOException {
     logger.fine("Attempting to write to data file: " + filePath);
     teacherAddressBookStorage.saveTeacherAddressBook(teacherAddressBook, filePath);
+  }
+
+  // ================ StaffAddressBook methods ==============================
+
+  @Override
+  public Path getStaffAddressBookFilePath() {
+    return staffAddressBookStorage.getStaffAddressBookFilePath();
+  }
+
+  @Override
+  public Optional<ReadOnlyStaffAddressBook> readStaffAddressBook()
+          throws DataConversionException, IOException {
+    return readStaffAddressBook(staffAddressBookStorage.getStaffAddressBookFilePath());
+  }
+
+  @Override
+  public Optional<ReadOnlyStaffAddressBook> readStaffAddressBook(Path filePath)
+          throws DataConversionException, IOException {
+    logger.fine("Attempting to read data from file: " + filePath);
+    return staffAddressBookStorage.readStaffAddressBook(filePath);
+  }
+
+  @Override
+  public void saveStaffAddressBook(ReadOnlyStaffAddressBook staffAddressBook)
+          throws IOException {
+    saveStaffAddressBook(staffAddressBook,
+            staffAddressBookStorage.getStaffAddressBookFilePath());
+  }
+
+  @Override
+  public void saveStaffAddressBook(ReadOnlyStaffAddressBook staffAddressBook, Path filePath)
+          throws IOException {
+    logger.fine("Attempting to write to data file: " + filePath);
+    staffAddressBookStorage.saveStaffAddressBook(staffAddressBook, filePath);
   }
 
   // ================ StudentAddressBook methods ==============================

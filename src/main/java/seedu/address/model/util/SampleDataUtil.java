@@ -17,6 +17,9 @@ import seedu.address.model.modelCourseStudent.ReadOnlyCourseStudentAddressBook;
 import seedu.address.model.modelFinance.Finance;
 import seedu.address.model.modelFinance.FinanceAddressBook;
 import seedu.address.model.modelFinance.ReadOnlyFinanceAddressBook;
+import seedu.address.model.modelStaff.ReadOnlyStaffAddressBook;
+import seedu.address.model.modelStaff.Staff;
+import seedu.address.model.modelStaff.StaffAddressBook;
 import seedu.address.model.modelStudent.ReadOnlyStudentAddressBook;
 import seedu.address.model.modelStudent.Student;
 import seedu.address.model.modelStudent.StudentAddressBook;
@@ -64,10 +67,31 @@ public class SampleDataUtil {
     };
   }
 
+  public static Staff[] getSampleStaffs() {
+    return new Staff[]{
+            new Staff(new Name("StaffenWolf Star"), new Phone("97231208"), new Email("star.wolf@gmail.com"),
+                    new Salary("2500"),
+                    new Address("Jupiter"),
+                    getTagSet("DataEntry", "Detail")),
+            new Staff(new Name("Stafford Stark"), new Phone("91232718"), new Email("stark.ford@gmail.com"),
+                    new Salary("2600"),
+                    new Address("Mars"),
+                    getTagSet("Multitasking", "Financing")),
+    };
+  }
+
   public static ReadOnlyTeacherAddressBook getSampleTeacherAddressBook() {
     TeacherAddressBook sampleAb = new TeacherAddressBook();
     for (Teacher sampleTeacher : getSampleTeachers()) {
       sampleAb.addTeacher(sampleTeacher);
+    }
+    return sampleAb;
+  }
+
+  public static ReadOnlyStaffAddressBook getSampleStaffAddressBook() {
+    StaffAddressBook sampleAb = new StaffAddressBook();
+    for (Staff sampleStaff : getSampleStaffs()) {
+      sampleAb.addStaff(sampleStaff);
     }
     return sampleAb;
   }

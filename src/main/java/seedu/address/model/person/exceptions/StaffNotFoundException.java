@@ -1,4 +1,4 @@
 package seedu.address.model.person.exceptions;
 
-public class StaffNotFoundException {
+public class StaffNotFoundException extends RuntimeException {
 }

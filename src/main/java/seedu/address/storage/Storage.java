@@ -12,6 +12,7 @@ import seedu.address.model.modelAssignment.ReadOnlyAssignmentAddressBook;
 import seedu.address.model.modelCourse.ReadOnlyCourseAddressBook;
 import seedu.address.model.modelCourseStudent.ReadOnlyCourseStudentAddressBook;
 import seedu.address.model.modelFinance.ReadOnlyFinanceAddressBook;
+import seedu.address.model.modelStaff.ReadOnlyStaffAddressBook;
 import seedu.address.model.modelStudent.ReadOnlyStudentAddressBook;
 import seedu.address.model.modelTeacher.ReadOnlyTeacherAddressBook;
 import seedu.address.storage.storageAssignments.AssignmentAddressBookStorage;
@@ -20,11 +21,13 @@ import seedu.address.storage.storageCourseStudent.CourseStudentAddressBookStorag
 import seedu.address.storage.storageFinance.FinanceAddressBookStorage;
 import seedu.address.storage.storageStudent.StudentAddressBookStorage;
 import seedu.address.storage.storageTeacher.TeacherAddressBookStorage;
+import seedu.address.storage.storageStaff.StaffAddressBookStorage;
 
 /**
  * API of the Storage component
  */
 public interface Storage extends AddressBookStorage, TeacherAddressBookStorage,
+    StaffAddressBookStorage,
     StudentAddressBookStorage,
     FinanceAddressBookStorage, CourseAddressBookStorage, AssignmentAddressBookStorage,
     CourseStudentAddressBookStorage,
@@ -57,6 +60,17 @@ public interface Storage extends AddressBookStorage, TeacherAddressBookStorage,
 
   @Override
   void saveTeacherAddressBook(ReadOnlyTeacherAddressBook teacherAddressBook) throws IOException;
+
+  ///
+  @Override
+  Path getStaffAddressBookFilePath();
+
+  @Override
+  Optional<ReadOnlyStaffAddressBook> readStaffAddressBook()
+          throws DataConversionException, IOException;
+
+  @Override
+  void saveStaffAddressBook(ReadOnlyStaffAddressBook staffAddressBook) throws IOException;
 
   ///
   @Override

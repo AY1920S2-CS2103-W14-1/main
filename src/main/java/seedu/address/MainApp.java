@@ -29,6 +29,8 @@ import seedu.address.model.modelCourseStudent.CourseStudentAddressBook;
 import seedu.address.model.modelCourseStudent.ReadOnlyCourseStudentAddressBook;
 import seedu.address.model.modelFinance.FinanceAddressBook;
 import seedu.address.model.modelFinance.ReadOnlyFinanceAddressBook;
+import seedu.address.model.modelStaff.ReadOnlyStaffAddressBook;
+import seedu.address.model.modelStaff.StaffAddressBook;
 import seedu.address.model.modelStudent.ReadOnlyStudentAddressBook;
 import seedu.address.model.modelStudent.StudentAddressBook;
 import seedu.address.model.modelTeacher.ReadOnlyTeacherAddressBook;
@@ -48,6 +50,8 @@ import seedu.address.storage.storageCourseStudent.CourseStudentAddressBookStorag
 import seedu.address.storage.storageCourseStudent.JsonCourseStudentAddressBookStorage;
 import seedu.address.storage.storageFinance.FinanceAddressBookStorage;
 import seedu.address.storage.storageFinance.JsonFinanceAddressBookStorage;
+import seedu.address.storage.storageStaff.JsonStaffAddressBookStorage;
+import seedu.address.storage.storageStaff.StaffAddressBookStorage;
 import seedu.address.storage.storageStudent.JsonStudentAddressBookStorage;
 import seedu.address.storage.storageStudent.StudentAddressBookStorage;
 import seedu.address.storage.storageTeacher.JsonTeacherAddressBookStorage;
@@ -85,6 +89,8 @@ public class MainApp extends Application {
         userPrefs.getAddressBookFilePath());
     TeacherAddressBookStorage teacherAddressBookStorage = new JsonTeacherAddressBookStorage(
         userPrefs.getTeacherAddressBookFilePath());
+    StaffAddressBookStorage staffAddressBookStorage = new JsonStaffAddressBookStorage(
+            userPrefs.getStaffAddressBookFilePath());
     StudentAddressBookStorage studentAddressBookStorage = new JsonStudentAddressBookStorage(
         userPrefs.getStudentAddressBookFilePath());
     CourseAddressBookStorage courseAddressBookStorage = new JsonCourseAddressBookStorage(
@@ -96,7 +102,7 @@ public class MainApp extends Application {
     CourseStudentAddressBookStorage courseStudentAddressBookStorage = new JsonCourseStudentAddressBookStorage(
         userPrefs.getCourseStudentAddressBookFilePath());
 
-    storage = new StorageManager(addressBookStorage, teacherAddressBookStorage,
+    storage = new StorageManager(addressBookStorage, teacherAddressBookStorage, staffAddressBookStorage,
         studentAddressBookStorage, financeAddressBookStorage, courseAddressBookStorage,
             assignmentAddressBookStorage, courseStudentAddressBookStorage, userPrefsStorage);
 
@@ -151,6 +157,25 @@ public class MainApp extends Application {
       logger.warning(
           "Problem while reading from the file. Will be starting with an empty AddressBook");
       teacherInitialData = new TeacherAddressBook();
+    }
+
+    Optional<ReadOnlyStaffAddressBook> staffAddressBookOptional;
+    ReadOnlyStaffAddressBook staffInitialData;
+    try {
+      staffAddressBookOptional = storage.readStaffAddressBook();
+      if (!staffAddressBookOptional.isPresent()) {
+        logger.info("Data file not found. Will be starting with a sample AddressBook");
+      }
+      staffInitialData = staffAddressBookOptional
+              .orElseGet(SampleDataUtil::getSampleStaffAddressBook);
+    } catch (DataConversionException e) {
+      logger.warning(
+              "Data file not in the correct format. Will be starting with an empty AddressBook");
+      staffInitialData = new StaffAddressBook();
+    } catch (IOException e) {
+      logger.warning(
+              "Problem while reading from the file. Will be starting with an empty AddressBook");
+      staffInitialData = new StaffAddressBook();
     }
 
     Optional<ReadOnlyStudentAddressBook> studentAddressBookOptional;
@@ -250,7 +275,7 @@ public class MainApp extends Application {
       courseStudentInitialData = new CourseStudentAddressBook();
     }
 
-    return new ModelManager(initialData, teacherInitialData, studentInitialData, financeInitialData,
+    return new ModelManager(initialData, teacherInitialData, staffInitialData, studentInitialData, financeInitialData,
         courseInitialData, assignmentInitialData, courseStudentInitialData, userPrefs);
   /*
     return new ModelManager(initialData, teacherInitialData, studentInitialData, financeInitialData,
