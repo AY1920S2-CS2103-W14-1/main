@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudent.getTypicalStudentAddressBook;
 import static seedu.address.testutil.TypicalTeacher.getTypicalTeacherAddressBook;
+import static seedu.address.testutil.TypicalStaff.getTypicalStaffAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,9 +31,9 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTeacherAddressBook(), getTypicalStudentAddressBook(),
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTeacherAddressBook(), getTypicalStaffAddressBook(), getTypicalStudentAddressBook(),
         getTypicalFinanceAddressBook(), getTypicalCourseAddressBook(), getTypicalAssignmentAddressBook(),new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalTeacherAddressBook(), getTypicalStudentAddressBook(),
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalTeacherAddressBook(), getTypicalStaffAddressBook(), getTypicalStudentAddressBook(),
         getTypicalFinanceAddressBook(), getTypicalCourseAddressBook(), getTypicalAssignmentAddressBook(),new UserPrefs());
 
     @Test

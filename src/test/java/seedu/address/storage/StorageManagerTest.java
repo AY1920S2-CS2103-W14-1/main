@@ -17,6 +17,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.storage.storageAssignments.JsonAssignmentAddressBookStorage;
 import seedu.address.storage.storageCourse.JsonCourseAddressBookStorage;
 import seedu.address.storage.storageFinance.JsonFinanceAddressBookStorage;
+import seedu.address.storage.storageStaff.JsonStaffAddressBookStorage;
 import seedu.address.storage.storageStudent.JsonStudentAddressBookStorage;
 import seedu.address.storage.storageTeacher.JsonTeacherAddressBookStorage;
 
@@ -32,6 +33,8 @@ public class StorageManagerTest {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonTeacherAddressBookStorage teacherAddressBookStorage =
             new JsonTeacherAddressBookStorage(getTempFilePath("tab"));
+        JsonStaffAddressBookStorage staffAddressBookStorage =
+                new JsonStaffAddressBookStorage(getTempFilePath("stab"));
         JsonStudentAddressBookStorage studentAddressBookStorage =
             new JsonStudentAddressBookStorage(getTempFilePath("sab"));
         JsonFinanceAddressBookStorage financeAddressBookStorage =
@@ -43,7 +46,7 @@ public class StorageManagerTest {
 
 
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, teacherAddressBookStorage,
+        storageManager = new StorageManager(addressBookStorage, teacherAddressBookStorage, staffAddressBookStorage,
             studentAddressBookStorage, financeAddressBookStorage, courseAddressBookStorage, assignmentAddressBookStorage, userPrefsStorage);
     }
 

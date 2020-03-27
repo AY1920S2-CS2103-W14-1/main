@@ -621,8 +621,8 @@ Use case ends.
 4.  User requests to signup a student to a course using their respective IDs
 5.  CCX finds all assignment assigned to the course
 6.  CCX creates a Progress object for each assignment and ties it to the student ID
-4.  CCX adds the Progress object into the system
-5.  CCX outputs a success message
+7.  CCX adds the Progress object into the system
+8.  CCX outputs a success message
 +
 Use case ends.
 
@@ -1071,7 +1071,7 @@ The diagram below shows a simplified flow
 .Structure of Commands and Parser
 image::AssignCommandImplementation.png[]
 
-==== Design considerations:
+=== Design considerations:
 - Since all assign commands are just linking between two entities, where each of them is distinguised based on
 its ID and its entity name (e.g course, student, teacher, etc). So we have AssignDescriptor which stores this information.
 

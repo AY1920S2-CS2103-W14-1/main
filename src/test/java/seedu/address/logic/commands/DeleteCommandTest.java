@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudent.getTypicalStudentAddressBook;
 import static seedu.address.testutil.TypicalTeacher.getTypicalTeacherAddressBook;
+import static seedu.address.testutil.TypicalStaff.getTypicalStaffAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +31,7 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTeacherAddressBook(), getTypicalStudentAddressBook(),
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTeacherAddressBook(), getTypicalStaffAddressBook(), getTypicalStudentAddressBook(),
         getTypicalFinanceAddressBook(), getTypicalCourseAddressBook(), getTypicalAssignmentAddressBook(), new UserPrefs());
 
     @Test
@@ -40,8 +41,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTeacherAddressBook(),
-            model.getStudentAddressBook(), model.getFinanceAddressBook(), model.getCourseAddressBook(),
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTeacherAddressBook(), model.getStaffAddressBook(),
+                model.getStudentAddressBook(), model.getFinanceAddressBook(), model.getCourseAddressBook(),
                 model.getAssignmentAddressBook(), model.getUserPrefs());
         expectedModel.deletePerson(personToDelete);
 
@@ -65,8 +66,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTeacherAddressBook(),
-            model.getStudentAddressBook(), model.getFinanceAddressBook(), model.getCourseAddressBook(),
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTeacherAddressBook(), model.getStaffAddressBook(),
+                model.getStudentAddressBook(), model.getFinanceAddressBook(), model.getCourseAddressBook(),
                 model.getAssignmentAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);

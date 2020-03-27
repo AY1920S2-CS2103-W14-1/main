@@ -18,6 +18,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudent.getTypicalStudentAddressBook;
 import static seedu.address.testutil.TypicalTeacher.getTypicalTeacherAddressBook;
+import static seedu.address.testutil.TypicalStaff.getTypicalStaffAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +34,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.modelAssignment.AssignmentAddressBook;
 import seedu.address.model.modelCourse.CourseAddressBook;
 import seedu.address.model.modelFinance.FinanceAddressBook;
+import seedu.address.model.modelStaff.StaffAddressBook;
 import seedu.address.model.modelStudent.StudentAddressBook;
 import seedu.address.model.modelTeacher.TeacherAddressBook;
 import seedu.address.model.person.Person;
@@ -44,7 +46,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTeacherAddressBook(), getTypicalStudentAddressBook(),
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTeacherAddressBook(), getTypicalStaffAddressBook(), getTypicalStudentAddressBook(),
         getTypicalFinanceAddressBook(), getTypicalCourseAddressBook(), getTypicalAssignmentAddressBook(), new UserPrefs());
 
     @Test
@@ -55,9 +57,9 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new TeacherAddressBook(model.getTeacherAddressBook())
-        , new StudentAddressBook(model.getStudentAddressBook()), new FinanceAddressBook(model.getFinanceAddressBook()),
-            new CourseAddressBook(model.getCourseAddressBook()), new AssignmentAddressBook(model.getAssignmentAddressBook()),
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new TeacherAddressBook(model.getTeacherAddressBook()),
+                new StaffAddressBook(model.getStaffAddressBook()), new StudentAddressBook(model.getStudentAddressBook()), new FinanceAddressBook(model.getFinanceAddressBook()),
+                new CourseAddressBook(model.getCourseAddressBook()), new AssignmentAddressBook(model.getAssignmentAddressBook()),
                 new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
@@ -79,8 +81,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new TeacherAddressBook(model.getTeacherAddressBook())
-        ,new StudentAddressBook(model.getStudentAddressBook()) ,new FinanceAddressBook(model.getFinanceAddressBook()),
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new TeacherAddressBook(model.getTeacherAddressBook()),
+                new StaffAddressBook(model.getStaffAddressBook()), new StudentAddressBook(model.getStudentAddressBook()) ,new FinanceAddressBook(model.getFinanceAddressBook()),
             new CourseAddressBook(model.getCourseAddressBook()), new AssignmentAddressBook(model.getAssignmentAddressBook()),new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
@@ -94,8 +96,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new TeacherAddressBook(model.getTeacherAddressBook())
-            , new StudentAddressBook(model.getStudentAddressBook()), new FinanceAddressBook(model.getFinanceAddressBook()),
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new TeacherAddressBook(model.getTeacherAddressBook()),
+                new StaffAddressBook(model.getStaffAddressBook()), new StudentAddressBook(model.getStudentAddressBook()), new FinanceAddressBook(model.getFinanceAddressBook()),
             new CourseAddressBook(model.getCourseAddressBook()), new AssignmentAddressBook(model.getAssignmentAddressBook()),new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -112,8 +114,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel =new ModelManager(new AddressBook(model.getAddressBook()), new TeacherAddressBook(model.getTeacherAddressBook())
-            , new StudentAddressBook(model.getStudentAddressBook()), new FinanceAddressBook(model.getFinanceAddressBook()),
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new TeacherAddressBook(model.getTeacherAddressBook()),
+                new StaffAddressBook(model.getStaffAddressBook()), new StudentAddressBook(model.getStudentAddressBook()), new FinanceAddressBook(model.getFinanceAddressBook()),
             new CourseAddressBook(model.getCourseAddressBook()), model.getAssignmentAddressBook(),new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
