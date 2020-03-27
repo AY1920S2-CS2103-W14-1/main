@@ -23,7 +23,15 @@
         <Label styleClass="cell_big_label" text="\$first" fx:id="name"/>
       </HBox>
       <HBox>
-        <Label styleClass="cell_small_label" text="\$"/>
+        <Label styleClass="cell_small_label" text="Finance Type: "/>
+        <Label styleClass="cell_small_label" text="\$financeType" fx:id="financeType"/>
+      </HBox>
+      <HBox>
+        <Label styleClass="cell_small_label" text="Date: "/>
+        <Label styleClass="cell_small_label" text="\$date" fx:id="date"/>
+      </HBox>
+      <HBox>
+        <Label styleClass="cell_small_label" text="Amount: $"/>
         <Label styleClass="cell_small_label" text="\$amount" fx:id="amount"/>
       </HBox>
       <padding>

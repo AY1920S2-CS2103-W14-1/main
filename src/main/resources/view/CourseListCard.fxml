@@ -21,7 +21,7 @@
           </minWidth>
         </Label>
         <Label styleClass="cell_big_label" text="\$first" fx:id="name"/>
-        <Label styleClass="cell_big_label" text="\$first" fx:id="teacherId"/>
+        <Label styleClass="cell_big_label" text="\$first" fx:id="teacherID"/>
       </HBox>
       <HBox>
         <Label styleClass="cell_small_label" text="Course ID: "/>
@@ -30,6 +30,10 @@
       <HBox>
         <Label styleClass="cell_small_label" text="Course Fee: "/>
         <Label styleClass="cell_small_label" text="\$amount" fx:id="amount"/>
+      </HBox>
+      <HBox>
+        <Label styleClass="cell_small_label" text="Assigned Teacher: "/>
+        <Label styleClass="cell_small_label" text="\$assignedTeacher" fx:id="assignedTeacher"/>
       </HBox>
       <HBox>
         <Label styleClass="cell_small_label" text="Assigned Students: "/>

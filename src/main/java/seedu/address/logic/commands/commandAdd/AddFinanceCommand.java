@@ -2,6 +2,7 @@ package seedu.address.logic.commands.commandAdd;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -21,10 +22,12 @@ public class AddFinanceCommand extends AddCommand {
   public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a finance to the address book. "
       + "Parameters: "
       + PREFIX_NAME + "NAME "
+      + PREFIX_DATE + "DATE "
       + PREFIX_AMOUNT + "AMOUNT "
       + "[" + PREFIX_TAG + "TAG]...\n"
       + "Example: " + COMMAND_WORD + " "
       + PREFIX_NAME + "Paid NTU "
+      + PREFIX_DATE + "2020-12-09 "
       + PREFIX_AMOUNT + "1200 "
       + PREFIX_TAG + "Partnership "
       + PREFIX_TAG + "Monthly ";

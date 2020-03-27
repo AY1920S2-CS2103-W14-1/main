@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.modelAssignment.Assignment;
 import seedu.address.model.modelCourse.Course;
-import seedu.address.model.modelCourseStudent.CourseStudent;
 import seedu.address.model.modelFinance.Finance;
 import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 import seedu.address.model.modelStaff.Staff;
@@ -28,7 +27,6 @@ public interface Model {
   Predicate<Finance> PREDICATE_SHOW_ALL_FINANCES = unused -> true;
   Predicate<Course> PREDICATE_SHOW_ALL_COURSES = unused -> true;
   Predicate<Assignment> PREDICATE_SHOW_ALL_ASSIGNMENTS = unused -> true;
-  Predicate<CourseStudent> PREDICATE_SHOW_ALL_COURSESTUDENTS = unused -> true;
 
   /**
    * Returns the user prefs.
@@ -389,65 +387,4 @@ public interface Model {
    */
   void updateFilteredAssignmentList(Predicate<Assignment> predicate);
 
-  ///
-
-  /**
-   * Returns the user prefs' courseStudent address book file path.
-   */
-  Path getCourseStudentAddressBookFilePath();
-
-  /**
-   * Sets the user prefs' address book file path.
-   */
-  void setCourseStudentAddressBookFilePath(Path courseStudentAddressBookFilePath);
-
-  /**
-   * Returns the courseStudentAddressBook
-   */
-  ReadOnlyAddressBookGeneric<CourseStudent> getCourseStudentAddressBook();
-
-  /**
-   * Replaces courseStudent address book data with the data in {@code teacerAddressBook}.
-   */
-  void setCourseStudentAddressBook(ReadOnlyAddressBookGeneric<CourseStudent> courseStudentAddressBook);
-
-  /**
-   * Returns true if a courseStudent with the same identity as {@code courseStudent} exists in the address
-   * book.
-   */
-  boolean hasCourseStudent(CourseStudent courseStudent);
-
-  /**
-   * Deletes the given finance. The finance must exist in the address book.
-   */
-  void deleteCourseStudent(CourseStudent courseStudent);
-
-  /**
-   * Adds the given courseStudent. {@code courseStudent} must not already exist in the address book.
-   */
-  void addCourseStudent(CourseStudent courseStudent);
-
-  /**
-   * Replaces the given courseStudent {@code target} with {@code editedCourseStudent}. {@code target} must exist
-   * in the address book. The courseStudent identity of {@code editedCourseStudent} must not be the same as
-   * another existing finance in the address book.
-   */
-  void setCourseStudent(CourseStudent target, CourseStudent editedCourseStudent);
-
-  /**
-   * Returns an unmodifiable view of the filtered finance list
-   */
-  ObservableList<CourseStudent> getFilteredCourseStudentList();
-
-  /**
-   * Updates the filter of the filtered courseStudent list to filter by the given {@code predicate}.
-   *
-   * @throws NullPointerException if {@code predicate} is null.
-   */
-  void updateFilteredCourseStudentList(Predicate<CourseStudent> predicate);
-
-  /**
-   * Updates all new students that courses contain
-   */
-  void updateCourseStudents();
 }

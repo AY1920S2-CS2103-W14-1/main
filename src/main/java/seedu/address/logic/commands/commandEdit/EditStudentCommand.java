@@ -74,7 +74,7 @@ public class EditStudentCommand extends Command {
         .orElse(studentToEdit.getID());
     Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-    return new Student(updatedName, updatedID, updatedTags);
+    return new Student(updatedName, updatedID, studentToEdit.getAssignedCourses(), updatedTags);
   }
 
   @Override

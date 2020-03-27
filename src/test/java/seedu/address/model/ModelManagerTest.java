@@ -17,9 +17,7 @@ import static seedu.address.testutil.TypicalCourse.COURSE_ALICE;
 import static seedu.address.testutil.TypicalCourse.COURSE_BENSON;
 import static seedu.address.testutil.TypicalAssignment.ASSIGNMENT_EASY;
 import static seedu.address.testutil.TypicalAssignment.ASSIGNMENT_HARD;
-import static seedu.address.testutil.TypicalCourseStudent.COURSE_STUDENT_ONE;
-import static seedu.address.testutil.TypicalCourseStudent.COURSE_STUDENT_TWO;
-import static seedu.address.testutil.TypicalCourseStudent.COURSE_STUDENT_THREE;
+
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,7 +28,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.modelAssignment.AssignmentAddressBook;
 import seedu.address.model.modelCourse.CourseAddressBook;
-import seedu.address.model.modelCourseStudent.CourseStudentAddressBook;
 import seedu.address.model.modelFinance.FinanceAddressBook;
 import seedu.address.model.modelStudent.StudentAddressBook;
 import seedu.address.model.modelTeacher.TeacherAddressBook;
@@ -120,7 +117,7 @@ public class ModelManagerTest {
         FinanceAddressBook financeAddressBook = new FinanceAddressBookBuilder().withFinance(FINANCE_ALICE).withFinance(FINANCE_BENSON).build();
         CourseAddressBook courseAddressBook = new CourseAddressBookBuilder().withCourse(COURSE_ALICE).withCourse(COURSE_BENSON).build();
         AssignmentAddressBook assignmentAddressBook = new AssignmentBookBuilder().withAssignment(ASSIGNMENT_EASY).withAssignment(ASSIGNMENT_HARD).build();
-        CourseStudentAddressBook courseStudentAddressBook = new CourseStudentAddressBookBuilder().withCourseStudent(COURSE_STUDENT_ONE).withCourseStudent(COURSE_STUDENT_TWO).build();
+
 
         AddressBook differentAddressBook = new AddressBook();
         TeacherAddressBook differentTeacherAddressBook = new TeacherAddressBook();
@@ -128,13 +125,13 @@ public class ModelManagerTest {
         FinanceAddressBook differentFinanceAddressBook = new FinanceAddressBook();
         CourseAddressBook differentCourseAddressBook = new CourseAddressBook();
         AssignmentAddressBook differentAssignmentAddressBook = new AssignmentAddressBook();
-        CourseStudentAddressBook differentCourseStudentAddressBook = new CourseStudentAddressBook();
+
 
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, teacherAddressBook, studentAddressBook, financeAddressBook, courseAddressBook, assignmentAddressBook, courseStudentAddressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, teacherAddressBook, studentAddressBook, financeAddressBook, courseAddressBook, assignmentAddressBook, courseStudentAddressBook, userPrefs);
+        modelManager = new ModelManager(addressBook, teacherAddressBook, studentAddressBook, financeAddressBook, courseAddressBook, assignmentAddressBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, teacherAddressBook, studentAddressBook, financeAddressBook, courseAddressBook, assignmentAddressBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -148,13 +145,13 @@ public class ModelManagerTest {
 
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentTeacherAddressBook, differentStudentAddressBook,
-            differentFinanceAddressBook, differentCourseAddressBook, differentAssignmentAddressBook, differentCourseStudentAddressBook, userPrefs)));
+            differentFinanceAddressBook, differentCourseAddressBook, differentAssignmentAddressBook,userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentTeacherAddressBook, differentStudentAddressBook,
-            differentFinanceAddressBook, differentCourseAddressBook, differentAssignmentAddressBook, differentCourseStudentAddressBook, userPrefs)));
+            differentFinanceAddressBook, differentCourseAddressBook, differentAssignmentAddressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -162,6 +159,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, teacherAddressBook, studentAddressBook, financeAddressBook, courseAddressBook, assignmentAddressBook, courseStudentAddressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, teacherAddressBook, studentAddressBook, financeAddressBook, courseAddressBook, assignmentAddressBook,differentUserPrefs)));
     }
 }

@@ -9,8 +9,6 @@ import seedu.address.model.modelAssignment.Assignment;
 import seedu.address.model.modelAssignment.AssignmentAddressBook;
 import seedu.address.model.modelCourse.Course;
 import seedu.address.model.modelCourse.CourseAddressBook;
-import seedu.address.model.modelCourseStudent.CourseStudent;
-import seedu.address.model.modelCourseStudent.CourseStudentAddressBook;
 import seedu.address.model.modelFinance.Finance;
 import seedu.address.model.modelFinance.FinanceAddressBook;
 import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
@@ -48,13 +46,15 @@ public class SampleDataUtil {
 
   public static Teacher[] getSampleTeachers() {
     return new Teacher[]{
-        new Teacher(new Name("Bob Ross"), new Phone("88283902"), new Email("bob.ross@gmail.com"),
+        new Teacher(new Name("Bob Ross"), new ID("21"), new Phone("88283902"), new Email("bob.ross@gmail.com"),
             new Salary("9000"),
             new Address("Serangoon"),
+            new AssignedCourses("829,182"),
             getTagSet("Friendly", "LovesArt")),
-        new Teacher(new Name("Martin Henz"), new Phone("98765432"), new Email("henz@gmail.com"),
+        new Teacher(new Name("Martin Henz"), new ID("31"), new Phone("98765432"), new Email("henz@gmail.com"),
             new Salary("100"),
             new Address("311, Clementi Ave 2, #02-25"),
+            new AssignedCourses("829,182"),
             getTagSet("WishfulThinking", "Experienced")),
     };
   }
@@ -69,9 +69,9 @@ public class SampleDataUtil {
 
   public static Student[] getSampleStudents() {
     return new Student[]{
-        new Student(new Name("Sim Sheng Xue"), new ID("33"),
+        new Student(new Name("Sim Sheng Xue"), new ID("33"), new AssignedCourses("829,182"),
             getTagSet("Loyal", "10Year")),
-        new Student(new Name("John AppleSeed"), new ID("44"),
+        new Student(new Name("John AppleSeed"), new ID("44"), new AssignedCourses("182"),
             getTagSet("Lazy", "Old"))
     };
   }
@@ -86,9 +86,11 @@ public class SampleDataUtil {
 
   public static Finance[] getSampleFinances() {
     return new Finance[]{
-        new Finance(new Name("Renovated Staff Lounge"), new Amount("2000"),
+        new Finance(new Name("Renovated Staff Lounge"), new FinanceType("Misc"),
+            new Date("2020-08-20"), new Amount("2000"),
             getTagSet("BLK71", "AirCon")),
-        new Finance(new Name("Received Payment From NUS"), new Amount("1000"),
+        new Finance(new Name("Received Payment From NUS"), new FinanceType("Misc"),
+            new Date("2020-08-21"), new Amount("1000"),
             getTagSet("Contract"))
     };
   }
@@ -104,8 +106,12 @@ public class SampleDataUtil {
   public static Course[] getSampleCourses() {
     return new Course[]{
         new Course(new Name("Cozmo Programming"), new ID("829"), new Amount("1000"),
+            new AssignedTeacher("1"),
+            new AssignedStudents("33"),
             getTagSet("Robot", "Fun")),
         new Course(new Name("Advanced Java"), new ID("182"), new Amount("2000"),
+            new AssignedTeacher("2"),
+            new AssignedStudents("33,44"),
             getTagSet("OOP", "Difficult"))
     };
   }
@@ -136,26 +142,6 @@ public class SampleDataUtil {
     }
     return sampleAb;
   }
-
-  public static CourseStudent[] getSampleCourseStudents() {
-    return new CourseStudent[]{
-        new CourseStudent(new Courseid("829"), new Studentid("33"),
-            getTagSet("Processing")),
-        new CourseStudent(new Courseid("182"), new Studentid("44"),
-            getTagSet("Confirmed")),
-        new CourseStudent(new Courseid("829"), new Studentid("44"),
-            getTagSet("Confirmed"))
-    };
-  }
-
-  public static ReadOnlyAddressBookGeneric<CourseStudent> getSampleCourseStudentAddressBook() {
-    CourseStudentAddressBook sampleAb = new CourseStudentAddressBook();
-    for (CourseStudent sampleCourseStudent : getSampleCourseStudents()) {
-      sampleAb.add(sampleCourseStudent);
-    }
-    return sampleAb;
-  }
-
   /**
    * Returns a tag set containing the list of strings given.
    */

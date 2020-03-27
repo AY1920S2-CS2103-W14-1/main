@@ -2,15 +2,24 @@ package seedu.address.model.modelCourse;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.modelGeneric.ModelObject;
+import seedu.address.model.modelStudent.Student;
+import seedu.address.model.modelTeacher.Teacher;
 import seedu.address.model.person.Amount;
+import seedu.address.model.person.AssignedCourses;
+import seedu.address.model.person.AssignedStudents;
+import seedu.address.model.person.AssignedTeacher;
+import seedu.address.model.person.Courseid;
 import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Studentid;
+import seedu.address.model.person.Teacherid;
 import seedu.address.model.person.exceptions.CourseNotFoundException;
 import seedu.address.model.person.exceptions.DuplicateCourseException;
 import seedu.address.model.tag.Tag;
@@ -25,22 +34,29 @@ public class Course extends ModelObject {
   private final String ENTITY_NAME = "Course";
   private final Name name;
   private final ID id;
-  // TODO: Create CourseTeacherTab along with CourseStudentTab
-  // TODO: Remove dummy teacher_id
-  private ID teacher_id = new ID("123");
   private final Set<Tag> tags = new HashSet<>();
   private Amount amount;
-  private String assignedStudents = "";
-
+  private AssignedTeacher assignedTeacher;
+  private AssignedStudents assignedStudents;
+  private String assignedTeacherWithName;
+  private String assignedStudentsWithNames;
   /**
    * Every field must be present and not null.
    */
-  public Course(Name name, ID id, Amount amount, Set<Tag> tags) {
+  public Course(Name name, ID id, Amount amount, AssignedTeacher assignedTeacher, AssignedStudents assignedStudents, Set<Tag> tags) {
     requireAllNonNull(name, id, tags);
     this.name = name;
     this.id = id;
     this.amount = amount;
+    this.assignedTeacher = assignedTeacher;
+    this.assignedStudents = assignedStudents;
     this.tags.addAll(tags);
+    this.assignedTeacherWithName = "None";
+    this.assignedStudentsWithNames = "None";
+
+    if (assignedStudents == null){
+      this.assignedStudents = new AssignedStudents("");
+    }
   }
 
   public Name getName() {
@@ -55,20 +71,70 @@ public class Course extends ModelObject {
     return amount;
   }
 
-  public ID getTeacherID() {
-    return this.teacher_id;
+  public AssignedTeacher getAssignedTeacher() {
+    return assignedTeacher;
   }
 
-  public void setTeacherID(ID teacher_id) {
-    this.teacher_id = teacher_id;
+
+  public void addStudent(Studentid studentid) {
+    if (this.assignedStudents.toString().equals("")) {
+      this.assignedStudents = new AssignedStudents(studentid.toString());
+    } else {
+      this.assignedStudents = new AssignedStudents(this.assignedStudents.toString() + "," + studentid.toString());
+    }
   }
 
-  public void setAssignedStudents(String assignedStudents){
-    this.assignedStudents = assignedStudents;
+  public void assignTeacher(Teacherid teacherid) {
+    this.assignedTeacher = new AssignedTeacher(teacherid.toString());
   }
 
-  public String getAssignedStudents(){
+  public AssignedStudents getAssignedStudents(){
     return this.assignedStudents;
+  }
+
+  public String getAssignedStudentsWithNames(){
+    return this.assignedStudentsWithNames;
+  }
+
+  public String getAssignedTeacherWithName(){
+    return this.assignedTeacherWithName;
+  }
+  /**
+   * Converts internal list of assigned teacher ID into the name with the ID
+   */
+  public void processAssignedTeacher(FilteredList<Teacher> filteredTeachers){
+    this.assignedTeacherWithName = "None";
+    for (Teacher teacher : filteredTeachers) {
+      if (teacher.getID().toString().equals(this.assignedTeacher.toString())) {
+        this.assignedTeacherWithName = teacher.getName().toString() + "(" + teacher.getID().toString() + ")";
+      }
+    }
+  }
+
+  /**
+   * Converts internal list of assigned student IDs into the name with the IDs
+   */
+  public void processAssignedStudents(FilteredList<Student> filteredStudents){
+    String[] studentids = this.assignedStudents.toString().split(",");
+    StringBuilder s = new StringBuilder();
+    for (int i = 0; i < studentids.length; i++) {
+      String studentid = studentids[i];
+      for (Student student : filteredStudents) {
+        if (studentid.equals(student.getID().toString())) {
+          String comma = ", ";
+          if (i == studentids.length - 1) {
+            comma = "";
+          }
+          s.append(student.getName().toString()).append("(").append(studentid).append(")").append(comma);
+        }
+      }
+    }
+
+    if (s.toString().equals("")) {
+      this.assignedStudentsWithNames = "None";
+    } else {
+      this.assignedStudentsWithNames = "[" + s.toString() + "]";
+    }
   }
   /**
    * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if
@@ -114,6 +180,8 @@ public class Course extends ModelObject {
     return otherCourse.getName().equals(getName())
         && otherCourse.getId().equals(getId())
         && otherCourse.getAmount().equals(getAmount())
+        && otherCourse.getAssignedTeacher().equals(getAssignedTeacher())
+        && otherCourse.getAssignedStudents().equals(getAssignedStudents())
         && otherCourse.getTags().equals(getTags());
   }
 
@@ -131,6 +199,8 @@ public class Course extends ModelObject {
         .append(getId())
         .append(" Amount: ")
         .append(getAmount())
+        .append(" AssignedTeacher: ")
+        .append(getAssignedTeacher())
         .append(" Tags: ");
     getTags().forEach(builder::append);
     return builder.toString();

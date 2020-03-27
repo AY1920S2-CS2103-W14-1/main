@@ -34,6 +34,10 @@ public class FinanceCard extends UiPart<Region> {
   @FXML
   private Label id;
   @FXML
+  private Label financeType;
+  @FXML
+  private Label date;
+  @FXML
   private Label amount;
   @FXML
   private FlowPane tags;
@@ -43,6 +47,8 @@ public class FinanceCard extends UiPart<Region> {
     this.finance = finance;
     id.setText(displayedIndex + ". ");
     name.setText(finance.getName().fullName);
+    financeType.setText(finance.getFinanceType().toString());
+    date.setText(finance.getDate().value);
     amount.setText(finance.getAmount().value);
     finance.getTags().stream()
         .sorted(Comparator.comparing(tag -> tag.tagName))

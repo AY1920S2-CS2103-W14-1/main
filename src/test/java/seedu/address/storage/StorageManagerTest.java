@@ -16,7 +16,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.storageAssignments.JsonAssignmentAddressBookStorage;
 import seedu.address.storage.storageCourse.JsonCourseAddressBookStorage;
-import seedu.address.storage.storageCourseStudent.JsonCourseStudentAddressBookStorage;
 import seedu.address.storage.storageFinance.JsonFinanceAddressBookStorage;
 import seedu.address.storage.storageStudent.JsonStudentAddressBookStorage;
 import seedu.address.storage.storageTeacher.JsonTeacherAddressBookStorage;
@@ -41,13 +40,11 @@ public class StorageManagerTest {
             new JsonCourseAddressBookStorage(getTempFilePath("cab"));
         JsonAssignmentAddressBookStorage assignmentAddressBookStorage =
                 new JsonAssignmentAddressBookStorage(getTempFilePath("zab"));
-        JsonCourseStudentAddressBookStorage courseStudentAddressBookStorage =
-            new JsonCourseStudentAddressBookStorage(getTempFilePath("csab"));
 
 
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, teacherAddressBookStorage,
-            studentAddressBookStorage, financeAddressBookStorage, courseAddressBookStorage, assignmentAddressBookStorage, courseStudentAddressBookStorage, userPrefsStorage);
+            studentAddressBookStorage, financeAddressBookStorage, courseAddressBookStorage, assignmentAddressBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

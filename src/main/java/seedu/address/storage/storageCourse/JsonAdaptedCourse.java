@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.modelCourse.Course;
 import seedu.address.model.person.Amount;
+import seedu.address.model.person.AssignedCourses;
+import seedu.address.model.person.AssignedStudents;
+import seedu.address.model.person.AssignedTeacher;
 import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -26,6 +29,8 @@ class JsonAdaptedCourse {
   private final String name;
   private final String courseID;
   private final String amount;
+  private final String assignedTeacher;
+  private final String assignedStudents;
   private final List<JsonCourseAdaptedTag> tagged = new ArrayList<>();
 
   /**
@@ -35,10 +40,14 @@ class JsonAdaptedCourse {
   public JsonAdaptedCourse(@JsonProperty("name") String name,
       @JsonProperty("courseID") String courseID,
       @JsonProperty("amount") String amount,
+      @JsonProperty("assignedTeacher") String assignedTeacher,
+      @JsonProperty("assignedStudents") String assignedStudents,
       @JsonProperty("tagged") List<JsonCourseAdaptedTag> tagged) {
     this.name = name;
     this.courseID = courseID;
     this.amount = amount;
+    this.assignedTeacher = assignedTeacher;
+    this.assignedStudents = assignedStudents;
     if (tagged != null) {
       this.tagged.addAll(tagged);
     }
@@ -51,6 +60,8 @@ class JsonAdaptedCourse {
     name = source.getName().fullName;
     courseID = source.getId().value;
     amount = source.getAmount().value;
+    assignedTeacher = source.getAssignedTeacher().toString();
+    assignedStudents = source.getAssignedStudents().toString();
     tagged.addAll(source.getTags().stream()
         .map(JsonCourseAdaptedTag::new)
         .collect(Collectors.toList()));
@@ -95,8 +106,26 @@ class JsonAdaptedCourse {
     }
     final Amount modelAmount = new Amount(amount);
 
+    if (assignedTeacher == null) {
+      throw new IllegalValueException(
+          String.format(MISSING_FIELD_MESSAGE_FORMAT, AssignedTeacher.class.getSimpleName()));
+    }
+    if (!AssignedTeacher.isValidAssignedTeacher(assignedTeacher)) {
+      throw new IllegalValueException(AssignedTeacher.MESSAGE_CONSTRAINTS);
+    }
+    final AssignedTeacher modelAssignedTeacher = new AssignedTeacher(assignedTeacher);
+
+    if (assignedStudents == null) {
+      throw new IllegalValueException(
+          String.format(MISSING_FIELD_MESSAGE_FORMAT, AssignedStudents.class.getSimpleName()));
+    }
+    if (!AssignedStudents.isValidAssignedStudents(assignedStudents)) {
+      throw new IllegalValueException(AssignedStudents.MESSAGE_CONSTRAINTS);
+    }
+    final AssignedStudents modelAssignedStudents = new AssignedStudents(assignedStudents);
+
     final Set<Tag> modelTags = new HashSet<>(CourseTags);
-    return new Course(modelName, modelId, modelAmount, modelTags);
+    return new Course(modelName, modelId, modelAmount, modelAssignedTeacher, modelAssignedStudents, modelTags);
   }
 
 }

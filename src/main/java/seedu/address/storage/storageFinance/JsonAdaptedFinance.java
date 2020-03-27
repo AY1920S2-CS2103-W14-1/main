@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.modelFinance.Finance;
 import seedu.address.model.person.Amount;
+import seedu.address.model.person.Date;
+import seedu.address.model.person.FinanceType;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -23,6 +25,8 @@ class JsonAdaptedFinance {
   public static final String MISSING_FIELD_MESSAGE_FORMAT = "Finance's %s field is missing!";
 
   private final String name;
+  private final String financeType;
+  private final String date;
   private final String amount;
   private final List<JsonFinanceAdaptedTag> tagged = new ArrayList<>();
 
@@ -31,9 +35,13 @@ class JsonAdaptedFinance {
    */
   @JsonCreator
   public JsonAdaptedFinance(@JsonProperty("name") String name,
+      @JsonProperty("financeType") String financeType,
+      @JsonProperty("date") String date,
       @JsonProperty("amount") String amount,
       @JsonProperty("tagged") List<JsonFinanceAdaptedTag> tagged) {
     this.name = name;
+    this.financeType = financeType;
+    this.date = date;
     this.amount = amount;
     if (tagged != null) {
       this.tagged.addAll(tagged);
@@ -45,6 +53,8 @@ class JsonAdaptedFinance {
    */
   public JsonAdaptedFinance(Finance source) {
     name = source.getName().fullName;
+    financeType = source.getFinanceType().toString();
+    date = source.getDate().toString();
     amount = source.getAmount().value;
     tagged.addAll(source.getTags().stream()
         .map(JsonFinanceAdaptedTag::new)
@@ -72,6 +82,24 @@ class JsonAdaptedFinance {
     }
     final Name modelName = new Name(name);
 
+    if (financeType == null) {
+      throw new IllegalValueException(
+          String.format(MISSING_FIELD_MESSAGE_FORMAT, FinanceType.class.getSimpleName()));
+    }
+    if (!FinanceType.isValidFinanceType(financeType)) {
+      throw new IllegalValueException(FinanceType.MESSAGE_CONSTRAINTS);
+    }
+    final FinanceType modelFinanceType = new FinanceType(financeType);
+
+    if (date == null) {
+      throw new IllegalValueException(
+          String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+    }
+    if (!Date.isValidDate(date)) {
+      throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+    }
+    final Date modelDate = new Date(date);
+
     if (amount == null) {
       throw new IllegalValueException(
           String.format(MISSING_FIELD_MESSAGE_FORMAT, Finance.class.getSimpleName()));
@@ -82,7 +110,7 @@ class JsonAdaptedFinance {
     final Amount modelAmount = new Amount(amount);
 
     final Set<Tag> modelTags = new HashSet<>(financeTags);
-    return new Finance(modelName, modelAmount, modelTags);
+    return new Finance(modelName, modelFinanceType, modelDate, modelAmount, modelTags);
   }
 
 }

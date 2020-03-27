@@ -76,7 +76,6 @@ public class JsonAssignmentAddressBookStorage implements AssignmentAddressBookSt
    */
   public void saveAssignmentAddressBook(ReadOnlyAddressBookGeneric<Assignment> assignmentsAddressBook, Path filePath)
       throws IOException {
-    System.out.println("h");
     requireNonNull(assignmentsAddressBook);
     requireNonNull(filePath);
 

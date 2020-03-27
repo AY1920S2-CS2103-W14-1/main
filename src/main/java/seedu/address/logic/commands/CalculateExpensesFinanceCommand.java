@@ -26,7 +26,6 @@ public class CalculateExpensesFinanceCommand extends Command {
 
     for (Finance finance : filteredFinances){
       String amount = finance.getAmount().toString();
-      System.out.println(amount);
       if (amount.substring(0, 1).equals("-")){
         //Add expenses
         amount = amount.replaceFirst("-","");

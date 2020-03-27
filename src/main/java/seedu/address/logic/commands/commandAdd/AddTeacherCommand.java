@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHERID;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -24,6 +25,7 @@ public class AddTeacherCommand extends AddCommand {
   public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a teacher to the address book. "
       + "Parameters: "
       + PREFIX_NAME + "NAME "
+      + PREFIX_TEACHERID + "TEACHERID "
       + PREFIX_PHONE + "PHONE "
       + PREFIX_EMAIL + "EMAIL "
       + PREFIX_SALARY + "SALARY "
@@ -31,6 +33,7 @@ public class AddTeacherCommand extends AddCommand {
       + "[" + PREFIX_TAG + "TAG]...\n"
       + "Example: " + COMMAND_WORD + " "
       + PREFIX_NAME + "Bob Ross "
+      + PREFIX_TEACHERID + "20 "
       + PREFIX_PHONE + "98765432 "
       + PREFIX_EMAIL + "bob.ross@gmail.com "
       + PREFIX_SALARY + "1000 "

@@ -8,6 +8,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.modelTeacher.Teacher;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
@@ -47,20 +48,6 @@ public class ParserUtil {
     return new Name(trimmedName);
   }
 
-  /**
-   * Parses a {@code String course} into a {@code AssignedCourse}. Leading and trailing whitespaces
-   * will be trimmed.
-   *
-   * @throws ParseException if the given {@code course} is invalid.
-   */
-  public static AssignedCourse parseCourse(String course) throws ParseException {
-    requireNonNull(course);
-    String trimmedCourse = course.trim();
-    if (!AssignedCourse.isValidCourse(trimmedCourse)) {
-      throw new ParseException(AssignedCourse.MESSAGE_CONSTRAINTS);
-    }
-    return new AssignedCourse(trimmedCourse);
-  }
 
   /**
    * Parses a {@code String courseID} into a {@code ID}. Leading and trailing whitespaces will be
@@ -122,6 +109,21 @@ public class ParserUtil {
     return new Studentid(studentid);
   }
 
+  /**
+   * Parses a {@code String teacherid} into a {@code Teacherid}. Leading and trailing whitespaces will be
+   * trimmed.
+   *
+   * @throws ParseException if the given {@code teacherid} is invalid.
+   */
+  public static Teacherid parseTeacherid(String teacherid) throws ParseException {
+    requireNonNull(teacherid);
+    String trimmedTeacherid = teacherid.trim();
+    if (!Teacherid.isValidTeacherid(teacherid)) {
+      throw new ParseException(Teacherid.MESSAGE_CONSTRAINTS);
+    }
+    return new Teacherid(teacherid);
+  }
+
 
   /**
    * Parses a {@code String amount} into a {@code Amount}. Leading and trailing whitespaces will be
@@ -136,6 +138,21 @@ public class ParserUtil {
       throw new ParseException(Amount.MESSAGE_CONSTRAINTS);
     }
     return new Amount(trimmedAmount);
+  }
+
+  /**
+   * Parses a {@code String assignedTeacher} into a {@code AssignedTeacher}. Leading and trailing whitespaces will be
+   * trimmed.
+   *
+   * @throws ParseException if the given {@code assignedTeacher} is invalid.
+   */
+  public static AssignedTeacher parseAssignedTeacher(String assignedTeacher) throws ParseException {
+    requireNonNull(assignedTeacher);
+    String trimmedAssignedTeacher = assignedTeacher.trim();
+    if (!AssignedTeacher.isValidAssignedTeacher(assignedTeacher)) {
+      throw new ParseException(AssignedTeacher.MESSAGE_CONSTRAINTS);
+    }
+    return new AssignedTeacher(assignedTeacher);
   }
 
   /**
@@ -211,6 +228,21 @@ public class ParserUtil {
       throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
     }
     return new Deadline(trimmedDeadline);
+  }
+
+  /**
+   * Parses a {@code String date} into a {@code Date}. Leading and trailing whitespaces will be
+   * trimmed.
+   *
+   * @throws ParseException if the given {@code date} is invalid.
+   */
+  public static Date parseDate(String date) throws ParseException {
+    requireNonNull(date);
+    String trimmedDate = date.trim();
+    if (!Date.isValidDate(trimmedDate)) {
+      throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+    }
+    return new Date(trimmedDate);
   }
 
   /**

@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.modelStudent.Student;
-import seedu.address.model.person.AssignedCourse;
+import seedu.address.model.person.AssignedCourses;
 import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -23,6 +23,7 @@ class JsonAdaptedStudent {
 
   private final String name;
   private final String studentID;
+  private final String assignedCourses;
   private final List<JsonStudentAdaptedTag> tagged = new ArrayList<>();
 
   /**
@@ -31,9 +32,11 @@ class JsonAdaptedStudent {
   @JsonCreator
   public JsonAdaptedStudent(@JsonProperty("name") String name,
       @JsonProperty("studentID") String studentID,
+      @JsonProperty("assignedCourses") String assignedCourses,
       @JsonProperty("tagged") List<JsonStudentAdaptedTag> tagged) {
     this.name = name;
     this.studentID = studentID;
+    this.assignedCourses = assignedCourses;
     if (tagged != null) {
       this.tagged.addAll(tagged);
     }
@@ -45,6 +48,7 @@ class JsonAdaptedStudent {
   public JsonAdaptedStudent(Student source) {
     name = source.getName().fullName;
     studentID = source.getID().value;
+    assignedCourses = source.getAssignedCourses().toString();
     tagged.addAll(source.getTags().stream()
         .map(JsonStudentAdaptedTag::new)
         .collect(Collectors.toList()));
@@ -80,8 +84,17 @@ class JsonAdaptedStudent {
     }
     final ID modelID = new ID(studentID);
 
+    if (assignedCourses == null) {
+      throw new IllegalValueException(
+          String.format(MISSING_FIELD_MESSAGE_FORMAT, AssignedCourses.class.getSimpleName()));
+    }
+    if (!AssignedCourses.isValidAssignedCourses(assignedCourses)) {
+      throw new IllegalValueException(AssignedCourses.MESSAGE_CONSTRAINTS);
+    }
+    final AssignedCourses modelAssignedCourses = new AssignedCourses(assignedCourses);
+
     final Set<Tag> modelTags = new HashSet<>(courseTags);
-    return new Student(modelName, modelID, modelTags);
+    return new Student(modelName, modelID, modelAssignedCourses, modelTags);
   }
 
 }

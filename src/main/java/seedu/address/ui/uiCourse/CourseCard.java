@@ -32,9 +32,11 @@ public class CourseCard extends UiPart<Region> {
   @FXML
   private Label name;
   @FXML
-  private Label teacherId;
+  private Label teacherID;
   @FXML
   private Label courseID;
+  @FXML
+  private Label assignedTeacher;
   @FXML
   private Label assignedStudents;
   @FXML
@@ -46,15 +48,17 @@ public class CourseCard extends UiPart<Region> {
     super(FXML);
     this.course = course;
     name.setText(course.getName().fullName);
-    teacherId.setText(course.getTeacherID().value);
+    teacherID.setText(course.getId().value);
     courseID.setText(course.getId().value);
     amount.setText(course.getAmount().value);
-    assignedStudents.setText(course.getAssignedStudents());
+    assignedTeacher.setText(course.getAssignedTeacherWithName());
+    assignedStudents.setText(course.getAssignedStudentsWithNames());
 
     course.getTags().stream()
         .sorted(Comparator.comparing(tag -> tag.tagName))
         .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
   }
+
 
   @Override
   public boolean equals(Object other) {

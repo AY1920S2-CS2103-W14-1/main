@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHERID;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TEACHERS;
 
 import java.util.Collections;
@@ -24,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.modelTeacher.Teacher;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
@@ -42,6 +44,7 @@ public class EditTeacherCommand extends Command {
           + "Existing values will be overwritten by the input values.\n"
           + "Parameters: INDEX (must be a positive integer) "
           + "[" + PREFIX_NAME + "NAME] "
+          + "[" + PREFIX_TEACHERID + "TEACHERID] "
           + "[" + PREFIX_PHONE + "PHONE] "
           + "[" + PREFIX_EMAIL + "EMAIL] "
           + "[" + PREFIX_SALARY + "SALARY] "
@@ -79,13 +82,14 @@ public class EditTeacherCommand extends Command {
     assert teacherToEdit != null;
 
     Name updatedName = editTeacherDescriptor.getName().orElse(teacherToEdit.getName());
+    ID updatedID = editTeacherDescriptor.getID().orElse(teacherToEdit.getID());
     Phone updatedPhone = editTeacherDescriptor.getPhone().orElse(teacherToEdit.getPhone());
     Email updatedEmail = editTeacherDescriptor.getEmail().orElse(teacherToEdit.getEmail());
     Salary updatedSalary = editTeacherDescriptor.getSalary().orElse(teacherToEdit.getSalary());
     Address updatedAddress = editTeacherDescriptor.getAddress().orElse(teacherToEdit.getAddress());
     Set<Tag> updatedTags = editTeacherDescriptor.getTags().orElse(teacherToEdit.getTags());
 
-    return new Teacher(updatedName, updatedPhone, updatedEmail, updatedSalary, updatedAddress,
+    return new Teacher(updatedName, updatedID, updatedPhone, updatedEmail, updatedSalary, updatedAddress, teacherToEdit.getAssignedCourses(),
         updatedTags);
   }
 
@@ -135,6 +139,7 @@ public class EditTeacherCommand extends Command {
   public static class EditTeacherDescriptor {
 
     private Name name;
+    private ID teacherID;
     private Phone phone;
     private Email email;
     private Salary salary;
@@ -149,6 +154,7 @@ public class EditTeacherCommand extends Command {
      */
     public EditTeacherDescriptor(EditTeacherDescriptor toCopy) {
       setName(toCopy.name);
+      setID(toCopy.teacherID);
       setPhone(toCopy.phone);
       setEmail(toCopy.email);
       setSalary(toCopy.salary);
@@ -169,6 +175,14 @@ public class EditTeacherCommand extends Command {
 
     public void setName(Name name) {
       this.name = name;
+    }
+
+    public Optional<ID> getID() {
+      return Optional.ofNullable(teacherID);
+    }
+
+    public void setID(ID teacherID) {
+      this.teacherID = teacherID;
     }
 
     public Optional<Phone> getPhone() {
@@ -235,6 +249,7 @@ public class EditTeacherCommand extends Command {
       EditTeacherDescriptor e = (EditTeacherDescriptor) other;
 
       return getName().equals(e.getName())
+          && getID().equals(e.getID())
           && getPhone().equals(e.getPhone())
           && getEmail().equals(e.getEmail())
           && getSalary().equals(e.getSalary())

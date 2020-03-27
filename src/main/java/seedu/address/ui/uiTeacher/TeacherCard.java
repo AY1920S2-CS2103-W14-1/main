@@ -34,6 +34,8 @@ public class TeacherCard extends UiPart<Region> {
   @FXML
   private Label id;
   @FXML
+  private Label teacherID;
+  @FXML
   private Label phone;
   @FXML
   private Label address;
@@ -42,6 +44,8 @@ public class TeacherCard extends UiPart<Region> {
   @FXML
   private Label salary;
   @FXML
+  private Label assignedCourses;
+  @FXML
   private FlowPane tags;
 
   public TeacherCard(Teacher teacher, int displayedIndex) {
@@ -49,10 +53,12 @@ public class TeacherCard extends UiPart<Region> {
     this.teacher = teacher;
     id.setText(displayedIndex + ". ");
     name.setText(teacher.getName().fullName);
+    teacherID.setText(teacher.getID().value);
     phone.setText(teacher.getPhone().value);
     address.setText(teacher.getAddress().value);
     email.setText(teacher.getEmail().value);
     salary.setText(teacher.getSalary().value);
+    assignedCourses.setText(teacher.getAssignedCoursesWithNames());
     teacher.getTags().stream()
         .sorted(Comparator.comparing(tag -> tag.tagName))
         .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

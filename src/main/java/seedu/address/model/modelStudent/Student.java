@@ -6,9 +6,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
+import javafx.collections.transformation.FilteredList;
+import seedu.address.model.modelCourse.Course;
 import seedu.address.model.modelGeneric.ModelObject;
-import seedu.address.model.person.AssignedCourse;
+import seedu.address.model.person.AssignedCourses;
+import seedu.address.model.person.Courseid;
 import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -22,17 +24,24 @@ public class Student extends ModelObject {
   // Identity fields
   private final Name name;
   private final ID id;
+  private AssignedCourses assignedCourses;
+  private String assignedCoursesWithNames;
   private final Set<Tag> tags = new HashSet<>();
-  private String assignedCourses = "";
 
   /**
    * Every field must be present and not null.
    */
-  public Student(Name name, ID id, Set<Tag> tags) {
+  public Student(Name name, ID id, AssignedCourses assignedCourses,  Set<Tag> tags) {
     requireAllNonNull(name, id, tags);
     this.name = name;
     this.id = id;
+    this.assignedCourses = assignedCourses;
+    this.assignedCoursesWithNames = "None";
     this.tags.addAll(tags);
+
+    if (assignedCourses == null){
+      this.assignedCourses = new AssignedCourses("");
+    }
   }
 
   public Name getName() {
@@ -43,6 +52,39 @@ public class Student extends ModelObject {
     return id;
   }
 
+  public AssignedCourses getAssignedCourses() {
+    return assignedCourses;
+  }
+
+  public String getAssignedCoursesWithNames(){
+    return this.assignedCoursesWithNames;
+  }
+  /**
+   * Converts internal list of assigned student IDs into the name with the IDs
+   */
+  public void processAssignedCourses(FilteredList<Course> filteredCourses){
+    String[] courseids = this.assignedCourses.toString().split(",");
+    StringBuilder s = new StringBuilder();
+    for (int i = 0; i < courseids.length; i++) {
+      String courseid = courseids[i];
+      for (Course course : filteredCourses) {
+        if (courseid.equals(course.getId().toString())) {
+          String comma = ", ";
+          if (i == courseids.length - 1) {
+            comma = "";
+          }
+          s.append(course.getName().toString()).append("(").append(courseid).append(")").append(comma);
+        }
+      }
+    }
+
+    if (s.toString().equals("")) {
+      this.assignedCoursesWithNames = "None";
+    } else {
+      this.assignedCoursesWithNames = "[" + s.toString() + "]";
+    }
+  }
+
   /**
    * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if
    * modification is attempted.
@@ -51,12 +93,12 @@ public class Student extends ModelObject {
     return Collections.unmodifiableSet(tags);
   }
 
-  public void setAssignedCourses(String assignedCourses){
-    this.assignedCourses = assignedCourses;
-  }
-
-  public String getAssignedCourses(){
-    return this.assignedCourses;
+  public void addCourse(Courseid courseid) {
+    if (this.assignedCourses.toString().equals("")) {
+      this.assignedCourses = new AssignedCourses(courseid.toString());
+    } else {
+      this.assignedCourses = new AssignedCourses(this.assignedCourses.toString() + "," + courseid.toString());
+    }
   }
 
   /**

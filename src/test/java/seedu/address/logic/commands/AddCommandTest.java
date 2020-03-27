@@ -24,7 +24,11 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.modelAssignment.Assignment;
 import seedu.address.model.modelCourse.Course;
+<<<<<<< HEAD
+import seedu.address.model.modelCourse.ReadOnlyCourseAddressBook;
+=======
 import seedu.address.model.modelCourseStudent.CourseStudent;
+>>>>>>> 74d1a0f1335c84b8e209886663d9f3bbd4cd0691
 import seedu.address.model.modelFinance.Finance;
 import seedu.address.model.modelStudent.Student;
 import seedu.address.model.modelTeacher.Teacher;
@@ -403,6 +407,8 @@ public class AddCommandTest {
         public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
 
         }
+<<<<<<< HEAD
+=======
 
         @Override
         public Path getCourseStudentAddressBookFilePath() {
@@ -458,6 +464,7 @@ public class AddCommandTest {
         public void updateCourseStudents() {
 
         }
+>>>>>>> 74d1a0f1335c84b8e209886663d9f3bbd4cd0691
     }
     */
 

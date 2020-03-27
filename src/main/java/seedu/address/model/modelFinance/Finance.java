@@ -9,6 +9,8 @@ import java.util.Set;
 
 import seedu.address.model.modelGeneric.ModelObject;
 import seedu.address.model.person.Amount;
+import seedu.address.model.person.Date;
+import seedu.address.model.person.FinanceType;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
@@ -21,21 +23,33 @@ public class Finance extends ModelObject {
   // Identity fields
   private final String ENTITY_NAME = "Finance";
   private final Name name;
+  private final FinanceType financeType;
+  private final Date date;
   private final Amount amount;
   private final Set<Tag> tags = new HashSet<>();
 
   /**
    * Every field must be present and not null.
    */
-  public Finance(Name name, Amount amount, Set<Tag> tags) {
+  public Finance(Name name, FinanceType financeType, Date date, Amount amount, Set<Tag> tags) {
     requireAllNonNull(name, amount, tags);
     this.name = name;
+    this.financeType = financeType;
+    this.date = date;
     this.amount = amount;
     this.tags.addAll(tags);
   }
 
   public Name getName() {
     return name;
+  }
+
+  public FinanceType getFinanceType() {
+    return financeType;
+  }
+
+  public Date getDate() {
+    return date;
   }
 
   public Amount getAmount() {
@@ -84,6 +98,8 @@ public class Finance extends ModelObject {
 
     Finance otherFinance = (Finance) other;
     return otherFinance.getName().equals(getName())
+        && otherFinance.getFinanceType().equals(getFinanceType())
+        && otherFinance.getDate().equals(getDate())
         && otherFinance.getAmount().equals(getAmount())
         && otherFinance.getTags().equals(getTags());
   }
@@ -98,6 +114,10 @@ public class Finance extends ModelObject {
   public String toString() {
     final StringBuilder builder = new StringBuilder();
     builder.append(getName())
+        .append("FinanceType: ")
+        .append(getFinanceType())
+        .append("Date: ")
+        .append(getDate())
         .append("Amount: ")
         .append(getAmount())
         .append(" Tags: ");

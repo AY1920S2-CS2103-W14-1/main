@@ -75,7 +75,6 @@ public class JsonFinanceAddressBookStorage implements FinanceAddressBookStorage 
    */
   public void saveFinanceAddressBook(ReadOnlyAddressBookGeneric<Finance> financeAddressBook, Path filePath)
       throws IOException {
-    System.out.println("h");
     requireNonNull(financeAddressBook);
     requireNonNull(filePath);
 

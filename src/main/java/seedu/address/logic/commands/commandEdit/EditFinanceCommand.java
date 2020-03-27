@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FINANCES;
 
 import java.util.Collections;
@@ -20,6 +21,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.modelFinance.Finance;
 import seedu.address.model.person.Amount;
+import seedu.address.model.person.Date;
+import seedu.address.model.person.FinanceType;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
@@ -36,6 +39,7 @@ public class EditFinanceCommand extends Command {
           + "Existing values will be overwritten by the input values.\n"
           + "Parameters: INDEX (must be a positive integer) "
           + "[" + PREFIX_NAME + "NAME] "
+          + "[" + PREFIX_DATE + "DATE] "
           + "[" + PREFIX_AMOUNT + "AMOUNT] "
           + "[" + PREFIX_TAG + "TAG]...\n"
           + "Example: " + COMMAND_WORD + " 1 "
@@ -70,10 +74,12 @@ public class EditFinanceCommand extends Command {
     assert financeToEdit != null;
 
     Name updatedName = editFinanceDescriptor.getName().orElse(financeToEdit.getName());
+    Date updatedDate = editFinanceDescriptor.getDate().orElse(financeToEdit.getDate());
+    FinanceType updatedFinanceType = editFinanceDescriptor.getFinanceType().orElse(financeToEdit.getFinanceType());
     Amount updatedAmount = editFinanceDescriptor.getAmount().orElse(financeToEdit.getAmount());
     Set<Tag> updatedTags = editFinanceDescriptor.getTags().orElse(financeToEdit.getTags());
 
-    return new Finance(updatedName, updatedAmount, updatedTags);
+    return new Finance(updatedName, updatedFinanceType, updatedDate, updatedAmount, updatedTags);
   }
 
   @Override
@@ -122,6 +128,8 @@ public class EditFinanceCommand extends Command {
   public static class EditFinanceDescriptor {
 
     private Name name;
+    private FinanceType financeType;
+    private Date date;
     private Amount amount;
     private Set<Tag> tags;
 
@@ -133,6 +141,8 @@ public class EditFinanceCommand extends Command {
      */
     public EditFinanceDescriptor(EditFinanceDescriptor toCopy) {
       setName(toCopy.name);
+      setFinanceType(toCopy.financeType);
+      setDate(toCopy.date);
       setAmount(toCopy.amount);
       setTags(toCopy.tags);
     }
@@ -152,6 +162,22 @@ public class EditFinanceCommand extends Command {
       this.name = name;
     }
 
+    public Optional<FinanceType> getFinanceType() {
+      return Optional.ofNullable(financeType);
+    }
+
+    public void setFinanceType(FinanceType financeType) {
+      this.financeType = financeType;
+    }
+
+    public Optional<Date> getDate() {
+      return Optional.ofNullable(date);
+    }
+
+    public void setDate(Date date) {
+      this.date = date;
+    }
+
     public Optional<Amount> getAmount() {
       return Optional.ofNullable(amount);
     }
@@ -159,6 +185,7 @@ public class EditFinanceCommand extends Command {
     public void setAmount(Amount amount) {
       this.amount = amount;
     }
+
 
     /**
      * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException} if
@@ -192,6 +219,7 @@ public class EditFinanceCommand extends Command {
       EditFinanceDescriptor e = (EditFinanceDescriptor) other;
 
       return getName().equals(e.getName())
+          && getDate().equals(e.getDate())
           && getAmount().equals(e.getAmount())
           && getTags().equals(e.getTags());
     }

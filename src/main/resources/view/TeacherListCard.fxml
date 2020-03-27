@@ -23,6 +23,10 @@
         <Label styleClass="cell_big_label" text="\$first" fx:id="name"/>
       </HBox>
       <HBox>
+        <Label styleClass="cell_small_label" text="Teacher ID: "/>
+        <Label styleClass="cell_small_label" text="\$teacherID" fx:id="teacherID"/>
+      </HBox>
+      <HBox>
         <Label styleClass="cell_small_label" text="Phone Number: "/>
         <Label styleClass="cell_small_label" text="\$phone" fx:id="phone"/>
       </HBox>
@@ -37,6 +41,10 @@
       <HBox>
         <Label styleClass="cell_small_label" text="Salary: $"/>
         <Label styleClass="cell_small_label" text="\$salary" fx:id="salary"/>
+      </HBox>
+      <HBox>
+        <Label styleClass="cell_small_label" text="Assigned Courses: "/>
+        <Label styleClass="cell_small_label" text="\$assignedCourses" fx:id="assignedCourses"/>
       </HBox>
       <padding>
         <Insets bottom="5" left="15" right="5" top="5"/>

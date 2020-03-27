@@ -13,6 +13,7 @@ import seedu.address.logic.commands.commandAdd.AddFinanceCommand;
 import seedu.address.logic.commands.commandAdd.AddStudentCommand;
 import seedu.address.logic.commands.commandAdd.AddTeacherCommand;
 import seedu.address.logic.commands.commandAdd.AddAssignmentCommand;
+import seedu.address.logic.commands.commandAssign.AssignCommandBase;
 import seedu.address.logic.commands.commandAssign.AssignStudentToCourseCommand;
 import seedu.address.logic.commands.commandAssign.AssignTeacherToCourseCommand;
 import seedu.address.logic.commands.commandClear.ClearCourseCommand;
@@ -83,8 +84,7 @@ public class LogicManager implements Logic {
         throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
       }
     } else if (command instanceof AddCourseCommand || command instanceof DeleteCourseCommand
-        || command instanceof ClearCourseCommand || command instanceof EditCourseCommand
-        || command instanceof AssignTeacherToCourseCommand) {
+        || command instanceof ClearCourseCommand || command instanceof EditCourseCommand) {
       try {
         storage.saveCourseAddressBook(model.getCourseAddressBook());
       } catch (IOException ioe) {
@@ -103,13 +103,17 @@ public class LogicManager implements Logic {
       } catch (IOException ioe) {
         throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
       }
-    } else if (command instanceof AssignStudentToCourseCommand) {
+    } else if (command instanceof AssignCommandBase) {
       try {
-        storage.saveCourseStudentAddressBook(model.getCourseStudentAddressBook());
+        storage.saveTeacherAddressBook(model.getTeacherAddressBook());
+        storage.saveStudentAddressBook(model.getStudentAddressBook());
+        storage.saveCourseAddressBook(model.getCourseAddressBook());
       } catch (IOException ioe) {
         throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
       }
     }
+
+
 
     // Updates summary panel
     summaryPanel.updateTotalStudents(getFilteredStudentList().size());
