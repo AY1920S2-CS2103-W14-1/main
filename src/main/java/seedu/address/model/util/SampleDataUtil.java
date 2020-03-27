@@ -12,6 +12,8 @@ import seedu.address.model.modelCourse.CourseAddressBook;
 import seedu.address.model.modelFinance.Finance;
 import seedu.address.model.modelFinance.FinanceAddressBook;
 import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
+import seedu.address.model.modelStaff.Staff;
+import seedu.address.model.modelStaff.StaffAddressBook;
 import seedu.address.model.modelStudent.Student;
 import seedu.address.model.modelStudent.StudentAddressBook;
 import seedu.address.model.modelTeacher.Teacher;
@@ -63,6 +65,27 @@ public class SampleDataUtil {
     TeacherAddressBook sampleAb = new TeacherAddressBook();
     for (Teacher sampleTeacher : getSampleTeachers()) {
       sampleAb.add(sampleTeacher);
+    }
+    return sampleAb;
+  }
+
+  public static Staff[] getSampleStaffs() {
+    return new Staff[]{
+            new Staff(new Name("Matthew Ng"), new Phone("912323232"), new Email("matthew@gmail.com"),
+                    new Salary("3000"),
+                    new Address("CityHall"),
+                    getTagSet("Financial", "Multitasking")),
+            new Staff(new Name("Joshua"), new Phone("931313131"), new Email("joshua@gmail.com"),
+                    new Salary("3000"),
+                    new Address("City Hall"),
+                    getTagSet("DataEntry", "Accountancy")),
+    };
+  }
+
+  public static ReadOnlyAddressBookGeneric<Staff> getSampleStaffAddressBook() {
+    StaffAddressBook sampleAb = new StaffAddressBook();
+    for (Staff sampleStaff : getSampleStaffs()) {
+      sampleAb.add(sampleStaff);
     }
     return sampleAb;
   }

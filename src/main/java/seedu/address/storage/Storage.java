@@ -12,18 +12,21 @@ import seedu.address.model.modelAssignment.AssignmentAddressBook;
 import seedu.address.model.modelCourse.Course;
 import seedu.address.model.modelFinance.Finance;
 import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
+import seedu.address.model.modelStaff.Staff;
+import seedu.address.model.modelStaff.StaffAddressBook;
 import seedu.address.model.modelStudent.Student;
 import seedu.address.model.modelTeacher.Teacher;
 import seedu.address.storage.storageAssignments.AssignmentAddressBookStorage;
 import seedu.address.storage.storageCourse.CourseAddressBookStorage;
 import seedu.address.storage.storageFinance.FinanceAddressBookStorage;
+import seedu.address.storage.storageStaff.StaffAddressBookStorage;
 import seedu.address.storage.storageStudent.StudentAddressBookStorage;
 import seedu.address.storage.storageTeacher.TeacherAddressBookStorage;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, TeacherAddressBookStorage,
+public interface Storage extends AddressBookStorage, TeacherAddressBookStorage, StaffAddressBookStorage,
     StudentAddressBookStorage,
     FinanceAddressBookStorage, CourseAddressBookStorage, AssignmentAddressBookStorage,
         UserPrefsStorage {
@@ -55,6 +58,18 @@ public interface Storage extends AddressBookStorage, TeacherAddressBookStorage,
 
   @Override
   void saveTeacherAddressBook(ReadOnlyAddressBookGeneric<Teacher> teacherAddressBook) throws IOException;
+
+  ///
+  @Override
+  Path getStaffAddressBookFilePath();
+
+  @Override
+  Optional<ReadOnlyAddressBookGeneric<Staff>> readStaffAddressBook()
+          throws DataConversionException, IOException;
+
+  @Override
+  void saveStaffAddressBook(ReadOnlyAddressBookGeneric<Staff> staffAddressBook) throws IOException;
+
 
   ///
   @Override
@@ -99,6 +114,4 @@ public interface Storage extends AddressBookStorage, TeacherAddressBookStorage,
 
   @Override
   void saveAssignmentAddressBook(ReadOnlyAddressBookGeneric<Assignment> assignmentAddressBook) throws IOException;
-
-
 }

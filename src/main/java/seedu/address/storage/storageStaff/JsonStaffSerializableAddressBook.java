@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.modelStaff.ReadOnlyStaffAddressBook;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 import seedu.address.model.modelStaff.Staff;
 import seedu.address.model.modelStaff.StaffAddressBook;
 import seedu.address.storage.storageStaff.JsonAdaptedStaff;
@@ -27,19 +27,19 @@ class JsonStaffSerializableAddressBook {
      */
     @JsonCreator
     public JsonStaffSerializableAddressBook(
-            @JsonProperty("staffs") List<JsonAdaptedStaff> staffs) {
+            @JsonProperty("teachers") List<JsonAdaptedStaff> staffs) {
         this.staffs.addAll(staffs);
     }
 
     /**
-     * Converts a given {@code ReadOnlyStaffAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyAddressBookGeneric<Staff>} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code
      *               JsonStaffSerializableAddressBook}.
      */
-    public JsonStaffSerializableAddressBook(ReadOnlyStaffAddressBook source) {
+    public JsonStaffSerializableAddressBook(ReadOnlyAddressBookGeneric<Staff> source) {
         staffs.addAll(
-                source.getStaffList().stream().map(JsonAdaptedStaff::new).collect(Collectors.toList()));
+                source.getList().stream().map(JsonAdaptedStaff::new).collect(Collectors.toList()));
     }
 
     /**
@@ -51,10 +51,10 @@ class JsonStaffSerializableAddressBook {
         StaffAddressBook staffAddressBook = new StaffAddressBook();
         for (JsonAdaptedStaff jsonAdaptedStaff : staffs) {
             Staff staff = jsonAdaptedStaff.toModelType();
-            if (staffAddressBook.hasStaffs(staff)) {
+            if (staffAddressBook.has(staff)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STAFF);
             }
-            staffAddressBook.addStaff(staff);
+            staffAddressBook.add(staff);
         }
         return staffAddressBook;
     }

@@ -23,6 +23,7 @@ public interface Model {
    */
   Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
   Predicate<Teacher> PREDICATE_SHOW_ALL_TEACHERS = unused -> true;
+  Predicate<Staff> PREDICATE_SHOW_ALL_STAFFS = unused -> true;
   Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
   Predicate<Finance> PREDICATE_SHOW_ALL_FINANCES = unused -> true;
   Predicate<Course> PREDICATE_SHOW_ALL_COURSES = unused -> true;
@@ -159,8 +160,64 @@ public interface Model {
    */
   void updateFilteredTeacherList(Predicate<Teacher> predicate);
 
-  /// for staff
-    ///
+  // For Staff
+
+    /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getStaffAddressBookFilePath();
+
+    /**
+     * Sets the user prefs' address book file path.
+     */
+    void setStaffAddressBookFilePath(Path teacherAddressBookFilePath);
+
+    /**
+     * Returns the teacherAddressBook
+     */
+    ReadOnlyAddressBookGeneric<Staff> getStaffAddressBook();
+
+    /**
+     * Replaces teacher address book data with the data in {@code teacerAddressBook}.
+     */
+    void setStaffAddressBook(ReadOnlyAddressBookGeneric<Staff> staffAddressBook);
+
+    /**
+     * Returns true if a teacher with the same identity as {@code teacher} exists in the address
+     * book.
+     */
+    boolean hasStaff(Staff staff);
+
+    /**
+     * Deletes the given teacher. The teacher must exist in the address book.
+     */
+    void deleteStaff(Staff staff);
+
+    /**
+     * Adds the given staff. {@code staff} must not already exist in the address book.
+     */
+    void addStaff(Staff staff);
+
+    /**
+     * Replaces the given staff {@code target} with {@code editedStaff}. {@code target} must exist
+     * in the address book. The teacher identity of {@code editedStaff} must not be the same as
+     * another existing staff in the address book.
+     */
+    void setStaff(Staff target, Staff editedStaff);
+
+    /**
+     * Returns an unmodifiable view of the filtered staff list
+     */
+    ObservableList<Staff> getFilteredStaffList();
+
+    /**
+     * Updates the filter of the filtered teacher list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredStaffList(Predicate<Staff> predicate);
+
+    // Student
 
   /**
    * Returns the user prefs' address book file path.

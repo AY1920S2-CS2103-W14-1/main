@@ -11,7 +11,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.modelStaff.ReadOnlyStaffAddressBook;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
+import seedu.address.model.modelStaff.Staff;
 import seedu.address.storage.storageStaff.JsonStaffSerializableAddressBook;
 import seedu.address.storage.storageStaff.StaffAddressBookStorage;
 
@@ -33,7 +34,7 @@ public class JsonStaffAddressBookStorage implements StaffAddressBookStorage {
     }
 
     @Override
-    public Optional<ReadOnlyStaffAddressBook> readStaffAddressBook()
+    public Optional<ReadOnlyAddressBookGeneric<Staff>> readStaffAddressBook()
             throws DataConversionException {
         return readStaffAddressBook(filePath);
     }
@@ -44,7 +45,7 @@ public class JsonStaffAddressBookStorage implements StaffAddressBookStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyStaffAddressBook> readStaffAddressBook(Path filePath)
+    public Optional<ReadOnlyAddressBookGeneric<Staff>> readStaffAddressBook(Path filePath)
             throws DataConversionException {
         requireNonNull(filePath);
 
@@ -63,19 +64,19 @@ public class JsonStaffAddressBookStorage implements StaffAddressBookStorage {
     }
 
     @Override
-    public void saveStaffAddressBook(ReadOnlyStaffAddressBook staffAddressBook)
+    public void saveStaffAddressBook(ReadOnlyAddressBookGeneric<Staff> staffAddressBook)
             throws IOException {
         saveStaffAddressBook(staffAddressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveStaffAddressBook(ReadOnlyStaffAddressBook)}.
+     * Similar to {@link #saveStaffAddressBook(ReadOnlyAddressBookGeneric<Staff>)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveStaffAddressBook(ReadOnlyStaffAddressBook staffAddressBook, Path filePath)
+    public void saveStaffAddressBook(ReadOnlyAddressBookGeneric<Staff> staffAddressBook, Path filePath)
             throws IOException {
-        System.out.println("h");
+        System.out.println("saving staff");
         requireNonNull(staffAddressBook);
         requireNonNull(filePath);
 

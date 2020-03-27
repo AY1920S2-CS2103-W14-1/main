@@ -32,6 +32,7 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.storageAssignments.JsonAssignmentAddressBookStorage;
 import seedu.address.storage.storageCourse.JsonCourseAddressBookStorage;
 import seedu.address.storage.storageFinance.JsonFinanceAddressBookStorage;
+import seedu.address.storage.storageStaff.JsonStaffAddressBookStorage;
 import seedu.address.storage.storageStudent.JsonStudentAddressBookStorage;
 import seedu.address.storage.storageTeacher.JsonTeacherAddressBookStorage;
 import seedu.address.testutil.PersonBuilder;
@@ -51,6 +52,8 @@ public class LogicManagerTest {
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonTeacherAddressBookStorage teacherAddressBookStorage =
             new JsonTeacherAddressBookStorage(temporaryFolder.resolve("teacherAddressBook.json"));
+        JsonStaffAddressBookStorage staffAddressBookStorage =
+                new JsonStaffAddressBookStorage(temporaryFolder.resolve("staffAddressBook.json"));
         JsonStudentAddressBookStorage studentAddressBookStorage =
             new JsonStudentAddressBookStorage(temporaryFolder.resolve("studentAddressBook.json"));
         JsonFinanceAddressBookStorage financeAddressBookStorage =
@@ -61,7 +64,7 @@ public class LogicManagerTest {
                 new JsonAssignmentAddressBookStorage(temporaryFolder.resolve("assignmentAddressBook.json"));
 
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, teacherAddressBookStorage,
+        StorageManager storage = new StorageManager(addressBookStorage, teacherAddressBookStorage, staffAddressBookStorage,
             studentAddressBookStorage, financeAddressBookStorage, courseAddressBookStorage, assignmentAddressBookStorage,
                 userPrefsStorage);
         logic = new LogicManager(model, storage);
