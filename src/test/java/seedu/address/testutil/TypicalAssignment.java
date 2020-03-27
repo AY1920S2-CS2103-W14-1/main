@@ -44,7 +44,7 @@ public class TypicalAssignment {
     public static AssignmentAddressBook getTypicalAssignmentAddressBook() {
         AssignmentAddressBook ab = new AssignmentAddressBook();
         for (Assignment Assignment : getTypicalAssignments()) {
-            ab.addAssignment(Assignment);
+            ab.add(Assignment);
         }
         return ab;
     }

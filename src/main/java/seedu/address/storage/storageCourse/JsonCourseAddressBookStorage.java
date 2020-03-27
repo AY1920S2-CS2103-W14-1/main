@@ -11,7 +11,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.modelCourse.ReadOnlyCourseAddressBook;
+import seedu.address.model.modelCourse.Course;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 
 /**
  * A class to access AssignmentAddressBook data stored as a json file on the hard disk.
@@ -32,7 +33,7 @@ public class JsonCourseAddressBookStorage implements CourseAddressBookStorage {
   }
 
   @Override
-  public Optional<ReadOnlyCourseAddressBook> readCourseAddressBook()
+  public Optional<ReadOnlyAddressBookGeneric<Course>> readCourseAddressBook()
       throws DataConversionException {
     return readCourseAddressBook(filePath);
   }
@@ -43,7 +44,7 @@ public class JsonCourseAddressBookStorage implements CourseAddressBookStorage {
    * @param filePath location of the data. Cannot be null.
    * @throws DataConversionException if the file is not in the correct format.
    */
-  public Optional<ReadOnlyCourseAddressBook> readCourseAddressBook(Path filePath)
+  public Optional<ReadOnlyAddressBookGeneric<Course>> readCourseAddressBook(Path filePath)
       throws DataConversionException {
     requireNonNull(filePath);
 
@@ -62,17 +63,17 @@ public class JsonCourseAddressBookStorage implements CourseAddressBookStorage {
   }
 
   @Override
-  public void saveCourseAddressBook(ReadOnlyCourseAddressBook coursesAddressBook)
+  public void saveCourseAddressBook(ReadOnlyAddressBookGeneric<Course> coursesAddressBook)
       throws IOException {
     saveCourseAddressBook(coursesAddressBook, filePath);
   }
 
   /**
-   * Similar to {@link #saveCourseAddressBook(ReadOnlyCourseAddressBook)}.
+   * Similar to {@link #saveCourseAddressBook(ReadOnlyAddressBookGeneric<Course>)}.
    *
    * @param filePath location of the data. Cannot be null.
    */
-  public void saveCourseAddressBook(ReadOnlyCourseAddressBook coursesAddressBook, Path filePath)
+  public void saveCourseAddressBook(ReadOnlyAddressBookGeneric<Course> coursesAddressBook, Path filePath)
       throws IOException {
     System.out.println("h");
     requireNonNull(coursesAddressBook);

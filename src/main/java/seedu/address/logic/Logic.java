@@ -8,14 +8,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.modelAssignment.Assignment;
-import seedu.address.model.modelAssignment.ReadOnlyAssignmentAddressBook;
 import seedu.address.model.modelCourse.Course;
-import seedu.address.model.modelCourse.ReadOnlyCourseAddressBook;
 import seedu.address.model.modelFinance.Finance;
-import seedu.address.model.modelFinance.ReadOnlyFinanceAddressBook;
-import seedu.address.model.modelStudent.ReadOnlyStudentAddressBook;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 import seedu.address.model.modelStudent.Student;
-import seedu.address.model.modelTeacher.ReadOnlyTeacherAddressBook;
 import seedu.address.model.modelTeacher.Teacher;
 import seedu.address.model.person.Person;
 import seedu.address.ui.SummaryPanel;
@@ -70,7 +66,7 @@ public interface Logic {
    *
    * @see seedu.address.model.Model#getTeacherAddressBook()
    */
-  ReadOnlyTeacherAddressBook getTeacherAddressBook();
+  ReadOnlyAddressBookGeneric<Teacher> getTeacherAddressBook();
 
   /**
    * Returns an unmodifiable view of the filtered list of teachers
@@ -89,7 +85,7 @@ public interface Logic {
    *
    * @see seedu.address.model.Model#getStudentAddressBook()
    */
-  ReadOnlyStudentAddressBook getStudentAddressBook();
+  ReadOnlyAddressBookGeneric<Student> getStudentAddressBook();
 
   /**
    * Returns an unmodifiable view of the filtered list of students
@@ -108,7 +104,7 @@ public interface Logic {
    *
    * @see seedu.address.model.Model#getFinanceAddressBook()
    */
-  ReadOnlyFinanceAddressBook getFinanceAddressBook();
+  ReadOnlyAddressBookGeneric<Finance> getFinanceAddressBook();
 
   /**
    * Returns an unmodifiable view of the filtered list of finances
@@ -127,7 +123,7 @@ public interface Logic {
    *
    * @see seedu.address.model.Model#getCourseAddressBook()
    */
-  ReadOnlyCourseAddressBook getCourseAddressBook();
+ ReadOnlyAddressBookGeneric<Course> getCourseAddressBook();
 
   /**
    * Returns an unmodifiable view of the filtered list of courses
@@ -145,7 +141,7 @@ public interface Logic {
    *
    * @see seedu.address.model.Model#getCourseAddressBook()
    */
-  ReadOnlyAssignmentAddressBook getAssignmentAddressBook();
+  ReadOnlyAddressBookGeneric<Assignment> getAssignmentAddressBook();
 
   /**
    * Returns an unmodifiable view of the filtered list of courses

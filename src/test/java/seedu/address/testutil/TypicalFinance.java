@@ -53,7 +53,7 @@ public class TypicalFinance {
     public static FinanceAddressBook getTypicalFinanceAddressBook() {
         FinanceAddressBook ab = new FinanceAddressBook();
         for (Finance finance : getTypicalFinances()) {
-            ab.addFinance(finance);
+            ab.add(finance);
         }
         return ab;
     }

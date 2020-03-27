@@ -5,17 +5,11 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.modelAssignment.Assignment;
-import seedu.address.model.modelAssignment.ReadOnlyAssignmentAddressBook;
 import seedu.address.model.modelCourse.Course;
-import seedu.address.model.modelCourse.ReadOnlyCourseAddressBook;
 import seedu.address.model.modelCourseStudent.CourseStudent;
-import seedu.address.model.modelCourseStudent.ReadOnlyCourseStudentAddressBook;
 import seedu.address.model.modelFinance.Finance;
-import seedu.address.model.modelFinance.ReadOnlyFinanceAddressBook;
-import seedu.address.model.modelStaff.Staff;
-import seedu.address.model.modelStudent.ReadOnlyStudentAddressBook;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 import seedu.address.model.modelStudent.Student;
-import seedu.address.model.modelTeacher.ReadOnlyTeacherAddressBook;
 import seedu.address.model.modelTeacher.Teacher;
 import seedu.address.model.person.Person;
 
@@ -29,7 +23,6 @@ public interface Model {
    */
   Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
   Predicate<Teacher> PREDICATE_SHOW_ALL_TEACHERS = unused -> true;
-  Predicate<Staff> PREDICATE_SHOW_ALL_STAFFS = unused -> true;
   Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
   Predicate<Finance> PREDICATE_SHOW_ALL_FINANCES = unused -> true;
   Predicate<Course> PREDICATE_SHOW_ALL_COURSES = unused -> true;
@@ -125,12 +118,12 @@ public interface Model {
   /**
    * Returns the teacherAddressBook
    */
-  ReadOnlyTeacherAddressBook getTeacherAddressBook();
+  ReadOnlyAddressBookGeneric<Teacher> getTeacherAddressBook();
 
   /**
    * Replaces teacher address book data with the data in {@code teacerAddressBook}.
    */
-  void setTeacherAddressBook(ReadOnlyTeacherAddressBook teacherAddressBook);
+  void setTeacherAddressBook(ReadOnlyAddressBookGeneric<Teacher> teacherAddressBook);
 
   /**
    * Returns true if a teacher with the same identity as {@code teacher} exists in the address
@@ -174,31 +167,6 @@ public interface Model {
    */
   Path getStudentAddressBookFilePath();
 
-  /// For Staff
-
-  /**
-   * Adds the given staff. {@code staff} must not already exist in the address book.
-   */
-  void addStaff(Staff staff);
-
-  /**
-   * Returns true if a staff with the same identity as {@code staff} exists in the address
-   * book.
-   */
-  boolean hasStaff(Staff staff);
-
-  /**
-   * Returns an unmodifiable view of the filtered staff list
-   */
-  ObservableList<Staff> getFilteredStaffList();
-
-  /**
-   * Updates the filter of the filtered staff list to filter by the given {@code predicate}.
-   *
-   * @throws NullPointerException if {@code predicate} is null.
-   */
-  void updateFilteredStaffList(Predicate<Staff> predicate);
-
   /**
    * Sets the user prefs' address book file path.
    */
@@ -207,12 +175,12 @@ public interface Model {
   /**
    * Returns the studentAddressBook
    */
-  ReadOnlyStudentAddressBook getStudentAddressBook();
+  ReadOnlyAddressBookGeneric<Student> getStudentAddressBook();
 
   /**
    * Replaces student address book data with the data in {@code teacherAddressBook}.
    */
-  void setStudentAddressBook(ReadOnlyStudentAddressBook studentAddressBook);
+  void setStudentAddressBook(ReadOnlyAddressBookGeneric<Student> studentAddressBook);
 
   /**
    * Returns true if a student with the same identity as {@code student} exists in the address
@@ -264,12 +232,12 @@ public interface Model {
   /**
    * Returns the courseAddressBook
    */
-  ReadOnlyCourseAddressBook getCourseAddressBook();
+ ReadOnlyAddressBookGeneric<Course> getCourseAddressBook();
 
   /**
    * Replaces course address book data with the data in {@code teacerAddressBook}.
    */
-  void setCourseAddressBook(ReadOnlyCourseAddressBook courseAddressBook);
+  void setCourseAddressBook(ReadOnlyAddressBookGeneric<Course> courseAddressBook);
 
   /**
    * Returns true if a course with the same identity as {@code course} exists in the address book.
@@ -320,12 +288,12 @@ public interface Model {
   /**
    * Returns the financeAddressBook
    */
-  ReadOnlyFinanceAddressBook getFinanceAddressBook();
+  ReadOnlyAddressBookGeneric<Finance> getFinanceAddressBook();
 
   /**
    * Replaces finance address book data with the data in {@code teacerAddressBook}.
    */
-  void setFinanceAddressBook(ReadOnlyFinanceAddressBook financeAddressBook);
+  void setFinanceAddressBook(ReadOnlyAddressBookGeneric<Finance> financeAddressBook);
 
   /**
    * Returns true if a finance with the same identity as {@code finance} exists in the address
@@ -377,12 +345,12 @@ public interface Model {
   /**
    * Returns the assignmentAddressBook
    */
-  ReadOnlyAssignmentAddressBook getAssignmentAddressBook();
+  ReadOnlyAddressBookGeneric<Assignment> getAssignmentAddressBook();
 
   /**
    * Replaces assignment address book data with the data in {@code teacerAddressBook}.
    */
-  void setAssignmentAddressBook(ReadOnlyAssignmentAddressBook assignmentAddressBook);
+  void setAssignmentAddressBook(ReadOnlyAddressBookGeneric<Assignment> assignmentAddressBook);
 
   /**
    * Returns true if a assignment with the same identity as {@code assignment} exists in the address
@@ -434,12 +402,12 @@ public interface Model {
   /**
    * Returns the courseStudentAddressBook
    */
-  ReadOnlyCourseStudentAddressBook getCourseStudentAddressBook();
+  ReadOnlyAddressBookGeneric<CourseStudent> getCourseStudentAddressBook();
 
   /**
    * Replaces courseStudent address book data with the data in {@code teacerAddressBook}.
    */
-  void setCourseStudentAddressBook(ReadOnlyCourseStudentAddressBook courseStudentAddressBook);
+  void setCourseStudentAddressBook(ReadOnlyAddressBookGeneric<CourseStudent> courseStudentAddressBook);
 
   /**
    * Returns true if a courseStudent with the same identity as {@code courseStudent} exists in the address

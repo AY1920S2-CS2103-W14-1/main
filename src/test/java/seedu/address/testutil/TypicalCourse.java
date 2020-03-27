@@ -59,7 +59,7 @@ public class TypicalCourse {
     public static CourseAddressBook getTypicalCourseAddressBook() {
         CourseAddressBook ab = new CourseAddressBook();
         for (Course course : getTypicalCourses()) {
-            ab.addCourse(course);
+            ab.add(course);
         }
         return ab;
     }

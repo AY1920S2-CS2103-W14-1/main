@@ -24,7 +24,7 @@ public class StudentAddressBookBuilder {
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
     public StudentAddressBookBuilder withStudent(Student student) {
-        studentAddressBook.addStudent(student);
+        studentAddressBook.add(student);
         return this;
     }
 

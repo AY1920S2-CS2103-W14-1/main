@@ -7,23 +7,15 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.modelAssignment.Assignment;
 import seedu.address.model.modelAssignment.AssignmentAddressBook;
-import seedu.address.model.modelAssignment.ReadOnlyAssignmentAddressBook;
 import seedu.address.model.modelCourse.Course;
 import seedu.address.model.modelCourse.CourseAddressBook;
-import seedu.address.model.modelCourse.ReadOnlyCourseAddressBook;
 import seedu.address.model.modelCourseStudent.CourseStudent;
 import seedu.address.model.modelCourseStudent.CourseStudentAddressBook;
-import seedu.address.model.modelCourseStudent.ReadOnlyCourseStudentAddressBook;
 import seedu.address.model.modelFinance.Finance;
 import seedu.address.model.modelFinance.FinanceAddressBook;
-import seedu.address.model.modelFinance.ReadOnlyFinanceAddressBook;
-import seedu.address.model.modelStaff.ReadOnlyStaffAddressBook;
-import seedu.address.model.modelStaff.Staff;
-import seedu.address.model.modelStaff.StaffAddressBook;
-import seedu.address.model.modelStudent.ReadOnlyStudentAddressBook;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 import seedu.address.model.modelStudent.Student;
 import seedu.address.model.modelStudent.StudentAddressBook;
-import seedu.address.model.modelTeacher.ReadOnlyTeacherAddressBook;
 import seedu.address.model.modelTeacher.Teacher;
 import seedu.address.model.modelTeacher.TeacherAddressBook;
 import seedu.address.model.person.*;
@@ -67,31 +59,10 @@ public class SampleDataUtil {
     };
   }
 
-  public static Staff[] getSampleStaffs() {
-    return new Staff[]{
-            new Staff(new Name("StaffenWolf Star"), new Phone("97231208"), new Email("star.wolf@gmail.com"),
-                    new Salary("2500"),
-                    new Address("Jupiter"),
-                    getTagSet("DataEntry", "Detail")),
-            new Staff(new Name("Stafford Stark"), new Phone("91232718"), new Email("stark.ford@gmail.com"),
-                    new Salary("2600"),
-                    new Address("Mars"),
-                    getTagSet("Multitasking", "Financing")),
-    };
-  }
-
-  public static ReadOnlyTeacherAddressBook getSampleTeacherAddressBook() {
+  public static ReadOnlyAddressBookGeneric<Teacher> getSampleTeacherAddressBook() {
     TeacherAddressBook sampleAb = new TeacherAddressBook();
     for (Teacher sampleTeacher : getSampleTeachers()) {
-      sampleAb.addTeacher(sampleTeacher);
-    }
-    return sampleAb;
-  }
-
-  public static ReadOnlyStaffAddressBook getSampleStaffAddressBook() {
-    StaffAddressBook sampleAb = new StaffAddressBook();
-    for (Staff sampleStaff : getSampleStaffs()) {
-      sampleAb.addStaff(sampleStaff);
+      sampleAb.add(sampleTeacher);
     }
     return sampleAb;
   }
@@ -105,10 +76,10 @@ public class SampleDataUtil {
     };
   }
 
-  public static ReadOnlyStudentAddressBook getSampleStudentAddressBook() {
+  public static ReadOnlyAddressBookGeneric<Student> getSampleStudentAddressBook() {
     StudentAddressBook sampleAb = new StudentAddressBook();
     for (Student sampleStudent : getSampleStudents()) {
-      sampleAb.addStudent(sampleStudent);
+      sampleAb.add(sampleStudent);
     }
     return sampleAb;
   }
@@ -122,10 +93,10 @@ public class SampleDataUtil {
     };
   }
 
-  public static ReadOnlyFinanceAddressBook getSampleFinanceAddressBook() {
+  public static ReadOnlyAddressBookGeneric<Finance> getSampleFinanceAddressBook() {
     FinanceAddressBook sampleAb = new FinanceAddressBook();
     for (Finance sampleFinance : getSampleFinances()) {
-      sampleAb.addFinance(sampleFinance);
+      sampleAb.add(sampleFinance);
     }
     return sampleAb;
   }
@@ -139,10 +110,10 @@ public class SampleDataUtil {
     };
   }
 
-  public static ReadOnlyCourseAddressBook getSampleCourseAddressBook() {
+  public static ReadOnlyAddressBookGeneric<Course> getSampleCourseAddressBook() {
     CourseAddressBook sampleAb = new CourseAddressBook();
     for (Course sampleCourse : getSampleCourses()) {
-      sampleAb.addCourse(sampleCourse);
+      sampleAb.add(sampleCourse);
     }
     return sampleAb;
   }
@@ -158,10 +129,10 @@ public class SampleDataUtil {
     };
   }
 
-  public static ReadOnlyAssignmentAddressBook getSampleAssignmentAddressBook() {
+  public static ReadOnlyAddressBookGeneric<Assignment> getSampleAssignmentAddressBook() {
     AssignmentAddressBook sampleAb = new AssignmentAddressBook();
     for (Assignment sampleAssignment : getSampleAssignments()) {
-      sampleAb.addAssignment(sampleAssignment);
+      sampleAb.add(sampleAssignment);
     }
     return sampleAb;
   }
@@ -177,10 +148,10 @@ public class SampleDataUtil {
     };
   }
 
-  public static ReadOnlyCourseStudentAddressBook getSampleCourseStudentAddressBook() {
+  public static ReadOnlyAddressBookGeneric<CourseStudent> getSampleCourseStudentAddressBook() {
     CourseStudentAddressBook sampleAb = new CourseStudentAddressBook();
     for (CourseStudent sampleCourseStudent : getSampleCourseStudents()) {
-      sampleAb.addCourseStudent(sampleCourseStudent);
+      sampleAb.add(sampleCourseStudent);
     }
     return sampleAb;
   }

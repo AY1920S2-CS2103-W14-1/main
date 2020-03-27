@@ -93,7 +93,7 @@ public class EditCourseCommand extends Command {
     Course courseToEdit = lastShownList.get(index.getZeroBased());
     Course editedCourse = createEditedCourse(courseToEdit, editCourseDescriptor);
 
-    if (!courseToEdit.isSameCourse(editedCourse) && model.hasCourse(editedCourse)) {
+    if (!courseToEdit.weakEquals(editedCourse) && model.hasCourse(editedCourse)) {
       throw new CommandException(MESSAGE_DUPLICATE_COURSE);
     }
 

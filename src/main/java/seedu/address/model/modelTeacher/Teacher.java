@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.modelGeneric.ModelObject;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
@@ -38,15 +39,19 @@ public class Teacher extends Person {
    * Returns true if both teachers of the same name have at least one other identity field that is
    * the same. This defines a weaker notion of equality between two teachers.
    */
-  public boolean isSameTeacher(Teacher otherTeacher) {
+  @Override
+  public boolean weakEquals(ModelObject otherTeacher) {
     if (otherTeacher == this) {
       return true;
     }
-
-    return otherTeacher != null
-        && otherTeacher.getName().equals(getName())
-        && (otherTeacher.getPhone().equals(getPhone()) || (
-        otherTeacher.getSalary().equals(getSalary()) || otherTeacher.getEmail()
+    if (otherTeacher instanceof Teacher == false) {
+      return false;
+    }
+    Teacher otherTeacherCast = (Teacher)otherTeacher;
+    return otherTeacherCast != null
+        && otherTeacherCast.getName().equals(getName())
+        && (otherTeacherCast.getPhone().equals(getPhone()) || (
+        otherTeacherCast.getSalary().equals(getSalary()) || otherTeacherCast.getEmail()
             .equals(getEmail())));
   }
 

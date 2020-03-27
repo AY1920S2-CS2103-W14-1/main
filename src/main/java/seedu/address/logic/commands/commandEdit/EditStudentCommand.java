@@ -89,7 +89,7 @@ public class EditStudentCommand extends Command {
     Student studentToEdit = lastShownList.get(index.getZeroBased());
     Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-    if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+    if (!studentToEdit.weakEquals(editedStudent) && model.hasStudent(editedStudent)) {
       throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
     }
 

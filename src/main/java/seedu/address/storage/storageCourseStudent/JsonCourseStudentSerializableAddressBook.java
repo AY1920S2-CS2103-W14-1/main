@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.modelCourseStudent.CourseStudent;
 import seedu.address.model.modelCourseStudent.CourseStudentAddressBook;
-import seedu.address.model.modelCourseStudent.ReadOnlyCourseStudentAddressBook;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -36,8 +36,8 @@ class JsonCourseStudentSerializableAddressBook {
    * @param source future changes to this will not affect the created {@code
    *               JsonCourseStudentSerializableAddressBook}.
    */
-  public JsonCourseStudentSerializableAddressBook(ReadOnlyCourseStudentAddressBook source) {
-    courseStudents.addAll(source.getCourseStudentList().stream().map(
+  public JsonCourseStudentSerializableAddressBook(ReadOnlyAddressBookGeneric<CourseStudent> source) {
+    courseStudents.addAll(source.getList().stream().map(
         JsonAdaptedCourseStudent::new).collect(Collectors.toList()));
   }
 
@@ -50,10 +50,10 @@ class JsonCourseStudentSerializableAddressBook {
     CourseStudentAddressBook courseStudentAddressBook = new CourseStudentAddressBook();
     for (JsonAdaptedCourseStudent jsonAdaptedCourseStudent : courseStudents) {
       CourseStudent courseStudent = jsonAdaptedCourseStudent.toModelType();
-      if (courseStudentAddressBook.hasCourseStudents(courseStudent)) {
+      if (courseStudentAddressBook.has(courseStudent)) {
         throw new IllegalValueException(MESSAGE_DUPLICATE_COURSE);
       }
-      courseStudentAddressBook.addCourseStudent(courseStudent);
+      courseStudentAddressBook.add(courseStudent);
     }
     return courseStudentAddressBook;
   }

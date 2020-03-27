@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.modelTeacher.ReadOnlyTeacherAddressBook;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 import seedu.address.model.modelTeacher.Teacher;
 import seedu.address.model.modelTeacher.TeacherAddressBook;
 
@@ -31,14 +31,14 @@ class JsonTeacherSerializableAddressBook {
   }
 
   /**
-   * Converts a given {@code ReadOnlyTeacherAddressBook} into this class for Jackson use.
+   * Converts a given {@code ReadOnlyAddressBookGeneric<Teacher>} into this class for Jackson use.
    *
    * @param source future changes to this will not affect the created {@code
    *               JsonTeacherSerializableAddressBook}.
    */
-  public JsonTeacherSerializableAddressBook(ReadOnlyTeacherAddressBook source) {
+  public JsonTeacherSerializableAddressBook(ReadOnlyAddressBookGeneric<Teacher> source) {
     teachers.addAll(
-        source.getTeacherList().stream().map(JsonAdaptedTeacher::new).collect(Collectors.toList()));
+        source.getList().stream().map(JsonAdaptedTeacher::new).collect(Collectors.toList()));
   }
 
   /**
@@ -50,10 +50,10 @@ class JsonTeacherSerializableAddressBook {
     TeacherAddressBook teacherAddressBook = new TeacherAddressBook();
     for (JsonAdaptedTeacher jsonAdaptedTeacher : teachers) {
       Teacher teacher = jsonAdaptedTeacher.toModelType();
-      if (teacherAddressBook.hasTeachers(teacher)) {
+      if (teacherAddressBook.has(teacher)) {
         throw new IllegalValueException(MESSAGE_DUPLICATE_TEACHER);
       }
-      teacherAddressBook.addTeacher(teacher);
+      teacherAddressBook.add(teacher);
     }
     return teacherAddressBook;
   }

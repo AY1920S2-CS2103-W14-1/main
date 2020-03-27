@@ -24,7 +24,7 @@ public class FinanceAddressBookBuilder {
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
     public FinanceAddressBookBuilder withFinance(Finance finance) {
-        financeAddressBook.addFinance(finance);
+        financeAddressBook.add(finance);
         return this;
     }
 

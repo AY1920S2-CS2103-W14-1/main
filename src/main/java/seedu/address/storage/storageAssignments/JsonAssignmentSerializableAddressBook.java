@@ -6,10 +6,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.modelAssignment.Assignment;
 import seedu.address.model.modelAssignment.AssignmentAddressBook;
-import seedu.address.model.modelAssignment.ReadOnlyAssignmentAddressBook;
 import seedu.address.model.modelCourse.Course;
 import seedu.address.model.modelCourse.CourseAddressBook;
-import seedu.address.model.modelCourse.ReadOnlyCourseAddressBook;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +39,8 @@ class JsonAssignmentSerializableAddressBook {
    * @param source future changes to this will not affect the created {@code
    *               JsonAssignmentSerializableAddressBook}.
    */
-  public JsonAssignmentSerializableAddressBook(ReadOnlyAssignmentAddressBook source) {
-    assignments.addAll(source.getAssignmentList().stream().map(
+  public JsonAssignmentSerializableAddressBook(ReadOnlyAddressBookGeneric<Assignment> source) {
+    assignments.addAll(source.getList().stream().map(
         JsonAdaptedAssignment::new).collect(Collectors.toList()));
   }
 
@@ -54,10 +53,10 @@ class JsonAssignmentSerializableAddressBook {
     AssignmentAddressBook assignmentAddressBook = new AssignmentAddressBook();
     for (JsonAdaptedAssignment jsonAdaptedAssignment : assignments) {
       Assignment assignment = jsonAdaptedAssignment.toModelType();
-      if (assignmentAddressBook.hasAssignments(assignment)) {
+      if (assignmentAddressBook.has(assignment)) {
         throw new IllegalValueException(MESSAGE_DUPLICATE_COURSE);
       }
-      assignmentAddressBook.addAssignment(assignment);
+      assignmentAddressBook.add(assignment);
     }
     return assignmentAddressBook;
   }

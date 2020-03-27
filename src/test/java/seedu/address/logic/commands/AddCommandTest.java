@@ -23,16 +23,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.modelAssignment.Assignment;
-import seedu.address.model.modelAssignment.ReadOnlyAssignmentAddressBook;
 import seedu.address.model.modelCourse.Course;
-import seedu.address.model.modelCourse.ReadOnlyCourseAddressBook;
 import seedu.address.model.modelCourseStudent.CourseStudent;
-import seedu.address.model.modelCourseStudent.ReadOnlyCourseStudentAddressBook;
 import seedu.address.model.modelFinance.Finance;
-import seedu.address.model.modelFinance.ReadOnlyFinanceAddressBook;
-import seedu.address.model.modelStudent.ReadOnlyStudentAddressBook;
 import seedu.address.model.modelStudent.Student;
-import seedu.address.model.modelTeacher.ReadOnlyTeacherAddressBook;
 import seedu.address.model.modelTeacher.Teacher;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -171,12 +165,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyTeacherAddressBook getTeacherAddressBook() {
+        public ReadOnlyAddressBookGeneric<Teacher> getTeacherAddressBook() {
             return null;
         }
 
         @Override
-        public void setTeacherAddressBook(ReadOnlyTeacherAddressBook teacherAddressBook) {
+        public void setTeacherAddressBook(ReadOnlyAddressBookGeneric<Teacher> teacherAddressBook) {
 
         }
 
@@ -221,12 +215,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyStudentAddressBook getStudentAddressBook() {
+        public ReadOnlyAddressBookGeneric<Student> getStudentAddressBook() {
             return null;
         }
 
         @Override
-        public void setStudentAddressBook(ReadOnlyStudentAddressBook studentAddressBook) {
+        public void setStudentAddressBook(ReadOnlyAddressBookGeneric<Student> studentAddressBook) {
 
         }
 
@@ -271,12 +265,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyCourseAddressBook getCourseAddressBook() {
+        publicReadOnlyAddressBookGeneric<Course> getCourseAddressBook() {
             return null;
         }
 
         @Override
-        public void setCourseAddressBook(ReadOnlyCourseAddressBook courseAddressBook) {
+        public void setCourseAddressBook(ReadOnlyAddressBookGeneric<Course> courseAddressBook) {
 
         }
 
@@ -321,12 +315,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyFinanceAddressBook getFinanceAddressBook() {
+        public ReadOnlyAddressBookGeneric<Finance> getFinanceAddressBook() {
             return null;
         }
 
         @Override
-        public void setFinanceAddressBook(ReadOnlyFinanceAddressBook financeAddressBook) {
+        public void setFinanceAddressBook(ReadOnlyAddressBookGeneric<Finance> financeAddressBook) {
 
         }
 
@@ -371,12 +365,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAssignmentAddressBook getAssignmentAddressBook() {
+        public ReadOnlyAddressBookGeneric<Assignment> getAssignmentAddressBook() {
             return null;
         }
 
         @Override
-        public void setAssignmentAddressBook(ReadOnlyAssignmentAddressBook assignmentAddressBook) {
+        public void setAssignmentAddressBook(ReadOnlyAddressBookGeneric<Assignment> assignmentAddressBook) {
 
         }
 
@@ -421,12 +415,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyCourseStudentAddressBook getCourseStudentAddressBook() {
+        public ReadOnlyAddressBookGeneric<CourseStudent> getCourseStudentAddressBook() {
             return null;
         }
 
         @Override
-        public void setCourseStudentAddressBook(ReadOnlyCourseStudentAddressBook courseStudentAddressBook) {
+        public void setCourseStudentAddressBook(ReadOnlyAddressBookGeneric<CourseStudent> courseStudentAddressBook) {
 
         }
 

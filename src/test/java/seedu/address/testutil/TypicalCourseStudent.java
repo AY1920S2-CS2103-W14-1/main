@@ -41,7 +41,7 @@ public class TypicalCourseStudent {
     public static CourseStudentAddressBook getTypicalCourseStudentAddressBook() {
         CourseStudentAddressBook ab = new CourseStudentAddressBook();
         for (CourseStudent CourseStudent : getTypicalCourseStudents()) {
-            ab.addCourseStudent(CourseStudent);
+            ab.add(CourseStudent);
         }
         return ab;
     }

@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.modelStudent.ReadOnlyStudentAddressBook;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
+import seedu.address.model.modelStudent.Student;
 
 /**
  * Represents a storage for {@link seedu.address.model.AddressBook}.
@@ -17,33 +18,33 @@ public interface StudentAddressBookStorage {
   Path getStudentAddressBookFilePath();
 
   /**
-   * Returns StudentAddressBook data as a {@link ReadOnlyStudentAddressBook}. Returns {@code
+   * Returns StudentAddressBook data as a {@link ReadOnlyAddressBookGeneric<Student>}. Returns {@code
    * Optional.empty()} if storage file is not found.
    *
    * @throws DataConversionException if the data in storage is not in the expected format.
    * @throws IOException             if there was any problem when reading from the storage.
    */
-  Optional<ReadOnlyStudentAddressBook> readStudentAddressBook()
+  Optional<ReadOnlyAddressBookGeneric<Student>> readStudentAddressBook()
       throws DataConversionException, IOException;
 
   /**
    * @see #getStudentAddressBookFilePath()
    */
-  Optional<ReadOnlyStudentAddressBook> readStudentAddressBook(Path filePath)
+  Optional<ReadOnlyAddressBookGeneric<Student>> readStudentAddressBook(Path filePath)
       throws DataConversionException, IOException;
 
   /**
-   * Saves the given {@link ReadOnlyStudentAddressBook} to the storage.
+   * Saves the given {@link ReadOnlyAddressBookGeneric<Student>} to the storage.
    *
    * @param studentAddressBook cannot be null.
    * @throws IOException if there was any problem writing to the file.
    */
-  void saveStudentAddressBook(ReadOnlyStudentAddressBook studentAddressBook) throws IOException;
+  void saveStudentAddressBook(ReadOnlyAddressBookGeneric<Student> studentAddressBook) throws IOException;
 
   /**
-   * @see #saveStudentAddressBook(ReadOnlyStudentAddressBook)
+   * @see #saveStudentAddressBook(ReadOnlyAddressBookGeneric<Student>)
    */
-  void saveStudentAddressBook(ReadOnlyStudentAddressBook studentAddressBook, Path filePath)
+  void saveStudentAddressBook(ReadOnlyAddressBookGeneric<Student> studentAddressBook, Path filePath)
       throws IOException;
 
 }

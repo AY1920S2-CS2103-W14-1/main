@@ -70,7 +70,7 @@ public class TypicalTeacher {
     public static TeacherAddressBook getTypicalTeacherAddressBook() {
         TeacherAddressBook ab = new TeacherAddressBook();
         for (Teacher teacher : getTypicalTeachers()) {
-            ab.addTeacher(teacher);
+            ab.add(teacher);
         }
         return ab;
     }

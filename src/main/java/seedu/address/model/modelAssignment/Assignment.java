@@ -1,5 +1,6 @@
 package seedu.address.model.modelAssignment;
 
+import seedu.address.model.modelGeneric.ModelObject;
 import seedu.address.model.person.Deadline;
 import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
@@ -17,9 +18,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * Represents a Assignment in the address book. Guarantees: details are present and not null, field
  * values are validated, immutable.
  */
-public class Assignment {
+public class Assignment extends ModelObject {
 
   // Identity fields
+  private final String ENTITY_NAME = "assignment";
   private final Name name;
   private final ID assignmentId;
   private final Deadline deadline;
@@ -61,14 +63,19 @@ public class Assignment {
    * Returns true if both courses of the same name have at least one other identity field that is
    * the same. This defines a weaker notion of equality between two courses.
    */
-  public boolean isSameAssignment(Assignment otherAssignment) {
+  @Override
+  public boolean weakEquals(ModelObject otherAssignment) {
     if (otherAssignment == this) {
       return true;
     }
 
-    return otherAssignment != null
-        && otherAssignment.getName().equals(getName())
-        && otherAssignment.getId().equals(getId());
+    if (otherAssignment instanceof Assignment == false) {
+      return false;
+    }
+    Assignment otherAssignmentCast = (Assignment)otherAssignment;
+    return otherAssignmentCast != null
+        && otherAssignmentCast.getName().equals(getName())
+        && otherAssignmentCast.getId().equals(getId());
   }
 
   /**
@@ -115,5 +122,4 @@ public class Assignment {
     getTags().forEach(builder::append);
     return builder.toString();
   }
-
 }

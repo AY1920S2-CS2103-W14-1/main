@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.modelStudent.ReadOnlyStudentAddressBook;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 import seedu.address.model.modelStudent.Student;
 import seedu.address.model.modelStudent.StudentAddressBook;
 
@@ -31,13 +31,13 @@ class JsonStudentSerializableAddressBook {
   }
 
   /**
-   * Converts a given {@code ReadOnlyStudentAddressBook} into this class for Jackson use.
+   * Converts a given {@code ReadOnlyAddressBookGeneric<Student>} into this class for Jackson use.
    *
    * @param source future changes to this will not affect the created {@code
    *               JsonStudentSerializableAddressBook}.
    */
-  public JsonStudentSerializableAddressBook(ReadOnlyStudentAddressBook source) {
-    students.addAll(source.getStudentList().stream().map(
+  public JsonStudentSerializableAddressBook(ReadOnlyAddressBookGeneric<Student> source) {
+    students.addAll(source.getList().stream().map(
         JsonAdaptedStudent::new).collect(Collectors.toList()));
   }
 
@@ -50,10 +50,10 @@ class JsonStudentSerializableAddressBook {
     StudentAddressBook studentAddressBook = new StudentAddressBook();
     for (JsonAdaptedStudent jsonAdaptedStudent : students) {
       Student student = jsonAdaptedStudent.toModelType();
-      if (studentAddressBook.hasStudents(student)) {
+      if (studentAddressBook.has(student)) {
         throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
       }
-      studentAddressBook.addStudent(student);
+      studentAddressBook.add(student);
     }
     return studentAddressBook;
   }

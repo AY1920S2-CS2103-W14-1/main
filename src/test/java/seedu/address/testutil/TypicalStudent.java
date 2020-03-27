@@ -60,7 +60,7 @@ public class TypicalStudent {
     public static StudentAddressBook getTypicalStudentAddressBook() {
         StudentAddressBook ab = new StudentAddressBook();
         for (Student student : getTypicalStudents()) {
-            ab.addStudent(student);
+            ab.add(student);
         }
         return ab;
     }

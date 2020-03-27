@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.address.model.modelGeneric.ModelObject;
 import seedu.address.model.person.AssignedCourse;
 import seedu.address.model.person.ID;
 import seedu.address.model.person.Name;
@@ -15,7 +17,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Teacher in the address book. Guarantees: details are present and not null, field
  * values are validated, immutable.
  */
-public class Student {
+public class Student extends ModelObject {
 
   // Identity fields
   private final Name name;
@@ -61,14 +63,19 @@ public class Student {
    * Returns true if both students of the same name have at least one other identity field that is
    * the same. This defines a weaker notion of equality between two students.
    */
-  public boolean isSameStudent(Student otherStudent) {
+  public boolean weakEquals(ModelObject otherStudent) {
     if (otherStudent == this) {
       return true;
     }
 
-    return otherStudent != null
-        && otherStudent.getName().equals(getName())
-        && otherStudent.getID().equals(getID());
+    if (otherStudent instanceof Student == false) {
+      return false;
+    }
+
+    Student otherStudentCast = (Student)otherStudent;
+    return otherStudentCast != null
+        && otherStudentCast.getName().equals(getName())
+        && otherStudentCast.getID().equals(getID());
   }
 
   /**

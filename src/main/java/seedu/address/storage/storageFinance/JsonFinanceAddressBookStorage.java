@@ -11,7 +11,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.modelFinance.ReadOnlyFinanceAddressBook;
+import seedu.address.model.modelFinance.Finance;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 
 /**
  * A class to access FinanceAddressBook data stored as a json file on the hard disk.
@@ -32,7 +33,7 @@ public class JsonFinanceAddressBookStorage implements FinanceAddressBookStorage 
   }
 
   @Override
-  public Optional<ReadOnlyFinanceAddressBook> readFinanceAddressBook()
+  public Optional<ReadOnlyAddressBookGeneric<Finance>> readFinanceAddressBook()
       throws DataConversionException {
     return readFinanceAddressBook(filePath);
   }
@@ -43,7 +44,7 @@ public class JsonFinanceAddressBookStorage implements FinanceAddressBookStorage 
    * @param filePath location of the data. Cannot be null.
    * @throws DataConversionException if the file is not in the correct format.
    */
-  public Optional<ReadOnlyFinanceAddressBook> readFinanceAddressBook(Path filePath)
+  public Optional<ReadOnlyAddressBookGeneric<Finance>> readFinanceAddressBook(Path filePath)
       throws DataConversionException {
     requireNonNull(filePath);
 
@@ -62,17 +63,17 @@ public class JsonFinanceAddressBookStorage implements FinanceAddressBookStorage 
   }
 
   @Override
-  public void saveFinanceAddressBook(ReadOnlyFinanceAddressBook financeAddressBook)
+  public void saveFinanceAddressBook(ReadOnlyAddressBookGeneric<Finance> financeAddressBook)
       throws IOException {
     saveFinanceAddressBook(financeAddressBook, filePath);
   }
 
   /**
-   * Similar to {@link #saveFinanceAddressBook(ReadOnlyFinanceAddressBook)}.
+   * Similar to {@link #saveFinanceAddressBook(ReadOnlyAddressBookGeneric<Finance>)}.
    *
    * @param filePath location of the data. Cannot be null.
    */
-  public void saveFinanceAddressBook(ReadOnlyFinanceAddressBook financeAddressBook, Path filePath)
+  public void saveFinanceAddressBook(ReadOnlyAddressBookGeneric<Finance> financeAddressBook, Path filePath)
       throws IOException {
     System.out.println("h");
     requireNonNull(financeAddressBook);

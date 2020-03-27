@@ -25,11 +25,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.modelAssignment.ReadOnlyAssignmentAddressBook;
-import seedu.address.model.modelCourse.ReadOnlyCourseAddressBook;
-import seedu.address.model.modelFinance.ReadOnlyFinanceAddressBook;
-import seedu.address.model.modelStudent.ReadOnlyStudentAddressBook;
-import seedu.address.model.modelTeacher.ReadOnlyTeacherAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -212,7 +207,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveTeacherAddressBook(ReadOnlyTeacherAddressBook teacherAddressBook, Path filePath) throws IOException {
+        public void saveTeacherAddressBook(ReadOnlyAddressBookGeneric<Teacher> teacherAddressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
@@ -228,7 +223,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveStudentAddressBook(ReadOnlyStudentAddressBook teacherAddressBook, Path filePath) throws IOException {
+        public void saveStudentAddressBook(ReadOnlyAddressBookGeneric<Student> teacherAddressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
@@ -244,7 +239,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveFinanceAddressBook(ReadOnlyFinanceAddressBook teacherAddressBook, Path filePath) throws IOException {
+        public void saveFinanceAddressBook(ReadOnlyAddressBookGeneric<Finance> teacherAddressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -5,7 +5,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.modelAssignment.ReadOnlyAssignmentAddressBook;
+import seedu.address.model.modelAssignment.Assignment;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -33,7 +34,7 @@ public class JsonAssignmentAddressBookStorage implements AssignmentAddressBookSt
   }
 
   @Override
-  public Optional<ReadOnlyAssignmentAddressBook> readAssignmentAddressBook()
+  public Optional<ReadOnlyAddressBookGeneric<Assignment>> readAssignmentAddressBook()
       throws DataConversionException {
     return readAssignmentAddressBook(filePath);
   }
@@ -44,7 +45,7 @@ public class JsonAssignmentAddressBookStorage implements AssignmentAddressBookSt
    * @param filePath location of the data. Cannot be null.
    * @throws DataConversionException if the file is not in the correct format.
    */
-  public Optional<ReadOnlyAssignmentAddressBook> readAssignmentAddressBook(Path filePath)
+  public Optional<ReadOnlyAddressBookGeneric<Assignment>> readAssignmentAddressBook(Path filePath)
       throws DataConversionException {
     requireNonNull(filePath);
 
@@ -63,17 +64,17 @@ public class JsonAssignmentAddressBookStorage implements AssignmentAddressBookSt
   }
 
   @Override
-  public void saveAssignmentAddressBook(ReadOnlyAssignmentAddressBook assignmentsAddressBook)
+  public void saveAssignmentAddressBook(ReadOnlyAddressBookGeneric<Assignment> assignmentsAddressBook)
       throws IOException {
     saveAssignmentAddressBook(assignmentsAddressBook, filePath);
   }
 
   /**
-   * Similar to {@link #saveAssignmentAddressBook(ReadOnlyAssignmentAddressBook)}.
+   * Similar to {@link #saveAssignmentAddressBook(ReadOnlyAddressBookGeneric<Assignment>)}.
    *
    * @param filePath location of the data. Cannot be null.
    */
-  public void saveAssignmentAddressBook(ReadOnlyAssignmentAddressBook assignmentsAddressBook, Path filePath)
+  public void saveAssignmentAddressBook(ReadOnlyAddressBookGeneric<Assignment> assignmentsAddressBook, Path filePath)
       throws IOException {
     System.out.println("h");
     requireNonNull(assignmentsAddressBook);

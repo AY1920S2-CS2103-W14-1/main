@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.address.model.modelGeneric.ModelObject;
 import seedu.address.model.person.Amount;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -14,9 +16,10 @@ import seedu.address.model.tag.Tag;
  * Represents a Finance in the address book. Guarantees: details are present and not null, field
  * values are validated, immutable.
  */
-public class Finance {
+public class Finance extends ModelObject {
 
   // Identity fields
+  private final String ENTITY_NAME = "Finance";
   private final Name name;
   private final Amount amount;
   private final Set<Tag> tags = new HashSet<>();
@@ -51,14 +54,18 @@ public class Finance {
    * Returns true if both finances of the same name have at least one other identity field that is
    * the same. This defines a weaker notion of equality between two finances.
    */
-  public boolean isSameFinance(Finance otherFinance) {
+  public boolean weakEquals(ModelObject otherFinance) {
     if (otherFinance == this) {
       return true;
     }
 
-    return otherFinance != null
-        && otherFinance.getName().equals(getName())
-        && otherFinance.getAmount().equals(getAmount());
+    if (otherFinance instanceof Finance == false) {
+      return false;
+    }
+    Finance otherFinanceCast = (Finance) otherFinance;
+    return otherFinanceCast != null
+        && otherFinanceCast.getName().equals(getName())
+        && otherFinanceCast.getAmount().equals(getAmount());
   }
 
   /**

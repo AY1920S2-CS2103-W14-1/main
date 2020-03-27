@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.modelFinance.Finance;
 import seedu.address.model.modelFinance.FinanceAddressBook;
-import seedu.address.model.modelFinance.ReadOnlyFinanceAddressBook;
+import seedu.address.model.modelGeneric.ReadOnlyAddressBookGeneric;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -31,13 +31,13 @@ class JsonFinanceSerializableAddressBook {
   }
 
   /**
-   * Converts a given {@code ReadOnlyFinanceAddressBook} into this class for Jackson use.
+   * Converts a given {@code ReadOnlyAddressBookGeneric<Finance>} into this class for Jackson use.
    *
    * @param source future changes to this will not affect the created {@code
    *               JsonFinanceSerializableAddressBook}.
    */
-  public JsonFinanceSerializableAddressBook(ReadOnlyFinanceAddressBook source) {
-    finances.addAll(source.getFinanceList().stream().map(
+  public JsonFinanceSerializableAddressBook(ReadOnlyAddressBookGeneric<Finance> source) {
+    finances.addAll(source.getList().stream().map(
         JsonAdaptedFinance::new).collect(Collectors.toList()));
   }
 
@@ -50,10 +50,10 @@ class JsonFinanceSerializableAddressBook {
     FinanceAddressBook financeAddressBook = new FinanceAddressBook();
     for (JsonAdaptedFinance jsonAdaptedFinance : finances) {
       Finance finance = jsonAdaptedFinance.toModelType();
-      if (financeAddressBook.hasFinances(finance)) {
+      if (financeAddressBook.has(finance)) {
         throw new IllegalValueException(MESSAGE_DUPLICATE_FINANCE);
       }
-      financeAddressBook.addFinance(finance);
+      financeAddressBook.add(finance);
     }
     return financeAddressBook;
   }

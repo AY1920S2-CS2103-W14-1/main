@@ -24,7 +24,7 @@ public class AssignmentBookBuilder {
      * Adds a new {@code Assignment} to the {@code AssignmentAddressBook} that we are building.
      */
     public AssignmentBookBuilder withAssignment(Assignment assignment) {
-        assignmentAddressBook.addAssignment(assignment);
+        assignmentAddressBook.add(assignment);
         return this;
     }
 
