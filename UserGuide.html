@@ -3,415 +3,1441 @@
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>CodeCampX - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team CS2103-AY1819S1-F10-4</code>      Since: <code>Sep 2018</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#introduction">1. Introduction</a>
+<li><a href="#welcome-to-codecampx">1. Welcome to CodeCampX</a>
 <ul class="sectlevel2">
-<li><a href="#assignment">1.1. Assignment</a></li>
-<li><a href="#finance">1.2. Finance</a></li>
-<li><a href="#course">1.3. Course</a></li>
-<li><a href="#student">1.4. Student</a></li>
-<li><a href="#teacher">1.5. Teacher</a></li>
-<li><a href="#staff">1.6. Staff</a></li>
+<li><a href="#legend">1.1. Legend</a></li>
+<li><a href="#user-interface">1.2. A Quick Look at CodeCampX</a></li>
 </ul>
 </li>
+<li><a href="#quick-start">2. Quick Start</a></li>
+<li><a href="#Components">3. Components</a>
+<ul class="sectlevel2">
+<li><a href="#students">3.1. Students</a></li>
+<li><a href="#teachers">3.2. Teachers</a></li>
+<li><a href="#courses">3.3. Courses</a></li>
+<li><a href="#finances">3.4. Finances</a></li>
+<li><a href="#assignments">3.5. Assignments</a></li>
+</ul>
+</li>
+<li><a href="#Features">4. Key Features</a>
+<ul class="sectlevel2">
+<li><a href="#convenience">4.1. Convenience</a></li>
+<li><a href="#security">4.2. Security</a></li>
+<li><a href="#efficiency">4.3. Efficiency</a></li>
+</ul>
+</li>
+<li><a href="#Commands">5. Commands</a>
+<ul class="sectlevel2">
+<li><a href="#general">5.1. General</a>
+<ul class="sectlevel3">
+<li><a href="#viewing-help-code-help-code">5.1.1. Viewing help : <code>help</code></a></li>
+<li><a href="#saving-the-data">5.1.2. Saving the data</a></li>
+<li><a href="#exiting-the-program-code-exit-code">5.1.3. Exiting the program : <code>exit</code></a></li>
+<li><a href="#assigning-a-student-to-a-course-code-assign-code">5.1.4. Assigning a Student to a Course : <code>assign</code></a></li>
+<li><a href="#assigning-a-student-to-a-course-code-assign-code-2">5.1.5. Assigning a Student to a Course : <code>assign</code></a></li>
+</ul>
+</li>
+<li><a href="#student">5.2. Student</a>
+<ul class="sectlevel3">
+<li><a href="#add-a-student-code-add-student-code">5.2.1. Add a student: <code>add-student</code></a></li>
+<li><a href="#remove-a-student-code-delete-student-code">5.2.2. Remove a student: <code>delete-student</code></a></li>
+<li><a href="#locating-items-by-name-code-find-student-code">5.2.3. Locating items by name: <code>find-student</code></a></li>
+<li><a href="#list-all-students-code-list-student-code">5.2.4. List all students: <code>list-student</code></a></li>
+<li><a href="#edit-information-about-a-student-code-edit-student-code">5.2.5. Edit information about a student: <code>edit-student</code></a></li>
+<li><a href="#clear-all-students-code-clear-student-code">5.2.6. Clear all students: <code>clear-student</code></a></li>
+</ul>
+</li>
+<li><a href="#teacher">5.3. Teacher</a>
+<ul class="sectlevel3">
+<li><a href="#add-a-teacher-code-add-teacher-code">5.3.1. Add a teacher: <code>add-teacher</code></a></li>
+<li><a href="#remove-a-teacher-code-delete-teacher-code">5.3.2. Remove a teacher: <code>delete-teacher</code></a></li>
+<li><a href="#locating-items-by-name-code-find-teacher-code">5.3.3. Locating items by name: <code>find-teacher</code></a></li>
+<li><a href="#list-all-teachers-code-list-teacher-code">5.3.4. List all teachers: <code>list-teacher</code></a></li>
+<li><a href="#edit-information-about-a-teacher-code-edit-teacher-code">5.3.5. Edit information about a teacher: <code>edit-teacher</code></a></li>
+<li><a href="#clear-all-teachers-code-clear-teacher-code">5.3.6. Clear all teachers: <code>clear-teacher</code></a></li>
+</ul>
+</li>
+<li><a href="#course">5.4. Course</a>
+<ul class="sectlevel3">
+<li><a href="#add-a-course-code-add-course-code">5.4.1. Add a course: <code>add-course</code></a></li>
+<li><a href="#remove-a-course-code-delete-course-code">5.4.2. Remove a course: <code>delete-course</code></a></li>
+<li><a href="#locating-items-by-name-code-find-course-code">5.4.3. Locating items by name: <code>find-course</code></a></li>
+<li><a href="#list-all-courses-code-list-course-code">5.4.4. List all courses: <code>list-course</code></a></li>
+<li><a href="#edit-information-about-a-course-code-edit-course-code">5.4.5. Edit information about a course: <code>edit-course</code></a></li>
+<li><a href="#clear-all-courses-code-clear-course-code">5.4.6. Clear all courses: <code>clear-course</code></a></li>
+</ul>
+</li>
+<li><a href="#finance">5.5. Finance</a>
+<ul class="sectlevel3">
+<li><a href="#add-a-finance-code-add-finance-code">5.5.1. Add a finance: <code>add-finance</code></a></li>
+<li><a href="#remove-a-finance-code-delete-finance-code">5.5.2. Remove a finance: <code>delete-finance</code></a></li>
+<li><a href="#locating-items-by-name-code-find-finance-code">5.5.3. Locating items by name: <code>find-finance</code></a></li>
+<li><a href="#list-all-finances-code-list-finance-code">5.5.4. List all finances: <code>list-finance</code></a></li>
+<li><a href="#get-total-earnings-code-earnings-code">5.5.5. Get total earnings: <code>earnings</code></a></li>
+<li><a href="#get-total-expenses-code-expenses-code">5.5.6. Get total expenses: <code>expenses</code></a></li>
+<li><a href="#clear-all-finances-code-clear-finance-code">5.5.7. Clear all finances: <code>clear-finance</code></a></li>
+</ul>
+</li>
+<li><a href="#upcoming-features">5.6. Upcoming Features</a>
+<ul class="sectlevel3">
+<li><a href="#Register-Improvement">5.6.1. Add registration <code>[coming in v2.0]</code></a></li>
+<li><a href="#User-Role">5.6.2. Creating user role <code>[coming in v2.0]</code></a></li>
+<li><a href="#editing-user-role-code-coming-in-v2-0-code">5.6.3. Editing user role <code>[coming in v2.0]</code></a></li>
+<li><a href="#deleting-user-role-code-coming-in-v2-0-code">5.6.4. Deleting user role <code>[coming in v2.0]</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#frequently-asked-questions-faq">6. Frequently Asked Questions (FAQ)</a></li>
+<li><a href="#command-summary">7. Command Summary</a></li>
+<li><a href="#acronyms">Appendix A: Acronyms</a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
+<h2 id="welcome-to-codecampx"><a class="link" href="#welcome-to-codecampx">1. Welcome to CodeCampX</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Code Camp X (CCX) is for those who <strong>prefer to use a desktop app to manage the administrative tasks of running a coding camp</strong>.
 More importantly, CCX is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, CCX can allow you to manage your camp&#8217;s administrative tasks faster than traditional GUI apps.
-Interested? Jump to the <a href="#Quick Start">[Quick Start]</a> to get started. Enjoy!</p>
+Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 <div class="sect2">
-<h3 id="assignment"><a class="link" href="#assignment">1.1. Assignment</a></h3>
-<div class="sect3">
-<h4 id="adding-a-assignment-code-add-assignment-code"><a class="link" href="#adding-a-assignment-code-add-assignment-code">1.1.1. Adding a Assignment: <code>add Assignment</code></a></h4>
+<h3 id="legend"><a class="link" href="#legend">1.1. Legend</a></h3>
 <div class="paragraph">
-<p>Adds a Assignment to the list of Assignment<br>
-Format: <code>add Assignment n/NAME d/DEADLINE</code></p>
+<p>The following <strong>3</strong> callouts will be used throughout the documentation which you may wish to pay attention to as it may
+contain important details:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add n/Function Programming Assignment d/2020-01-30</code></p>
-</li>
-</ul>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Just for your info, do not be alarmed. Be sure to read these notes as it might contain some important information.
+</td>
+</tr>
+</table>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Perhaps something can be done using another approach, but it is up to you to decide. Tips are often not important and
+can be safely ignored.
+</td>
+</tr>
+</table>
 </div>
-<div class="sect3">
-<h4 id="listing-all-assignment-code-list-assignment-code"><a class="link" href="#listing-all-assignment-code-list-assignment-code">1.1.2. Listing all Assignment : <code>list Assignment</code></a></h4>
-<div class="paragraph">
-<p>Shows a list of all Assignment.<br>
-Format: <code>list Assignment</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="listing-all-assignment-for-a-course-code-list-assignment-code"><a class="link" href="#listing-all-assignment-for-a-course-code-list-assignment-code">1.1.3. Listing all Assignment for a course: <code>list Assignment</code></a></h4>
-<div class="paragraph">
-<p>Shows a list of all Assignment assigned to a course.<br>
-Format: <code>list Assignment c/courseID</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>`list Assignment c/001'</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="editing-a-assignment-code-edit-assignment-code"><a class="link" href="#editing-a-assignment-code-edit-assignment-code">1.1.4. Editing a Assignment : <code>edit Assignment</code></a></h4>
-<div class="paragraph">
-<p>Edits an existing person in the address book.<br>
-Format: <code>edit Assignment AssignmentID [n/NAME] [d/DEADLINE]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Edits the Assignment with the specified `AssignmentID'. The AssignmentID <strong>must exists</strong> in the list of Assignment.</p>
-</li>
-<li>
-<p>At least one of the optional fields must be provided.</p>
-</li>
-<li>
-<p>Existing values will be updated to the input values.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>edit Assignment 001 n/Machine Learning Assignment e/2020-02-30</code><br>
-Edits the name and deadline of the Assignment with ID of 001 to be <code>Machine Learning Assignment</code> and <code>2020-02-30</code> respectively.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="locating-assignment-by-keyword-id-deadline-code-find-assignment-code"><a class="link" href="#locating-assignment-by-keyword-id-deadline-code-find-assignment-code">1.1.5. Locating Assignment by KEYWORD/ID/DEADLINE: <code>find Assignment</code></a></h4>
-<div class="paragraph">
-<p>Finds Assignment with the any of the given keywords/ID/deadline<br>
-Format: `find Assignment [k/KEYWORDS] [id/AssignmentID] [d/DEADLINE]</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
-</li>
-<li>
-<p>Only the name is searched.</p>
-</li>
-<li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
-</li>
-<li>
-<p>Only 1 of the parameters can be present</p>
-</li>
-<li>
-<p>AssignmentID must be valid.</p>
-</li>
-<li>
-<p>DEADLINE must be properly formatted</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>find Assignment k/Learning</code><br>
-Returns any Assignment with <code>Learning</code> in its name such as - <code>Machine Learning Assignment</code>, <code>Reinforcement Learning Assignment</code></p>
-</li>
-<li>
-<p><code>find Assignment d/2020-01-30</code><br>
-Returns any Assignment with a deadline of <code>2020-01-30</code></p>
-</li>
-</ul>
-</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Some things might go wrong if you are not careful, or did not follow the instructions correctly. You are strongly
+advised to read whatever is in this block.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="finance"><a class="link" href="#finance">1.2. Finance</a></h3>
-<div class="sect3">
-<h4 id="adding-a-finance-code-add-finance-code"><a class="link" href="#adding-a-finance-code-add-finance-code">1.2.1. Adding a finance: <code>add finance</code></a></h4>
+<h3 id="user-interface"><a class="link" href="#user-interface">1.2. A Quick Look at CodeCampX</a></h3>
 <div class="paragraph">
-<p>Adds a finance to the list of finance<br>
-Format: <code>add finance n/NAME a/AMOUNT</code></p>
+<p><strong>CodeCampX</strong>’s user interface is split into a few sections. These sections are highlighted in the image below.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add n/Paid NUS for textbooks a/2000</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="listing-all-finance-code-list-finance-code"><a class="link" href="#listing-all-finance-code-list-finance-code">1.2.2. Listing all finance : <code>list finance</code></a></h4>
-<div class="paragraph">
-<p>Shows a list of all finance.<br>
-Format: <code>list finance</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="editing-a-finance-code-edit-finance-code"><a class="link" href="#editing-a-finance-code-edit-finance-code">1.2.3. Editing a finance : <code>edit finance</code></a></h4>
-<div class="paragraph">
-<p>Edits an existing finance in the address book.<br>
-Format: <code>edit finance FINANCEID [n/NAME] [a/AMOUNT]</code></p>
-</div>
-<div class="sidebarblock">
+<div class="imageblock">
 <div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Edits the finance with the specified `FINANCEID'. The financeID <strong>must exists</strong> in the list of finances.</p>
-</li>
-<li>
-<p>At least one of the optional fields must be provided.</p>
-</li>
-<li>
-<p>Existing values will be updated to the input values.</p>
-</li>
-</ul>
+<img src="images/Ui.png" alt="Ui" width="1000">
 </div>
+<div class="title">Figure 1. Quick Overview of CodeCampX.</div>
 </div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>edit finance 001 n/Purchased Crayons a/20</code><br>
-Edits the name and amount of the finance with ID of 001 to be <code>Purchased Crayons</code> and <code>20</code> respectively.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="locating-finance-by-keyword-id-deadline-code-find-finance-code"><a class="link" href="#locating-finance-by-keyword-id-deadline-code-find-finance-code">1.2.4. Locating finance by KEYWORD/ID/DEADLINE: <code>find finance</code></a></h4>
 <div class="paragraph">
-<p>Finds finance with the any of the given keywords/ID/amount<br>
-Format: `find finance [k/KEYWORDS] [id/FINANCEID] [a/AMOUNT]</p>
+<p>Let&#8217;s get started!</p>
 </div>
-<div class="sidebarblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quick-start"><a class="link" href="#quick-start">2. Quick Start</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Follow this installation guide to get <strong>CodeCampX</strong> up and running on your computer.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure you have Java version <code>9</code> or later installed in your Computer.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>If you are unsure which Java version is installed, you may refer to this <a href="https://www.java.com/en/download/help/version_manual.xml">link</a>.</p>
+</li>
+<li>
+<p>You may install the current version of Java <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">here</a>.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download the latest version <a href="https://github.com/AY1920S2-CS2103-W14-1/main/releases">here</a>.</p>
+</li>
+<li>
+<p>Copy the file to the folder you want to use as the home folder.</p>
+</li>
+<li>
+<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+</li>
+<li>
+<p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
+e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
+</li>
+<li>
+<p>Some example commands you can try:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>help</code></strong> : Opens up the help page</p>
+</li>
+<li>
+<p><strong><code>exit</code></strong> : Exits the application</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Refer to <a href="#Commands">Section 5, &#8220;Commands&#8221;</a> for details of each command.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Components"><a class="link" href="#Components">3. Components</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>CodeCampX</strong> consists of five core components: Students, Teachers, Courses, Finances, Assignments</p>
+</div>
+<div class="sect2">
+<h3 id="students"><a class="link" href="#students">3.1. Students</a></h3>
+<div class="paragraph">
+<p>You can manage the students by assigning them to courses, and ensuring that they have paid for their courses.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="teachers"><a class="link" href="#teachers">3.2. Teachers</a></h3>
+<div class="paragraph">
+<p>You can manage the teachers by providing information such as the phone number and email address.
+This is critical as teachers are the main point of contact during an emergency. You can keep track
+of which teachers you have paid for teaching a course.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="courses"><a class="link" href="#courses">3.3. Courses</a></h3>
+<div class="paragraph">
+<p>You can keep track of the ongoing courses in your Coding Camp. Each course will have an assigned teacher,
+as well as a list of assigned students. The course fee should also be specified.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finances"><a class="link" href="#finances">3.4. Finances</a></h3>
+<div class="paragraph">
+<p>The built-in Sales Management component in CodeCampX provides you with the tools you will need to keep track of financial
+records efficiently. Several analytical features are also incorporated to assist you in financial decision-making
+and devising marketing strategies.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="assignments"><a class="link" href="#assignments">3.5. Assignments</a></h3>
+<div class="paragraph">
+<p>You can keep track of the available assignments of the various students or courses through this functionality.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Features"><a class="link" href="#Features">4. Key Features</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="convenience"><a class="link" href="#convenience">4.1. Convenience</a></h3>
+<div class="paragraph">
+<p><strong>CodeCampX</strong> is an integrated application that will provide you with the utmost convenience and tools you will need to
+manage your Coding Camps. It allows you to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Export data to <code>.json</code> (default) or Excel file <code>[coming in v2.0]</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="security"><a class="link" href="#security">4.2. Security</a></h3>
+<div class="paragraph">
+<p>We understand that digital security is your biggest concern. <strong>CodeCampX</strong> is capable of securing your restaurants' data by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Encrypting all data using state of the art encryption scheme <code>[coming in v2.0]</code>.</p>
+</li>
+<li>
+<p>Providing accountability through logging of system events.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="efficiency"><a class="link" href="#efficiency">4.3. Efficiency</a></h3>
+<div class="paragraph">
+<p>Time is money. <strong>CodeCampX</strong> ensures that the application will:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Load within 5 seconds.</p>
+</li>
+<li>
+<p>Execute commands within split of a second and update the GUI almost instantaneously.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Commands"><a class="link" href="#Commands">5. Commands</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>CodeCampX</strong> is jam-packed with features and it may be daunting for new users. The subsequent sections of the user guide
+provides a step by step walk-through of all the commands <strong>CodeCampX</strong> has to offer.</p>
+</div>
+<div class="paragraph">
+<p>Do read our short explanation about Command Format below so that the subsequent portions of this section will make sense to you.</p>
+</div>
+<div class="exampleblock">
 <div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case insensitive. e.g <code>nus</code> will match <code>NUS</code></p>
-</li>
-<li>
-<p>Only the name is searched.</p>
-</li>
-<li>
-<p>Only full words will be matched e.g. <code>NUS</code> will not match <code>NUSSU</code></p>
-</li>
-<li>
-<p>Only 1 of the parameters can be present</p>
-</li>
-<li>
-<p>AssignmentID must be valid.</p>
-</li>
-<li>
-<p>AMOUNT must be properly formatted</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 <div class="paragraph">
-<p>Examples:</p>
+<p><strong>Command Format</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find finance k/NUS</code><br>
-Returns any finance with <code>NUS</code> in its name such as - <code>Bought textbooks from NUS</code>, <code>NUS bonding day</code></p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add-student n/STUDENT_NAME</code>, <code>STUDENT_NAME</code> is a
+parameter which can be used as <code>add-student n/Bob</code>.</p>
 </li>
 <li>
-<p><code>find finance a/200</code><br>
-Returns any finance with an amount of <code>200</code></p>
+<p>Items in square brackets are optional e.g <code>n/STUDENT_NAME [t/TAG]</code> can be used as <code>n/Bob t/loyal</code> or as <code>n/Bob</code>.</p>
+</li>
+<li>
+<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as
+<code>&#160;</code> (i.e. 0 times), <code>t/loyal</code>, <code>t/10years t/new</code> etc.</p>
+</li>
+<li>
+<p>Parameters can be in any order e.g. if the command specifies <code>cid/COURSE_ID tid/TEACHER_ID</code>, <code>tid/TEACHER_ID cid/COURSE_ID</code>
+is also acceptable.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="course"><a class="link" href="#course">1.3. Course</a></h3>
-<div class="sect3">
-<h4 id="add-a-course-code-add-course-code"><a class="link" href="#add-a-course-code-add-course-code">1.3.1. Add a course: <code>add course</code></a></h4>
+<h3 id="general"><a class="link" href="#general">5.1. General</a></h3>
 <div class="paragraph">
-<p>Add a new course to the list of course<br>
-Format: <code>add course n/NAME</code>
-Example:</p>
+<p>The commands in this section does not tie to any of the 5 components.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add course n/Programming Methodology</code></p>
-</li>
-</ul>
+<div class="sect3">
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">5.1.1. Viewing help : <code>help</code></a></h4>
+<div class="paragraph">
+<p>Opens up the help window. Very useful if you are a new user.<br>
+Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="list-all-courses-code-list-course-code"><a class="link" href="#list-all-courses-code-list-course-code">1.3.2. List all courses: <code>list course</code></a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">5.1.2. Saving the data</a></h4>
 <div class="paragraph">
-<p>Shows a list of all courses
-Format: <code>list course</code></p>
+<p>Coding Camp book data are saved in the hard disk automatically after any command that changes the data. No manual
+saving is required.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="list-all-students-in-a-course-code-list-course-student-code"><a class="link" href="#list-all-students-in-a-course-code-list-course-student-code">1.3.3. List all students in a course: <code>list course student</code></a></h4>
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">5.1.3. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of all students in a course<br>
-Format: <code>list c/courseID --students</code></p>
+<p>Exits the program.<br>
+Format: <code>exit</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="assigning-a-student-to-a-course-code-assign-code"><a class="link" href="#assigning-a-student-to-a-course-code-assign-code">5.1.4. Assigning a Student to a Course : <code>assign</code></a></h4>
+<div class="paragraph">
+<p>Adds the Student ID to the Course ID specified.<br>
+Format: <code>add cid/COURSEID sid/STUDENTID</code><br>
+Example: <code>assign cid/829 sid/33</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="assigning-a-student-to-a-course-code-assign-code-2"><a class="link" href="#assigning-a-student-to-a-course-code-assign-code-2">5.1.5. Assigning a Student to a Course : <code>assign</code></a></h4>
+<div class="paragraph">
+<p>Adds the Teacher ID to the Course ID specified.<br>
+Format: <code>add tid/TEACHERID sid/STUDENTID</code><br>
+Example: <code>assign cid/829 tid/21</code></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="student"><a class="link" href="#student">1.4. Student</a></h3>
+<h3 id="student"><a class="link" href="#student">5.2. Student</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/studentCourses.png" alt="studentCourses" width="500">
+</div>
+<div class="title">Figure 2. Student label. The assigned courses display the course names with the course ID beside</div>
+</div>
 <div class="sect3">
-<h4 id="add-a-student-code-add-student-code"><a class="link" href="#add-a-student-code-add-student-code">1.4.1. Add a student: <code>add student</code></a></h4>
+<h4 id="add-a-student-code-add-student-code"><a class="link" href="#add-a-student-code-add-student-code">5.2.1. Add a student: <code>add-student</code></a></h4>
 <div class="paragraph">
 <p>Add a new student to the list of student<br>
-Format: <code>add student n/NAME</code><br>
-Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add student n/Jon Snow</code></p>
-</li>
-</ul>
+Format: <code>add student n/NAME [t/TAG]…</code><br>
+Example:
+* <code>add student n/Jon Snow t/Hardworking</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="remove-a-student-code-remove-student-code"><a class="link" href="#remove-a-student-code-remove-student-code">1.4.2. Remove a student: <code>remove student</code></a></h4>
+<h4 id="remove-a-student-code-delete-student-code"><a class="link" href="#remove-a-student-code-delete-student-code">5.2.2. Remove a student: <code>delete-student</code></a></h4>
 <div class="paragraph">
 <p>Remove a student from the list of students<br>
-Format: <code>remove student studentID</code></p>
+Format: <code>delete-student INDEX</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-student 1</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the item at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed item list</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Be reminded that when you delete a student, the student will be deleted from every course as well<br>
+For example, a course that was only assigned to this student <strong>Bob</strong> will change to <strong>None</strong> if student <strong>Bob</strong> is deleted.<br>
+Similarly, all finances that involve this student will be deleted.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="list-all-students-code-list-student-code"><a class="link" href="#list-all-students-code-list-student-code">1.4.3. List all students: <code>list student</code></a></h4>
+<h4 id="locating-items-by-name-code-find-student-code"><a class="link" href="#locating-items-by-name-code-find-student-code">5.2.3. Locating items by name: <code>find-student</code></a></h4>
+<div class="paragraph">
+<p>Finds student whose names contain any of the given keywords.<br>
+Format: <code>find-student KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>bob</code> will match <code>Bob</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Ned Stark</code> will match <code>Stark Ned</code></p>
+</li>
+<li>
+<p>Only the name is searched</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Sta</code> will not match <code>Stark</code></p>
+</li>
+<li>
+<p>Items matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Ned Stark</code> will return
+<code>Ned Stark</code>, <code>Bran Stark</code> and <code>Ned Targaryen</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find-student Ned</code><br>
+Returns <code>ned</code> and <code>Ned Stark</code></p>
+</li>
+<li>
+<p><code>find-student Lannister Targaryen Stark</code><br>
+Returns any student having names <code>Lannister</code>, <code>Targaryen</code>, or <code>Stark</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="list-all-students-code-list-student-code"><a class="link" href="#list-all-students-code-list-student-code">5.2.4. List all students: <code>list-student</code></a></h4>
 <div class="paragraph">
 <p>Shows a list of all students
-Format: <code>list course</code></p>
+Format: <code>list-student</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="edit-information-about-a-student-code-edit-student-code"><a class="link" href="#edit-information-about-a-student-code-edit-student-code">1.4.4. Edit information about a student: <code>edit student</code></a></h4>
+<h4 id="edit-information-about-a-student-code-edit-student-code"><a class="link" href="#edit-information-about-a-student-code-edit-student-code">5.2.5. Edit information about a student: <code>edit-student</code></a></h4>
 <div class="paragraph">
 <p>Edits an existing student in the student list
-Format: <code>edit student s/studentID [n/NAME] [d/DESCRIPTION]</code><br>
+Format: <code>edit-student INDEX [n/NAME] [t/TAG]…</code><br>
 Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit A0131120E n/Aegon Targaryen d/Son of Lyanna Stark and Rhaegar Targaryen</code></p>
+<p><code>edit-student 1 n/Aegon Targaryen t/Son of Lyanna Stark and Rhaegar Targaryen</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the student at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed student list</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative</p>
+</li>
+<li>
+<p>You can remove all the student&#8217;s tags by typing <code>t/</code> without specifying any tags after it</p>
 </li>
 </ul>
 </div>
 </div>
+</div>
+</div>
 <div class="sect3">
-<h4 id="assign-a-student-to-a-course-code-assign-student-to-course-code"><a class="link" href="#assign-a-student-to-a-course-code-assign-student-to-course-code">1.4.5. Assign a student to a course: <code>assign student to course</code></a></h4>
+<h4 id="clear-all-students-code-clear-student-code"><a class="link" href="#clear-all-students-code-clear-student-code">5.2.6. Clear all students: <code>clear-student</code></a></h4>
 <div class="paragraph">
-<p>Assign an existing student in the student list to a course in the course list
-Format: <code>assign student s/studentID course c/courseID</code></p>
+<p><strong>CLEARS</strong> the entire student address book<br>
+Format: <code>clear-student</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This will irrevocably clear the entire address book!! Be very careful with this command</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="teacher"><a class="link" href="#teacher">1.5. Teacher</a></h3>
+<h3 id="teacher"><a class="link" href="#teacher">5.3. Teacher</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/teacherCourses.png" alt="teacherCourses" width="500">
+</div>
+<div class="title">Figure 3. Teacher label. The assigned courses display the course names with the course ID beside</div>
+</div>
 <div class="sect3">
-<h4 id="add-a-teacher-code-add-teacher-code"><a class="link" href="#add-a-teacher-code-add-teacher-code">1.5.1. Add a teacher: <code>add teacher</code></a></h4>
+<h4 id="add-a-teacher-code-add-teacher-code"><a class="link" href="#add-a-teacher-code-add-teacher-code">5.3.1. Add a teacher: <code>add-teacher</code></a></h4>
 <div class="paragraph">
-<p>Add a new teacher to the list of teachers<br>
-Format: <code>add teacher n/NAME</code><br>
-Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add teacher n/Ned Stark</code></p>
-</li>
-</ul>
+<p>Add a new teacher to the list of teacher<br>
+Format: <code>add teacher n/NAME [t/TAG]…</code><br>
+Example:
+* <code>add teacher n/Jon Snow t/Hardworking</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="remove-a-teacher-code-remove-staff-code"><a class="link" href="#remove-a-teacher-code-remove-staff-code">1.5.2. Remove a teacher: <code>remove staff</code></a></h4>
+<h4 id="remove-a-teacher-code-delete-teacher-code"><a class="link" href="#remove-a-teacher-code-delete-teacher-code">5.3.2. Remove a teacher: <code>delete-teacher</code></a></h4>
 <div class="paragraph">
 <p>Remove a teacher from the list of teachers<br>
-Format: <code>remove teacher teacherID</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="edit-information-about-a-teacher-code-edit-teacher-code"><a class="link" href="#edit-information-about-a-teacher-code-edit-teacher-code">1.5.3. Edit information about a teacher: <code>edit teacher</code></a></h4>
-<div class="paragraph">
-<p>Edit an existing teacher in the teachers list
-Format: <code>edit teacher s/teacherID [n/NAME] [d/DESCRIPTION]</code><br>
+Format: <code>delete-teacher INDEX</code><br>
 Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit A0131120E n/Ned Stark d/Lord of Winterfell</code></p>
+<p><code>delete-teacher 1</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the item at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed item list</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Be reminded that when you delete a teacher, the teacher will be deleted from every course as well.<br>
+For example, a course that was assigned techer <strong>Bob</strong> will change to <strong>None</strong> if teacher <strong>Bob</strong> is deleted.<br>
+Similarly, all finances that involve this teacher will be deleted.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="locating-items-by-name-code-find-teacher-code"><a class="link" href="#locating-items-by-name-code-find-teacher-code">5.3.3. Locating items by name: <code>find-teacher</code></a></h4>
+<div class="paragraph">
+<p>Finds teacher whose names contain any of the given keywords.<br>
+Format: <code>find-teacher KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>bob</code> will match <code>Bob</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Ned Stark</code> will match <code>Stark Ned</code></p>
+</li>
+<li>
+<p>Only the name is searched</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Sta</code> will not match <code>Stark</code></p>
+</li>
+<li>
+<p>Items matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Ned Stark</code> will return
+<code>Ned Stark</code>, <code>Bran Stark</code> and <code>Ned Targaryen</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find-teacher Ned</code><br>
+Returns <code>ned</code> and <code>Ned Stark</code></p>
+</li>
+<li>
+<p><code>find-teacher Lannister Targaryen Stark</code><br>
+Returns any teacher having names <code>Lannister</code>, <code>Targaryen</code>, or <code>Stark</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="assign-a-teacher-to-a-course-code-assign-teacher-to-course-code"><a class="link" href="#assign-a-teacher-to-a-course-code-assign-teacher-to-course-code">1.5.4. Assign a teacher to a course: <code>assign teacher to course</code></a></h4>
+<h4 id="list-all-teachers-code-list-teacher-code"><a class="link" href="#list-all-teachers-code-list-teacher-code">5.3.4. List all teachers: <code>list-teacher</code></a></h4>
 <div class="paragraph">
-<p>Assign an existing teacher in the teacher list to a course in the course list
-Format: <code>assign teacher s/teacherID course c/courseID</code></p>
+<p>Shows a list of all teachers
+Format: <code>list-teacher</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-information-about-a-teacher-code-edit-teacher-code"><a class="link" href="#edit-information-about-a-teacher-code-edit-teacher-code">5.3.5. Edit information about a teacher: <code>edit-teacher</code></a></h4>
+<div class="paragraph">
+<p>Edits an existing teacher in the teacher list
+Format: <code>edit-teacher INDEX [n/NAME] [t/TAG]…</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit-teacher 1 n/Aegon Targaryen t/Son of Lyanna Stark and Rhaegar Targaryen</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the teacher at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed teacher list</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative</p>
+</li>
+<li>
+<p>You can remove all the teacher&#8217;s tags by typing <code>t/</code> without specifying any tags after it</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clear-all-teachers-code-clear-teacher-code"><a class="link" href="#clear-all-teachers-code-clear-teacher-code">5.3.6. Clear all teachers: <code>clear-teacher</code></a></h4>
+<div class="paragraph">
+<p><strong>CLEARS</strong> the entire teacher address book<br>
+Format: <code>clear-teacher</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This will irrevocably clear the entire address book!! Be very careful with this command</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="staff"><a class="link" href="#staff">1.6. Staff</a></h3>
-<div class="sect3">
-<h4 id="add-a-staff-code-add-staff-code"><a class="link" href="#add-a-staff-code-add-staff-code">1.6.1. Add a staff: <code>add staff</code></a></h4>
-<div class="paragraph">
-<p>Add a new staff to the list of staffs<br>
-Format: <code>add staff n/NAME</code></p>
+<h3 id="course"><a class="link" href="#course">5.4. Course</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/courseTeachersStudents.png" alt="courseTeachersStudents" width="500">
 </div>
-</div>
-<div class="sect3">
-<h4 id="remove-a-staff-code-add-staff-code"><a class="link" href="#remove-a-staff-code-add-staff-code">1.6.2. Remove a staff: <code>add staff</code></a></h4>
-<div class="paragraph">
-<p>Remove a new staff to the list of staffs<br>
-Format: <code>remove staff staffID</code></p>
-</div>
+<div class="title">Figure 4. Course label. The assigned teachers/students display the teacher/student names with the teacher/student ID beside</div>
 </div>
 <div class="sect3">
-<h4 id="edit-information-about-a-staff-code-edit-staff-code"><a class="link" href="#edit-information-about-a-staff-code-edit-staff-code">1.6.3. Edit information about a staff: <code>edit staff</code></a></h4>
+<h4 id="add-a-course-code-add-course-code"><a class="link" href="#add-a-course-code-add-course-code">5.4.1. Add a course: <code>add-course</code></a></h4>
 <div class="paragraph">
-<p>Edit an existing teacher in the staff list<br>
-Format: <code>edit staff s/teacherID [n/NAME] [d/DESCRIPTION]</code></p>
+<p>Add a new course to the list of course<br>
+Format: <code>add course n/NAME a/AMOUNT [t/TAG]…</code><br>
+Example:
+* <code>add course n/Cozmo Programming a/2000 t/Fun t/Robot</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-a-course-code-delete-course-code"><a class="link" href="#remove-a-course-code-delete-course-code">5.4.2. Remove a course: <code>delete-course</code></a></h4>
+<div class="paragraph">
+<p>Remove a course from the list of courses<br>
+Format: <code>delete-course INDEX</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-course 1</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the item at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed item list</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Be reminded that when you delete a course, the course will be deleted from every student and teacher as well.<br>
+For example, a teacher that was only assigned to this course <strong>Java</strong> will change to <strong>None</strong> if course <strong>Java</strong> is deleted.<br>
+Similarly, all finances that involve this course will be deleted.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="locating-items-by-name-code-find-course-code"><a class="link" href="#locating-items-by-name-code-find-course-code">5.4.3. Locating items by name: <code>find-course</code></a></h4>
+<div class="paragraph">
+<p>Finds course whose names contain any of the given keywords.<br>
+Format: <code>find-course KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>Cozmo</code> will match <code>cozmo</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Cozmo Programming</code> will match <code>Programming Cozmo</code></p>
+</li>
+<li>
+<p>Only the name is searched</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Coz</code> will not match <code>Cozmo</code></p>
+</li>
+<li>
+<p>Items matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Cozmo Programming</code> will return
+<code>Cozmo Programming</code>, <code>Cozmo Introduction</code> and <code>Java Programming</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find-course Cozmo</code><br>
+Returns <code>cozmo</code> and <code>Cozmo Programming</code></p>
+</li>
+<li>
+<p><code>find-course Java Python C</code><br>
+Returns any course having names <code>Java</code>, <code>Python</code>, or <code>C</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="list-all-courses-code-list-course-code"><a class="link" href="#list-all-courses-code-list-course-code">5.4.4. List all courses: <code>list-course</code></a></h4>
+<div class="paragraph">
+<p>Shows a list of all courses
+Format: <code>list-course</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-information-about-a-course-code-edit-course-code"><a class="link" href="#edit-information-about-a-course-code-edit-course-code">5.4.5. Edit information about a course: <code>edit-course</code></a></h4>
+<div class="paragraph">
+<p>Edits an existing course in the course list
+Format: <code>edit-course INDEX [n/NAME] [a/AMOUNT] [t/TAG]…</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit-course 1 n/Java Programming a/2000</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the course at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed course list</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative</p>
+</li>
+<li>
+<p>You can remove all the course&#8217;s tags by typing <code>t/</code> without specifying any tags after it</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-28 12:51:57 UTC</div></div></div></body></html>
+<div class="sect3">
+<h4 id="clear-all-courses-code-clear-course-code"><a class="link" href="#clear-all-courses-code-clear-course-code">5.4.6. Clear all courses: <code>clear-course</code></a></h4>
+<div class="paragraph">
+<p><strong>CLEARS</strong> the entire course address book<br>
+Format: <code>clear-course</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This will irrevocably clear the entire address book!! Be very careful with this command</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finance"><a class="link" href="#finance">5.5. Finance</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/financeTypes.png" alt="financeTypes" width="500">
+</div>
+<div class="title">Figure 5. Finance labels. Index 1 is Finance Type 1, Index 2 is Finance Type 2, and Index 3 is Finance Type 3</div>
+</div>
+<div class="sect3">
+<h4 id="add-a-finance-code-add-finance-code"><a class="link" href="#add-a-finance-code-add-finance-code">5.5.1. Add a finance: <code>add-finance</code></a></h4>
+<div class="paragraph">
+<p>Add a new finance to the list of finance</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Type 1: Adding miscellaneous transactions(Specify ft/ as m)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Parameters: ft/FINANCETYPE d/DATE n/NAME a/AMOUNT [t/TAG]&#8230;&#8203;</p>
+</li>
+<li>
+<p>Example: add-finance ft/m d/2020-12-09 n/Paid NTU a/1200 t/Partnership t/Monthly</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Type 2: A student paying for a course(Specify ft/ as cs)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Parameters: ft/FINANCETYPE d/DATE cid/COURSEID sid/STUDENTID [t/TAG]&#8230;&#8203;</p>
+</li>
+<li>
+<p>Example: add-finance ft/cs d/2020-12-09 cid/829 sid/33 t/Late</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Type 3: A teacher is paid for teaching a course(Specify ft/ as ct)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Parameters: ft/FINANCETYPE d/DATE cid/COURSEID tid/TEACHERID [t/TAG]&#8230;&#8203;</p>
+</li>
+<li>
+<p>Example: add-finance ft/ct d/2020-12-09 cid/829 tid/21 t/Early</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To summarise, all three types requires ft/FINANCETYPE and d/DATE to be specified.<br>
+Type 1 additionally requires n/NAME a/AMOUNT<br>
+Type 2 additionally requires cid/COURSEID sid/STUDENTID<br>
+Type 3 additionally requires cid/COURSEID tid/TEACHERID<br></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For Type 1 miscellaneous transactions, you can specify the amount as negative(with a "-" in front) or
+positive(without a "-" in front) For example, a/100 or a/-100</p>
+</div>
+<div class="paragraph">
+<p>For Type 2 student paying for a course, the amount will be positive automatically, as it is an earning</p>
+</div>
+<div class="paragraph">
+<p>For Type 3 teacher being paid for a course, the amount will be negative automatically, as it is an expense</p>
+</div>
+<div class="paragraph">
+<p>The positive and negative amount is important as it is used under "earnings" and "expenses" commands.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-a-finance-code-delete-finance-code"><a class="link" href="#remove-a-finance-code-delete-finance-code">5.5.2. Remove a finance: <code>delete-finance</code></a></h4>
+<div class="paragraph">
+<p>Remove a finance from the list of finances<br>
+Format: <code>delete-finance INDEX</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-finance 1</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the item at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed item list</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="locating-items-by-name-code-find-finance-code"><a class="link" href="#locating-items-by-name-code-find-finance-code">5.5.3. Locating items by name: <code>find-finance</code></a></h4>
+<div class="paragraph">
+<p>Finds finance whose names contain any of the given keywords.<br>
+Format: <code>find-finance KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>payment</code> will match <code>Payment</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Payment Received</code> will match <code>Received Payment</code></p>
+</li>
+<li>
+<p>Only the name is searched</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Pay</code> will not match <code>Payment</code></p>
+</li>
+<li>
+<p>Items matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Received Payment</code> will return
+<code>Received Payment</code>, <code>Added Payment</code> and <code>Received Income</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find-finance Payment</code><br>
+Returns <code>payment</code> and <code>Received Payment</code></p>
+</li>
+<li>
+<p><code>find-finance Course Student Teacher</code><br>
+Returns any finance having names <code>Course</code>, <code>Student</code>, or <code>Teacher</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="list-all-finances-code-list-finance-code"><a class="link" href="#list-all-finances-code-list-finance-code">5.5.4. List all finances: <code>list-finance</code></a></h4>
+<div class="paragraph">
+<p>Shows a list of all finances
+Format: <code>list-finance</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="get-total-earnings-code-earnings-code"><a class="link" href="#get-total-earnings-code-earnings-code">5.5.5. Get total earnings: <code>earnings</code></a></h4>
+<div class="paragraph">
+<p>Shows all the earnings (finances with positive amount) as a number.<br>
+Format: <code>earnings</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="get-total-expenses-code-expenses-code"><a class="link" href="#get-total-expenses-code-expenses-code">5.5.6. Get total expenses: <code>expenses</code></a></h4>
+<div class="paragraph">
+<p>Shows all the expenses (finances with positive amount) as a number.<br>
+Format: <code>expenses</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clear-all-finances-code-clear-finance-code"><a class="link" href="#clear-all-finances-code-clear-finance-code">5.5.7. Clear all finances: <code>clear-finance</code></a></h4>
+<div class="paragraph">
+<p><strong>CLEARS</strong> the entire finance address book<br>
+Format: <code>clear-finance</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This will irrevocably clear the entire address book!! Be very careful with this command</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="upcoming-features"><a class="link" href="#upcoming-features">5.6. Upcoming Features</a></h3>
+<div class="sect3">
+<h4 id="Register-Improvement"><a class="link" href="#Register-Improvement">5.6.1. Add registration <code>[coming in v2.0]</code></a></h4>
+<div class="paragraph">
+<p>Add a <code>register</code> command by including role (i.e. privilege system).</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>register id/USERNAME pw/PASSWORD n/FULL_NAME r/ROLE_ID</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>register id/azhikai pw/1122qq n/Ang Zhi Kai r/999</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="User-Role"><a class="link" href="#User-Role">5.6.2. Creating user role <code>[coming in v2.0]</code></a></h4>
+<div class="paragraph">
+<p>Creates a user role. User assigned with higher ranking role can execute more commands.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>create-role r/RANK n/ROLE_NAME</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>create-role r/999 n/Owner</code></p>
+</li>
+<li>
+<p><code>create-role r/2 n/Supervisor</code></p>
+</li>
+<li>
+<p><code>create-role r/1 n/Employee</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="editing-user-role-code-coming-in-v2-0-code"><a class="link" href="#editing-user-role-code-coming-in-v2-0-code">5.6.3. Editing user role <code>[coming in v2.0]</code></a></h4>
+<div class="paragraph">
+<p>Edits an existing user role.<br>
+Format: <code>edit-role r/RANK [nr/NEW_RANK] [n/ROLE_NAME]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit-role r/999 n/Administrator</code></p>
+</li>
+<li>
+<p><code>edit-role r/2 nr/3 n/Manager</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-user-role-code-coming-in-v2-0-code"><a class="link" href="#deleting-user-role-code-coming-in-v2-0-code">5.6.4. Deleting user role <code>[coming in v2.0]</code></a></h4>
+<div class="paragraph">
+<p>Deletes an existing user role.<br>
+Format: <code>delete-role r/RANK</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-role r/999</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="frequently-asked-questions-faq"><a class="link" href="#frequently-asked-questions-faq">6. Frequently Asked Questions (FAQ)</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Q: How do I transfer my data to another Computer?</strong><br>
+<strong>A</strong>: Install the application in the other computer and overwrite the empty data file it creates with the file that
+contains the data of your previous <strong>CodeCampX</strong> folder.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q: Where do I find the latest release of the application?</strong><br>
+<strong>A</strong>: You can find all releases <a href="https://github.com/AY1920S2-CS2103-W14-1/main/releases">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="command-summary"><a class="link" href="#command-summary">7. Command Summary</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 45%;">
+<col style="width: 45%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">COMMAND</th>
+<th class="tableblock halign-left valign-top">FORMAT</th>
+<th class="tableblock halign-left valign-top">EXAMPLE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Help</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>help</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>help</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Assign Student to a Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add cid/COURSEID sid/STUDENTID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>assign cid/829 sid/33</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Assign Teacher to a Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add tid/TEACHERID sid/STUDENTID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>assign cid/829 tid/21</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Student</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-student n/NAME [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-student n/Jon Snow t/Hardworking</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Student</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-student INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-student 1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Student</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-student KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-student Lannister Targaryen Stark</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List Student</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-student</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-student</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Edit Student</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-student INDEX [n/NAME] [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-student 1 n/Aegon Targaryen t/Son of Lyanna Stark and Rhaegar Targaryen</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Clear Student</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear-student</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear-student</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-teacher n/NAME [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-teacher n/Jon Snow t/Hardworking</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-teacher INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-teacher 1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-teacher KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-teacher Lannister Targaryen Stark</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-teacher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-teacher</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Edit Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-teacher INDEX [n/NAME] [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-teacher 1 n/Aegon Targaryen t/Son of Lyanna Stark and Rhaegar Targaryen</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Clear Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear-teacher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear-teacher</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-course n/NAME a/AMOUNT [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-course n/Cozmo Programming a/2000 t/Fun t/Robot</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-course INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-course 1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-course KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-course Java Python C</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-course</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-course</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Edit Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-course INDEX [n/NAME] [a/AMOUNT] [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-course 1 n/Java Programming a/2000</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Clear Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear-course</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear-course</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Finance Type 1 (ft/m)</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/FINANCETYPE d/DATE n/NAME a/AMOUNT [t/TAG]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/m d/2020-12-09 n/Paid NTU a/1200 t/Partnership t/Monthly</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Finance Type 2 (ft/cs)</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/FINANCETYPE d/DATE cid/COURSEID sid/STUDENTID [t/TAG]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/cs d/2020-12-09 cid/829 sid/33 t/Late</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Finance Type 3 (ft/ct)</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/FINANCETYPE d/DATE cid/COURSEID tid/TEACHERID [t/TAG]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/ct d/2020-12-09 cid/829 tid/21 t/Early</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Finance</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-finance INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-finance 1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Finance</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-finance KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-finance Lannister Targaryen Stark</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List Finance</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-finance</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-finance</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Calculate Earnings</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>earnings</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>earnings</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Calculate Expenses</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>expenses</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>expenses</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Clear Finance</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear-finance</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear-finance</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="acronyms"><a class="link" href="#acronyms">Appendix A: Acronyms</a></h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a id="gui"></a> GUI</dt>
+<dd>
+<p><strong>Graphical User Interface</strong> allows the use of icons or other visual indicators to interact with electronic devices,
+rather than using only text via the command line.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-29 03:21:41 UTC</div></div></div></body></html>
