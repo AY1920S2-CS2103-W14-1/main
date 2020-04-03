@@ -41,17 +41,17 @@
 <li><a href="#exiting-the-program-code-exit-code">5.1.3. Exiting the program : <code>exit</code></a></li>
 <li><a href="#undo-an-undoable-command-code-undo-code">5.1.4. Undo an undoable command : <code>undo</code></a></li>
 <li><a href="#redo-a-redoable-command-code-redo-code">5.1.5. Redo a redoable command : <code>redo</code></a></li>
-<li><a href="#assigning-unassigning-a-student-to-a-course-code-assign-code-or-unassign-respectively">5.1.6. Assigning/Unassigning a Student to a Course : <code>assign</code> or 'unassign' respectively</a></li>
-<li><a href="#assigning-unassigning-a-teacher-to-a-course-code-assign-code-or-unassign-respectively">5.1.7. Assigning/Unassigning a Teacher to a Course : <code>assign</code> or 'unassign' respectively</a></li>
+<li><a href="#assigning-unassigning-a-student-to-a-course-code-assign-code-or-code-unassign-code-respectively">5.1.6. Assigning/Unassigning a Student to a Course : <code>assign</code> or <code>unassign</code> respectively</a></li>
+<li><a href="#assigning-unassigning-a-teacher-to-a-course-code-assign-code-or-code-unassign-code-respectively">5.1.7. Assigning/Unassigning a Teacher to a Course : <code>assign</code> or <code>unassign</code> respectively</a></li>
 <li><a href="#assigning-unassigning-an-assignment-to-a-course-code-assign-code-or-unassign-respectively">5.1.8. Assigning/Unassigning an Assignment to a Course : <code>assign</code> or 'unassign' respectively</a></li>
 </ul>
 </li>
-<li><a href="#switch-quickly-to-summary-tab-m-or-summary">5.2. Switch quickly to Summary Tab : 'm' or 'summary'</a></li>
-<li><a href="#switch-quickly-to-student-tab-s-or-student">5.3. Switch quickly to Student Tab : 's' or 'student'</a></li>
-<li><a href="#switch-quickly-to-staff-tab-t-or-staff">5.4. Switch quickly to Staff Tab : 't' or 'staff'</a></li>
-<li><a href="#switch-quickly-to-course-tab-c-or-course">5.5. Switch quickly to Course Tab : 'c' or 'course'</a></li>
-<li><a href="#switch-quickly-to-finance-tab-f-or-finance">5.6. Switch quickly to Finance Tab : 'f' or 'finance'</a></li>
-<li><a href="#switch-quickly-to-assignment-tab-a-or-assignment">5.7. Switch quickly to Assignment Tab : 'a' or 'assignment'</a></li>
+<li><a href="#switch-quickly-to-summary-tab-code-m-code-or-code-summary-code">5.2. Switch quickly to Summary Tab : <code>m</code> or <code>summary</code></a></li>
+<li><a href="#switch-quickly-to-student-tab-code-s-code-or-code-student-code">5.3. Switch quickly to Student Tab : <code>s</code> or <code>student</code></a></li>
+<li><a href="#switch-quickly-to-staff-tab-code-t-code-or-code-staff-code">5.4. Switch quickly to Staff Tab : <code>t</code> or <code>staff</code></a></li>
+<li><a href="#switch-quickly-to-course-tab-code-c-code-or-code-course-code">5.5. Switch quickly to Course Tab : <code>c</code> or <code>course</code></a></li>
+<li><a href="#switch-quickly-to-finance-tab-code-f-code-or-code-finance-code">5.6. Switch quickly to Finance Tab : <code>f</code> or <code>finance</code></a></li>
+<li><a href="#switch-quickly-to-assignment-tab-code-a-code-or-code-assignment-code">5.7. Switch quickly to Assignment Tab : <code>a</code> or <code>assignment</code></a></li>
 <li><a href="#student">5.8. Student</a>
 <ul class="sectlevel3">
 <li><a href="#add-a-student-code-add-student-code">5.8.1. Add a student: <code>add-student</code></a></li>
@@ -93,7 +93,14 @@
 <li><a href="#clear-all-finances-code-clear-finance-code">5.11.7. Clear all finances: <code>clear-finance</code></a></li>
 </ul>
 </li>
-<li><a href="#assignment">5.12. Assignment</a></li>
+<li><a href="#assignment">5.12. Assignment</a>
+<ul class="sectlevel3">
+<li><a href="#add-an-assignment-code-add-assignment-code">5.12.1. Add an assignment: <code>add-assignment</code></a></li>
+<li><a href="#delete-an-assignment-code-delete-assignment-code">5.12.2. Delete an assignment: <code>delete-assignment</code></a></li>
+<li><a href="#edit-an-assignment-code-edit-assignment-code">5.12.3. Edit an assignment: <code>edit-assignment</code></a></li>
+<li><a href="#locating-items-by-name-code-find-assignment-code">5.12.4. Locating items by name: <code>find-assignment</code></a></li>
+</ul>
+</li>
 <li><a href="#upcoming-features">5.13. Upcoming Features</a>
 <ul class="sectlevel3">
 <li><a href="#Register-Improvement">5.13.1. Add registration <code>[coming in v2.0]</code></a></li>
@@ -419,7 +426,7 @@ Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="assigning-unassigning-a-student-to-a-course-code-assign-code-or-unassign-respectively"><a class="link" href="#assigning-unassigning-a-student-to-a-course-code-assign-code-or-unassign-respectively">5.1.6. Assigning/Unassigning a Student to a Course : <code>assign</code> or 'unassign' respectively</a></h4>
+<h4 id="assigning-unassigning-a-student-to-a-course-code-assign-code-or-code-unassign-code-respectively"><a class="link" href="#assigning-unassigning-a-student-to-a-course-code-assign-code-or-code-unassign-code-respectively">5.1.6. Assigning/Unassigning a Student to a Course : <code>assign</code> or <code>unassign</code> respectively</a></h4>
 <div class="paragraph">
 <p>Adds the Student ID to the Course ID specified.<br>
 Format: <code>assign cid/COURSEID sid/STUDENTID</code><br>
@@ -432,7 +439,7 @@ Example: <code>unassign cid/829 sid/33</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="assigning-unassigning-a-teacher-to-a-course-code-assign-code-or-unassign-respectively"><a class="link" href="#assigning-unassigning-a-teacher-to-a-course-code-assign-code-or-unassign-respectively">5.1.7. Assigning/Unassigning a Teacher to a Course : <code>assign</code> or 'unassign' respectively</a></h4>
+<h4 id="assigning-unassigning-a-teacher-to-a-course-code-assign-code-or-code-unassign-code-respectively"><a class="link" href="#assigning-unassigning-a-teacher-to-a-course-code-assign-code-or-code-unassign-code-respectively">5.1.7. Assigning/Unassigning a Teacher to a Course : <code>assign</code> or <code>unassign</code> respectively</a></h4>
 <div class="paragraph">
 <p>Adds the Teacher ID to the Course ID specified.<br>
 Format: <code>assign cid/COURSEID tid/TEACHERID</code><br>
@@ -459,37 +466,37 @@ Example: <code>unassign cid/829 aid/21</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="switch-quickly-to-summary-tab-m-or-summary"><a class="link" href="#switch-quickly-to-summary-tab-m-or-summary">5.2. Switch quickly to Summary Tab : 'm' or 'summary'</a></h3>
+<h3 id="switch-quickly-to-summary-tab-code-m-code-or-code-summary-code"><a class="link" href="#switch-quickly-to-summary-tab-code-m-code-or-code-summary-code">5.2. Switch quickly to Summary Tab : <code>m</code> or <code>summary</code></a></h3>
 <div class="paragraph">
 <p>Switches to summary tab</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="switch-quickly-to-student-tab-s-or-student"><a class="link" href="#switch-quickly-to-student-tab-s-or-student">5.3. Switch quickly to Student Tab : 's' or 'student'</a></h3>
+<h3 id="switch-quickly-to-student-tab-code-s-code-or-code-student-code"><a class="link" href="#switch-quickly-to-student-tab-code-s-code-or-code-student-code">5.3. Switch quickly to Student Tab : <code>s</code> or <code>student</code></a></h3>
 <div class="paragraph">
 <p>Switches to student tab</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="switch-quickly-to-staff-tab-t-or-staff"><a class="link" href="#switch-quickly-to-staff-tab-t-or-staff">5.4. Switch quickly to Staff Tab : 't' or 'staff'</a></h3>
+<h3 id="switch-quickly-to-staff-tab-code-t-code-or-code-staff-code"><a class="link" href="#switch-quickly-to-staff-tab-code-t-code-or-code-staff-code">5.4. Switch quickly to Staff Tab : <code>t</code> or <code>staff</code></a></h3>
 <div class="paragraph">
 <p>Switches to staff tab</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="switch-quickly-to-course-tab-c-or-course"><a class="link" href="#switch-quickly-to-course-tab-c-or-course">5.5. Switch quickly to Course Tab : 'c' or 'course'</a></h3>
+<h3 id="switch-quickly-to-course-tab-code-c-code-or-code-course-code"><a class="link" href="#switch-quickly-to-course-tab-code-c-code-or-code-course-code">5.5. Switch quickly to Course Tab : <code>c</code> or <code>course</code></a></h3>
 <div class="paragraph">
 <p>Switches to course tab</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="switch-quickly-to-finance-tab-f-or-finance"><a class="link" href="#switch-quickly-to-finance-tab-f-or-finance">5.6. Switch quickly to Finance Tab : 'f' or 'finance'</a></h3>
+<h3 id="switch-quickly-to-finance-tab-code-f-code-or-code-finance-code"><a class="link" href="#switch-quickly-to-finance-tab-code-f-code-or-code-finance-code">5.6. Switch quickly to Finance Tab : <code>f</code> or <code>finance</code></a></h3>
 <div class="paragraph">
 <p>Switches to finance tab</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="switch-quickly-to-assignment-tab-a-or-assignment"><a class="link" href="#switch-quickly-to-assignment-tab-a-or-assignment">5.7. Switch quickly to Assignment Tab : 'a' or 'assignment'</a></h3>
+<h3 id="switch-quickly-to-assignment-tab-code-a-code-or-code-assignment-code"><a class="link" href="#switch-quickly-to-assignment-tab-code-a-code-or-code-assignment-code">5.7. Switch quickly to Assignment Tab : <code>a</code> or <code>assignment</code></a></h3>
 <div class="paragraph">
 <p>Switches to assignment tab</p>
 </div>
@@ -1138,7 +1145,7 @@ Example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the item at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed item list</p>
+<p>Deletes the item at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed item list</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
@@ -1244,6 +1251,139 @@ Format: <code>clear-finance</code></p>
 <img src="images/assignmentTab.png" alt="assignmentTab" width="1000">
 </div>
 <div class="title">Figure 6. Assignment labels.</div>
+</div>
+<div class="sect3">
+<h4 id="add-an-assignment-code-add-assignment-code"><a class="link" href="#add-an-assignment-code-add-assignment-code">5.12.1. Add an assignment: <code>add-assignment</code></a></h4>
+<div class="paragraph">
+<p>Add a new assignment to the list of all assignments<br>
+Format: <code>add assignment n/NAME dl/DEADLINE [t/TAG]…</code><br>
+Example:
+* <code>add course n/Cozmo Programming a/2000 t/Fun t/Robot</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>DEADLINE</code> must be in <code>YYYY - MM - DD</code> or <code>YYY - MM - DD</code> format else an error will be thrown.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-an-assignment-code-delete-assignment-code"><a class="link" href="#delete-an-assignment-code-delete-assignment-code">5.12.2. Delete an assignment: <code>delete-assignment</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>delete-assignment INDEX</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-assignment 1</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the item at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed item list</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-an-assignment-code-edit-assignment-code"><a class="link" href="#edit-an-assignment-code-edit-assignment-code">5.12.3. Edit an assignment: <code>edit-assignment</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>edit-assignment INDEX [n/NAME dl/DEADLINE t/TAGS]</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit-assignment 1 n/Edit Python Assignment 1</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the assignment at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed course list</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative</p>
+</li>
+<li>
+<p>You can remove all the assignment&#8217;s tags by typing <code>t/</code> without specifying any tags after it</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="locating-items-by-name-code-find-assignment-code"><a class="link" href="#locating-items-by-name-code-find-assignment-code">5.12.4. Locating items by name: <code>find-assignment</code></a></h4>
+<div class="paragraph">
+<p>Finds assignments whose names contain any of the given keywords.<br>
+Format: <code>find-assignment KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>java</code> will match <code>Java</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Java Assignment</code> will match <code>Assignment Java</code></p>
+</li>
+<li>
+<p>Only the name is searched</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Java</code> will not match <code>Javascript</code></p>
+</li>
+<li>
+<p>Items matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Java Assignment</code> will return
+<code>Java Course</code>, <code>Java Code</code> and <code>Python Assignment</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find-assignment java</code><br>
+Returns <code>java</code> and <code>Java Assignment</code></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1620,4 +1760,4 @@ rather than using only text via the command line.</p>
 </dl>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-02 17:09:16 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-03 01:38:21 UTC</div></div></div></body></html>
