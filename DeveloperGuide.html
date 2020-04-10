@@ -23,7 +23,7 @@
 <li><a href="#implementation">2. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#command-handling-by-managers">2.1. Command Handling by Managers</a></li>
-<li><a href="#entity-linking">2.2. Entity Linking</a></li>
+<li><a href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course</a></li>
 <li><a href="#undo-redo">2.3. Undo/Redo</a></li>
 <li><a href="#view-switching">2.4. View Switching</a></li>
 <li><a href="#proposed-tracking-student-progress-feature">2.5. [Proposed] Tracking Student Progress Feature</a></li>
@@ -407,7 +407,52 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="entity-linking"><a class="link" href="#entity-linking">2.2. Entity Linking</a></h3>
+<h3 id="entity-linking-assigning-un-assigning-an-entity-to-from-a-course"><a class="link" href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course</a></h3>
+<div class="paragraph">
+<p>In order to allow the tracking of the students/assignments/teachers that are assigned
+to a course and vice versa, this required us to implement a structure which allowed us to obtain information
+from the aforementioned objects, without causing any circular referencing errors.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ivan-OODMForEntityRS.png" alt="Ivan OODMForEntityRS">
+</div>
+<div class="title">Figure 9. Relationship between Entities</div>
+</div>
+<div class="paragraph">
+<p>The group came up with the structure above where we centralize most links around the <code>Course</code> object so as
+for easier management of entity links. Every non-directed association between 2 objects ensures that both objects have each other&#8217;s ID.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The only exception is <code>Progress</code> objects which are created via
+a composite ID of <code>studentID</code> and <code>assignmentID</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The group then uses 3 different managers in order to ensure that the links are successfully maintained during each
+any command which involves manipulation of entity links. The three managers are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>UUID Manager</code> - Ensures ID of all entities are unique, allowing each object to be uniquely identifiable</p>
+</li>
+<li>
+<p><code>Edge Manager</code> -  Ensures that links are maintained/removed properly during assign, un-assign, delete commands</p>
+</li>
+<li>
+<p><code>Progress Manager</code> - Ensures that Progress objects are successfully created/deleted during assign, un-assign, delete commands</p>
+</li>
+</ol>
+</div>
 <div class="sect3">
 <h4 id="uuid-manager"><a class="link" href="#uuid-manager">2.2.1. UUID Manager</a></h4>
 <div class="olist arabic">
@@ -423,12 +468,62 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="paragraph">
 <p>Explain rationale behind using IDs</p>
 </div>
+<div class="paragraph">
+<p>Consideration 1</p>
+</div>
+<div class="paragraph">
+<p>Consideration 2</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="edgemanager"><a class="link" href="#edgemanager">2.2.2. EdgeManager</a></h4>
+<h4 id="execution-of-assign-unassign-command"><a class="link" href="#execution-of-assign-unassign-command">2.2.2. Execution of Assign/Unassign Command</a></h4>
+<div class="paragraph">
+<p>For the actual execution of an assign/unassign command, 3 main steps are performed.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Pre-process the targeted entities to ensure consistent state - Via <code>PreprocessUndoCommand</code> method call</p>
+</li>
+<li>
+<p>Add both object&#8217;s ID into each other - Handled by <code>EdgeManager</code></p>
+</li>
+<li>
+<p>Create/remove Progress objects when assignments/students are involved - Handled by <code>Progress Manager</code></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="preprocess-entities"><a class="link" href="#preprocess-entities">2.2.3. Preprocess Entities</a></h4>
+<div class="paragraph">
+<p>Firstly, a <code>pre-processing step</code> must be performed before executing an undo-able assign/unassign command
+to ensure that all entity links are in correct state before command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ivan-PreprocessAssignActivityDiagram.png" alt="Ivan PreprocessAssignActivityDiagram">
+</div>
+<div class="title">Figure 10. Activity Diagram of Pre-processing for</div>
+</div>
+<div class="paragraph">
+<p>Notice that there are 2 main exit points in the activity diagram. The success case is straightforward and will lead to a
+the program continuing to execute the actual assign/un-assign command.</p>
+</div>
+<div class="paragraph">
+<p>However, for the failure case, should any of the conditions fail, this means that either the specified objects does <code>not exist</code>, or
+both entities are <code>already assigned</code> to each other or more importantly, that the model is in an <code>inconsistent state</code> where one entity is assigned to the other but not vice versa.</p>
+</div>
+<div class="sect4">
+<h5 id="edgemanager"><a class="link" href="#edgemanager">EdgeManager</a></h5>
 <div class="paragraph">
 <p>Explain flow for assign/unassign
 Explain flow for capturing delete event (and unassign correspondingly)</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="progressmanager"><a class="link" href="#progressmanager">ProgressManager</a></h5>
+
 </div>
 </div>
 </div>
@@ -469,7 +564,7 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 9. Structure of Commands and Parser</div>
+<div class="title">Figure 11. Structure of Commands and Parser</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">2.4.1. Design considerations:</a></h4>
@@ -499,7 +594,7 @@ which proposes the associations between the four classes.</p>
 <div class="content">
 <img src="images/AssignmentAndProgressClassDiagram.png" alt="AssignmentAndProgressClassDiagram">
 </div>
-<div class="title">Figure 10. Class diagram of Assignment and Progress</div>
+<div class="title">Figure 12. Class diagram of Assignment and Progress</div>
 </div>
 <div class="paragraph">
 <p>Besides the basic CRUD operations for <code>Progress</code> and <code>Assignment</code>, one of they key
@@ -515,7 +610,7 @@ Please see the sequence diagram for a better understanding.</p>
 <div class="content">
 <img src="images/AssignStudentToCourseDiagram.png" alt="AssignStudentToCourseDiagram">
 </div>
-<div class="title">Figure 11. Sequence diagram of how Progress objects are created automatically</div>
+<div class="title">Figure 13. Sequence diagram of how Progress objects are created automatically</div>
 </div>
 <div class="paragraph">
 <p>Future Functionality Include</p>
@@ -573,7 +668,7 @@ which proposes the associations between the four classes.</p>
 <div class="content">
 <img src="images/FinanceDiagram.png" alt="FinanceDiagram">
 </div>
-<div class="title">Figure 12. Class diagram of CourseStudent and CourseTeacher</div>
+<div class="title">Figure 14. Class diagram of CourseStudent and CourseTeacher</div>
 </div>
 <div class="paragraph">
 <p><code>CourseStudent</code> will be created and stored in <code>CourseStudentAddressBook</code> whenever a course is assigned to a student, ensuring that <code>Course</code> exists in <code>CourseAddressBook</code> and <code>Student</code> exists in <code>StudentAddressBook</code>.</p>
@@ -2440,7 +2535,7 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 13. Structure of Commands and Parser</div>
+<div class="title">Figure 15. Structure of Commands and Parser</div>
 </div>
 <div class="sect2">
 <h3 id="design-considerations-3"><a class="link" href="#design-considerations-3">H.1. Design considerations:</a></h3>
@@ -2457,4 +2552,4 @@ its ID and its entity name (e.g course, student, teacher, etc). So we have Assig
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-09 18:24:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-10 06:41:34 UTC</div></div></div></body></html>
