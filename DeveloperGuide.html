@@ -69,7 +69,7 @@
 <h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">1.1. Architecture</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/ArchitectureDiagram.png" alt="ArchitectureDiagram">
+<img src="images/ArchitectureNewDiagram.png" alt="ArchitectureNewDiagram">
 </div>
 <div class="title">Figure 1. Architecture Diagram</div>
 </div>
@@ -84,44 +84,105 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Model - View - ViewModel Control Flow</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Explain why we decide to use MVVM instead of MVC</p>
+<p>A/ Model - View - ViewModel Control Flow</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Event-Driven Design</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Explain rational behind choosing event-driven design</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Really de-couple between components, and facilitate communication between components a lot.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Design Consideration between Model-View-Controller(MVC) and Model-View-ViewModel(MVVM) design:</p>
 </div>
-</li>
-<li>
-<p>Explain two types of managers ,</p>
 <div class="ulist">
 <ul>
 <li>
-<p>one is publishing managers (those in Model section, i.e EdgeManager, ProgressManager, etc)</p>
+<p>The original design was a standard MVC, where Controller is our LogicManager,
+and the Model is our ModelManager. Then components in the view will bind to
+the model objects, whenever there is an update to the model object the UI view will be updated automatically.</p>
 </li>
 <li>
-<p>the other one is subscribing managers, one is the ViewModel (which is DetailManager) and StorageManager.</p>
+<p>However, the more UI custom views logic we decide, we might need to push more and more custom
+UI-specific logic to our Model and ViewController class, which is not very desirable. Or as the infamous quote, MVC becomes
+"Massive View Controller".</p>
+</li>
+<li>
+<p>Instead, we will adapt to MVVM design, where ViewModel will hold a list of observableMap
+of data. Each custom view in our UI will have a one-to-one mapping with an observableMap,
+and to calculate those observableMap the ViewModel will make use of the Managers we define.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>B/ Event-Driven Design</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>We adopt event-driven design, where different components will try to communicate with each other
+through publishing events and subscribing to events, de-couple between components, and facilitate communication between components a lot.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To separate responsibilities well between components, we divide them into multiple managers,
+all extending from the BaseManager class. The BaseManager will always hold refer to the EventsCenter
+(which is designed to be a singleton class in our case)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>One is publishing managers (those in Model section, i.e EdgeManager, ProgressManager, etc).
+They can post events to the EventsCenterSingleton.</p>
+</li>
+<li>
+<p>The other one is subscribing managers, one is the ViewModel (which is DetailManager) and StorageManager.
+Subscribing managers will have handler method that listen to the events and decide what to do.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Different events types will extend from the BaseEvent. In our app we have</p>
+<div class="ulist">
+<ul>
+<li>
+<p>DataStorageChangeEvent: signals when model object changes</p>
+</li>
+<li>
+<p>DeleteEntitySyncEvent: signals when the entity linking relationship is broken (e.g
+when a student is deleted, its link to course and progress and teacher, etc will be broken)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here is an example of how a command to delete student with ID 1 will invoke different parts along the flow.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/EventsFlowDiagram.png" alt="EventsFlowDiagram">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1/ ViewController(i.e LogicManager) will invoke ModelManager.delete method (Note that ModelManager extends from BaseManager,
+and has the Publisher capacity)</p>
+</li>
+<li>
+<p>2/ ModelManager will invoke publishing of events to EventsCenterSingleton (which holds
+an EventBus), in this case postDataStorageChangeEvent
+and postDeleteEntitySyncEvent will be invoked.</p>
+</li>
+<li>
+<p>3/ Other BaseManagers will also hold this EventsCenterSingleton and listen to new publish events
+in the event bus. If the manager class has the handler function for that types of events,
+the method will be invoked.</p>
+</li>
+<li>
+<p>In this case, StorageManager will have handler for both DataStorageChangeEvent and
+DeleteEntitySyncEvent, while ViewModel will have handler for DataStorageChangeEvent.</p>
 </li>
 </ul>
 </div>
@@ -530,7 +591,90 @@ Explain flow for capturing delete event (and unassign correspondingly)</p>
 <div class="sect2">
 <h3 id="undo-redo"><a class="link" href="#undo-redo">2.3. Undo/Redo</a></h3>
 <div class="paragraph">
-<p>Explain flow for extending from undoableCommand</p>
+<p>Currently we only support undo/redo for commands that modify the storage (or state of
+the app). I.e add / delete, assign / unassign, edit commands.</p>
+</div>
+<div class="paragraph">
+<p>View Controller (LogicManager) will hold UndoRedoStack class, which stores the undoStack
+and redoStack which will be explained below.</p>
+</div>
+<div class="paragraph">
+<p>Those commands listed above will inherit from UndoableCommand abstract class.
+UndoableCommand will extends from Command class.</p>
+</div>
+<div class="paragraph">
+<p>UndoableCommand will contain the general algorithm flow for doing undo/ redo, while there
+will be some details delegated to the actual command class. This technique is also known as
+template pattern.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">abstract</span> <span class="type">class</span> <span class="class">UndoableCommand</span> <span class="directive">extends</span> Command {
+    <span class="directive">public</span> <span class="directive">abstract</span> <span class="type">void</span> preprocessUndoableCommand() {}
+
+    <span class="directive">public</span> <span class="directive">abstract</span> <span class="type">void</span> generateOppositeUndoableCommand()
+
+    <span class="directive">public</span> CommandResult executeUndoableCommand();
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> CommandResult execute() {
+        preprocessUndoableCommand();
+        generateOppositeUndoableCommand();
+        <span class="keyword">return</span> executeUndoableCommand();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that for each UndoableCommand, before execution, it needs to save some information
+(through the preprocessUndoableCommand) then generate (and store) the opposite corresponding command
+(through generateOppositeUndoableCommand)</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s go through the example in diagram below.
+- The user first executes a new UndoableCommand delete-student. Before this delete command is executed,
+we preprocessUndoableCommand to get the to-be-deleted student object, as well as the current index
+of this student object in list.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Then we will generate a AddStudentCommand (which is
+opposite of this DeleteStudentCommand) with this studentObject and index and push it to undoStack</p>
+</li>
+<li>
+<p>When undo command is executed, the top of undoStack is popped out, then pushed to
+redoStack. Then the oppositeCommand of it will be excecuted (in this case
+AddStudentCommand will be invoked)</p>
+</li>
+<li>
+<p>When redo command is executed, the top of redoStack is popped out, then pushed to
+undoStack. Then the originalCommand will be executed (again) (in this case it
+will be DeleteStudentCommand again).</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoStack.png" alt="UndoRedoStack">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Design Considerations:
+1/ How Undo and Redo works:
+Option A: Save the entire app state after every command.
+Pros: Very easy implementation.
+Cons: Serious memory performance issue when storing the whole address book at every time step.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Option B (Current choice): Each (undoable) command will know how to generateOpposite command itself.
+Pros: Reduce a lot of memory issue.</p>
+</div>
+<div class="paragraph">
+<p>Cons: Harder to implement</p>
 </div>
 <div class="sect3">
 <h4 id="opposite-command-for-edit"><a class="link" href="#opposite-command-for-edit">2.3.1. Opposite Command for edit</a></h4>
@@ -2552,4 +2696,4 @@ its ID and its entity name (e.g course, student, teacher, etc). So we have Assig
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-10 10:18:07 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-10 15:01:15 UTC</div></div></div></body></html>
