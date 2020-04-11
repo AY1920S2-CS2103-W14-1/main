@@ -163,6 +163,7 @@ when a student is deleted, its link to course and progress and teacher, etc will
 <div class="content">
 <img src="images/EventsFlowDiagram.png" alt="EventsFlowDiagram">
 </div>
+<div class="title">Figure 2. Sequence Diagram for Events Flow</div>
 </div>
 <div class="ulist">
 <ul>
@@ -242,7 +243,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
 </div>
-<div class="title">Figure 2. Class Diagram of the Logic Component</div>
+<div class="title">Figure 3. Class Diagram of the Logic Component</div>
 </div>
 <h4 id="how-the-architecture-components-interact-with-each-other" class="discrete">How the architecture components interact with each other</h4>
 <div class="paragraph">
@@ -252,7 +253,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/ArchitectureSequenceDiagram.png" alt="ArchitectureSequenceDiagram">
 </div>
-<div class="title">Figure 3. Component interactions for <code>delete 1</code> command</div>
+<div class="title">Figure 4. Component interactions for <code>delete 1</code> command</div>
 </div>
 <div class="paragraph">
 <p>The sections below give more details of each component.</p>
@@ -265,7 +266,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram">
 </div>
-<div class="title">Figure 4. Structure of the UI Component</div>
+<div class="title">Figure 5. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
@@ -296,7 +297,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
 </div>
-<div class="title">Figure 5. Structure of the Logic Component</div>
+<div class="title">Figure 6. Structure of the Logic Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
@@ -328,7 +329,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/DeleteSequenceDiagram.png" alt="DeleteSequenceDiagram">
 </div>
-<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
+<div class="title">Figure 7. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -365,7 +366,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram">
 </div>
-<div class="title">Figure 7. Structure of the Model Component</div>
+<div class="title">Figure 8. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
@@ -410,7 +411,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
 </div>
-<div class="title">Figure 8. Structure of the Storage Component</div>
+<div class="title">Figure 9. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -478,7 +479,7 @@ from the aforementioned objects, without causing any circular referencing errors
 <div class="content">
 <img src="images/Ivan-OODMForEntityRS.png" alt="Ivan OODMForEntityRS">
 </div>
-<div class="title">Figure 9. Relationship between Entities</div>
+<div class="title">Figure 10. Relationship between Entities</div>
 </div>
 <div class="paragraph">
 <p>The group came up with the structure above where we centralize most links around the <code>Course</code> object so as
@@ -498,7 +499,7 @@ a composite ID of <code>studentID</code> and <code>assignmentID</code>.
 </table>
 </div>
 <div class="paragraph">
-<p>The group then uses 3 different managers in order to ensure that the links are successfully maintained during each
+<p>There are 3 crucial managers involved in order to ensure that the links are successfully maintained during each
 any command which involves manipulation of entity links. The three managers are:</p>
 </div>
 <div class="olist arabic">
@@ -537,7 +538,7 @@ any command which involves manipulation of entity links. The three managers are:
 </div>
 </div>
 <div class="sect3">
-<h4 id="execution-of-assign-unassign-command"><a class="link" href="#execution-of-assign-unassign-command">2.2.2. Execution of Assign/Unassign Command</a></h4>
+<h4 id="execution-of-assign-un-assign-command"><a class="link" href="#execution-of-assign-un-assign-command">2.2.2. Execution of Assign/Un-assign Command</a></h4>
 <div class="paragraph">
 <p>For the actual execution of an assign/unassign command, 3 main steps are performed.</p>
 </div>
@@ -554,36 +555,209 @@ any command which involves manipulation of entity links. The three managers are:
 </li>
 </ol>
 </div>
-</div>
-<div class="sect3">
-<h4 id="preprocess-entities"><a class="link" href="#preprocess-entities">2.2.3. Preprocess Entities</a></h4>
+<div class="sect4">
+<h5 id="step-1-preprocess-entities"><a class="link" href="#step-1-preprocess-entities">Step 1: Preprocess Entities</a></h5>
+<div class="sect5">
+<h6 id="rationale"><a class="link" href="#rationale">Rationale</a></h6>
 <div class="paragraph">
-<p>Firstly, a <code>pre-processing step</code> must be performed before executing an undo-able assign/unassign command
+<p>Firstly, a <code>pre-processing step</code> must be performed before executing an undo-able assign/un-assign command
 to ensure that all entity links are in correct state before command execution.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h6>
+<div class="paragraph">
+<p>Below is an activity diagram showing the pre-processing
+performed for assign commands. The diagram can be generalized for un-assign commands by checking if the course contains X and vice versa in the
+second stage instead.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ivan-PreprocessAssignActivityDiagram.png" alt="Ivan PreprocessAssignActivityDiagram">
 </div>
-<div class="title">Figure 10. Activity Diagram of Pre-processing for</div>
+<div class="title">Figure 11. Activity Diagram of Pre-processing for Assign/Un-assign commands</div>
 </div>
+<hr>
 <div class="paragraph">
-<p>Notice that there are 2 main exit points in the activity diagram. The success case is straightforward and will lead to a
+<p>Notice that there are 2 main exit points in the activity diagram.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The success case is straightforward and will lead to a
 the program continuing to execute the actual assign/un-assign command.</p>
+</li>
+<li>
+<p>For the failure case, should any of the conditions fail, this means that either that the</p>
+<div class="ulist">
+<ul>
+<li>
+<p>specified objects does <code>not exist</code>,</p>
+</li>
+<li>
+<p>both entities are <code>already assigned</code> to each other or,</p>
+</li>
+<li>
+<p>most importantly, that the model is in an <code>inconsistent state</code> where one entity is assigned to the other but not vice versa.</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>However, for the failure case, should any of the conditions fail, this means that either the specified objects does <code>not exist</code>, or
-both entities are <code>already assigned</code> to each other or more importantly, that the model is in an <code>inconsistent state</code> where one entity is assigned to the other but not vice versa.</p>
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div class="sect4">
-<h5 id="edgemanager"><a class="link" href="#edgemanager">EdgeManager</a></h5>
+<h5 id="step-2-assign-ids-via-edgemanager"><a class="link" href="#step-2-assign-ids-via-edgemanager">Step 2: Assign IDs via EdgeManager</a></h5>
+<div class="sect5">
+<h6 id="u-rationale-u"><a class="link" href="#u-rationale-u"><u>Rationale</u></a></h6>
 <div class="paragraph">
-<p>Explain flow for assign/unassign
-Explain flow for capturing delete event (and unassign correspondingly)</p>
+<p>After the necessary checks have been performed, respective IDs need to be added to the targeted course and targeted object in order
+to ensure correct and consistent assigning of objects.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="u-current-implementation-u"><a class="link" href="#u-current-implementation-u"><u>Current Implementation</u></a></h6>
+<div class="paragraph">
+<p>Below is a sequence diagram of how EdgeManager adds the IDs to the two objects involved.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ivan-SequenceDiagramForAssignCommand.png" alt="Ivan SequenceDiagramForAssignCommand">
+</div>
+<div class="title">Figure 12. Sequence Diagram of EdgeManager&#8217;s AssignXtoCourse commands</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>The flow of an assign command is as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Obtain a copy of the requested <code>modelObjects</code> from <code>ModelManager</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>One of which must be a <code>Course</code> modelObject, the other being either a <code>Student</code>/<code>Staff</code>/<code>Assignment</code> modelObject</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>For object X', add the <code>courseID</code> into the assignedCourseIDs in X`</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For assignments, every assignment can only be assigned to at most <strong>one course</strong>. Hence, it&#8217;ll hold just an assignedCourseID instead
+of a set of Course IDs.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>For Course C', add <code>X&#8217;s ID</code> into assignedXIDs in C'</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For courses, every course may only have at most <strong>one teacher</strong>. Hence, course will have an assignedTeacherID instead
+of a set of Teacher IDs.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Update the 2 affected models by executing <code>set(targetObj, editedObj)</code> in modelManager for both changed modelObjects</p>
+</li>
+<li>
+<p>Update the storage by running postDataStorageChangeEvent() - ref to <code>Figure 2</code> to understand how storage save is triggered</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This sequence diagram can be generalized for <code>un-assign command</code> as well. Instead of adding IDs, un-assign will remove
+each other&#8217;s ID from the respective objects.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect5">
+<h6 id="u-design-considerations-u"><a class="link" href="#u-design-considerations-u"><u>Design Considerations</u></a></h6>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Manipulating the <code>actual</code> modelObjects by having modelManager#get() return referenced variable of the actual <code>modelObject</code>.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Pros</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Simpler implementation since any changes to the model will change the actual object directly</p>
+</li>
+<li>
+<p>Faster execution since any changes is done to the actual modelObject</p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">Cons</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Might allow for unintentional changes to the actual modelObject</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>(Current Implementation) Manipulate a <code>copy</code> modelObjects by having modelManager#get() return a copy of actual modelObject.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Pros</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prevents unintentional modifications of the shared object</p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">Cons</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Extra processing required. For example, a method is required to replace the old modelObject with the
+new model object</p>
+</li>
+<li>
+<p>More memory intensive and can hurt overall program performance.</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="progressmanager"><a class="link" href="#progressmanager">ProgressManager</a></h5>
+<h5 id="step-3-add-progress-objects-via-progressmanager"><a class="link" href="#step-3-add-progress-objects-via-progressmanager">Step 3: Add Progress objects via ProgressManager</a></h5>
 
 </div>
 </div>
@@ -708,7 +882,7 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 11. Structure of Commands and Parser</div>
+<div class="title">Figure 13. Structure of Commands and Parser</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">2.4.1. Design considerations:</a></h4>
@@ -738,7 +912,7 @@ which proposes the associations between the four classes.</p>
 <div class="content">
 <img src="images/AssignmentAndProgressClassDiagram.png" alt="AssignmentAndProgressClassDiagram">
 </div>
-<div class="title">Figure 12. Class diagram of Assignment and Progress</div>
+<div class="title">Figure 14. Class diagram of Assignment and Progress</div>
 </div>
 <div class="paragraph">
 <p>Besides the basic CRUD operations for <code>Progress</code> and <code>Assignment</code>, one of they key
@@ -754,7 +928,7 @@ Please see the sequence diagram for a better understanding.</p>
 <div class="content">
 <img src="images/AssignStudentToCourseDiagram.png" alt="AssignStudentToCourseDiagram">
 </div>
-<div class="title">Figure 13. Sequence diagram of how Progress objects are created automatically</div>
+<div class="title">Figure 15. Sequence diagram of how Progress objects are created automatically</div>
 </div>
 <div class="paragraph">
 <p>Future Functionality Include</p>
@@ -812,7 +986,7 @@ which proposes the associations between the four classes.</p>
 <div class="content">
 <img src="images/FinanceDiagram.png" alt="FinanceDiagram">
 </div>
-<div class="title">Figure 14. Class diagram of CourseStudent and CourseTeacher</div>
+<div class="title">Figure 16. Class diagram of CourseStudent and CourseTeacher</div>
 </div>
 <div class="paragraph">
 <p><code>CourseStudent</code> will be created and stored in <code>CourseStudentAddressBook</code> whenever a course is assigned to a student, ensuring that <code>Course</code> exists in <code>CourseAddressBook</code> and <code>Student</code> exists in <code>StudentAddressBook</code>.</p>
@@ -2679,7 +2853,7 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 15. Structure of Commands and Parser</div>
+<div class="title">Figure 17. Structure of Commands and Parser</div>
 </div>
 <div class="sect2">
 <h3 id="design-considerations-3"><a class="link" href="#design-considerations-3">H.1. Design considerations:</a></h3>
@@ -2696,4 +2870,4 @@ its ID and its entity name (e.g course, student, teacher, etc). So we have Assig
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-10 15:01:15 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-11 05:56:21 UTC</div></div></div></body></html>
