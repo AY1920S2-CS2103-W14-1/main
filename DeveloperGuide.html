@@ -623,7 +623,7 @@ to ensure correct and consistent assigning of objects.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ivan-SequenceDiagramForAssignCommand.png" alt="Ivan SequenceDiagramForAssignCommand">
+<img src="images/Ivan-SeqDiagEdgeManagerAssignCommand.png" alt="Ivan SeqDiagEdgeManagerAssignCommand">
 </div>
 <div class="title">Figure 12. Sequence Diagram of EdgeManager&#8217;s AssignXtoCourse commands</div>
 </div>
@@ -758,7 +758,110 @@ new model object</p>
 </div>
 <div class="sect4">
 <h5 id="step-3-add-progress-objects-via-progressmanager"><a class="link" href="#step-3-add-progress-objects-via-progressmanager">Step 3: Add Progress objects via ProgressManager</a></h5>
-
+<div class="sect5">
+<h6 id="u-rationale-u-2"><a class="link" href="#u-rationale-u-2"><u>Rationale</u></a></h6>
+<div class="paragraph">
+<p>New <code>Progress</code> objects must be created in 2 main scenarios.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If a <code>Student</code> has been added to a <code>Course</code>, the <code>Student</code> will need to complete all <code>Assignments</code> that have already been assigned
+to the <code>Course</code>.</p>
+</li>
+<li>
+<p>If an <code>Assignment</code> has been added to a <code>Course</code>, all <code>Students</code> currently taking the <code>Course</code> must now complete that <code>Assignment</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The rationale is similar when un-assigning either <code>Student</code> or <code>Assignment</code> from a <code>Course</code>.
+<code>Progress</code> objects need to be removed instead.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="u-current-implementation-u-2"><a class="link" href="#u-current-implementation-u-2"><u>Current Implementation</u></a></h6>
+<div class="paragraph">
+<p>Below is a sequence diagram illustrating how the ProgressManager adds Progress objects into the ProgressAddressBook
+when a <code>AssignStudentToCourse</code> command is run.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ivan-ProgressManagerAssignStudentToCourse.png" alt="Ivan ProgressManagerAssignStudentToCourse">
+</div>
+<div class="title">Figure 13. Activity Diagram for creating Progress objects when assigning a Student to a Course</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>The flow of adding Progress objects in a AssignStudentToCourse is as follows</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If there are <code>Progress</code> objects that were previously in ProgressAddressBook but were removed due to an <code>Un-assign/Delete</code> command,
+add those <code>Progress</code> objects back in.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>This only occurs when undo-ing an <code>Un-assign/Delete</code> command. Refer to <code>Section 3.2.2</code> for more information.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Else, i.e. if this is an entirely new AssignStudentToCourse command,</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Obtain <strong>C'</strong>, a copy of the targeted <code>Course</code></p>
+</li>
+<li>
+<p>From <strong>C'</strong>, obtain all assignmentIDs that are assigned to it.</p>
+</li>
+<li>
+<p>For each of the obtained assignmentIDs, create a new CompositeID of assignmentID and studentID</p>
+</li>
+<li>
+<p>Create a <code>Progress</code> object using each of the <code>CompositeID</code></p>
+</li>
+<li>
+<p>Finally, add these <code>Progress</code> objects into the <code>ProgressAddressBook</code>.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Notes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The flow is largely the same for AssignAssignmentToCourse! Instead, we want every <code>Student</code> that is currently studying in
+course <strong>C'</strong> to complete the particular <code>Assignment</code>. Hence, rather than obtain all assignmentIDs, we will need to obtain all
+<code>studentIDs</code> that are studying <strong>C'</strong>, and create a <code>Progress</code> object so that we can track whether those students have completed
+the assignment.</p>
+</li>
+<li>
+<p>The flow is also largely the same for UnassignCommands! Instead, we are looking to remove Progress objects rather than adding them back in.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="summary-of-entity-linking"><a class="link" href="#summary-of-entity-linking">Summary of Entity Linking</a></h5>
+<div class="paragraph">
+<p>Overall, in order to ensure successful entity linking, all 3 managers involved must be involved.
+The table below shows the involvement of 3 managers with regards to each variant of the <code>Assign</code>/<code>Un-assign</code> commands.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ivan-AssignSummaryTable.png" alt="Ivan AssignSummaryTable">
+</div>
+<div class="title">Figure 14. Table Summary of Manager&#8217;s involvement during Assign/Un-assign Commands</div>
+</div>
 </div>
 </div>
 </div>
@@ -882,7 +985,7 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 13. Structure of Commands and Parser</div>
+<div class="title">Figure 15. Structure of Commands and Parser</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">2.4.1. Design considerations:</a></h4>
@@ -912,7 +1015,7 @@ which proposes the associations between the four classes.</p>
 <div class="content">
 <img src="images/AssignmentAndProgressClassDiagram.png" alt="AssignmentAndProgressClassDiagram">
 </div>
-<div class="title">Figure 14. Class diagram of Assignment and Progress</div>
+<div class="title">Figure 16. Class diagram of Assignment and Progress</div>
 </div>
 <div class="paragraph">
 <p>Besides the basic CRUD operations for <code>Progress</code> and <code>Assignment</code>, one of they key
@@ -928,7 +1031,7 @@ Please see the sequence diagram for a better understanding.</p>
 <div class="content">
 <img src="images/AssignStudentToCourseDiagram.png" alt="AssignStudentToCourseDiagram">
 </div>
-<div class="title">Figure 15. Sequence diagram of how Progress objects are created automatically</div>
+<div class="title">Figure 17. Sequence diagram of how Progress objects are created automatically</div>
 </div>
 <div class="paragraph">
 <p>Future Functionality Include</p>
@@ -986,7 +1089,7 @@ which proposes the associations between the four classes.</p>
 <div class="content">
 <img src="images/FinanceDiagram.png" alt="FinanceDiagram">
 </div>
-<div class="title">Figure 16. Class diagram of CourseStudent and CourseTeacher</div>
+<div class="title">Figure 18. Class diagram of CourseStudent and CourseTeacher</div>
 </div>
 <div class="paragraph">
 <p><code>CourseStudent</code> will be created and stored in <code>CourseStudentAddressBook</code> whenever a course is assigned to a student, ensuring that <code>Course</code> exists in <code>CourseAddressBook</code> and <code>Student</code> exists in <code>StudentAddressBook</code>.</p>
@@ -2853,7 +2956,7 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 17. Structure of Commands and Parser</div>
+<div class="title">Figure 19. Structure of Commands and Parser</div>
 </div>
 <div class="sect2">
 <h3 id="design-considerations-3"><a class="link" href="#design-considerations-3">H.1. Design considerations:</a></h3>
@@ -2870,4 +2973,4 @@ its ID and its entity name (e.g course, student, teacher, etc). So we have Assig
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-11 15:43:22 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-11 17:12:42 UTC</div></div></div></body></html>
