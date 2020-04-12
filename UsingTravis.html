@@ -21,7 +21,8 @@ For use with <em>AddressBook Level 3</em>, wherever <code>addressbook-level4</co
 <p><a href="https://travis-ci.org/">Travis CI</a> is a <em>Continuous Integration</em> platform for GitHub projects.</p>
 </div>
 <div class="paragraph">
-<p>Travis CI can run the projects' tests automatically whenever new code is pushed to the repo. This ensures that existing functionality and features have not been broken by the changes.</p>
+<p>Travis CI can run the projects' tests automatically whenever new code is pushed to the repo.
+This ensures that existing functionality and features have not been broken by the changes.</p>
 </div>
 <div class="paragraph">
 <p>The current Travis CI set up performs the following things whenever someone push code to the repo:</p>
@@ -68,7 +69,8 @@ For use with <em>AddressBook Level 3</em>, wherever <code>addressbook-level4</co
 <p><span class="image"><img src="images/review_and_add.png" alt="Review and add"></span></p>
 </div>
 <div class="paragraph">
-<p>This should bring you to a GitHub page that manages the access of third-party applications. Depending on whether you are the owner of the repository, you can either grant access</p>
+<p>This should bring you to a GitHub page that manages the access of third-party applications.
+Depending on whether you are the owner of the repository, you can either grant access</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="images/grant_access.png" alt="Grant Access"></span></p>
@@ -96,14 +98,16 @@ For use with <em>AddressBook Level 3</em>, wherever <code>addressbook-level4</co
 </div>
 </li>
 <li>
-<p>This repo comes with a <a href="../.travis.yml"><code>.travis.yml</code></a> that tells Travis what to do. So there is no need for you to create one yourself.</p>
+<p>This repo comes with a <a href="../.travis.yml"><code>.travis.yml</code></a> that tells Travis what to do.
+So there is no need for you to create one yourself.</p>
 </li>
 <li>
 <p>To see the CI in action, push a commit to the master branch!</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Go to the repository and see the pushed commit. There should be an icon which will link you to the Travis build.</p>
+<p>Go to the repository and see the pushed commit.
+There should be an icon which will link you to the Travis build.</p>
 <div class="paragraph">
 <p><span class="image"><img src="images/build_pending.png" alt="Commit build"></span></p>
 </div>
@@ -145,7 +149,8 @@ Using this account, generate a personal access token <a href="https://github.com
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Personal access tokens are like passwords so make sure you keep them secret! If the personal access token is leaked, please delete it and generate a new one.
+Personal access tokens are like passwords so make sure you keep them secret!
+If the personal access token is leaked, please delete it and generate a new one.
 </td>
 </tr>
 </table>
@@ -180,13 +185,18 @@ If you are the only one with write access to the repo, you can use your own acco
 </div>
 </div>
 </div>
+</li>
+</ol>
+</div>
 <div class="paragraph">
 <p>We will use this token to grant Travis access to the repo.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/generate_token.png" alt="Generate token"></span></p>
+<p>+
+<span class="image"><img src="images/generate_token.png" alt="Generate token"></span></p>
 </div>
-</li>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Head to the <a href="https://travis-ci.org/profile">Accounts</a> page, and find the switch for the forked repository.</p>
 <div class="paragraph">
@@ -194,7 +204,8 @@ If you are the only one with write access to the repo, you can use your own acco
 </div>
 </li>
 <li>
-<p>Click on the settings button next to the switch. In the Environment Variables section, add a new environment variable with</p>
+<p>Click on the settings button next to the switch.
+In the Environment Variables section, add a new environment variable with</p>
 <div class="openblock">
 <div class="content">
 <div class="ulist">
@@ -212,8 +223,14 @@ If you are the only one with write access to the repo, you can use your own acco
 </div>
 </div>
 </div>
+</li>
+</ol>
+</div>
 <div class="paragraph">
 <p><span class="image"><img src="images/travis_add_token.png" alt="Travis add token"></span></p>
+</div>
+<div class="paragraph">
+<p>+</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -229,7 +246,8 @@ Similarly, make sure you <strong>do not print <code>$GITHUB_TOKEN</code> to the 
 </tr>
 </table>
 </div>
-</li>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Now, whenever there&#8217;s a new commit to master branch, Travis will push the latest documentation to gh-pages branch.</p>
 </li>
@@ -241,14 +259,16 @@ Similarly, make sure you <strong>do not print <code>$GITHUB_TOKEN</code> to the 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Trigger Travis to regenerate documentation. To do so, you need to push a new commit to the master branch of the fork.<br>
-Suggested change: Remove the codacy badge from <code>README</code>.</p>
+<p>Trigger Travis to regenerate documentation.
+To do so, you need to push a new commit to the master branch of the fork.<br>
+   Suggested change: Remove the codacy badge from <code>README</code>.</p>
 </li>
 <li>
 <p>Wait for Travis CI to finish running the build on your new commit.</p>
 </li>
 <li>
-<p>Go to the URL <code>https://&lt;your-username-or-organization-name&gt;.github.io/addressbook-level3/index.html</code>. You should see your <code>README</code> file displayed.</p>
+<p>Go to the URL <code>https://&lt;your-username-or-organization-name&gt;.github.io/addressbook-level3/index.html</code>.
+You should see your <code>README</code> file displayed.</p>
 </li>
 </ol>
 </div>
@@ -258,10 +278,13 @@ Suggested change: Remove the codacy badge from <code>README</code>.</p>
 <h2 id="repository-wide-checks"><a class="link" href="#repository-wide-checks">Repository-wide checks</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In addition to running Gradle checks, we also configure Travis CI to run some repository-wide checks. Unlike the Gradle checks which only cover files used in the build process, these repository-wide checks cover <em>all</em> files in the repository. They check for repository rules which are hard to enforce on development machines such as line ending requirements.</p>
+<p>In addition to running Gradle checks, we also configure Travis CI to run some repository-wide checks.
+Unlike the Gradle checks which only cover files used in the build process, these repository-wide checks cover <em>all</em> files in the repository.
+They check for repository rules which are hard to enforce on development machines such as line ending requirements.</p>
 </div>
 <div class="paragraph">
-<p>These checks are implemented as POSIX shell scripts, and thus can only be run on POSIX-compliant operating systems such as macOS and Linux. To run all checks locally on these operating systems, execute the following in the repository root directory:</p>
+<p>These checks are implemented as POSIX shell scripts, and thus can only be run on POSIX-compliant operating systems such as macOS and Linux.
+To run all checks locally on these operating systems, execute the following in the repository root directory:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -274,7 +297,8 @@ Suggested change: Remove the codacy badge from <code>README</code>.</p>
 <div class="sect2">
 <h3 id="implementing-new-checks"><a class="link" href="#implementing-new-checks">Implementing new checks</a></h3>
 <div class="paragraph">
-<p>Checks are implemented as executable <code>check-*</code> scripts within the <code>config/travis/</code> directory. The <code>run-checks.sh</code> script will automatically pick up and run files named as such.</p>
+<p>Checks are implemented as executable <code>check-*</code> scripts within the <code>config/travis/</code> directory.
+The <code>run-checks.sh</code> script will automatically pick up and run files named as such.</p>
 </div>
 <div class="paragraph">
 <p>Check scripts should print out errors in the following format:</p>
@@ -292,4 +316,4 @@ Suggested change: Remove the codacy badge from <code>README</code>.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 16:16:02 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 18:00:46 UTC</div></div></div></body></html>

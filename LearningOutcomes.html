@@ -44,7 +44,8 @@
 <ul>
 <li>
 <p>Assume you are planing to expand the functionality of the AddressBook (but keep it as a CLI application).
-What other user stories do you think AddressBook should support? Add those user stories to the <code>DeveloperGuide.adoc</code>.</p>
+What other user stories do you think AddressBook should support?
+Add those user stories to the <code>DeveloperGuide.adoc</code>.</p>
 </li>
 </ul>
 </div>
@@ -70,9 +71,7 @@ What other user stories do you think AddressBook should support? Add those user 
 <ul>
 <li>
 <p>Add a use case to the <code>DeveloperGuide.adoc</code> to cover the case of <em>renaming of an existing tag</em>.
-e.g. rename the tag <code>friends</code> to <code>buddies</code> (i.e. all persons who had the <code>friends</code> tag will now have
-a <code>buddies</code> tag instead)
-Assume that AddressBook confirms the change with the user before carrying out the operation.</p>
+e.g. rename the tag <code>friends</code> to <code>buddies</code> (i.e. all persons who had the <code>friends</code> tag will now have a <code>buddies</code> tag instead) Assume that AddressBook confirms the change with the user before carrying out the operation.</p>
 </li>
 </ul>
 </div>
@@ -128,8 +127,8 @@ Assume that AddressBook confirms the change with the user before carrying out th
 <div class="ulist">
 <ul>
 <li>
-<p>Add a method <code>boolean isMutating()</code> to the <code>Command</code> class. This method will return <code>true</code> for
-command types that mutate the data. e.g. <code>AddCommand</code></p>
+<p>Add a method <code>boolean isMutating()</code> to the <code>Command</code> class.
+This method will return <code>true</code> for command types that mutate the data. e.g. <code>AddCommand</code></p>
 </li>
 <li>
 <p>Currently, AddressBook data are saved to the file after every command.
@@ -146,8 +145,8 @@ i.e. <code>add</code> command should always save the data while <code>list</code
 </td>
 <td class="content">
 <div class="paragraph">
-<p>There may be better ways to limit file saving to commands that mutate data. The above approach, while not
-optimal, will give you chance to implement a polymorphic behavior.</p>
+<p>There may be better ways to limit file saving to commands that mutate data.
+The above approach, while not optimal, will give you chance to implement a polymorphic behavior.</p>
 </div>
 </td>
 </tr>
@@ -224,7 +223,8 @@ optimal, will give you chance to implement a polymorphic behavior.</p>
 <p><code>Override</code> the <code>getPrintableString</code> in classes <code>Name</code>, <code>Phone</code>, <code>Email</code>, and <code>Address</code> so that each produces a printable string representation of the object. e.g. <code>Name: John Smith</code>, <code>Phone: 12349862</code></p>
 </li>
 <li>
-<p>Add the following method in a suitable place of some other class. Note how the method depends on the Interface.</p>
+<p>Add the following method in a suitable place of some other class.
+Note how the method depends on the Interface.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="comment">/**
@@ -267,15 +267,14 @@ For example, you should be able to call that method like this:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Add a <code>throws Exception</code> clause to the <code>AddCommand::execute</code> method. Notice how Java compiler will not allow it,
-unless you add the same <code>throws</code> clause to the parent class method. This is because if a child class throws
-an exception that is not specified by the Parent&#8217;s contract, the child class is no longer substitutable in place of
-the parent class.</p>
+<p>Add a <code>throws Exception</code> clause to the <code>AddCommand::execute</code> method.
+Notice how Java compiler will not allow it, unless you add the same <code>throws</code> clause to the parent class method.
+This is because if a child class throws an exception that is not specified by the Parent&#8217;s contract, the child class is no longer substitutable in place of the parent class.</p>
 </li>
 <li>
-<p>Also note that while in the above example the compiler enforces LSP, there are other situations where it is up to
-the programmer to enforce it. For example, if the method in the parent class works for <code>null</code> input, the overridden
-method in the child class should not reject <code>null</code> inputs. This will not be enforced by the compiler.</p>
+<p>Also note that while in the above example the compiler enforces LSP, there are other situations where it is up to the programmer to enforce it.
+For example, if the method in the parent class works for <code>null</code> input, the overridden method in the child class should not reject <code>null</code> inputs.
+This will not be enforced by the compiler.</p>
 </li>
 </ul>
 </div>
@@ -442,18 +441,16 @@ In this case we do not apply the DIP but we still achieve DI.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Consider adding a new command to the Address Book. e.g. an <code>edit</code> command. Notice how little you need to change in the <code>LogicManager</code> class to extend its behavior so that it can execute the new command.
+<p>Consider adding a new command to the Address Book. e.g. an <code>edit</code> command.
+Notice how little you need to change in the <code>LogicManager</code> class to extend its behavior so that it can execute the new command.
 That is because <code>LogicManager</code> follows the OCP i.e. <code>LogicManager</code> is <em>open to be extended</em> with more commands but <em>closed for modifications</em>.</p>
 </li>
 <li>
-<p>Is it possible to make the <code>AddressBookParser</code> class more OCP-compliant in terms of extending it to handle more
-command types?</p>
+<p>Is it possible to make the <code>AddressBookParser</code> class more OCP-compliant in terms of extending it to handle more command types?</p>
 </li>
 <li>
-<p>In terms of how it saves data, is <code>LogicManager</code> more OCP-compliant
-due to the application of DIP as given in <a href="#apply-dependency-inversion-principle-lo-dip"><code>LO-DIP</code></a>?
-How can you improve <code>LogicManager</code>'s OCP-compliance further so that it can not only work with different types
-of storages, but different number of storages (e.g. save to both a text file and a database).</p>
+<p>In terms of how it saves data, is <code>LogicManager</code> more OCP-compliant due to the application of DIP as given in <a href="#apply-dependency-inversion-principle-lo-dip"><code>LO-DIP</code></a>?
+How can you improve <code>LogicManager</code>'s OCP-compliance further so that it can not only work with different types of storages, but different number of storages (e.g. save to both a text file and a database).</p>
 </li>
 </ul>
 </div>
@@ -474,4 +471,4 @@ of storages, but different number of storages (e.g. save to both a text file and
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 16:16:02 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 18:00:46 UTC</div></div></div></body></html>

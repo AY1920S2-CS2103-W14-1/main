@@ -11,11 +11,11 @@
 <ul class="sectlevel1">
 <li><a href="#setting-up">1. Setting up</a>
 <ul class="sectlevel2">
-<li><a href="#Design-Architecture">1.1. Architecture (HIEU)</a></li>
+<li><a href="#Design-Architecture">1.1. Architecture</a></li>
 <li><a href="#Design-Ui">1.2. View/UI component [NEED TO UPDATE]</a></li>
 <li><a href="#Design-Logic">1.3. ViewController/Logic component [NEED TO UPDATE]</a></li>
 <li><a href="#Design-ViewController">1.4. ViewModel component (HIEU)</a></li>
-<li><a href="#Design-Model">1.5. Model component [NEED TO UPDATE]</a></li>
+<li><a href="#Design-Model">1.5. Model component [Ivan Tee Jun Jie]</a></li>
 <li><a href="#Design-Storage">1.6. Storage component [NEED TO UPDATE]</a></li>
 <li><a href="#Design-Commons">1.7. Common classes</a></li>
 </ul>
@@ -23,15 +23,11 @@
 <li><a href="#implementation">2. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#command-handling-by-managers">2.1. Command Handling by Managers</a></li>
-<li><a href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course</a></li>
-<li><a href="#undo-redo-hieu">2.3. Undo/Redo (HIEU)</a></li>
-<li><a href="#proposed-tracking-student-progress-feature">2.4. [Proposed] Tracking Student Progress Feature</a></li>
-<li><a href="#managing-staff-feature">2.5. Managing Staff Feature</a></li>
-<li><a href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.6. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></li>
-<li><a href="#proposed-undo-redo-feature">2.7. [Proposed] Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">2.8. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">2.9. Logging</a></li>
-<li><a href="#Implementation-Configuration">2.10. Configuration</a></li>
+<li><a href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></li>
+<li><a href="#undo-redo-hieu">2.3. Undo/Redo [Hieu]</a></li>
+<li><a href="#view-switching-hieu">2.4. View Switching [HIEU]</a></li>
+<li><a href="#logging">2.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">2.6. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">3. Documentation</a></li>
@@ -50,9 +46,9 @@
 <li><a href="#saving-data">G.3. Saving data</a></li>
 </ul>
 </li>
-<li><a href="#implementation-4">Appendix H: Implementation</a>
+<li><a href="#implementation-2">Appendix H: Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#design-considerations-2">H.1. Design considerations:</a></li>
+<li><a href="#design-considerations">H.1. Design considerations:</a></li>
 </ul>
 </li>
 </ul>
@@ -65,7 +61,7 @@
 <p>Refer to the guide <a href="SettingUp.html">here</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">1.1. Architecture (HIEU)</a></h3>
+<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">1.1. Architecture</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ArchitectureNewDiagram.png" alt="ArchitectureNewDiagram">
@@ -73,59 +69,44 @@
 <div class="title">Figure 1. Architecture Diagram</div>
 </div>
 <div class="paragraph">
-<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App. Given below is a quick overview of each component.</p>
+<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App.
+Given below is a quick overview of each component.</p>
 </div>
 <div class="sect3">
 <h4 id="design-pattern-and-control-flow"><a class="link" href="#design-pattern-and-control-flow">1.1.1. Design Pattern and Control Flow</a></h4>
 <div class="paragraph">
 <p>Two main design patterns were used in the design of our software.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>A/ Model - View - ViewModel Control Flow</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Model - View - ViewModel (MVVM) Control Flow</dt>
+<dd>
 <p>Design Consideration between Model-View-Controller(MVC) and Model-View-ViewModel(MVVM) design:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>The original design was a standard MVC, where Controller is our LogicManager,
-and the Model is our ModelManager. Then components in the view will bind to
-the model objects, whenever there is an update to the model object the UI view will be updated automatically.</p>
+<p>The original design was a standard MVC, where Controller is our LogicManager, and the Model is our ModelManager.
+Then components in the view will bind to the model objects, whenever there is an update to the model object the UI view will be updated automatically.</p>
 </li>
 <li>
-<p>However, the more UI custom views logic we decide, we might need to push more and more custom
-UI-specific logic to our Model and ViewController class, which is not very desirable. Or as the infamous quote, MVC becomes
-"Massive View Controller".</p>
+<p>However, the more UI custom views logic we decide, we might need to push more and more custom UI-specific logic to our Model and ViewController class, which is not very desirable.
+Or as the infamous quote, MVC becomes "Massive View Controller".</p>
 </li>
 <li>
-<p>Instead, we will adapt to MVVM design, where ViewModel will hold a list of observableMap
-of data. Each custom view in our UI will have a one-to-one mapping with an observableMap,
-and to calculate those observableMap the ViewModel will make use of the Managers we define.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>B/ Event-Driven Design</p>
+<p>Instead, we will adapt to MVVM design, where ViewModel will hold a list of observableMap of data.
+Each custom view in our UI will have a one-to-one mapping with an observableMap, and to calculate those observableMap the ViewModel will make use of the Managers we define.</p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>We adopt event-driven design, where different components will try to communicate with each other
-through publishing events and subscribing to events, de-couple between components, and facilitate communication between components a lot.</p>
-</div>
+</dd>
+<dt class="hdlist1">Event-Driven Design</dt>
+<dd>
+<p>We adopt event-driven design, where different components will try to communicate with each other through publishing events and subscribing to events, de-couple between components, and facilitate communication between components a lot.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>To separate responsibilities well between components, we divide them into multiple managers,
-all extending from the BaseManager class. The BaseManager will always hold refer to the EventsCenter
-(which is designed to be a singleton class in our case)</p>
+<p>To separate responsibilities well between components, we divide them into multiple managers, all extending from the BaseManager class.
+The BaseManager will always hold refer to the EventsCenter (which is designed to be a singleton class in our case)</p>
 <div class="ulist">
 <ul>
 <li>
@@ -140,20 +121,23 @@ Subscribing managers will have handler method that listen to the events and deci
 </div>
 </li>
 <li>
-<p>Different events types will extend from the BaseEvent. In our app we have</p>
+<p>Different events types will extend from the BaseEvent.
+In our app we have</p>
 <div class="ulist">
 <ul>
 <li>
 <p>DataStorageChangeEvent: signals when model object changes</p>
 </li>
 <li>
-<p>DeleteEntitySyncEvent: signals when the entity linking relationship is broken (e.g
-when a student is deleted, its link to course and progress and teacher, etc will be broken)</p>
+<p>DeleteEntitySyncEvent: signals when the entity linking relationship is broken (e.g when a student is deleted, its link to course and progress and teacher, etc will be broken)</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p>Here is an example of how a command to delete student with ID 1 will invoke different parts along the flow.</p>
@@ -164,27 +148,22 @@ when a student is deleted, its link to course and progress and teacher, etc will
 </div>
 <div class="title">Figure 2. Sequence Diagram for Events Flow</div>
 </div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>1/ ViewController(i.e LogicManager) will invoke ModelManager.delete method (Note that ModelManager extends from BaseManager,
-and has the Publisher capacity)</p>
+<p>ViewController(i.e LogicManager) will invoke ModelManager.delete method (Note that ModelManager extends from BaseManager, and has the Publisher capacity)</p>
 </li>
 <li>
-<p>2/ ModelManager will invoke publishing of events to EventsCenterSingleton (which holds
-an EventBus), in this case postDataStorageChangeEvent
-and postDeleteEntitySyncEvent will be invoked.</p>
+<p>ModelManager will invoke publishing of events to EventsCenterSingleton (which holds an EventBus), in this case postDataStorageChangeEvent and postDeleteEntitySyncEvent will be invoked.</p>
 </li>
 <li>
-<p>3/ Other BaseManagers will also hold this EventsCenterSingleton and listen to new publish events
-in the event bus. If the manager class has the handler function for that types of events,
-the method will be invoked.</p>
+<p>Other BaseManagers will also hold this EventsCenterSingleton and listen to new publish events in the event bus.
+If the manager class has the handler function for that types of events, the method will be invoked.</p>
 </li>
 <li>
-<p>In this case, StorageManager will have handler for both DataStorageChangeEvent and
-DeleteEntitySyncEvent, while ViewModel will have handler for DataStorageChangeEvent.</p>
+<p>In this case, StorageManager will have handler for both DataStorageChangeEvent and DeleteEntitySyncEvent, while ViewModel will have handler for DataStorageChangeEvent.</p>
 </li>
-</ul>
+</ol>
 </div>
 </div>
 <div class="sect3">
@@ -195,10 +174,12 @@ DeleteEntitySyncEvent, while ViewModel will have handler for DataStorageChangeEv
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#Design-Ui"><strong><code>View</code></strong></a>: The UI of the App. Represented by <code>UI</code> in our implementation.</p>
+<p><a href="#Design-Ui"><strong><code>View</code></strong></a>: The UI of the App.
+Represented by <code>UI</code> in our implementation.</p>
 </li>
 <li>
-<p><a href="#Design-Logic"><strong><code>ViewController</code></strong></a>: The command executor. Represented by <code>Logic</code> in our implementation.</p>
+<p><a href="#Design-Logic"><strong><code>ViewController</code></strong></a>: The command executor.
+Represented by <code>Logic</code> in our implementation.</p>
 </li>
 <li>
 <p><a href="#Design-Storage"><strong><code>ViewModel</code></strong></a>: Updates the model for UI to display.</p>
@@ -271,10 +252,13 @@ The following class plays an important role at the architecture level:</p>
 <p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc.
+All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework.
+The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.
+For example, the layout of the <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -372,10 +356,10 @@ observableMap, which in turn will automatically update the corresponding <code>D
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">1.5. Model component [NEED TO UPDATE]</a></h3>
+<h3 id="Design-Model"><a class="link" href="#Design-Model">1.5. Model component [Ivan Tee Jun Jie]</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/ModelClassDiagram.png" alt="ModelClassDiagram">
+<img src="images/Ivan-ModelClassDiagram.png" alt="Ivan ModelClassDiagram">
 </div>
 <div class="title">Figure 8. Structure of the Model Component</div>
 </div>
@@ -391,15 +375,47 @@ observableMap, which in turn will automatically update the corresponding <code>D
 <p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the Address Book data.</p>
+<p>stores the 6 AddressBookGeneric&lt;K extends ModelObject&gt;, each of which holds a different type of ModelObject.
+The 6 types are namely</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Student</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>Course</p>
 </li>
 <li>
-<p>does not depend on any of the other three components.</p>
+<p>Staff</p>
+</li>
+<li>
+<p>Assignment</p>
+</li>
+<li>
+<p>Progress</p>
+</li>
+<li>
+<p>Finance</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;K extends ModelObject&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>does not depend on any of the other components.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Below is an example of the different types of RelevantFields that can be tied to an Assignment.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ivan-AssignmentClassDiagram.png" alt="Ivan AssignmentClassDiagram">
+</div>
+<div class="title">Figure 9. Class Diagram of Assignment</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -408,12 +424,51 @@ observableMap, which in turn will automatically update the corresponding <code>D
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
-<br>
-<span class="image"><img src="images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram"></span>
+The AddressBookGeneric in the diagram above is actually an AddressBookGeneric&lt;Assignment&gt;.
+The AddressBookGeneric has been made to accept any class that extends ModelObject.
+This cannot be shown due to limitations in PUML.
 </td>
 </tr>
 </table>
+</div>
+<div class="sect3">
+<h4 id="notable-implementations-in-model"><a class="link" href="#notable-implementations-in-model">1.5.1. Notable Implementations in Model</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>By making use of <code>Generics</code> and <code>Polymorphism</code>, the group has made it such that <code>AddressBookGeneric&lt;K extends ModelObject&gt;</code> can hold any class that extends from ModelObject</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Benefits</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Allows for code optimization by having reusable code.
+There is significant decrease in workload when code can be reused for each others' benefit instead of having duplicated code.</p>
+</li>
+<li>
+<p>Allows for extension easily for future features.
+Future features that involve creating new AddressBooks can be developed very quickly and allow for faster development of future features.</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>All <code>ModelObjects</code> implement <code>Cloneable</code> so as to allow for Defensive Programming more easily.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Please refer to <a href="#Design-Assign-Copy"><code>Step 2 of Section 2.2.2</code></a> for the team&#8217;s rationale behind having ModelObject implement Cloneable.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -422,7 +477,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
 </div>
-<div class="title">Figure 9. Structure of the Storage Component</div>
+<div class="title">Figure 10. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -465,36 +520,21 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="non-crud-commands-handled-by-respective-managers"><a class="link" href="#non-crud-commands-handled-by-respective-managers">2.1.2. Non-CRUD Commands Handled by Respective Managers</a></h4>
-<div class="literalblock">
-<div class="content">
-<pre>Such as Assign, Unassign, Done, etc, in this way we can hide the implmentation behind these managers</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Progress + ProgressManager goes here</pre>
-</div>
-</div>
-</div>
 </div>
 <div class="sect2">
-<h3 id="entity-linking-assigning-un-assigning-an-entity-to-from-a-course"><a class="link" href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course</a></h3>
+<h3 id="entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan"><a class="link" href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></h3>
 <div class="paragraph">
-<p>In order to allow the tracking of the students/assignments/teachers that are assigned
-to a course and vice versa, this required us to implement a structure which allowed us to obtain information
-from the aforementioned objects, without causing any circular referencing errors.</p>
+<p>In order to allow the tracking of the students/assignments/teachers that are assigned to a course and vice versa, this required us to implement a structure which allowed us to obtain information from the aforementioned objects, without causing any circular referencing errors.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ivan-OODMForEntityRS.png" alt="Ivan OODMForEntityRS">
 </div>
-<div class="title">Figure 10. Relationship between Entities</div>
+<div class="title">Figure 11. Relationship between Entities</div>
 </div>
 <div class="paragraph">
-<p>The group came up with the structure above where we centralize most links around the <code>Course</code> object so as
-for easier management of entity links. Every non-directed association between 2 objects ensures that both objects have each other&#8217;s ID.</p>
+<p>The group came up with the structure above where we centralize most links around the <code>Course</code> object so as for easier management of entity links.
+Every non-directed association between 2 objects ensures that both objects have each other&#8217;s ID.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -503,15 +543,14 @@ for easier management of entity links. Every non-directed association between 2 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The only exception is <code>Progress</code> objects which are created via
-a composite ID of <code>studentID</code> and <code>assignmentID</code>.
+The only exception is <code>Progress</code> objects which are created via a composite ID of <code>studentID</code> and <code>assignmentID</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>There are 3 crucial managers involved in order to ensure that the links are successfully maintained during each
-any command which involves manipulation of entity links. The three managers are:</p>
+<p>There are 3 crucial managers involved in order to ensure that the links are successfully maintained during each any command which involves manipulation of entity links.
+The three managers are:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -519,7 +558,7 @@ any command which involves manipulation of entity links. The three managers are:
 <p><code>UUID Manager</code> - Ensures ID of all entities are unique, allowing each object to be uniquely identifiable</p>
 </li>
 <li>
-<p><code>Edge Manager</code> -  Ensures that links are maintained/removed properly during assign, un-assign, delete commands</p>
+<p><code>Edge Manager</code> - Ensures that links are maintained/removed properly during assign, un-assign, delete commands</p>
 </li>
 <li>
 <p><code>Progress Manager</code> - Ensures that Progress objects are successfully created/deleted during assign, un-assign, delete commands</p>
@@ -527,7 +566,7 @@ any command which involves manipulation of entity links. The three managers are:
 </ol>
 </div>
 <div class="sect3">
-<h4 id="uuid-manager"><a class="link" href="#uuid-manager">2.2.1. UUID Manager</a></h4>
+<h4 id="uuid-manager-sim-sheng-xue"><a class="link" href="#uuid-manager-sim-sheng-xue">2.2.1. UUID Manager [Sim Sheng Xue]</a></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -549,9 +588,9 @@ any command which involves manipulation of entity links. The three managers are:
 </div>
 </div>
 <div class="sect3">
-<h4 id="execution-of-assign-un-assign-command"><a class="link" href="#execution-of-assign-un-assign-command">2.2.2. Execution of Assign/Un-assign Command</a></h4>
+<h4 id="execution-of-assign-un-assign-command-tee-jun-jie-ivan"><a class="link" href="#execution-of-assign-un-assign-command-tee-jun-jie-ivan">2.2.2. Execution of Assign/Un-assign Command [Tee Jun Jie Ivan]</a></h4>
 <div class="paragraph">
-<p>For the actual execution of an assign/unassign command, 3 main steps are performed.</p>
+<p>For the actual execution of an assign/un-assign command, 3 main steps are performed.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -571,22 +610,20 @@ any command which involves manipulation of entity links. The three managers are:
 <div class="sect5">
 <h6 id="rationale"><a class="link" href="#rationale">Rationale</a></h6>
 <div class="paragraph">
-<p>Firstly, a <code>pre-processing step</code> must be performed before executing an undo-able assign/un-assign command
-to ensure that all entity links are in correct state before command execution.</p>
+<p>Firstly, a <code>pre-processing step</code> must be performed before executing an undo-able assign/un-assign command to ensure that all entity links are in correct state before command execution.</p>
 </div>
 </div>
 <div class="sect5">
 <h6 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h6>
 <div class="paragraph">
-<p>Below is an activity diagram showing the pre-processing
-performed for assign commands. The diagram can be generalized for un-assign commands by checking if the course contains X and vice versa in the
-second stage instead.</p>
+<p>Below is an activity diagram showing the pre-processing performed for assign commands.
+The diagram can be generalized for un-assign commands by checking if the course contains X and vice versa in the second stage instead.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ivan-PreprocessAssignActivityDiagram.png" alt="Ivan PreprocessAssignActivityDiagram">
 </div>
-<div class="title">Figure 11. Activity Diagram of Pre-processing for Assign/Un-assign commands</div>
+<div class="title">Figure 12. Activity Diagram of Pre-processing for Assign/Un-assign commands</div>
 </div>
 <hr>
 <div class="paragraph">
@@ -595,8 +632,7 @@ second stage instead.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The success case is straightforward and will lead to a
-the program continuing to execute the actual assign/un-assign command.</p>
+<p>The success case is straightforward and will lead to a the program continuing to execute the actual assign/un-assign command.</p>
 </li>
 <li>
 <p>For the failure case, should any of the conditions fail, this means that either that the</p>
@@ -623,8 +659,7 @@ the program continuing to execute the actual assign/un-assign command.</p>
 <div class="sect5">
 <h6 id="u-rationale-u"><a class="link" href="#u-rationale-u"><u>Rationale</u></a></h6>
 <div class="paragraph">
-<p>After the necessary checks have been performed, respective IDs need to be added to the targeted course and targeted object in order
-to ensure correct and consistent assigning of objects.</p>
+<p>After the necessary checks have been performed, respective IDs need to be added to the targeted course and targeted object in order to ensure correct and consistent assigning of objects.</p>
 </div>
 </div>
 <div class="sect5">
@@ -636,7 +671,7 @@ to ensure correct and consistent assigning of objects.</p>
 <div class="content">
 <img src="images/Ivan-SeqDiagEdgeManagerAssignCommand.png" alt="Ivan SeqDiagEdgeManagerAssignCommand">
 </div>
-<div class="title">Figure 12. Sequence Diagram of EdgeManager&#8217;s AssignXtoCourse commands</div>
+<div class="title">Figure 13. Sequence Diagram of EdgeManager&#8217;s AssignXtoCourse commands</div>
 </div>
 <hr>
 <div class="paragraph">
@@ -659,8 +694,8 @@ to ensure correct and consistent assigning of objects.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>For assignments, every assignment can only be assigned to at most <strong>one course</strong>. Hence, it&#8217;ll hold just an assignedCourseID instead
-of a set of Course IDs.</p>
+<p>For assignments, every assignment can only be assigned to at most <strong>one course</strong>.
+Hence, it&#8217;ll hold just an assignedCourseID instead of a set of Course IDs.</p>
 </li>
 </ol>
 </div>
@@ -670,8 +705,8 @@ of a set of Course IDs.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>For courses, every course may only have at most <strong>one teacher</strong>. Hence, course will have an assignedTeacherID instead
-of a set of Teacher IDs.</p>
+<p>For courses, every course may only have at most <strong>one teacher</strong>.
+Hence, course will have an assignedTeacherID instead of a set of Teacher IDs.</p>
 </li>
 </ol>
 </div>
@@ -691,19 +726,19 @@ of a set of Teacher IDs.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This sequence diagram can be generalized for <code>un-assign command</code> as well. Instead of adding IDs, un-assign will remove
-each other&#8217;s ID from the respective objects.
+This sequence diagram can be generalized for <code>un-assign command</code> as well.
+Instead of adding IDs, un-assign will remove each other&#8217;s ID from the respective objects.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect5">
-<h6 id="u-design-considerations-u"><a class="link" href="#u-design-considerations-u"><u>Design Considerations</u></a></h6>
+<h6 id="Design-Assign-Copy"><a class="link" href="#Design-Assign-Copy"><u>Design Considerations</u></a></h6>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Manipulating the <code>actual</code> modelObjects by having modelManager#get() return referenced variable of the actual <code>modelObject</code>.</p>
+<p>Manipulating the <code>actual</code> modelObjects by having modelManager#get() return referenced variable of the actual <code>modelObjectTags</code>.</p>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Pros</dt>
@@ -733,7 +768,7 @@ each other&#8217;s ID from the respective objects.
 </div>
 </li>
 <li>
-<p>(Current Implementation) Manipulate a <code>copy</code> modelObjects by having modelManager#get() return a copy of actual modelObject.</p>
+<p>(Current Implementation) Manipulate a <code>cloned</code> modelObject by having modelManager#get() return a copy of actual modelObject.</p>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Pros</dt>
@@ -751,8 +786,9 @@ each other&#8217;s ID from the respective objects.
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Extra processing required. For example, a method is required to replace the old modelObject with the
-new model object</p>
+<p>Extra processing required.
+For example, a method is required to replace the old modelObject with the new model object.
+Also, requires all ModelObject classes to implement a clone() method.</p>
 </li>
 <li>
 <p>More memory intensive and can hurt overall program performance.</p>
@@ -764,6 +800,10 @@ new model object</p>
 </div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>Overall, the second option was chosen since the program is very dependent on maintaining a <code>consistent state</code>, where either 2 modelObjects have each other&#8217;s ID or they do not.
+Some performance can be sacrificed in order to ensure that the links between objects cannot be modified by mistake.</p>
 </div>
 </div>
 </div>
@@ -777,8 +817,7 @@ new model object</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If a <code>Student</code> has been added to a <code>Course</code>, the <code>Student</code> will need to complete all <code>Assignments</code> that have already been assigned
-to the <code>Course</code>.</p>
+<p>If a <code>Student</code> has been added to a <code>Course</code>, the <code>Student</code> will need to complete all <code>Assignments</code> that have already been assigned to the <code>Course</code>.</p>
 </li>
 <li>
 <p>If an <code>Assignment</code> has been added to a <code>Course</code>, all <code>Students</code> currently taking the <code>Course</code> must now complete that <code>Assignment</code>.</p>
@@ -793,14 +832,13 @@ to the <code>Course</code>.</p>
 <div class="sect5">
 <h6 id="u-current-implementation-u-2"><a class="link" href="#u-current-implementation-u-2"><u>Current Implementation</u></a></h6>
 <div class="paragraph">
-<p>Below is a sequence diagram illustrating how the ProgressManager adds Progress objects into the ProgressAddressBook
-when a <code>AssignStudentToCourse</code> command is run.</p>
+<p>Below is a sequence diagram illustrating how the ProgressManager adds Progress objects into the ProgressAddressBook when a <code>AssignStudentToCourse</code> command is run.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ivan-ProgressManagerAssignStudentToCourse.png" alt="Ivan ProgressManagerAssignStudentToCourse">
 </div>
-<div class="title">Figure 13. Activity Diagram for creating Progress objects when assigning a Student to a Course</div>
+<div class="title">Figure 14. Activity Diagram for creating Progress objects when assigning a Student to a Course</div>
 </div>
 <hr>
 <div class="paragraph">
@@ -809,12 +847,12 @@ when a <code>AssignStudentToCourse</code> command is run.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If there are <code>Progress</code> objects that were previously in ProgressAddressBook but were removed due to an <code>Un-assign/Delete</code> command,
-add those <code>Progress</code> objects back in.</p>
+<p>If there are <code>Progress</code> objects that were previously in ProgressAddressBook but were removed due to an <code>Un-assign/Delete</code> command, add those <code>Progress</code> objects back in.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>This only occurs when undo-ing an <code>Un-assign/Delete</code> command. Refer to <code>Section 3.2.2</code> for more information.</p>
+<p>This only occurs when undo-ing an <code>Un-assign/Delete</code> command.
+Refer to <code>Section 3.2.2</code> for more information.</p>
 </li>
 </ol>
 </div>
@@ -849,13 +887,14 @@ add those <code>Progress</code> objects back in.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The flow is largely the same for AssignAssignmentToCourse! Instead, we want every <code>Student</code> that is currently studying in
-course <strong>C'</strong> to complete the particular <code>Assignment</code>. Hence, rather than obtain all assignmentIDs, we will need to obtain all
-<code>studentIDs</code> that are studying <strong>C'</strong>, and create a <code>Progress</code> object so that we can track whether those students have completed
-the assignment.</p>
+<p>The flow is largely the same for AssignAssignmentToCourse!
+Instead, we want every <code>Student</code> that is currently studying in course <strong>C'</strong> to complete the particular <code>Assignment</code>.
+Hence, rather than obtain all assignmentIDs, we will need to obtain all
+<code>studentIDs</code> that are studying <strong>C'</strong>, and create a <code>Progress</code> object so that we can track whether those students have completed the assignment.</p>
 </li>
 <li>
-<p>The flow is also largely the same for UnassignCommands! Instead, we are looking to remove Progress objects rather than adding them back in.</p>
+<p>The flow is also largely the same for UnassignCommands!
+Instead, we are looking to remove Progress objects rather than adding them back in.</p>
 </li>
 </ul>
 </div>
@@ -871,29 +910,27 @@ The table below shows the involvement of 3 managers with regards to each variant
 <div class="content">
 <img src="images/Ivan-AssignSummaryTable.png" alt="Ivan AssignSummaryTable">
 </div>
-<div class="title">Figure 14. Table Summary of Manager&#8217;s involvement during Assign/Un-assign Commands</div>
+<div class="title">Figure 15. Table Summary of Manager&#8217;s involvement during Assign/Un-assign Commands</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-hieu"><a class="link" href="#undo-redo-hieu">2.3. Undo/Redo (HIEU)</a></h3>
+<h3 id="undo-redo-hieu"><a class="link" href="#undo-redo-hieu">2.3. Undo/Redo [Hieu]</a></h3>
 <div class="paragraph">
-<p>Currently we only support undo/redo for commands that modify the storage (or state of
-the app). I.e add / delete, assign / unassign, edit commands.</p>
+<p>Currently we only support undo/redo for commands that modify the storage (or state of the app).
+I.e add / delete, assign / un-assign, edit commands.</p>
 </div>
 <div class="paragraph">
-<p>View Controller (LogicManager) will hold UndoRedoStack class, which stores the undoStack
-and redoStack which will be explained below.</p>
+<p>View Controller (LogicManager) will hold UndoRedoStack class, which stores the undoStack and redoStack which will be explained below.</p>
 </div>
 <div class="paragraph">
 <p>Those commands listed above will inherit from UndoableCommand abstract class.
 UndoableCommand will extends from Command class.</p>
 </div>
 <div class="paragraph">
-<p>UndoableCommand will contain the general algorithm flow for doing undo/ redo, while there
-will be some details delegated to the actual command class. This technique is also known as
-template pattern.</p>
+<p>UndoableCommand will contain the general algorithm flow for doing undo/ redo, while there will be some details delegated to the actual command class.
+This technique is also known as template pattern.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -913,31 +950,25 @@ template pattern.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Note that for each UndoableCommand, before execution, it needs to save some information
-(through the preprocessUndoableCommand) then generate (and store) the opposite corresponding command
-(through generateOppositeUndoableCommand)</p>
+<p>Note that for each UndoableCommand, before execution, it needs to save some information (through the preprocessUndoableCommand) then generate (and store) the opposite corresponding command (through generateOppositeUndoableCommand)</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s go through the example in diagram below.
-- The user first executes a new UndoableCommand delete-student. Before this delete command is executed,
-we preprocessUndoableCommand to get the to-be-deleted student object, as well as the current index
-of this student object in list.</p>
+- The user first executes a new UndoableCommand delete-student.
+Before this delete command is executed, we preprocessUndoableCommand to get the to-be-deleted student object, as well as the current index of this student object in list.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Then we will generate a AddStudentCommand (which is
-opposite of this DeleteStudentCommand) with this studentObject and index and push it to undoStack</p>
+<p>Then we will generate a AddStudentCommand (which is opposite of this DeleteStudentCommand) with this studentObject and index and push it to undoStack</p>
 </li>
 <li>
-<p>When undo command is executed, the top of undoStack is popped out, then pushed to
-redoStack. Then the oppositeCommand of it will be excecuted (in this case
-AddStudentCommand will be invoked)</p>
+<p>When undo command is executed, the top of undoStack is popped out, then pushed to redoStack.
+Then the oppositeCommand of it will be excecuted (in this case AddStudentCommand will be invoked)</p>
 </li>
 <li>
-<p>When redo command is executed, the top of redoStack is popped out, then pushed to
-undoStack. Then the originalCommand will be executed (again) (in this case it
-will be DeleteStudentCommand again).</p>
+<p>When redo command is executed, the top of redoStack is popped out, then pushed to undoStack.
+Then the originalCommand will be executed (again) (in this case it will be DeleteStudentCommand again).</p>
 </li>
 </ul>
 </div>
@@ -965,60 +996,22 @@ Pros: Reduce a lot of memory issue.</p>
 <p>Cons: Harder to implement</p>
 </div>
 <div class="sect3">
-<h4 id="opposite-command-for-edit"><a class="link" href="#opposite-command-for-edit">2.3.1. Opposite Command for edit</a></h4>
-<div class="paragraph">
-<p>Edit command extends from abstract class UndoableCommand. Thus, user can undo/ redo this command.</p>
-</div>
-<div class="paragraph">
-<p>In EditCommand class, method <code>preprocessUndoableCommand</code> to get the toEdit Object and edited Object.</p>
-</div>
-<div class="paragraph">
-<p>Method <code>executeUndoableCommand</code> will set the toEdit Object in the ObjectAddressBook to the edited Object.</p>
-</div>
-<div class="paragraph">
-<p>Method <code>generateOppositeCommand()</code> will generate another <code>EditCommand</code> (which
-is opposite to this EditCommand) with editing information of the original toEdit Object and push it to undoStack.</p>
-</div>
-<div class="paragraph">
-<p>When <code>undo</code> and <code>redo</code> commands are executed, the process is carried out as described above.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="opposite-command-for-assign-unassign"><a class="link" href="#opposite-command-for-assign-unassign">2.3.2. Opposite command for assign/ unassign</a></h4>
+<h4 id="opposite-command-for-edit-dat"><a class="link" href="#opposite-command-for-edit-dat">2.3.1. Opposite Command for edit [Dat]</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities"><a class="link" href="#opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities">2.3.3. Opposite command for add/ delete (and maintain the corresponding links between entities)</a></h4>
-<div class="paragraph">
-<p><code>AddCommand</code> and <code>DeleteCommand</code> extends from abstract class UndoableCommand. Thus, user can undo/ redo this command.</p>
+<h4 id="opposite-command-for-assign-un-assign-tee-jun-jie-ivan"><a class="link" href="#opposite-command-for-assign-un-assign-tee-jun-jie-ivan">2.3.2. Opposite command for assign/ un-assign [Tee Jun Jie Ivan]</a></h4>
+
 </div>
-<div class="paragraph">
-<p>In <code>AddCommand</code> class, method <code>preprocessUndoableCommand</code> get the toAdd Object and an index (if available).</p>
+<div class="sect3">
+<h4 id="opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities-dat"><a class="link" href="#opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities-dat">2.3.3. Opposite command for add/ delete (and maintain the corresponding links between entities) [Dat]</a></h4>
+
 </div>
-<div class="paragraph">
-<p>Method <code>executeUndoableCommand</code> will add the toAdd Object to the ObjectAddressBook.</p>
 </div>
+<div class="sect2">
+<h3 id="view-switching-hieu"><a class="link" href="#view-switching-hieu">2.4. View Switching [HIEU]</a></h3>
 <div class="paragraph">
-<p>Method <code>generateOppositeCommand()</code> will generate a <code>DeleteCommand</code> (which
-is opposite to this AddCommand) with toDelete Object is a clone of toAdd Object and push it to undoStack.</p>
-</div>
-<div class="paragraph">
-<p>In <code>DeleteCommand</code> class, method <code>preprocessUndoableCommand</code> get the toDelete Object and its index.</p>
-</div>
-<div class="paragraph">
-<p>Method <code>executeUndoableCommand</code> will delete this toDelete Object from the ObjectAddressBook.</p>
-</div>
-<div class="paragraph">
-<p>Method <code>generateOppositeCommand()</code> will generate an <code>AddCommand</code> (which
-is opposite to this DeleteCommand) with toAdd Object is a clone of toDelete Object and push it to undoStack.</p>
-</div>
-<div class="paragraph">
-<p>When <code>undo</code> and <code>redo</code> commands are executed, the process is carried out as described above.</p>
-</div>
-<div class="paragraph">
-<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-=== View Switching (HIEU)
-To see sub-view details of each section we can issue a select command.</p>
+<p>To see sub-view details of each section we can issue a select command.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s see an example of how selecting sub-view data of a student 1 works.</p>
@@ -1028,32 +1021,32 @@ To see sub-view details of each section we can issue a select command.</p>
 <img src="images/ViewSwitchFlowDiagram.png" alt="ViewSwitchFlowDiagram">
 </div>
 </div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>1/ A <code>select sid/ 1</code> command is issued to <code>ViewController</code></p>
+<p><code>select sid/ 1</code> command is issued to <code>ViewController</code></p>
 </li>
 <li>
-<p>2/ <code>ViewController</code>  will call <code>ViewModel</code> method <code>updateStudentDetailsMap</code></p>
+<p><code>ViewController</code>  will call <code>ViewModel</code> method <code>updateStudentDetailsMap</code></p>
 </li>
 <li>
-<p>3/ In turn, that method will invoke managers from <code>Model</code> layer, for example <code>ModelManager</code>,
+<p>In turn, that method will invoke managers from <code>Model</code> layer, for example <code>ModelManager</code>,
 to update <code>observableStudentDetailMap</code> inside <code>ViewModel</code></p>
 </li>
 <li>
-<p>4/ Because <code>StudentDetailsMap</code> implements an <code>onChange</code> function that
+<p>Because <code>StudentDetailsMap</code> implements an <code>onChange</code> function that
 listen to update in <code>observableStudentDetailMap</code>, the UI part will be updated correspondingly
 with data of this student 1.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Design considerations:</p>
 </li>
-</ul>
+</ol>
 </div>
-</li>
+<div class="paragraph">
+<p>Design considerations:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>1/ Automatically updating the UI sub-view when the app state changes. Let&#8217;s say the current sub-view
+<p>Automatically updating the UI sub-view when the app state changes. Let&#8217;s say the current sub-view
 shown in the UI is of the details of student 1, then some information of the course of that
 student is changed, or the student is removed from the course, the UI should update immediately
 without the need to issue the click command again. To support that, our <code>ViewModel</code> will listen to <code>EventsCenter</code> , then whenever
@@ -1067,361 +1060,19 @@ that the students have without the progresses of this course that the student cu
 To query that, after executing <code>select sid/ student_id</code>, the user needs to run
 <code>select sid/ student_id cid/ course-id</code> as well</p>
 </li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="proposed-tracking-student-progress-feature"><a class="link" href="#proposed-tracking-student-progress-feature">2.4. [Proposed] Tracking Student Progress Feature</a></h3>
-<div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">2.4.1. Proposed Implementation</a></h4>
-<div class="paragraph">
-<p>This feature is implemented with two main classes - <code>Progress</code> and <code>Assignment</code>, both of which is controlled by a
-'ProgressAddressBook' and 'AssignmentAddressBook' respectively. Please see the following class diagram
-which proposes the associations between the four classes.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/AssignmentAndProgressClassDiagram.png" alt="AssignmentAndProgressClassDiagram">
-</div>
-<div class="title">Figure 15. Class diagram of Assignment and Progress</div>
-</div>
-<div class="paragraph">
-<p>Besides the basic CRUD operations for <code>Progress</code> and <code>Assignment</code>, one of they key
-features will be making sure that <code>Progress</code> and <code>Assignments</code> work seamlessly with each other.</p>
-</div>
-<div class="paragraph">
-<p>For example, when a student is added to a <code>Course</code>,  <code>Progress</code> objects must be created automatically for each
-<code>Assignment</code> that needs to be completed for the <code>Course</code>. For this, this will be facilitated by a <code>Progress Factory</code> class
-which the model will utilize to produce numerous <code>Progress</code> objects for each <code>Assignment</code> for the <code>Student</code> that was assigned.
-Please see the sequence diagram for a better understanding.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/AssignStudentToCourseDiagram.png" alt="AssignStudentToCourseDiagram">
-</div>
-<div class="title">Figure 16. Sequence diagram of how Progress objects are created automatically</div>
-</div>
-<div class="paragraph">
-<p>Future Functionality Include</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Marking a <code>Progress</code> object as done</p>
-</li>
-<li>
-<p>For a <code>Course</code>, mark all <code>Progress</code> objects with the same assignment ID as done</p>
-</li>
-<li>
-<p>Allow for seamless removal of <code>Student</code> from course</p>
-</li>
-<li>
-<p>Allow for seamless deletion of <code>Assignment</code> from the addressbook</p>
-</li>
-</ul>
-</div>
+</ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="managing-staff-feature"><a class="link" href="#managing-staff-feature">2.5. Managing Staff Feature</a></h3>
-<div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">2.5.1. Implementation</a></h4>
+<h3 id="logging"><a class="link" href="#logging">2.5. Logging</a></h3>
 <div class="paragraph">
-<p>This feature is implemented with the main classes - <code>Staff</code>, with a permission level specifying <code>Teacher</code> and <code>Admin</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Staff</span> <span class="directive">extends</span> ModelObject {
-    <span class="directive">public</span> <span class="type">enum</span> <span class="predefined-type">Level</span> {
-        TEACHER,
-        ADMIN
-    }
-    <span class="comment">//...</span>
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>One of the features is to display all the <code>courses</code> that a <code>teacher</code> is teaching.</p>
-</div>
-<div class="paragraph">
-<p>Another feature is to keep track of salary payment for <code>teacher</code>. A <code>teacher</code> is paid by teaching a course and the amount
-is taken from the salary of the teacher. The payment will automatically have records of respective course and teacher ID.</p>
-</div>
-<div class="paragraph">
-<p>To pay for <code>admin</code>, user has to do it manually using miscellaneous <code>FinanceType</code>.</p>
-</div>
-<div class="paragraph">
-<p>Certain approaches have some certain pros and cons. It depends on how the user want to keep track of payment and method to pay to <code>teacher</code> and <code>admin</code>.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.6. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></h3>
-<div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">2.6.1. Implementation</a></h4>
-<div class="paragraph">
-<p>Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue. Teacher payments are tracked by courses, where the teacher is paid for each course taught. Student earnings are also tracked by courses, where the student pays for each course taken.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/FinanceDiagram.png" alt="FinanceDiagram">
-</div>
-<div class="title">Figure 17. Class diagram of CourseStudent and CourseTeacher</div>
-</div>
-<div class="paragraph">
-<p>Finance type <code>CourseStudent</code> or <code>cs</code> add command will access <code>CourseAddressBook</code> and <code>StudentAddressBook</code> to ensure <code>Course</code> and
-<code>Student</code> exist and make sure this student is taking this course. The <code>Amount</code> is set to the amount of the <code>Course</code>
-(student fee).</p>
-</div>
-<div class="paragraph">
-<p>Finance type <code>CourseTeacher</code> or <code>ct</code> add command will access <code>CourseAddressBook</code> and <code>TeacherAddressBook</code> to ensure <code>Course</code> and
-<code>Teacher</code> exist and make sure this teacher is teaching this course. The <code>Amount</code> is set to the salary of the <code>Teacher</code>
-(teacher salary).</p>
-</div>
-<div class="paragraph">
-<p>Finance type <code>Miscellaneous</code> or <code>m</code> add command will create a corresponding <code>Finance</code> object to be stored in <code>FinanceAddressBook</code>.
-To pay for <code>Admin staff</code> and record other transactions, user has to manually add a miscellaneous <code>Finance</code>, specifying
-name (description), amount, and date. Miscellaneous transactions can either be payments or earnings, such as purchases of
-stationary or advertisement revenue.</p>
-</div>
-<div class="paragraph">
-<p>Payments are not deleted when <code>teacher</code>, <code>student</code> and <code>admin</code> deleted. This is because the the Finance needs to record
-history transactions/ payments. A <code>student</code>, teacher` or <code>admin</code> can be deleted from the system because they no longer
-work or study here. But for all payments in the history need to be kept for tracking purposes (<code>expenses</code> and <code>earnings</code>).
-If the user input a Finance by mistake, he has to delete it manually.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">2.7. [Proposed] Undo/Redo feature</a></h3>
-<div class="sect3">
-<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">2.7.1. Proposed Implementation</a></h4>
-<div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
-It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
-Additionally, it implements the following operations:</p>
+<p>We are using <code>java.util.logging</code> package for logging.
+The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>VersionedAddressBook#commit()</code>&#8201;&#8212;&#8201;Saves the current address book state in its history.</p>
-</li>
-<li>
-<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous address book state from its history.</p>
-</li>
-<li>
-<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone address book state from its history.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> and <code>Model#redoAddressBook()</code> respectively.</p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single address book state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoState0.png" alt="UndoRedoState0">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoState1.png" alt="UndoRedoState1">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoState2.png" alt="UndoRedoState2">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the address book state will not be saved into the <code>addressBookStateList</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoState3.png" alt="UndoRedoState3">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoAddressBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the address book to that state.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoState4.png" alt="UndoRedoState4">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoState5.png" alt="UndoRedoState5">
-</div>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/CommitActivityDiagram.png" alt="CommitActivityDiagram">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">2.7.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire address book.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement.</p>
-</li>
-<li>
-<p>Cons: May have performance issues in terms of memory usage.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
-</li>
-<li>
-<p>Cons: We must ensure that the implementation of each individual command are correct.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
-</li>
-<li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedAddressBook</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.</p>
-</li>
-<li>
-<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">2.8. [Proposed] Data Encryption</a></h3>
-<div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">2.9. Logging</a></h3>
-<div class="paragraph">
-<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 2.10, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 2.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1452,7 +1103,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">2.10. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">2.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1727,8 +1378,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <p>User inputs an 'add assignment' command with name and deadline</p>
 </li>
 <li>
-<p>CCX adds the assignment into the system
-+ Use case ends.</p>
+<p>CCX adds the assignment into the system + Use case ends.</p>
 </li>
 </ol>
 </div>
@@ -1738,7 +1388,11 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. No name/deadline is provided.</p>
+<p>1a.
+No name/deadline is provided.</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -1746,19 +1400,21 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>1b.
+The Date deadline is wrongly formatted.</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>1b. The Date deadline is wrongly formatted.</p>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>1b1. CCX shows an error message.</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -1785,7 +1441,8 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. List is empty.</p>
+<p>1a.
+List is empty.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1917,6 +1574,9 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <ul class="none">
 <li>
 <p>3a. assignmentID does not exist.</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -1924,12 +1584,17 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>3b.
+New deadline provided is not properly formatted.</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>3b. New deadline provided is not properly formatted.</p>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -1937,21 +1602,23 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>3c.
+No new details are provided.</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>3c. No new details are provided.</p>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>3c1. CCX shows an error message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
-</div>
-</li>
-</ul>
 </div>
 </li>
 </ul>
@@ -1992,6 +1659,9 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <ul class="none">
 <li>
 <p>4a. assignmentID does not exist.</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -1999,21 +1669,22 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>4b. courseID does not exist.</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>4b. courseID does not exist.</p>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>4b1. CCX shows an error message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
-</div>
-</li>
-</ul>
 </div>
 </li>
 </ul>
@@ -2053,7 +1724,11 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a. Any one of the assignmentID does not exist.</p>
+<p>4a.
+Any one of the assignmentID does not exist.</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -2061,21 +1736,22 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>4b. courseID does not exist.</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>4b. courseID does not exist.</p>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>4b1. CCX shows an error message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
-</div>
-</li>
-</ul>
 </div>
 </li>
 </ul>
@@ -2122,6 +1798,9 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <ul class="none">
 <li>
 <p>4a. studentID does not exist.</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -2129,21 +1808,22 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>4b. courseID does not exist.</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>4b. courseID does not exist.</p>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>4b1. CCX shows an error message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
-</div>
-</li>
-</ul>
 </div>
 </li>
 </ul>
@@ -2184,6 +1864,9 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <ul class="none">
 <li>
 <p>4a. studentID does not exist.</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -2191,12 +1874,16 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>4b. courseID does not exist.</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>4b. courseID does not exist.</p>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -2204,21 +1891,23 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>4c.
+Student is not assigned to the course.</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>4c. Student is not assigned to the course.</p>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>4c1. CCX shows an error message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
-</div>
-</li>
-</ul>
 </div>
 </li>
 </ul>
@@ -2253,15 +1942,15 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <ul class="none">
 <li>
 <p>2a. courseID does not exist.</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>2a1. CCX shows an error message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
-</div>
-</li>
-</ul>
 </div>
 </li>
 </ul>
@@ -2293,15 +1982,15 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <ul class="none">
 <li>
 <p>2a. progressID does not exist.</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>2a1. CCX shows an error message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
-</div>
-</li>
-</ul>
 </div>
 </li>
 </ul>
@@ -2316,8 +2005,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <p>User inputs an 'add finance' command with name and amount</p>
 </li>
 <li>
-<p>CCX adds the finance into the system
-+ Use case ends.</p>
+<p>CCX adds the finance into the system + Use case ends.</p>
 </li>
 </ol>
 </div>
@@ -2327,7 +2015,11 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. No name/amount is provided.</p>
+<p>1a.
+No name/amount is provided.</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -2335,19 +2027,21 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>1b.
+The amount is wrongly formatted (such as containing a non-number character).</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>1b. The amount is wrongly formatted (such as containing a non-number character).</p>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>1b1. CCX shows an error message.</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -2374,7 +2068,8 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. List is empty.</p>
+<p>1a.
+List is empty.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2506,6 +2201,9 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <ul class="none">
 <li>
 <p>3a. financeID does not exist.</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -2513,12 +2211,17 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>3b.
+New finance provided is not properly formatted (such as containing a non-number character).</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>3b. New finance provided is not properly formatted (such as containing a non-number character).</p>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -2526,21 +2229,23 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>3c.
+No new details are provided.</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>3c. No new details are provided.</p>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>3c1. CCX shows an error message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
-</div>
-</li>
-</ul>
 </div>
 </li>
 </ul>
@@ -2566,13 +2271,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <ul class="none">
 <li>
 <p>1a. studentID does not exist</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>1a1. CCX shows an error message</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -2601,23 +2306,23 @@ Use case end</p>
 <ul class="none">
 <li>
 <p>1a. studentID does not exist</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>1a1. CCX shows an error message</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>2a. no payments exists</p>
 <div class="ulist">
 <ul>
 <li>
-<p>2a1. CCX shows a message saying no payment list found</p>
+<p>2a. no payments exists</p>
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>2a1. CCX shows a message saying no payment list found</p>
 </li>
 </ul>
 </div>
@@ -2646,13 +2351,13 @@ Use case ends</p>
 <ul class="none">
 <li>
 <p>1a. studentID does not exist</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>1a1. CCX shows an error message</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -2677,14 +2382,15 @@ Use case ends</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. No on going courses available</p>
+<p>1a.
+No on going courses available</p>
+</li>
+</ul>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>1a1. CCX shows an empty list of courses</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -2709,7 +2415,8 @@ Use case ends</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. No student in the database</p>
+<p>1a.
+No student in the database</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2964,15 +2671,13 @@ Expected: Shows the GUI with a set of sample contacts. The window size may not b
 </li>
 <li>
 <p>Re-launch the app by double-clicking the jar file.<br>
-Expected: The most recent window size and location is retained.</p>
+   Expected: The most recent window size and location is retained.
+<em>{ more test cases &#8230;&#8203; }</em></p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
 <div class="sect2">
@@ -2988,11 +2693,15 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 <li>
 <p>Test case: <code>delete 1</code><br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+   Expected: First contact is deleted from the list.
+Details of the deleted contact shown in the status message.
+Timestamp in the status bar is updated.</p>
 </li>
 <li>
 <p>Test case: <code>delete 0</code><br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
+   Expected: No person is deleted.
+Error details shown in the status message.
+Status bar remains the same.</p>
 </li>
 <li>
 <p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
@@ -3016,21 +2725,19 @@ Expected: Similar to previous.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
+<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em>
+<em>{ more test cases &#8230;&#8203; }</em></p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation-4"><a class="link" href="#implementation-4">Appendix H: Implementation</a></h2>
+<h2 id="implementation-2"><a class="link" href="#implementation-2">Appendix H: Implementation</a></h2>
 <div class="sectionbody">
 <h3 id="assigning-linking-2-entities" class="discrete">Assigning/ linking 2 entities</h3>
 <div class="paragraph">
@@ -3044,15 +2751,15 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 18. Structure of Commands and Parser</div>
+<div class="title">Figure 16. Structure of Commands and Parser</div>
 </div>
 <div class="sect2">
-<h3 id="design-considerations-2"><a class="link" href="#design-considerations-2">H.1. Design considerations:</a></h3>
+<h3 id="design-considerations"><a class="link" href="#design-considerations">H.1. Design considerations:</a></h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Since all assign commands are just linking between two entities, where each of them is distinguised based on
-its ID and its entity name (e.g course, student, teacher, etc). So we have AssignDescriptor which stores this information.</p>
+<p>Since all assign commands are just linking between two entities, where each of them is distinguised based on its ID and its entity name (e.g course, student, teacher, etc).
+So we have AssignDescriptor which stores this information.</p>
 </li>
 <li>
 <p>A factory design pattern to select which assign command based on the AssignDescriptor content.</p>
@@ -3061,4 +2768,4 @@ its ID and its entity name (e.g course, student, teacher, etc). So we have Assig
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 16:16:02 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 18:00:46 UTC</div></div></div></body></html>

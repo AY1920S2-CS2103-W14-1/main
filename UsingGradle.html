@@ -3,7 +3,8 @@
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Using Gradle</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://gradle.org/">Gradle</a> is a build automation tool. It can automate build-related tasks such as</p>
+<p><a href="https://gradle.org/">Gradle</a> is a build automation tool.
+It can automate build-related tasks such as</p>
 </div>
 <div class="ulist">
 <ul>
@@ -39,7 +40,8 @@ To learn more about gradle build scripts, refer <a href="https://docs.gradle.org
 <h2 id="running-gradle-commands"><a class="link" href="#running-gradle-commands">Running Gradle Commands</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To run a Gradle command, open a command window on the project folder and enter the Gradle command. Gradle commands look like this:</p>
+<p>To run a Gradle command, open a command window on the project folder and enter the Gradle command.
+Gradle commands look like this:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -85,7 +87,11 @@ Deletes the files created during the previous build tasks (e.g. files in the <co
 </td>
 <td class="content">
 <strong><code>clean</code> to force Gradle to execute a task</strong>:<br>
-When running a Gradle task, Gradle will try to figure out if the task needs running at all. If Gradle determines that the output of the task will be same as the previous time, it will not run the task. For example, it will not build the JAR file again if the relevant source files have not changed since the last time the JAR file was built. If we want to force Gradle to run a task, we can combine that task with <code>clean</code>. Once the build files have been <code>clean</code> ed, Gradle has no way to determine if the output will be same as before, so it will be forced to execute the task.
+When running a Gradle task, Gradle will try to figure out if the task needs running at all.
+If Gradle determines that the output of the task will be same as the previous time, it will not run the task.
+For example, it will not build the JAR file again if the relevant source files have not changed since the last time the JAR file was built.
+If we want to force Gradle to run a task, we can combine that task with <code>clean</code>.
+Once the build files have been <code>clean</code> ed, Gradle has no way to determine if the output will be same as before, so it will be forced to execute the task.
 </td>
 </tr>
 </table>
@@ -119,7 +125,9 @@ e.g. <code>./gradlew clean shadowJar</code></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<strong>Why do we create a fat JAR?</strong> If we package only our own class files into the JAR file, it will not work properly unless the user has all the other JAR files (i.e. third party libraries) our classes depend on, which is rather inconvenient. Therefore, we package all dependencies into a single JAR files, creating what is also known as a <em>fat</em> JAR file. To create a fat JAR file, we use the Gradle plugin <a href="https://github.com/johnrengelman/shadow">shadow jar</a>.
+<strong>Why do we create a fat JAR?</strong> If we package only our own class files into the JAR file, it will not work properly unless the user has all the other JAR files (i.e. third party libraries) our classes depend on, which is rather inconvenient.
+Therefore, we package all dependencies into a single JAR files, creating what is also known as a <em>fat</em> JAR file.
+To create a fat JAR file, we use the Gradle plugin <a href="https://github.com/johnrengelman/shadow">shadow jar</a>.
 </td>
 </tr>
 </table>
@@ -133,11 +141,13 @@ e.g. <code>./gradlew clean shadowJar</code></p>
 <ul>
 <li>
 <p><strong><code>asciidoctor</code></strong><br>
-Converts AsciiDoc files in <code>docs</code> to HTML format. Generated HTML files can be found in <code>build/docs</code>.</p>
+Converts AsciiDoc files in <code>docs</code> to HTML format.
+Generated HTML files can be found in <code>build/docs</code>.</p>
 </li>
 <li>
 <p><strong><code>deployOfflineDocs</code></strong><br>
-Updates the offline user guide, and its associated files, used by the Help window in the application. Deployed HTML files and images can be found in <code>src/main/resources/docs</code>.</p>
+Updates the offline user guide, and its associated files, used by the Help window in the application.
+Deployed HTML files and images can be found in <code>src/main/resources/docs</code>.</p>
 </li>
 </ul>
 </div>
@@ -176,7 +186,8 @@ Runs the code style check for the test code base</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The set of code style rules implemented can be found in <code>config/checkstyle/checkstyle.xml</code>. To enable <em>exceptions</em> to code styles, add in the comment <code>//CODESTYLE.OFF: RuleName</code> at the start of the section and <code>//CODESTYLE.ON: RuleName</code> at the end of the section.</p>
+<p>The set of code style rules implemented can be found in <code>config/checkstyle/checkstyle.xml</code>.
+To enable <em>exceptions</em> to code styles, add in the comment <code>//CODESTYLE.OFF: RuleName</code> at the start of the section and <code>//CODESTYLE.ON: RuleName</code> at the end of the section.</p>
 </div>
 </div>
 </div>
@@ -228,4 +239,4 @@ See <code>build.gradle</code> &#8594; <code>allprojects</code> &#8594; <code>dep
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 16:16:02 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 18:00:46 UTC</div></div></div></body></html>
