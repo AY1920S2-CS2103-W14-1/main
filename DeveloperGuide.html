@@ -11,10 +11,10 @@
 <ul class="sectlevel1">
 <li><a href="#setting-up">1. Setting up</a>
 <ul class="sectlevel2">
-<li><a href="#Design-Architecture">1.1. Architecture</a></li>
+<li><a href="#Design-Architecture">1.1. Architecture (HIEU)</a></li>
 <li><a href="#Design-Ui">1.2. View/UI component [NEED TO UPDATE]</a></li>
 <li><a href="#Design-Logic">1.3. ViewController/Logic component [NEED TO UPDATE]</a></li>
-<li><a href="#Design-ViewController">1.4. ViewModel component [NEED TO UPDATE]</a></li>
+<li><a href="#Design-ViewController">1.4. ViewModel component (HIEU)</a></li>
 <li><a href="#Design-Model">1.5. Model component [NEED TO UPDATE]</a></li>
 <li><a href="#Design-Storage">1.6. Storage component [NEED TO UPDATE]</a></li>
 <li><a href="#Design-Commons">1.7. Common classes</a></li>
@@ -24,15 +24,14 @@
 <ul class="sectlevel2">
 <li><a href="#command-handling-by-managers">2.1. Command Handling by Managers</a></li>
 <li><a href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course</a></li>
-<li><a href="#undo-redo">2.3. Undo/Redo</a></li>
-<li><a href="#view-switching">2.4. View Switching</a></li>
-<li><a href="#proposed-tracking-student-progress-feature">2.5. [Proposed] Tracking Student Progress Feature</a></li>
-<li><a href="#managing-staff-feature">2.6. Managing Staff Feature</a></li>
-<li><a href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.7. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></li>
-<li><a href="#proposed-undo-redo-feature">2.8. [Proposed] Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">2.9. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">2.10. Logging</a></li>
-<li><a href="#Implementation-Configuration">2.11. Configuration</a></li>
+<li><a href="#undo-redo-hieu">2.3. Undo/Redo (HIEU)</a></li>
+<li><a href="#proposed-tracking-student-progress-feature">2.4. [Proposed] Tracking Student Progress Feature</a></li>
+<li><a href="#managing-staff-feature">2.5. Managing Staff Feature</a></li>
+<li><a href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.6. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></li>
+<li><a href="#proposed-undo-redo-feature">2.7. [Proposed] Undo/Redo feature</a></li>
+<li><a href="#proposed-data-encryption">2.8. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">2.9. Logging</a></li>
+<li><a href="#Implementation-Configuration">2.10. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">3. Documentation</a></li>
@@ -53,7 +52,7 @@
 </li>
 <li><a href="#implementation-4">Appendix H: Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#design-considerations-3">H.1. Design considerations:</a></li>
+<li><a href="#design-considerations-2">H.1. Design considerations:</a></li>
 </ul>
 </li>
 </ul>
@@ -66,7 +65,7 @@
 <p>Refer to the guide <a href="SettingUp.html">here</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">1.1. Architecture</a></h3>
+<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">1.1. Architecture (HIEU)</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ArchitectureNewDiagram.png" alt="ArchitectureNewDiagram">
@@ -345,17 +344,29 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-ViewController"><a class="link" href="#Design-ViewController">1.4. ViewModel component [NEED TO UPDATE]</a></h3>
+<h3 id="Design-ViewController"><a class="link" href="#Design-ViewController">1.4. ViewModel component (HIEU)</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/ViewModelDiagram.png" alt="ViewModelDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong>: <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/viewmodel/ViewModel.java"><code>ViewModel.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>ViewModel</code>,</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>mainly talk about detail manager</p>
+<p>stores a list of <code>observableMap</code>, each map will corresponds to one <code>DetailPanel</code> in ui folder.</p>
 </li>
 <li>
-<p>blah blah blah</p>
+<p>Each <code>DetailPanel</code> (in MainWindow) will listen to the <code>ViewModel</code> through the Logic layer.</p>
 </li>
 <li>
-<p>blah blah blah</p>
+<p>the <code>ViewModel</code> will then query the managers from <code>Model</code> layer to update its
+observableMap, which in turn will automatically update the corresponding <code>DetailPanel</code> view.</p>
 </li>
 </ul>
 </div>
@@ -866,7 +877,7 @@ The table below shows the involvement of 3 managers with regards to each variant
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo"><a class="link" href="#undo-redo">2.3. Undo/Redo</a></h3>
+<h3 id="undo-redo-hieu"><a class="link" href="#undo-redo-hieu">2.3. Undo/Redo (HIEU)</a></h3>
 <div class="paragraph">
 <p>Currently we only support undo/redo for commands that modify the storage (or state of
 the app). I.e add / delete, assign / unassign, edit commands.</p>
@@ -1004,48 +1015,66 @@ is opposite to this DeleteCommand) with toAdd Object is a clone of toDelete Obje
 <div class="paragraph">
 <p>When <code>undo</code> and <code>redo</code> commands are executed, the process is carried out as described above.</p>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="view-switching"><a class="link" href="#view-switching">2.4. View Switching</a></h3>
 <div class="paragraph">
-<p>Explain select command</p>
+<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+=== View Switching (HIEU)
+To see sub-view details of each section we can issue a select command.</p>
 </div>
 <div class="paragraph">
-<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-</div>
-<div class="paragraph">
-<p>All assign command variants (i.e <code>AssignTeacherToCourseCommand</code>, <code>AssignStudentToCourseCommand</code> extends from <code>AssignCommandBase</code>
-instead of the abstract <code>Command</code> class.</p>
-</div>
-<div class="paragraph">
-<p>The diagram below shows a simplified flow</p>
+<p>Let&#8217;s see an example of how selecting sub-view data of a student 1 works.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
+<img src="images/ViewSwitchFlowDiagram.png" alt="ViewSwitchFlowDiagram">
 </div>
-<div class="title">Figure 15. Structure of Commands and Parser</div>
 </div>
-<div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">2.4.1. Design considerations:</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p>Since all assign commands are just linking between two entities, where each of them is distinguised based on
-its ID and its entity name (e.g course, student, teacher, etc). So we have AssignDescriptor which stores this information.</p>
+<p>1/ A <code>select sid/ 1</code> command is issued to <code>ViewController</code></p>
 </li>
 <li>
-<p>A factory design pattern to select which assign command based on the AssignDescriptor content.</p>
+<p>2/ <code>ViewController</code>  will call <code>ViewModel</code> method <code>updateStudentDetailsMap</code></p>
+</li>
+<li>
+<p>3/ In turn, that method will invoke managers from <code>Model</code> layer, for example <code>ModelManager</code>,
+to update <code>observableStudentDetailMap</code> inside <code>ViewModel</code></p>
+</li>
+<li>
+<p>4/ Because <code>StudentDetailsMap</code> implements an <code>onChange</code> function that
+listen to update in <code>observableStudentDetailMap</code>, the UI part will be updated correspondingly
+with data of this student 1.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Design considerations:</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1/ Automatically updating the UI sub-view when the app state changes. Let&#8217;s say the current sub-view
+shown in the UI is of the details of student 1, then some information of the course of that
+student is changed, or the student is removed from the course, the UI should update immediately
+without the need to issue the click command again. To support that, our <code>ViewModel</code> will listen to <code>EventsCenter</code> , then whenever
+an event of <code>DataStorageChangeEvent</code> or <code>DeleteEntitySyncEvent</code> happens, it will check
+which <code>observableMap</code> (which corresponds to different <code>DetailedView</code>) is active then
+do the query again.</p>
+</li>
+<li>
+<p>2/ Lazy loading: For example, when seeing details of the students, we only want to show the courses
+that the students have without the progresses of this course that the student currently have.
+To query that, after executing <code>select sid/ student_id</code>, the user needs to run
+<code>select sid/ student_id cid/ course-id</code> as well</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-tracking-student-progress-feature"><a class="link" href="#proposed-tracking-student-progress-feature">2.5. [Proposed] Tracking Student Progress Feature</a></h3>
+<h3 id="proposed-tracking-student-progress-feature"><a class="link" href="#proposed-tracking-student-progress-feature">2.4. [Proposed] Tracking Student Progress Feature</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">2.5.1. Proposed Implementation</a></h4>
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">2.4.1. Proposed Implementation</a></h4>
 <div class="paragraph">
 <p>This feature is implemented with two main classes - <code>Progress</code> and <code>Assignment</code>, both of which is controlled by a
 'ProgressAddressBook' and 'AssignmentAddressBook' respectively. Please see the following class diagram
@@ -1055,7 +1084,7 @@ which proposes the associations between the four classes.</p>
 <div class="content">
 <img src="images/AssignmentAndProgressClassDiagram.png" alt="AssignmentAndProgressClassDiagram">
 </div>
-<div class="title">Figure 16. Class diagram of Assignment and Progress</div>
+<div class="title">Figure 15. Class diagram of Assignment and Progress</div>
 </div>
 <div class="paragraph">
 <p>Besides the basic CRUD operations for <code>Progress</code> and <code>Assignment</code>, one of they key
@@ -1071,7 +1100,7 @@ Please see the sequence diagram for a better understanding.</p>
 <div class="content">
 <img src="images/AssignStudentToCourseDiagram.png" alt="AssignStudentToCourseDiagram">
 </div>
-<div class="title">Figure 17. Sequence diagram of how Progress objects are created automatically</div>
+<div class="title">Figure 16. Sequence diagram of how Progress objects are created automatically</div>
 </div>
 <div class="paragraph">
 <p>Future Functionality Include</p>
@@ -1095,9 +1124,9 @@ Please see the sequence diagram for a better understanding.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="managing-staff-feature"><a class="link" href="#managing-staff-feature">2.6. Managing Staff Feature</a></h3>
+<h3 id="managing-staff-feature"><a class="link" href="#managing-staff-feature">2.5. Managing Staff Feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">2.6.1. Implementation</a></h4>
+<h4 id="implementation-2"><a class="link" href="#implementation-2">2.5.1. Implementation</a></h4>
 <div class="paragraph">
 <p>This feature is implemented with the main classes - <code>Staff</code>, with a permission level specifying <code>Teacher</code> and <code>Admin</code>.</p>
 </div>
@@ -1128,9 +1157,9 @@ is taken from the salary of the teacher. The payment will automatically have rec
 </div>
 </div>
 <div class="sect2">
-<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.7. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></h3>
+<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.6. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></h3>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">2.7.1. Implementation</a></h4>
+<h4 id="implementation-3"><a class="link" href="#implementation-3">2.6.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue. Teacher payments are tracked by courses, where the teacher is paid for each course taught. Student earnings are also tracked by courses, where the student pays for each course taken.</p>
 </div>
@@ -1138,7 +1167,7 @@ is taken from the salary of the teacher. The payment will automatically have rec
 <div class="content">
 <img src="images/FinanceDiagram.png" alt="FinanceDiagram">
 </div>
-<div class="title">Figure 18. Class diagram of CourseStudent and CourseTeacher</div>
+<div class="title">Figure 17. Class diagram of CourseStudent and CourseTeacher</div>
 </div>
 <div class="paragraph">
 <p>Finance type <code>CourseStudent</code> or <code>cs</code> add command will access <code>CourseAddressBook</code> and <code>StudentAddressBook</code> to ensure <code>Course</code> and
@@ -1165,9 +1194,9 @@ If the user input a Finance by mistake, he has to delete it manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">2.8. [Proposed] Undo/Redo feature</a></h3>
+<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">2.7. [Proposed] Undo/Redo feature</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">2.8.1. Proposed Implementation</a></h4>
+<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">2.7.1. Proposed Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -1309,7 +1338,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">2.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">2.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1379,20 +1408,20 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">2.9. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">2.8. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">2.10. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">2.9. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 2.11, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 2.10, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1423,7 +1452,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">2.11. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">2.10. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3015,10 +3044,10 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 19. Structure of Commands and Parser</div>
+<div class="title">Figure 18. Structure of Commands and Parser</div>
 </div>
 <div class="sect2">
-<h3 id="design-considerations-3"><a class="link" href="#design-considerations-3">H.1. Design considerations:</a></h3>
+<h3 id="design-considerations-2"><a class="link" href="#design-considerations-2">H.1. Design considerations:</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3032,4 +3061,4 @@ its ID and its entity name (e.g course, student, teacher, etc). So we have Assig
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 14:14:20 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 16:16:02 UTC</div></div></div></body></html>
