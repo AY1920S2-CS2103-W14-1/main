@@ -27,8 +27,8 @@
 <li><a href="#undo-redo">2.3. Undo/Redo</a></li>
 <li><a href="#view-switching">2.4. View Switching</a></li>
 <li><a href="#proposed-tracking-student-progress-feature">2.5. [Proposed] Tracking Student Progress Feature</a></li>
-<li><a href="#proposed-managing-teacher-and-staff-feature">2.6. [Proposed] Managing Teacher and Staff Feature</a></li>
-<li><a href="#proposed-tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.7. [Proposed] Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></li>
+<li><a href="#managing-staff-feature">2.6. Managing Staff Feature</a></li>
+<li><a href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.7. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></li>
 <li><a href="#proposed-undo-redo-feature">2.8. [Proposed] Undo/Redo feature</a></li>
 <li><a href="#proposed-data-encryption">2.9. [Proposed] Data Encryption</a></li>
 <li><a href="#logging">2.10. Logging</a></li>
@@ -51,7 +51,7 @@
 <li><a href="#saving-data">G.3. Saving data</a></li>
 </ul>
 </li>
-<li><a href="#implementation-2">Appendix H: Implementation</a>
+<li><a href="#implementation-4">Appendix H: Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#design-considerations-3">H.1. Design considerations:</a></li>
 </ul>
@@ -889,7 +889,7 @@ template pattern.</p>
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">abstract</span> <span class="type">class</span> <span class="class">UndoableCommand</span> <span class="directive">extends</span> Command {
     <span class="directive">public</span> <span class="directive">abstract</span> <span class="type">void</span> preprocessUndoableCommand() {}
 
-    <span class="directive">public</span> <span class="directive">abstract</span> <span class="type">void</span> generateOppositeUndoableCommand()
+    <span class="directive">public</span> <span class="directive">abstract</span> <span class="type">void</span> generateOppositeUndoableCommand();
 
     <span class="directive">public</span> CommandResult executeUndoableCommand();
     <span class="annotation">@Override</span>
@@ -955,7 +955,22 @@ Pros: Reduce a lot of memory issue.</p>
 </div>
 <div class="sect3">
 <h4 id="opposite-command-for-edit"><a class="link" href="#opposite-command-for-edit">2.3.1. Opposite Command for edit</a></h4>
-
+<div class="paragraph">
+<p>Edit command extends from abstract class UndoableCommand. Thus, user can undo/ redo this command.</p>
+</div>
+<div class="paragraph">
+<p>In EditCommand class, method <code>preprocessUndoableCommand</code> to get the toEdit Object and edited Object.</p>
+</div>
+<div class="paragraph">
+<p>Method <code>executeUndoableCommand</code> will set the toEdit Object in the ObjectAddressBook to the edited Object.</p>
+</div>
+<div class="paragraph">
+<p>Method <code>generateOppositeCommand()</code> will generate another <code>EditCommand</code> (which
+is opposite to this EditCommand) with editing information of the original toEdit Object and push it to undoStack.</p>
+</div>
+<div class="paragraph">
+<p>When <code>undo</code> and <code>redo</code> commands are executed, the process is carried out as described above.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="opposite-command-for-assign-unassign"><a class="link" href="#opposite-command-for-assign-unassign">2.3.2. Opposite command for assign/ unassign</a></h4>
@@ -963,7 +978,32 @@ Pros: Reduce a lot of memory issue.</p>
 </div>
 <div class="sect3">
 <h4 id="opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities"><a class="link" href="#opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities">2.3.3. Opposite command for add/ delete (and maintain the corresponding links between entities)</a></h4>
-
+<div class="paragraph">
+<p><code>AddCommand</code> and <code>DeleteCommand</code> extends from abstract class UndoableCommand. Thus, user can undo/ redo this command.</p>
+</div>
+<div class="paragraph">
+<p>In <code>AddCommand</code> class, method <code>preprocessUndoableCommand</code> get the toAdd Object and an index (if available).</p>
+</div>
+<div class="paragraph">
+<p>Method <code>executeUndoableCommand</code> will add the toAdd Object to the ObjectAddressBook.</p>
+</div>
+<div class="paragraph">
+<p>Method <code>generateOppositeCommand()</code> will generate a <code>DeleteCommand</code> (which
+is opposite to this AddCommand) with toDelete Object is a clone of toAdd Object and push it to undoStack.</p>
+</div>
+<div class="paragraph">
+<p>In <code>DeleteCommand</code> class, method <code>preprocessUndoableCommand</code> get the toDelete Object and its index.</p>
+</div>
+<div class="paragraph">
+<p>Method <code>executeUndoableCommand</code> will delete this toDelete Object from the ObjectAddressBook.</p>
+</div>
+<div class="paragraph">
+<p>Method <code>generateOppositeCommand()</code> will generate an <code>AddCommand</code> (which
+is opposite to this DeleteCommand) with toAdd Object is a clone of toDelete Object and push it to undoStack.</p>
+</div>
+<div class="paragraph">
+<p>When <code>undo</code> and <code>redo</code> commands are executed, the process is carried out as described above.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1055,35 +1095,44 @@ Please see the sequence diagram for a better understanding.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-managing-teacher-and-staff-feature"><a class="link" href="#proposed-managing-teacher-and-staff-feature">2.6. [Proposed] Managing Teacher and Staff Feature</a></h3>
+<h3 id="managing-staff-feature"><a class="link" href="#managing-staff-feature">2.6. Managing Staff Feature</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">2.6.1. Proposed implementation</a></h4>
+<h4 id="implementation-2"><a class="link" href="#implementation-2">2.6.1. Implementation</a></h4>
 <div class="paragraph">
-<p>This feature is implemented with two main classes - <code>Teacher</code> and <code>Staff</code>.</p>
+<p>This feature is implemented with the main classes - <code>Staff</code>, with a permission level specifying <code>Teacher</code> and <code>Admin</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Staff</span> <span class="directive">extends</span> ModelObject {
+    <span class="directive">public</span> <span class="type">enum</span> <span class="predefined-type">Level</span> {
+        TEACHER,
+        ADMIN
+    }
+    <span class="comment">//...</span>
+}</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>One of the features is to take note of all the <code>classes</code> that a <code>teacher</code> has taught. When a course is marked as done, the class is automatically added into <code>teacher</code> list of taught course.</p>
+<p>One of the features is to display all the <code>courses</code> that a <code>teacher</code> is teaching.</p>
 </div>
 <div class="paragraph">
-<p>Another feature is to keep track of salary payment for <code>Teacher</code> and <code>Staff</code>. Both <code>teacher</code> and <code>staff</code> are paid by monthly or by their amount of work. If paying based on amount of work, a <code>teacher</code> is paid
-through the <code>course</code> he teaches and a <code>staff</code> is paid by miscellaneous payments.</p>
+<p>Another feature is to keep track of salary payment for <code>teacher</code>. A <code>teacher</code> is paid by teaching a course and the amount
+is taken from the salary of the teacher. The payment will automatically have records of respective course and teacher ID.</p>
 </div>
 <div class="paragraph">
-<p>Certain approaches have some certain pros and cons. It depends on how the user want to pay to <code>teacher</code> and <code>staff</code>.</p>
+<p>To pay for <code>admin</code>, user has to do it manually using miscellaneous <code>FinanceType</code>.</p>
+</div>
+<div class="paragraph">
+<p>Certain approaches have some certain pros and cons. It depends on how the user want to keep track of payment and method to pay to <code>teacher</code> and <code>admin</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings"><a class="link" href="#proposed-tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.7. [Proposed] Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></h3>
+<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.7. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation-3"><a class="link" href="#proposed-implementation-3">2.7.1. Proposed Implementation</a></h4>
+<h4 id="implementation-3"><a class="link" href="#implementation-3">2.7.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue. Teacher payments are tracked by courses, where the teacher is paid for each course taught. Student earnings are also tracked by courses, where the student pays for each course taken.</p>
-</div>
-<div class="paragraph">
-<p>This feature is implemented with two main classes - <code>CourseStudent</code> and <code>CourseTeacher</code>, both of which is controlled by a
-<code>CourseStudentAddressBook</code> and <code>CourseTeacherAddressBook</code> respectively. Please see the following class diagram
-which proposes the associations between the four classes.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1092,23 +1141,33 @@ which proposes the associations between the four classes.</p>
 <div class="title">Figure 18. Class diagram of CourseStudent and CourseTeacher</div>
 </div>
 <div class="paragraph">
-<p><code>CourseStudent</code> will be created and stored in <code>CourseStudentAddressBook</code> whenever a course is assigned to a student, ensuring that <code>Course</code> exists in <code>CourseAddressBook</code> and <code>Student</code> exists in <code>StudentAddressBook</code>.</p>
+<p>Finance type <code>CourseStudent</code> or <code>cs</code> add command will access <code>CourseAddressBook</code> and <code>StudentAddressBook</code> to ensure <code>Course</code> and
+<code>Student</code> exist and make sure this student is taking this course. The <code>Amount</code> is set to the amount of the <code>Course</code>
+(student fee).</p>
 </div>
 <div class="paragraph">
-<p>Similarly, <code>CourseTeacher</code> will be created and added to <code>CourseTeacherAddressBook</code> whenever a course is assigned to a teacher, ensuring that <code>Course</code> exists in <code>CourseAddressBook</code> and <code>Teacher</code> exists in <code>TeacherAddressBook</code>.</p>
+<p>Finance type <code>CourseTeacher</code> or <code>ct</code> add command will access <code>CourseAddressBook</code> and <code>TeacherAddressBook</code> to ensure <code>Course</code> and
+<code>Teacher</code> exist and make sure this teacher is teaching this course. The <code>Amount</code> is set to the salary of the <code>Teacher</code>
+(teacher salary).</p>
 </div>
 <div class="paragraph">
-<p><code>PayCourseStudent</code> Command will access <code>CourseStudentAddressBook</code> to ensure that isPaid is false, before creating the corresponding <code>Finance</code> object to be stored in <code>FinanceAddressBook</code>. The is similar for <code>PayCourseTeacher</code> Command.</p>
+<p>Finance type <code>Miscellaneous</code> or <code>m</code> add command will create a corresponding <code>Finance</code> object to be stored in <code>FinanceAddressBook</code>.
+To pay for <code>Admin staff</code> and record other transactions, user has to manually add a miscellaneous <code>Finance</code>, specifying
+name (description), amount, and date. Miscellaneous transactions can either be payments or earnings, such as purchases of
+stationary or advertisement revenue.</p>
 </div>
 <div class="paragraph">
-<p><code>PayMiscellaneous</code> Command will create a corresponding <code>Finance</code> object to be stored in <code>FinanceAddressBook</code>.</p>
+<p>Payments are not deleted when <code>teacher</code>, <code>student</code> and <code>admin</code> deleted. This is because the the Finance needs to record
+history transactions/ payments. A <code>student</code>, teacher` or <code>admin</code> can be deleted from the system because they no longer
+work or study here. But for all payments in the history need to be kept for tracking purposes (<code>expenses</code> and <code>earnings</code>).
+If the user input a Finance by mistake, he has to delete it manually.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">2.8. [Proposed] Undo/Redo feature</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation-4"><a class="link" href="#proposed-implementation-4">2.8.1. Proposed Implementation</a></h4>
+<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">2.8.1. Proposed Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -2942,7 +3001,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation-2"><a class="link" href="#implementation-2">Appendix H: Implementation</a></h2>
+<h2 id="implementation-4"><a class="link" href="#implementation-4">Appendix H: Implementation</a></h2>
 <div class="sectionbody">
 <h3 id="assigning-linking-2-entities" class="discrete">Assigning/ linking 2 entities</h3>
 <div class="paragraph">
@@ -2973,4 +3032,4 @@ its ID and its entity name (e.g course, student, teacher, etc). So we have Assig
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 13:00:46 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 14:14:20 UTC</div></div></div></body></html>
