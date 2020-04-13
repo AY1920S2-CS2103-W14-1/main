@@ -49,6 +49,8 @@
 <li><a href="#deleting-a-student">G.2. Deleting a student</a></li>
 <li><a href="#assign-a-student-to-a-course">G.3. Assign a student to a course</a></li>
 <li><a href="#undo-deleting-a-student">G.4. Undo deleting a student</a></li>
+<li><a href="#assign-a-staff-to-a-course">G.5. Assign a staff to a course</a></li>
+<li><a href="#unassign-a-student-from-a-course">G.6. UnAssign a student from a course</a></li>
 </ul>
 </li>
 <li><a href="#effort">Appendix H: Effort</a></li>
@@ -3286,6 +3288,77 @@ Expected: Error throws saying no commands that are redo/undoable. (No CRUD comma
 </li>
 </ol>
 </div>
+</div>
+<div class="sect2">
+<h3 id="assign-a-staff-to-a-course"><a class="link" href="#assign-a-staff-to-a-course">G.5. Assign a staff to a course</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Assign a staff to teach a course.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all course using the <code>list-course</code> command. Select to view the course that is supposed to be assigned a Staff.</p>
+</li>
+<li>
+<p>Test Case: (Example) <code>assign tid/16100 cid/55160</code><br>
+    Expected ID 16100 of Staff is added into Assigned Staff field of the course and the course ID 55160 is added into Assigned Course field of Staff.
+Status bar is updated accordingly.</p>
+</li>
+<li>
+<p>Test case: <code>assign tid/17100 cid/55160</code> (Staff ID 17100 level is Admin)<br>
+    Expected no Staff is assigned to teach the course.
+Error details show in the status message saying admin Staff cannot teach a course.
+Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect commands to try: <code>assign</code> a Teacher Staff to a course that already have another teacher assigned <em>{give more}</em><br>
+   Expected: no Staff is assigned to teach this course.
+Error details show in the status message saying a course can only have 1 Staff assigned.
+Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unassign-a-student-from-a-course"><a class="link" href="#unassign-a-student-from-a-course">G.6. UnAssign a student from a course</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Unassign a student from a course.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all course using the <code>list-course</code> command. Select to view the course that is supposed to be assigned a Staff.</p>
+</li>
+<li>
+<p>Test Case: (Example) <code>unassign sid/16100 cid/55160</code><br>
+    Expected ID 16100 of Student is removed from Assigned Students in Course and ID 55160 of Course is removed from Assigned Course in Student.
+Moreover, all the assignments (progresses) assigned to Student 16100 that belongs to Course 55160 are also removed.
+Status bar is updated accordingly.</p>
+</li>
+<li>
+<p>Test case: <code>unassign sid/17100 cid/55160</code>  (Student 17100 is not enrolled in course 55160)<br>
+    Expected no student is unassigned from a course.
+Error details show in the status message saying no such student is assigned to this course.
+Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect commands to try: <code>unassign</code> a student from a course that does not exist.
+Error details show in the status message saying cannot find a course with such ID.
+Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
 <div class="paragraph">
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
@@ -3336,4 +3409,4 @@ Undo and redo really increased the difficulty of the program significantly espec
 <p>Overall, we felt that our project was sufficiently more complex and more difficult as compared to AB3.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:40:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:44:25 UTC</div></div></div></body></html>
