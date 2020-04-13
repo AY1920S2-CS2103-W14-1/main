@@ -38,13 +38,14 @@
 <ul class="sectlevel3">
 <li><a href="#viewing-help-code-help-code">5.1.1. Viewing help : <code>help</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">5.1.2. Exiting the program : <code>exit</code></a></li>
-<li><a href="#undo-an-undoable-command-code-undo-code-redo-a-redoable-command-code-redo-code">5.1.3. Undo an undoable command : <code>undo</code>/Redo a redoable command : <code>redo</code></a></li>
-<li><a href="#assigning-unassigning-type-to-a-course-code-assign-code-or-code-unassign-code-respectively">5.1.4. Assigning/Unassigning -TYPE- to a Course : <code>assign</code> or <code>unassign</code> respectively</a></li>
-<li><a href="#select-a-student-staff-course-code-select-code-or-simply-click-the-bar">5.1.5. Select a Student/Staff/Course : <code>select</code> or simply click the bar</a></li>
-<li><a href="#switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code">5.1.6. Switch between tabs : <code>[CTRL] + [UP ARROW]</code>, <code>[CTRL] + [DOWN ARROW]</code> <code>m</code>, <code>s</code>, <code>t</code>, <code>c</code>, <code>f</code>, <code>a</code></a></li>
-<li><a href="#navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code">5.1.7. Navigate through your command history: <code>[UP ARROW]</code> or <code>[DOWN ARROW]</code></a></li>
-<li><a href="#saving-the-data">5.1.8. Saving the data</a></li>
-<li><a href="#clearing-all-the-data">5.1.9. Clearing all the data</a></li>
+<li><a href="#undo-command-code-undo-code">5.1.3. Undo Command: <code>undo</code></a></li>
+<li><a href="#redo-command-code-redo-code">5.1.4. Redo Command: <code>redo</code></a></li>
+<li><a href="#assigning-unassigning-type-to-a-course-code-assign-code-or-code-unassign-code-respectively">5.1.5. Assigning/Unassigning -TYPE- to a Course : <code>assign</code> or <code>unassign</code> respectively</a></li>
+<li><a href="#select-a-student-staff-course-code-select-code-or-simply-click-the-bar">5.1.6. Select a Student/Staff/Course : <code>select</code> or simply click the bar</a></li>
+<li><a href="#switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code">5.1.7. Switch between tabs : <code>[CTRL] + [UP ARROW]</code>, <code>[CTRL] + [DOWN ARROW]</code> <code>m</code>, <code>s</code>, <code>t</code>, <code>c</code>, <code>f</code>, <code>a</code></a></li>
+<li><a href="#navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code">5.1.8. Navigate through your command history: <code>[UP ARROW]</code> or <code>[DOWN ARROW]</code></a></li>
+<li><a href="#saving-the-data">5.1.9. Saving the data</a></li>
+<li><a href="#clearing-all-the-data">5.1.10. Clearing all the data</a></li>
 </ul>
 </li>
 <li><a href="#student">5.2. Student</a>
@@ -401,13 +402,125 @@ Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="undo-an-undoable-command-code-undo-code-redo-a-redoable-command-code-redo-code"><a class="link" href="#undo-an-undoable-command-code-undo-code-redo-a-redoable-command-code-redo-code">5.1.3. Undo an undoable command : <code>undo</code>/Redo a redoable command : <code>redo</code></a></h4>
+<h4 id="undo-command-code-undo-code"><a class="link" href="#undo-command-code-undo-code">5.1.3. Undo Command: <code>undo</code></a></h4>
+<div class="paragraph">
+<p>Set the app state back to the most recent undoableCommand.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>See the full list of undoable commands: all edit/add/delete/assign/unassign commands.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find-student hieu</code><br>
+<code>undo</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This will fail because <code>find-student</code> is not an undoableCommand.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-student 35853</code><br>
+<code>undo</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Undo the delete command of student and add the student back at the previous relative ordering too.</p>
+</div>
+<div class="paragraph">
+<p>Illustration:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undo_1.PNG" alt="undo 1">
+</div>
+</div>
+<div class="paragraph">
+<p>After <code>delete-student 35853</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undo_2.PNG" alt="undo 2">
+</div>
+</div>
+<div class="paragraph">
+<p>After <code>undo</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undo_3.png" alt="undo 3">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redo-command-code-redo-code"><a class="link" href="#redo-command-code-redo-code">5.1.4. Redo Command: <code>redo</code></a></h4>
+<div class="paragraph">
+<p>Reverses the most recent <code>undo</code> command, but will fail if the most recent command was not the <code>undo</code> command or <code>redo</code>
+command</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-student 35853</code><br>
+<code>undo</code><br>
+<code>redo</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Successfully delete the student, then add the student back with <code>undo</code>, then delete student again with <code>redo</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find-student hieu</code><br>
+<code>redo</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>redo</code> fails because no <code>undo</code> command previously</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-student 35853</code><br>
+<code>undo</code><br>
+<code>find-student hieu</code><br>
+<code>redo</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This <code>redo</code> also fails because the most recent command is not <code>undo</code> or <code>redo</code></p>
+</div>
 <div class="paragraph">
 <p>Format: <code>undo</code> or <code>redo</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="assigning-unassigning-type-to-a-course-code-assign-code-or-code-unassign-code-respectively"><a class="link" href="#assigning-unassigning-type-to-a-course-code-assign-code-or-code-unassign-code-respectively">5.1.4. Assigning/Unassigning -TYPE- to a Course : <code>assign</code> or <code>unassign</code> respectively</a></h4>
+<h4 id="assigning-unassigning-type-to-a-course-code-assign-code-or-code-unassign-code-respectively"><a class="link" href="#assigning-unassigning-type-to-a-course-code-assign-code-or-code-unassign-code-respectively">5.1.5. Assigning/Unassigning -TYPE- to a Course : <code>assign</code> or <code>unassign</code> respectively</a></h4>
 <div class="sect4">
 <h5 id="a-student-to-a-course-code-assign-code-or-code-unassign-code-respectively"><a class="link" href="#a-student-to-a-course-code-assign-code-or-code-unassign-code-respectively">A Student to a Course : <code>assign</code> or <code>unassign</code> respectively</a></h5>
 <div class="paragraph">
@@ -527,7 +640,7 @@ specific assignment (Done) or not (Not Done)</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="select-a-student-staff-course-code-select-code-or-simply-click-the-bar"><a class="link" href="#select-a-student-staff-course-code-select-code-or-simply-click-the-bar">5.1.5. Select a Student/Staff/Course : <code>select</code> or simply click the bar</a></h4>
+<h4 id="select-a-student-staff-course-code-select-code-or-simply-click-the-bar"><a class="link" href="#select-a-student-staff-course-code-select-code-or-simply-click-the-bar">5.1.6. Select a Student/Staff/Course : <code>select</code> or simply click the bar</a></h4>
 <div class="paragraph">
 <p>Selecting means to view the specified item in detail.
 As mentioned in the previous section, a course may be assigned
@@ -603,7 +716,7 @@ or click the desired Assignment bar</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code"><a class="link" href="#switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code">5.1.6. Switch between tabs : <code>[CTRL] + [UP ARROW]</code>, <code>[CTRL] + [DOWN ARROW]</code> <code>m</code>, <code>s</code>, <code>t</code>, <code>c</code>, <code>f</code>, <code>a</code></a></h4>
+<h4 id="switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code"><a class="link" href="#switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code">5.1.7. Switch between tabs : <code>[CTRL] + [UP ARROW]</code>, <code>[CTRL] + [DOWN ARROW]</code> <code>m</code>, <code>s</code>, <code>t</code>, <code>c</code>, <code>f</code>, <code>a</code></a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -637,7 +750,7 @@ or click the desired Assignment bar</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code"><a class="link" href="#navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code">5.1.7. Navigate through your command history: <code>[UP ARROW]</code> or <code>[DOWN ARROW]</code></a></h4>
+<h4 id="navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code"><a class="link" href="#navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code">5.1.8. Navigate through your command history: <code>[UP ARROW]</code> or <code>[DOWN ARROW]</code></a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -657,14 +770,14 @@ to navigate through your command history</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-data"><a class="link" href="#saving-the-data">5.1.8. Saving the data</a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">5.1.9. Saving the data</a></h4>
 <div class="paragraph">
 <p>Coding Camp book data are saved in the hard disk automatically after any command that changes the data. No manual
 saving is required.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="clearing-all-the-data"><a class="link" href="#clearing-all-the-data">5.1.9. Clearing all the data</a></h4>
+<h4 id="clearing-all-the-data"><a class="link" href="#clearing-all-the-data">5.1.10. Clearing all the data</a></h4>
 <div class="paragraph">
 <p>Coding Camp book data can be cleared by <code>clear-all</code> command. This action will <strong>CLEAR</strong> all the entire address book and
 this action can not undone.</p>
@@ -1988,4 +2101,4 @@ contains the data of your previous <strong>CodeCampX</strong> folder.</p>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 09:08:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 09:19:41 UTC</div></div></div></body></html>

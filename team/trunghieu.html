@@ -1,0 +1,528 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Le Trung Hieu - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">CodeCampX</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S2-CS2103-W14-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Le Trung Hieu - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-codecampx"><a class="link" href="#project-codecampx">Project: CodeCampX</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of Contributions:</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Develop undo-redo feature main template and then extend for add / delete</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Default suggested implement: The <strong>entire</strong>  memory contents of the app was stored at every step.</p>
+</li>
+<li>
+<p>Current Implementation: Each command that changes the state of the app will learn how to undo/redo
+itself.</p>
+</li>
+<li>
+<p>Reason: This will significantly reduce memory consumption of the app, but with the cost of
+more complicated implementation.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Build the architecture design interactions, this includes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Building EventsCenter and BaseManager and events classes, which have different methods for event-firing and event-handling.</p>
+</li>
+<li>
+<p>Enforce and abstract out responsibility for different managers, bind code here and
+then to follow MVVM structure.</p>
+</li>
+<li>
+<p>Building ViewModel which keeps track of observableMap that the UI uses,
+and handles events as well as query from managers to update ViewModel <strong>automatically</strong></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Build factory pattern design and template for assign command.</p>
+</li>
+<li>
+<p>Code refactoring: Examples: Refactor all model and addressBook related stuff
+under modelGeneric and extends from that, then in return methods in ModelManager becomes generic
+as well.</p>
+</li>
+<li>
+<p>Develop UUID Manager to auto-assign unique random ID for new entities in the system.
+Abstract out EdgeManager (which is in charge of consistency of linking relationship between entities)
+, and event-handling of EdgeManager.</p>
+</li>
+<li>
+<p>Bind stuff here and there for event-flow design.</p>
+</li>
+<li>
+<p><code>Select</code> command to view details of different entities, and <code>select</code> can be in
+2 layers as well for lazy loading. For example: <code>select sid/ student_id</code> will show the list of courses of this
+student, but if we want to see details of this student progress under a course then need
+<code>select sid/ student_id cid/ course_id</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project Structure communication:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Discuss details of implementation with different team members before implemented
+to ensure the overall architecture flow and design principles are met and consistent.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Project Management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Helped others and ensure on Git strategies.</p>
+</li>
+<li>
+<p>Ensure code quality through reviews on Github</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Some examples:
+Pull request [<a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/109">#109</a>],
+Pull request [<a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/113">#113</a>]</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Set up continuous integration on Travis CI</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="undo-command-code-undo-code"><a class="link" href="#undo-command-code-undo-code">Undo Command: <code>undo</code></a></h3>
+<div class="paragraph">
+<p>Set the app state back to the most recent undoableCommand.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>See the full list of undoable commands: all edit/add/delete/assign/unassign commands.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find-student hieu</code><br>
+<code>undo</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This will fail because <code>find-student</code> is not an undoableCommand.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-student 35853</code><br>
+<code>undo</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Undo the delete command of student and add the student back at the previous relative ordering too.</p>
+</div>
+<div class="paragraph">
+<p>Illustration:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/undo_1.PNG" alt="undo 1">
+</div>
+</div>
+<div class="paragraph">
+<p>After <code>delete-student 35853</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/undo_2.PNG" alt="undo 2">
+</div>
+</div>
+<div class="paragraph">
+<p>After <code>undo</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/undo_3.png" alt="undo 3">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redo-command-code-redo-code"><a class="link" href="#redo-command-code-redo-code">Redo Command: <code>redo</code></a></h3>
+<div class="paragraph">
+<p>Reverses the most recent <code>undo</code> command, but will fail if the most recent command was not the <code>undo</code> command or <code>redo</code>
+command</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-student 35853</code><br>
+<code>undo</code><br>
+<code>redo</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Successfully delete the student, then add the student back with <code>undo</code>, then delete student again with <code>redo</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find-student hieu</code><br>
+<code>redo</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>redo</code> fails because no <code>undo</code> command previously</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-student 35853</code><br>
+<code>undo</code><br>
+<code>find-student hieu</code><br>
+<code>redo</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This <code>redo</code> also fails because the most recent command is not <code>undo</code> or <code>redo</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="architecture-hieu"><a class="link" href="#architecture-hieu">Architecture (HIEU)</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ArchitectureNewDiagram.png" alt="ArchitectureNewDiagram">
+</div>
+<div class="title">Figure 1. Architecture Diagram</div>
+</div>
+<div class="paragraph">
+<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App.
+Given below is a quick overview of each component.</p>
+</div>
+<div class="sect3">
+<h4 id="design-pattern-and-control-flow"><a class="link" href="#design-pattern-and-control-flow">Design Pattern and Control Flow</a></h4>
+<div class="paragraph">
+<p>Two main design patterns were used in the design of our software.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Model - View - ViewModel (MVVM) Control Flow</dt>
+<dd>
+<p>Design Consideration between Model-View-Controller(MVC) and Model-View-ViewModel(MVVM) design:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The original design was a standard MVC, where Controller is our LogicManager, and the Model is our ModelManager.
+Then components in the view will bind to the model objects, whenever there is an update to the model object the UI view will be updated automatically.</p>
+</li>
+<li>
+<p>However, the more UI custom views logic we decide, we might need to push more and more custom UI-specific logic to our Model and ViewController class, which is not very desirable.
+Or as the infamous quote, MVC becomes "Massive View Controller".</p>
+</li>
+<li>
+<p>Instead, we will adapt to MVVM design, where ViewModel will hold a list of observableMap of data.
+Each custom view in our UI will have a one-to-one mapping with an observableMap, and to calculate those observableMap the ViewModel will make use of the Managers we define.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Event-Driven Design</dt>
+<dd>
+<p>We adopt event-driven design, where different components will try to communicate with each other through publishing events and subscribing to events, de-couple between components, and facilitate communication between components a lot.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To separate responsibilities well between components, we divide them into multiple managers, all extending from the BaseManager class.
+The BaseManager will always hold refer to the EventsCenter (which is designed to be a singleton class in our case)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>One is publishing managers (those in Model section, i.e EdgeManager, ProgressManager, etc).
+They can post events to the EventsCenterSingleton.</p>
+</li>
+<li>
+<p>The other one is subscribing managers, one is the ViewModel (which is DetailManager) and StorageManager.
+Subscribing managers will have handler method that listen to the events and decide what to do.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Different events types will extend from the BaseEvent.
+In our app we have</p>
+<div class="ulist">
+<ul>
+<li>
+<p>DataStorageChangeEvent: signals when model object changes</p>
+</li>
+<li>
+<p>DeleteEntitySyncEvent: signals when the entity linking relationship is broken (e.g when a student is deleted, its link to course and progress and teacher, etc will be broken)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Here is an example of how a command to delete student with ID 1 will invoke different parts along the flow.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EventsFlowDiagram.png" alt="EventsFlowDiagram">
+</div>
+<div class="title">Figure 2. Sequence Diagram for Events Flow</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>ViewController(i.e LogicManager) will invoke ModelManager.delete method (Note that ModelManager extends from BaseManager, and has the Publisher capacity)</p>
+</li>
+<li>
+<p>ModelManager will invoke publishing of events to EventsCenterSingleton (which holds an EventBus), in this case postDataStorageChangeEvent and postDeleteEntitySyncEvent will be invoked.</p>
+</li>
+<li>
+<p>Other BaseManagers will also hold this EventsCenterSingleton and listen to new publish events in the event bus.
+If the manager class has the handler function for that types of events, the method will be invoked.</p>
+</li>
+<li>
+<p>In this case, StorageManager will have handler for both DataStorageChangeEvent and DeleteEntitySyncEvent, while ViewModel will have handler for DataStorageChangeEvent.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewmodel-component-hieu"><a class="link" href="#viewmodel-component-hieu">ViewModel component (HIEU)</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ViewModelDiagram.png" alt="ViewModelDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong>: <a href="{repoURL}/src/main/java/seedu/address/viewmodel/ViewModel.java"><code>ViewModel.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>ViewModel</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>stores a list of <code>observableMap</code>, each map will corresponds to one <code>DetailPanel</code> in ui folder.</p>
+</li>
+<li>
+<p>Each <code>DetailPanel</code> (in MainWindow) will listen to the <code>ViewModel</code> through the Logic layer.</p>
+</li>
+<li>
+<p>the <code>ViewModel</code> will then query the managers from <code>Model</code> layer to update its
+observableMap, which in turn will automatically update the corresponding <code>DetailPanel</code> view.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-hieu"><a class="link" href="#undo-redo-hieu">Undo/Redo [Hieu]</a></h3>
+<div class="paragraph">
+<p>Currently we only support undo/redo for commands that modify the storage (or state of the app).
+I.e add / delete, assign / un-assign, edit commands.</p>
+</div>
+<div class="paragraph">
+<p>View Controller (LogicManager) will hold UndoRedoStack class, which stores the undoStack and redoStack which will be explained below.</p>
+</div>
+<div class="paragraph">
+<p>Those commands listed above will inherit from UndoableCommand abstract class.
+UndoableCommand will extends from Command class.</p>
+</div>
+<div class="paragraph">
+<p>UndoableCommand will contain the general algorithm flow for doing undo/ redo, while there will be some details delegated to the actual command class.
+This technique is also known as template pattern.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">abstract</span> <span class="type">class</span> <span class="class">UndoableCommand</span> <span class="directive">extends</span> Command {
+    <span class="directive">public</span> <span class="directive">abstract</span> <span class="type">void</span> preprocessUndoableCommand() {}
+
+    <span class="directive">public</span> <span class="directive">abstract</span> <span class="type">void</span> generateOppositeUndoableCommand();
+
+    <span class="directive">public</span> CommandResult executeUndoableCommand();
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> CommandResult execute() {
+        preprocessUndoableCommand();
+        generateOppositeUndoableCommand();
+        <span class="keyword">return</span> executeUndoableCommand();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that for each UndoableCommand, before execution, it needs to save some information (through the preprocessUndoableCommand) then generate (and store) the opposite corresponding command (through generateOppositeUndoableCommand)</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s go through the example in diagram below.
+- The user first executes a new UndoableCommand delete-student.
+Before this delete command is executed, we preprocessUndoableCommand to get the to-be-deleted student object, as well as the current index of this student object in list.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Then we will generate a AddStudentCommand (which is opposite of this DeleteStudentCommand) with this studentObject and index and push it to undoStack</p>
+</li>
+<li>
+<p>When undo command is executed, the top of undoStack is popped out, then pushed to redoStack.
+Then the oppositeCommand of it will be excecuted (in this case AddStudentCommand will be invoked)</p>
+</li>
+<li>
+<p>When redo command is executed, the top of redoStack is popped out, then pushed to undoStack.
+Then the originalCommand will be executed (again) (in this case it will be DeleteStudentCommand again).</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoRedoStack.png" alt="UndoRedoStack">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Design Considerations:
+1/ How Undo and Redo works:
+Option A: Save the entire app state after every command.
+Pros: Very easy implementation.
+Cons: Serious memory performance issue when storing the whole address book at every time step.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Option B (Current choice): Each (undoable) command will know how to generateOpposite command itself.
+Pros: Reduce a lot of memory issue.</p>
+</div>
+<div class="paragraph">
+<p>Cons: Harder to implement</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="view-switching-hieu"><a class="link" href="#view-switching-hieu">View Switching [HIEU]</a></h3>
+<div class="paragraph">
+<p>To see sub-view details of each section we can issue a select command.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s see an example of how selecting sub-view data of a student 1 works.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ViewSwitchFlowDiagram.png" alt="ViewSwitchFlowDiagram">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>select sid/ 1</code> command is issued to <code>ViewController</code></p>
+</li>
+<li>
+<p><code>ViewController</code>  will call <code>ViewModel</code> method <code>updateStudentDetailsMap</code></p>
+</li>
+<li>
+<p>In turn, that method will invoke managers from <code>Model</code> layer, for example <code>ModelManager</code>,
+to update <code>observableStudentDetailMap</code> inside <code>ViewModel</code></p>
+</li>
+<li>
+<p>Because <code>StudentDetailsMap</code> implements an <code>onChange</code> function that
+listen to update in <code>observableStudentDetailMap</code>, the UI part will be updated correspondingly
+with data of this student 1.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Design considerations:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Automatically updating the UI sub-view when the app state changes. Let&#8217;s say the current sub-view
+shown in the UI is of the details of student 1, then some information of the course of that
+student is changed, or the student is removed from the course, the UI should update immediately
+without the need to issue the click command again. To support that, our <code>ViewModel</code> will listen to <code>EventsCenter</code> , then whenever
+an event of <code>DataStorageChangeEvent</code> or <code>DeleteEntitySyncEvent</code> happens, it will check
+which <code>observableMap</code> (which corresponds to different <code>DetailedView</code>) is active then
+do the query again.</p>
+</li>
+<li>
+<p>Lazy loading: For example, when seeing details of the students, we only want to show the courses
+that the students have without the progresses of this course that the student currently have.
+To query that, after executing <code>select sid/ student_id</code>, the user needs to run
+<code>select sid/ student_id cid/ course-id</code> as well</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 09:19:41 UTC</div></div></div></body></html>
