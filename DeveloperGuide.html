@@ -25,9 +25,13 @@
 <li><a href="#command-handling-by-managers">2.1. Command Handling by Managers</a></li>
 <li><a href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></li>
 <li><a href="#undo-redo-hieu">2.3. Undo/Redo [Hieu]</a></li>
-<li><a href="#view-switching-hieu">2.4. View Switching [HIEU]</a></li>
-<li><a href="#logging">2.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">2.6. Configuration</a></li>
+<li><a href="#view-switching">2.4. View Switching</a></li>
+<li><a href="#proposed-tracking-student-progress-feature">2.5. [Proposed] Tracking Student Progress Feature</a></li>
+<li><a href="#managing-staff-feature">2.6. Managing Staff Feature</a></li>
+<li><a href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.7. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></li>
+<li><a href="#view-switching-hieu">2.8. View Switching [HIEU]</a></li>
+<li><a href="#logging">2.9. Logging</a></li>
+<li><a href="#Implementation-Configuration">2.10. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">3. Documentation</a></li>
@@ -46,9 +50,9 @@
 <li><a href="#saving-data">G.3. Saving data</a></li>
 </ul>
 </li>
-<li><a href="#implementation-2">Appendix H: Implementation</a>
+<li><a href="#implementation-4">Appendix H: Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#design-considerations">H.1. Design considerations:</a></li>
+<li><a href="#design-considerations-2">H.1. Design considerations:</a></li>
 </ul>
 </li>
 </ul>
@@ -997,19 +1001,229 @@ Pros: Reduce a lot of memory issue.</p>
 </div>
 <div class="sect3">
 <h4 id="opposite-command-for-edit-dat"><a class="link" href="#opposite-command-for-edit-dat">2.3.1. Opposite Command for edit [Dat]</a></h4>
+<div class="paragraph">
+<p>Edit command extends from abstract class UndoableCommand. Thus, user can undo/ redo this command.</p>
+</div>
+<div class="paragraph">
+<p>In EditCommand class, method <code>preprocessUndoableCommand</code> to get the toEdit Object and edited Object.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ActivityDiagramEditCommand.png" alt="ActivityDiagramEditCommand">
+</div>
+<div class="title">Figure 16. Activity Diagram of Pre-processing for Edit commands</div>
+</div>
+<div class="paragraph">
+<p>Method <code>executeUndoableCommand</code> will set the toEdit Object in the ObjectAddressBook to the edited Object.</p>
+</div>
+<div class="paragraph">
+<p>Method <code>generateOppositeCommand()</code> will generate another <code>EditCommand</code> (which
+is opposite to this EditCommand) with editing information of the original toEdit Object and push it to undoStack.</p>
+</div>
+<div class="paragraph">
+<p>When <code>undo</code> and <code>redo</code> commands are executed, the process is carried out as described above.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="opposite-command-for-assign-unassign"><a class="link" href="#opposite-command-for-assign-unassign">2.3.2. Opposite command for assign/ unassign</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="opposite-command-for-assign-un-assign-tee-jun-jie-ivan"><a class="link" href="#opposite-command-for-assign-un-assign-tee-jun-jie-ivan">2.3.2. Opposite command for assign/ un-assign [Tee Jun Jie Ivan]</a></h4>
-
+<h4 id="opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities"><a class="link" href="#opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities">2.3.3. Opposite command for add/ delete (and maintain the corresponding links between entities)</a></h4>
+<div class="paragraph">
+<p><code>AddCommand</code> and <code>DeleteCommand</code> extends from abstract class UndoableCommand. Thus, user can undo/ redo this command.</p>
+</div>
+<div class="paragraph">
+<p>In <code>AddCommand</code> class, method <code>preprocessUndoableCommand</code> get the toAdd Object and an index (if available).</p>
+</div>
+<div class="paragraph">
+<p>Method <code>executeUndoableCommand</code> will add the toAdd Object to the ObjectAddressBook.</p>
+</div>
+<div class="paragraph">
+<p>Method <code>generateOppositeCommand()</code> will generate a <code>DeleteCommand</code> (which
+is opposite to this AddCommand) with toDelete Object is a clone of toAdd Object and push it to undoStack.</p>
+</div>
+<div class="paragraph">
+<p>In <code>DeleteCommand</code> class, method <code>preprocessUndoableCommand</code> get the toDelete Object and its index.</p>
+</div>
+<div class="paragraph">
+<p>Method <code>executeUndoableCommand</code> will delete this toDelete Object from the ObjectAddressBook.</p>
+</div>
+<div class="paragraph">
+<p>Method <code>generateOppositeCommand()</code> will generate an <code>AddCommand</code> (which
+is opposite to this DeleteCommand) with toAdd Object is a clone of toDelete Object and push it to undoStack.</p>
+</div>
+<div class="paragraph">
+<p>When <code>undo</code> and <code>redo</code> commands are executed, the process is carried out as described above.</p>
+</div>
+<div class="paragraph">
+<p>For <code>DeleteCommand</code>, it is important to ensure that entity links are removed properly.
+For <code>AddCommand</code> generated by <code>generateOppositeCommand()</code>, it is important to restore all the entity links properly.
+Therefore, in order to ensure undo/redo successfully, all 3 managers must be involved to manage all entity links.</p>
+</div>
+<div class="paragraph">
+<p>When an object is deleted (Student/Teacher/Course/Assignment), <code>EdgeManager</code> will invoke a <code>DeleteEntitySyncEvent</code>
+signal and a <code>DataStorageChangeEvent</code> signal to be handled by <code>StorageManager</code>. <code>generateOppositeCommand()</code> will
+generate an add-command with a clone object of deleted object and stacked into undoStack.When an <code>undo</code> command is
+executed, this <code>add-command</code> is pop out from the stack and executed, adding the cloned object with all the
+information of the deleted object. The flow after add-command called now can be generalized as the previous
+delete-command. All the entities links are restored.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SeqDiagramDeleteStaff.png" alt="SeqDiagramDeleteStaff">
+</div>
+<div class="title">Figure 17. Sequence Diagram of Delete Staff (teacher)</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="view-switching"><a class="link" href="#view-switching">2.4. View Switching</a></h3>
+<div class="paragraph">
+<p>Explain select command</p>
+</div>
+<div class="paragraph">
+<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+</div>
+<div class="paragraph">
+<p>All assign command variants (i.e <code>AssignTeacherToCourseCommand</code>, <code>AssignStudentToCourseCommand</code> extends from <code>AssignCommandBase</code>
+instead of the abstract <code>Command</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The diagram below shows a simplified flow</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
+</div>
+<div class="title">Figure 18. Structure of Commands and Parser</div>
 </div>
 <div class="sect3">
-<h4 id="opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities-dat"><a class="link" href="#opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities-dat">2.3.3. Opposite command for add/ delete (and maintain the corresponding links between entities) [Dat]</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">2.4.1. Design considerations:</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Since all assign commands are just linking between two entities, where each of them is distinguised based on
+its ID and its entity name (e.g course, student, teacher, etc). So we have AssignDescriptor which stores this information.</p>
+</li>
+<li>
+<p>A factory design pattern to select which assign command based on the AssignDescriptor content.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-tracking-student-progress-feature"><a class="link" href="#proposed-tracking-student-progress-feature">2.5. [Proposed] Tracking Student Progress Feature</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">2.5.1. Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>This feature is implemented with two main classes - <code>Progress</code> and <code>Assignment</code>, both of which is controlled by a
+'ProgressAddressBook' and 'AssignmentAddressBook' respectively. Please see the following class diagram
+which proposes the associations between the four classes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AssignmentAndProgressClassDiagram.png" alt="AssignmentAndProgressClassDiagram">
+</div>
+<div class="title">Figure 19. Class diagram of Assignment and Progress</div>
+</div>
+<div class="paragraph">
+<p>Besides the basic CRUD operations for <code>Progress</code> and <code>Assignment</code>, one of they key
+features will be making sure that <code>Progress</code> and <code>Assignments</code> work seamlessly with each other.</p>
+</div>
+<div class="paragraph">
+<p>For example, when a student is added to a <code>Course</code>,  <code>Progress</code> objects must be created automatically for each
+<code>Assignment</code> that needs to be completed for the <code>Course</code>. For this, this will be facilitated by a <code>Progress Factory</code> class
+which the model will utilize to produce numerous <code>Progress</code> objects for each <code>Assignment</code> for the <code>Student</code> that was assigned.
+Please see the sequence diagram for a better understanding.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AssignStudentToCourseDiagram.png" alt="AssignStudentToCourseDiagram">
+</div>
+<div class="title">Figure 20. Sequence diagram of how Progress objects are created automatically</div>
+</div>
+<div class="paragraph">
+<p>Future Functionality Include</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Marking a <code>Progress</code> object as done</p>
+</li>
+<li>
+<p>For a <code>Course</code>, mark all <code>Progress</code> objects with the same assignment ID as done</p>
+</li>
+<li>
+<p>Allow for seamless removal of <code>Student</code> from course</p>
+</li>
+<li>
+<p>Allow for seamless deletion of <code>Assignment</code> from the addressbook</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="managing-staff-feature"><a class="link" href="#managing-staff-feature">2.6. Managing Staff Feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">2.6.1. Implementation</a></h4>
+<div class="paragraph">
+<p>This feature is implemented with the main classes - <code>Staff</code>, with a permission level specifying <code>Teacher</code> and <code>Admin</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Staff</span> <span class="directive">extends</span> ModelObject {
+    <span class="directive">public</span> <span class="type">enum</span> <span class="predefined-type">Level</span> {
+        TEACHER,
+        ADMIN
+    }
+    <span class="comment">//...</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One of the features is to display all the <code>courses</code> that a <code>teacher</code> is teaching.</p>
+</div>
+<div class="paragraph">
+<p>Another feature is to keep track of salary payment for <code>teacher</code>. A <code>teacher</code> is paid by teaching a course and the amount
+is taken from the salary of the teacher. The payment will automatically have records of respective course and teacher ID.</p>
+</div>
+<div class="paragraph">
+<p>To pay for <code>admin</code>, user has to do it manually using miscellaneous <code>FinanceType</code>.</p>
+</div>
+<div class="paragraph">
+<p>Certain approaches have some certain pros and cons. It depends on how the user want to keep track of payment and method to pay to <code>teacher</code> and <code>admin</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.7. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></h3>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">2.7.1. Implementation</a></h4>
+<div class="paragraph">
+<p>Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue. Teacher payments are tracked by courses, where the teacher is paid for each course taught. Student earnings are also tracked by courses, where the student pays for each course taken.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/FinanceDiagram.png" alt="FinanceDiagram">
+</div>
+<div class="title">Figure 21. Class diagram of CourseStudent and CourseTeacher</div>
+</div>
+<div class="paragraph">
+<p>Finance type <code>CourseStudent</code> or <code>cs</code> add command will access <code>CourseAddressBook</code> and <code>StudentAddressBook</code> to ensure <code>Course</code> and
+<code>Student</code> exist and make sure this student is taking this course. The <code>Amount</code> is set to the amount of the <code>Course</code>
+(student fee).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="opposite-command-for-assign-un-assign-tee-jun-jie-ivan"><a class="link" href="#opposite-command-for-assign-un-assign-tee-jun-jie-ivan">2.7.2. Opposite command for assign/ un-assign [Tee Jun Jie Ivan]</a></h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="view-switching-hieu"><a class="link" href="#view-switching-hieu">2.4. View Switching [HIEU]</a></h3>
+<h3 id="view-switching-hieu"><a class="link" href="#view-switching-hieu">2.8. View Switching [HIEU]</a></h3>
 <div class="paragraph">
 <p>To see sub-view details of each section we can issue a select command.</p>
 </div>
@@ -1064,7 +1278,7 @@ To query that, after executing <code>select sid/ student_id</code>, the user nee
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">2.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">2.9. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging.
 The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
@@ -1072,7 +1286,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 2.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 2.10, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1103,7 +1317,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">2.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">2.10. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1158,7 +1372,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 <p>keep track of the student&#8217;s progress and assignments</p>
 </li>
 <li>
-<p>manage course earnings and staff spendings</p>
+<p>manage course earnings and staff spending</p>
 </li>
 <li>
 <p>---</p>
@@ -2737,7 +2951,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation-2"><a class="link" href="#implementation-2">Appendix H: Implementation</a></h2>
+<h2 id="implementation-4"><a class="link" href="#implementation-4">Appendix H: Implementation</a></h2>
 <div class="sectionbody">
 <h3 id="assigning-linking-2-entities" class="discrete">Assigning/ linking 2 entities</h3>
 <div class="paragraph">
@@ -2751,10 +2965,10 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 16. Structure of Commands and Parser</div>
+<div class="title">Figure 22. Structure of Commands and Parser</div>
 </div>
 <div class="sect2">
-<h3 id="design-considerations"><a class="link" href="#design-considerations">H.1. Design considerations:</a></h3>
+<h3 id="design-considerations-2"><a class="link" href="#design-considerations-2">H.1. Design considerations:</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2768,4 +2982,4 @@ So we have AssignDescriptor which stores this information.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 02:38:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 02:53:26 UTC</div></div></div></body></html>
