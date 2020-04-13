@@ -3319,7 +3319,21 @@ enough for the user to use.</p>
 into perfecting. In AB3, there is only 1 entity - person. However, in our program, we have up to 6 different entities, 5 of which has relationships to one another.
 We needed to think of a way to allow different entities to hold references to each other while making sure that there was no circular referencing errors.
 Hence, we decided to implement an ID to every different entity, except Progress which can be identified by a CompositeID of assignmentID and studentID.
-This also meant that we needed to implement methods in ModelManager such that we are able to get and set entities via the ID instead of index.</p>
+This also meant that we needed to implement methods in ModelManager such that we are able to get and set entities via the ID instead of index.
+Ultimately, we decided to centralize all links around course so as to standardize all linking. Moreover, a lot of work was put into ensuring that the program is in a <strong>consistent state</strong> at any point in time, meaning that
+if entity X had entity Y&#8217;s ID, Y should have X&#8217;s ID as well. There should be no point in time where X had Y&#8217;s ID but not vice versa.
+This also includes maintaining of Progress objects so as to allow for tracking of student&#8217;s progress. Every time an assign/unassign/delete command is run
+we need to keep track of the Progress objects created and destroyed also.</p>
+</div>
+<div class="paragraph">
+<p>Lastly, the team has attempted to implement Undo and redo for most of our commands. Whilst it is easier to implement for smaller commands
+such as add and edit, but it is not trivial for bigger commands such as un-assign and delete. In those cases, we ad to implement
+Managers to ensure that the undo and redo commands are handled successfully. One of the more challenging portions was when undo-ing an unassign command,
+we needed to put the recently removed Progress objects, which may or may not be done, back into AddressBook. Hence, we needed to implement a way to check for this case as well.
+Undo and redo really increased the difficulty of the program significantly especially when we need to maintain correct entity linking.</p>
+</div>
+<div class="paragraph">
+<p>Overall, we felt that our project was sufficiently more complex and more difficult as compared to AB3.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:19:37 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:40:49 UTC</div></div></div></body></html>
