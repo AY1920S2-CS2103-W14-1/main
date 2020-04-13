@@ -46,8 +46,9 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#saving-data">G.3. Saving data</a></li>
+<li><a href="#deleting-a-student">G.2. Deleting a student</a></li>
+<li><a href="#assign-a-student-to-a-course">G.3. Assign a student to a course</a></li>
+<li><a href="#undo-deleting-a-student">G.4. Undo deleting a student</a></li>
 </ul>
 </li>
 <li><a href="#implementation-4">Appendix H: Implementation</a>
@@ -3180,30 +3181,31 @@ Expected: Shows the GUI with a set of sample contacts. The window size may not b
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
+<h3 id="deleting-a-student"><a class="link" href="#deleting-a-student">G.2. Deleting a student</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a person while all persons are listed</p>
+<p>Deleting a student while all students are listed</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Prerequisites: List all students using the <code>list</code> command. Multiple students in the list.</p>
 </li>
 <li>
-<p>Test case: <code>delete 1</code><br>
-   Expected: First contact is deleted from the list.
-Details of the deleted contact shown in the status message.
-Timestamp in the status bar is updated.</p>
+<p>Test case: (example) <code>delete-student 16100</code><br>
+   Expected: Student with ID 16100 is deleted from the list.
+Details of the deleted student shown in the status message.
+Status bar is updated.
+Related information, such as course student 16100 was taking, updated accordingly.</p>
 </li>
 <li>
-<p>Test case: <code>delete 0</code><br>
-   Expected: No person is deleted.
+<p>Test case: <code>delete-student 0</code><br>
+   Expected: No student is deleted.
 Error details shown in the status message.
 Status bar remains the same.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
+<p>Other incorrect delete commands to try: <code>delete-students</code>, <code>delete-student x</code> (where x is a number not matching any student IDs) <em>{give more}</em><br>
 Expected: Similar to previous.</p>
 </li>
 </ol>
@@ -3216,21 +3218,76 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
+<h3 id="assign-a-student-to-a-course"><a class="link" href="#assign-a-student-to-a-course">G.3. Assign a student to a course</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Dealing with missing/corrupted data files</p>
+<p>Assign a student to a course that has several assignments</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em>
-<em>{ more test cases &#8230;&#8203; }</em></p>
+<p>Prerequisites: List all courses using the <code>list-course</code> command. Select to view a course, multiple assignments are assigned to that course.</p>
+</li>
+<li>
+<p>Test case: (example) <code>assign sid/16100 cid/55160</code><br>
+    Expected Student with ID 16100 is assigned to course 55160.
+Details of the student will be added to the course. The student is assigned all the assignments in the course (the progresses are created).
+Status bar is updated accordingly.</p>
+</li>
+<li>
+<p>Test case: (example) <code>assign sid/16100 cid/49273</code><br>
+    Expected: Error message throws saying no course ID matches with this course (Assumed this course ID does not exist).
+Error details shown in the status message.
+Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>assign sid/16100 cid/55160</code>, (where student 16100 is already assigned to course 55160) <em>{give more}</em><br>
+Expected: Similar to previous, but error message throws saying this student is already assigned to this course.</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-deleting-a-student"><a class="link" href="#undo-deleting-a-student">G.4. Undo deleting a student</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Undo a command deleting a student that in several courses and having several progresses.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all courses using the <code>list-course</code> command. Select to view the course that have student intended to be deleted.</p>
+</li>
+<li>
+<p>Test case: (example) <code>delete-student 16100</code> + <code>undo</code><br>
+    Expected Student with ID is deleted and then added back to courses that he enrolled before.
+Details of the student will be added back to the course. The student is assigned all the assignments in the course.
+(All of the progresses of the student are restored).
+Status bar is updated accordingly.</p>
+</li>
+<li>
+<p>Test case: <code>delete-student 0</code> + <code>undu</code><br>
+    Expected: No student is added back.
+Error details shown in the status message.
+Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect undo/redo commands to try: <code>undo</code>, <code>redo</code> (try these commands immediately after turn on the application) <em>{give more}</em><br>
+Expected: Error throws saying no commands that are redo/undoable. (No CRUD commands used before to undo/redo)</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
 </div>
@@ -3268,4 +3325,4 @@ So we have AssignDescriptor which stores this information.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:27:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:27:51 UTC</div></div></div></body></html>
