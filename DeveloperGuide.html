@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>CodeCampX - Developer Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>CodeCampX - Developer Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">CodeCampX</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S2-CS2103-W14-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>CodeCampX - Developer Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
@@ -25,6 +25,32 @@
 <li><a href="#command-handling-by-managers">2.1. Command Handling by Managers</a></li>
 <li><a href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></li>
 <li><a href="#undo-redo-hieu">2.3. Undo/Redo [Hieu]</a></li>
+<li><a href="#view-switching-hieu">2.4. View Switching [HIEU]</a></li>
+<li><a href="#managing-staff-feature">2.5. Managing Staff Feature</a></li>
+<li><a href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.6. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></li>
+<li><a href="#logging">2.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">2.8. Configuration</a></li>
+</ul>
+</li>
+<li><a href="#documentation">3. Documentation</a></li>
+<li><a href="#testing">4. Testing</a></li>
+<li><a href="#dev-ops">5. Dev Ops</a></li>
+<li><a href="#product-scope">Appendix A: Product Scope</a></li>
+<li><a href="#user-stories">Appendix B: User Stories</a></li>
+<li><a href="#use-cases">Appendix C: Use Cases</a></li>
+<li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
+<li><a href="#glossary">Appendix E: Glossary</a></li>
+<li><a href="#product-survey">Appendix F: Product Survey</a></li>
+<li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
+<ul class="sectlevel2">
+<li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
+<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
+<li><a href="#saving-data">G.3. Saving data</a></li>
+</ul>
+</li>
+<li><a href="#implementation-4">Appendix H: Implementation</a>
+<ul class="sectlevel2">
+<li><a href="#design-considerations">H.1. Design considerations:</a></li>
 </ul>
 </li>
 </ul>
@@ -228,7 +254,6 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div class="title">Figure 5. Structure of the UI Component</div>
 </div>
-<hr>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
@@ -613,7 +638,7 @@ The three managers are:</p>
 </ol>
 </div>
 <div class="sect4">
-<h5 id="Preprocess-entity"><a class="link" href="#Preprocess-entity">Step 1: Preprocess Entities</a></h5>
+<h5 id="step-1-preprocess-entities"><a class="link" href="#step-1-preprocess-entities">Step 1: Preprocess Entities</a></h5>
 <div class="sect5">
 <h6 id="rationale"><a class="link" href="#rationale">Rationale</a></h6>
 <div class="paragraph">
@@ -1007,7 +1032,23 @@ Pros: Reduce a lot of memory issue.</p>
 <div class="sect3">
 <h4 id="opposite-command-for-edit-dat"><a class="link" href="#opposite-command-for-edit-dat">2.3.1. Opposite Command for edit [Dat]</a></h4>
 <div class="paragraph">
-<p>Edit command extends from abstract class UndoableCommand. Thus, user can undo/ redo this command.</p>
+<p>In EditCommand class, method <code>preprocessUndoableCommand</code> to get the toEdit Object and edited Object.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ActivityDiagramEditCommand.png" alt="ActivityDiagramEditCommand">
+</div>
+<div class="title">Figure 16. Activity Diagram of Pre-processing for Edit commands</div>
+</div>
+<div class="paragraph">
+<p>Method <code>executeUndoableCommand</code> will set the toEdit Object in the ObjectAddressBook to the edited Object.</p>
+</div>
+<div class="paragraph">
+<p>Method <code>generateOppositeCommand()</code> will generate another <code>EditCommand</code> (which
+is opposite to this EditCommand) with editing information of the original toEdit Object and push it to undoStack.</p>
+</div>
+<div class="paragraph">
+<p>When <code>undo</code> and <code>redo</code> commands are executed, the process is carried out as described above.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1054,8 +1095,9 @@ Undo Progress will be added back in.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ivan-ActivityDiagramUndoAssign.png" alt="Ivan ActivityDiagramUndoAssign">
+<img src="images/Ivan-ActivityDiagramAssignUndo.png" alt="Ivan ActivityDiagramAssignUndo">
 </div>
+<div class="title">Figure 17. Activity Diagram of executing executeUndoableCommand of Assign Commands</div>
 </div>
 <hr>
 <div class="paragraph">
@@ -1065,33 +1107,9 @@ Undo Progress will be added back in.</p>
 <p>You can also notice that this is a faster implementation since we do not need to re-create a <code>CompositeID</code> and the actual
 <code>Progress</code> object itself when we are just adding back the UndoProgresses.</p>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>In EditCommand class, method <code>preprocessUndoableCommand</code> to get the toEdit Object and edited Object.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/ActivityDiagramEditCommand.png" alt="ActivityDiagramEditCommand">
-</div>
-<div class="title">Figure 16. Activity Diagram of Pre-processing for Edit commands</div>
-</div>
-<div class="paragraph">
-<p>Method <code>executeUndoableCommand</code> will set the toEdit Object in the ObjectAddressBook to the edited Object.</p>
-</div>
-<div class="paragraph">
-<p>Method <code>generateOppositeCommand()</code> will generate another <code>EditCommand</code> (which
-is opposite to this EditCommand) with editing information of the original toEdit Object and push it to undoStack.</p>
-</div>
-<div class="paragraph">
-<p>When <code>undo</code> and <code>redo</code> commands are executed, the process is carried out as described above.</p>
-</div>
-<div class="paragraph">
-<p>==== Opposite command for assign/ unassign</p>
-</div>
-<div class="paragraph">
-<p>==== Opposite command for add/ delete (and maintain the corresponding links between entities)</p>
-</div>
+<div class="sect3">
+<h4 id="opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities"><a class="link" href="#opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities">2.3.3. Opposite command for add/ delete (and maintain the corresponding links between entities)</a></h4>
 <div class="paragraph">
 <p><code>AddCommand</code> and <code>DeleteCommand</code> extends from abstract class UndoableCommand. Thus, user can undo/ redo this command.</p>
 </div>
@@ -1135,14 +1153,15 @@ delete-command. All the entities links are restored.</p>
 <div class="content">
 <img src="images/SeqDiagramDeleteStaff.png" alt="SeqDiagramDeleteStaff">
 </div>
-<div class="title">Figure 17. Sequence Diagram of Delete Staff (teacher)</div>
+<div class="title">Figure 18. Sequence Diagram of Delete Staff (teacher)</div>
 </div>
-<div class="paragraph">
-<p>=== View Switching [HIEU]
-To see sub-view details of each section we can issue a select command.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="view-switching-hieu"><a class="link" href="#view-switching-hieu">2.4. View Switching [HIEU]</a></h3>
 <div class="paragraph">
-<p>Let&#8217;s see an example of how selecting sub-view data of a student 1 works.</p>
+<p>To see sub-view details of each section we can issue a select command.
+Let&#8217;s see an example of how selecting sub-view data of a student 1 works.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1191,90 +1210,13 @@ To query that, after executing <code>select sid/ student_id</code>, the user nee
 </li>
 </ol>
 </div>
+</div>
+<div class="sect2">
+<h3 id="managing-staff-feature"><a class="link" href="#managing-staff-feature">2.5. Managing Staff Feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">2.5.1. Implementation</a></h4>
 <div class="paragraph">
-<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-</div>
-<div class="paragraph">
-<p>All assign command variants (i.e <code>AssignTeacherToCourseCommand</code>, <code>AssignStudentToCourseCommand</code> extends from <code>AssignCommandBase</code>
-instead of the abstract <code>Command</code> class.</p>
-</div>
-<div class="paragraph">
-<p>The diagram below shows a simplified flow</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
-</div>
-<div class="title">Figure 18. Structure of Commands and Parser</div>
-</div>
-<div class="paragraph">
-<p>==== Design considerations:
-- Since all assign commands are just linking between two entities, where each of them is distinguised based on
-its ID and its entity name (e.g course, student, teacher, etc). So we have AssignDescriptor which stores this information.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A factory design pattern to select which assign command based on the AssignDescriptor content.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>=== [Proposed] Tracking Student Progress Feature
-==== Proposed Implementation</p>
-</div>
-<div class="paragraph">
-<p>This feature is implemented with two main classes - <code>Progress</code> and <code>Assignment</code>, both of which is controlled by a
-'ProgressAddressBook' and 'AssignmentAddressBook' respectively. Please see the following class diagram
-which proposes the associations between the four classes.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/AssignmentAndProgressClassDiagram.png" alt="AssignmentAndProgressClassDiagram">
-</div>
-<div class="title">Figure 19. Class diagram of Assignment and Progress</div>
-</div>
-<div class="paragraph">
-<p>Besides the basic CRUD operations for <code>Progress</code> and <code>Assignment</code>, one of they key
-features will be making sure that <code>Progress</code> and <code>Assignments</code> work seamlessly with each other.</p>
-</div>
-<div class="paragraph">
-<p>For example, when a student is added to a <code>Course</code>,  <code>Progress</code> objects must be created automatically for each
-<code>Assignment</code> that needs to be completed for the <code>Course</code>. For this, this will be facilitated by a <code>Progress Factory</code> class
-which the model will utilize to produce numerous <code>Progress</code> objects for each <code>Assignment</code> for the <code>Student</code> that was assigned.
-Please see the sequence diagram for a better understanding.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/AssignStudentToCourseDiagram.png" alt="AssignStudentToCourseDiagram">
-</div>
-<div class="title">Figure 20. Sequence diagram of how Progress objects are created automatically</div>
-</div>
-<div class="paragraph">
-<p>Future Functionality Include</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Marking a <code>Progress</code> object as done</p>
-</li>
-<li>
-<p>For a <code>Course</code>, mark all <code>Progress</code> objects with the same assignment ID as done</p>
-</li>
-<li>
-<p>Allow for seamless removal of <code>Student</code> from course</p>
-</li>
-<li>
-<p>Allow for seamless deletion of <code>Assignment</code> from the addressbook</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>=== Managing Staff Feature</p>
-</div>
-<div class="paragraph">
-<p>==== Implementation
-This feature is implemented with the main classes - <code>Staff</code>, with a permission level specifying <code>Teacher</code> and <code>Admin</code>.</p>
+<p>This feature is implemented with the main classes - <code>Staff</code>, with a permission level specifying <code>Teacher</code> and <code>Admin</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1300,10 +1242,12 @@ is taken from the salary of the teacher. The payment will automatically have rec
 <div class="paragraph">
 <p>Certain approaches have some certain pros and cons. It depends on how the user want to keep track of payment and method to pay to <code>teacher</code> and <code>admin</code>.</p>
 </div>
-<div class="paragraph">
-<p>=== Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings
-==== Implementation</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.6. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></h3>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">2.6.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue. Teacher payments are tracked by courses, where the teacher is paid for each course taught. Student earnings are also tracked by courses, where the student pays for each course taken.</p>
 </div>
@@ -1311,73 +1255,17 @@ is taken from the salary of the teacher. The payment will automatically have rec
 <div class="content">
 <img src="images/FinanceDiagram.png" alt="FinanceDiagram">
 </div>
-<div class="title">Figure 21. Class diagram of CourseStudent and CourseTeacher</div>
+<div class="title">Figure 19. Class diagram of CourseStudent and CourseTeacher</div>
 </div>
 <div class="paragraph">
 <p>Finance type <code>CourseStudent</code> or <code>cs</code> add command will access <code>CourseAddressBook</code> and <code>StudentAddressBook</code> to ensure <code>Course</code> and
 <code>Student</code> exist and make sure this student is taking this course. The <code>Amount</code> is set to the amount of the <code>Course</code>
 (student fee).</p>
 </div>
-<div class="paragraph">
-<p>==== Opposite command for assign/ un-assign [Tee Jun Jie Ivan]</p>
-</div>
-<div class="paragraph">
-<p>=== View Switching [HIEU]
-To see sub-view details of each section we can issue a select command.</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s see an example of how selecting sub-view data of a student 1 works.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/ViewSwitchFlowDiagram.png" alt="ViewSwitchFlowDiagram">
 </div>
 </div>
-<hr>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>select sid/ 1</code> command is issued to <code>ViewController</code></p>
-</li>
-<li>
-<p><code>ViewController</code>  will call <code>ViewModel</code> method <code>updateStudentDetailsMap</code></p>
-</li>
-<li>
-<p>In turn, that method will invoke managers from <code>Model</code> layer, for example <code>ModelManager</code>,
-to update <code>observableStudentDetailMap</code> inside <code>ViewModel</code></p>
-</li>
-<li>
-<p>Because <code>StudentDetailsMap</code> implements an <code>onChange</code> function that
-listen to update in <code>observableStudentDetailMap</code>, the UI part will be updated correspondingly
-with data of this student 1.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Design considerations:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Automatically updating the UI sub-view when the app state changes. Let&#8217;s say the current sub-view
-shown in the UI is of the details of student 1, then some information of the course of that
-student is changed, or the student is removed from the course, the UI should update immediately
-without the need to issue the click command again. To support that, our <code>ViewModel</code> will listen to <code>EventsCenter</code> , then whenever
-an event of <code>DataStorageChangeEvent</code> or <code>DeleteEntitySyncEvent</code> happens, it will check
-which <code>observableMap</code> (which corresponds to different <code>DetailedView</code>) is active then
-do the query again.</p>
-</li>
-<li>
-<p>Lazy loading: For example, when seeing details of the students, we only want to show the courses
-that the students have without the progresses of this course that the student currently have.
-To query that, after executing <code>select sid/ student_id</code>, the user needs to run
-<code>select sid/ student_id cid/ course-id</code> as well</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>=== Logging</p>
-</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">2.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging.
 The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
@@ -1385,7 +1273,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">[Implementation-Configuration]</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 2.8, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1414,33 +1302,42 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 </li>
 </ul>
 </div>
-<div id="Implementation-Configuration" class="paragraph">
-<p>=== Configuration</p>
 </div>
+<div class="sect2">
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">2.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
-<div class="paragraph">
-<p>== Documentation</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="documentation"><a class="link" href="#documentation">3. Documentation</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Documentation.html">here</a>.</p>
 </div>
-<div class="paragraph">
-<p>== Testing</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="testing"><a class="link" href="#testing">4. Testing</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Testing.html">here</a>.</p>
 </div>
-<div class="paragraph">
-<p>== Dev Ops</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="dev-ops"><a class="link" href="#dev-ops">5. Dev Ops</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="DevOps.html">here</a>.</p>
 </div>
-<div class="paragraph">
-<p>== Product Scope</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="product-scope"><a class="link" href="#product-scope">Appendix A: Product Scope</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><strong>Target user profile (Coding camp owners)</strong>:</p>
 </div>
@@ -1503,9 +1400,11 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>== User Stories</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
 </div>
@@ -1662,9 +1561,11 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 <div class="paragraph">
 <p><em>{More to be added}</em></p>
 </div>
-<div class="paragraph">
-<p>== Use Cases</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>Code Camp X</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
@@ -2802,9 +2703,11 @@ Use case ends</p>
 <div class="paragraph">
 <p><em>{More to be added}</em></p>
 </div>
-<div class="paragraph">
-<p>== Non Functional Requirements</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2840,9 +2743,11 @@ Use case ends</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>== Glossary</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
+<div class="sectionbody">
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><strong>Student</strong> </dt>
@@ -2883,9 +2788,11 @@ Use case ends</p>
 </dd>
 </dl>
 </div>
-<div class="paragraph">
-<p>== Product Survey</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><strong>Product Name</strong></p>
 </div>
@@ -2918,9 +2825,11 @@ Use case ends</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>== Instructions for Manual Testing</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
 </div>
@@ -2936,9 +2845,8 @@ These instructions only provide a starting point for testers to work on; testers
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>=== Launch and Shutdown</p>
-</div>
+<div class="sect2">
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2972,9 +2880,9 @@ Expected: Shows the GUI with a set of sample contacts. The window size may not b
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>=== Deleting a person</p>
 </div>
+<div class="sect2">
+<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3008,9 +2916,9 @@ Expected: Similar to previous.</p>
 <div class="paragraph">
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
-<div class="paragraph">
-<p>=== Saving data</p>
 </div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3026,9 +2934,12 @@ Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>== Implementation</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation-4"><a class="link" href="#implementation-4">Appendix H: Implementation</a></h2>
+<div class="sectionbody">
 <h3 id="assigning-linking-2-entities" class="discrete">Assigning/ linking 2 entities</h3>
 <div class="paragraph">
 <p>All assign command variants (i.e <code>AssignTeacherToCourseCommand</code>, <code>AssignStudentToCourseCommand</code> extends from <code>AssignCommandBase</code>
@@ -3041,12 +2952,11 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 22. Structure of Commands and Parser</div>
+<div class="title">Figure 20. Structure of Commands and Parser</div>
 </div>
 <hr>
-<div class="paragraph">
-<p>=== Design considerations:</p>
-</div>
+<div class="sect2">
+<h3 id="design-considerations"><a class="link" href="#design-considerations">H.1. Design considerations:</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3060,7 +2970,4 @@ So we have AssignDescriptor which stores this information.</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 04:41:48 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 05:30:53 UTC</div></div></div></body></html>
