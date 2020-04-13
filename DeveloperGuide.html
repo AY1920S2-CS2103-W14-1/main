@@ -24,7 +24,7 @@
 <ul class="sectlevel2">
 <li><a href="#command-handling-by-managers-sheng-xue">2.1. Command Handling by Managers [Sheng Xue]</a></li>
 <li><a href="#unique-identification-of-entities-sheng-xue">2.2. Unique Identification of Entities [Sheng Xue]</a></li>
-<li><a href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan">2.3. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></li>
+<li><a href="#entity-linking">2.3. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></li>
 <li><a href="#progress-management">2.4. Student Progress Management [Tee Jun Jie Ivan]</a></li>
 <li><a href="#undo-redo-hieu">2.5. Undo/Redo [Hieu]</a></li>
 <li><a href="#view-switching-hieu">2.6. View Switching [HIEU]</a></li>
@@ -585,7 +585,7 @@ Future features that involve creating new AddressBooks can be developed very qui
 </div>
 </div>
 <div class="sect2">
-<h3 id="entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan"><a class="link" href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan">2.3. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></h3>
+<h3 id="entity-linking"><a class="link" href="#entity-linking">2.3. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></h3>
 <div class="paragraph">
 <p>In order to allow the tracking of the students/assignments/teachers that are assigned to a course and vice versa, this required us to implement a structure which allowed us to obtain information from the aforementioned objects, without causing any circular referencing errors.</p>
 </div>
@@ -863,14 +863,14 @@ Some performance can be sacrificed in order to ensure that the links between obj
 <div class="sect4">
 <h5 id="summary-of-entity-linking"><a class="link" href="#summary-of-entity-linking">Summary of Entity Linking</a></h5>
 <div class="paragraph">
-<p>Overall, in order to ensure successful entity linking, all 3 managers involved must be involved.
-The table below shows the involvement of 3 managers with regards to each variant of the <code>Assign</code>/<code>Un-assign</code> commands.</p>
+<p>Overall, in order to ensure successful entity linking, the role that <code>EdgeManager</code> plays is crucial.
+The table below shows the method calls made to <code>EdgeManager</code> during an <code>Assign</code>/<code>Un-assign</code> command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ivan-AssignSummaryTable.png" alt="Ivan AssignSummaryTable">
+<img src="images/Ivan-AssignSummary.png" alt="Ivan AssignSummary">
 </div>
-<div class="title">Figure 14. Table Summary of Manager&#8217;s involvement during Assign/Un-assign Commands</div>
+<div class="title">Figure 14. Table Summary of EdgeManager&#8217;s involvement during Assign/Un-assign Commands</div>
 </div>
 <hr>
 </div>
@@ -975,6 +975,15 @@ Instead, we are looking to remove Progress objects rather than adding them back 
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>The table below shows the summary of method calls from <code>ProgressManager</code> for each variant of <code>Assign</code>/<code>Un-assign</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ivan-ProgressSummary.png" alt="Ivan ProgressSummary">
+</div>
+<div class="title">Figure 16. Table Summary of ProgressManager method calls() for Assign/Un-assign Commands</div>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -983,7 +992,169 @@ Instead, we are looking to remove Progress objects rather than adding them back 
 <h6 id="u-rationale-u-4"><a class="link" href="#u-rationale-u-4"><u>Rationale</u></a></h6>
 <div class="paragraph">
 <p>When a <code>Student</code> finishes an <code>Assignment</code> that is allocated to him, you want to be able to mark his work
-as <code>Done</code>. Similarly, if an <code>Assignment</code> has been mistakenly marked as done or</p>
+as <code>Done</code>.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, if an <code>Assignment</code> has been mistakenly marked as <code>Done</code> or is actually <code>Undone</code>, you want to be able
+to mark the <code>Assignment</code> as <code>Undone</code>.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="u-current-implementation-u-4"><a class="link" href="#u-current-implementation-u-4"><u>Current Implementation</u></a></h6>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ivan-SequenceDiagramDoneCommand.png" alt="Ivan SequenceDiagramDoneCommand">
+</div>
+<div class="title">Figure 17. Sequence Diagram for Progress Manager&#8217;s Handling of Done Command</div>
+</div>
+<div class="paragraph">
+<p>The implementation of <code>Done</code> command is very straight-forward. Only 2 parameter is needed - assignmentID (aid) and studentID (sid).</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create the CompositeID of <code>Progress</code> objects using the aid and sid</p>
+</li>
+<li>
+<p>Using this newly created compositeID, call modelManager#get(ID id, entity.type)</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>This returns a <code>copy</code> of the <code>Progress</code> object - P'.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Execute <code>P'#done()</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If <code>P'</code> is already done, an exception will be thrown</p>
+</li>
+<li>
+<p>Else, <code>P'</code> will be set its internal boolean isDone to be true.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Save the edited <code>Progress</code> object to model</p>
+</li>
+<li>
+<p>Save the edited <code>Progress</code> object to storage</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>With this, the implementation of <code>Undone</code> command is about the same, we just have to call <code>P'#undone()</code> instead.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="u-design-consideration-u"><a class="link" href="#u-design-consideration-u"><u>Design Consideration</u></a></h6>
+<div class="paragraph">
+<p>There is 1 main considerations when implementing <code>Progress</code> objects.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Is there a need to separate <code>Assignment</code> and <code>Progress</code>?</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Implementation 1 - Have <code>Assignment</code> hold 1 <code>StudentID</code> and a 1 <code>isDone</code> boolean</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Pros</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Simple to implement</p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">Cons</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Memory-intensive since every student can have up to N number of <code>Assignments</code></p>
+</li>
+<li>
+<p>Suppose that a field in the <code>Assignment</code> needs to be updated, the program needs to loop through every single <code>Assignment</code> object
+to update that particular field, resulting in high computational costs.</p>
+</li>
+<li>
+<p>With an additional link from <code>Assignment</code> to <code>Student</code>, it will be require more work to maintain the correctness of the linking.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>In <a href="#entity-linking"><code>Section 2.3</code></a>, the decided implementation was to <strong>centralize all links around <code>Course</code></strong>.</p>
+</li>
+<li>
+<p>Hence, if another type of link was to be introduced, another <code>manager</code> will need to be implemented.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Implementation 2 (Current Implementation) - Separate the logic of <code>Assignment</code> and <code>Progress</code>.
+<code>Assignments</code> just need to hold its ID, name and deadline while <code>Progress</code> will handle whether a <code>Student</code> has completed that <code>Assignment</code> or not.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Pros</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Intuitive and simple to understand</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>In-line with Object Oriented Programming since it can be modelled as a real world object.</p>
+</li>
+<li>
+<p>As most people have been through school, they can understand that when given a homework/assignment in school,
+there is actually only <strong>1</strong> <code>Assignment</code> that <strong>every</strong> <code>Student</code> has to complete. This idea is basically what we have implemented.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Solves the first disadvantage of Implementation 1. Any time the details of the <code>Assignment</code> is changed,
+the details will be automatically changed for all <code>Progress</code> objects.</p>
+</li>
+<li>
+<p>Works well with current implementation of AddressBookGeneric which has <code>getters</code> and <code>setters</code> via <code>ID</code> since every <code>Progress</code> object will have its own <code>ID</code></p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">Cons</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Also very memory intensive</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -1078,7 +1249,7 @@ Pros: Reduce a lot of memory issue.</p>
 <div class="content">
 <img src="images/ActivityDiagramEditCommand.png" alt="ActivityDiagramEditCommand">
 </div>
-<div class="title">Figure 16. Activity Diagram of Pre-processing for Edit commands</div>
+<div class="title">Figure 18. Activity Diagram of Pre-processing for Edit commands</div>
 </div>
 <div class="paragraph">
 <p>Method <code>executeUndoableCommand</code> will set the toEdit Object in the ObjectAddressBook to the edited Object.</p>
@@ -1097,8 +1268,8 @@ is opposite to this EditCommand) with editing information of the original toEdit
 <p>Generating of opposite commands for assign and un-assign commands is very intuitive. The opposite of assign is un-assign and vice versa.</p>
 </div>
 <div class="paragraph">
-<p>The <strong>tricky</strong> part comes after you un-assign a Student/Assignment from a Course and remove the affected <code>Progress</code> objects.
-When you want to undo the un-assign command, you need to add back those <code>Progress</code> objects which were just removed instead of adding new <code><strong>undone</strong> Progress objects</code>.
+<p>The <strong>tricky</strong> part comes after you un-assign a Student/Assignment from a Course and have removed the affected <code>Progress</code> objects.
+When you want to undo the un-assign command, you need to add back those particular <code>Progress</code> objects which were just removed instead of adding new <code><strong>undone</strong> Progress objects</code>.
 This is because those removed <code>Progress</code> objects may or may not be <code>done</code>.</p>
 </div>
 <div class="paragraph">
@@ -1108,11 +1279,10 @@ This is because those removed <code>Progress</code> objects may or may not be <c
 <ol class="arabic">
 <li>
 <p>When pre-processing an un-assign command as per <a href="#Preprocess-entity"><code><strong>Step 1 of Section 2.2.2</strong></code></a>,
-you&#8217;ll need to assign all <code>Progress</code> objects that are about to be removed to a variable</p>
+you&#8217;ll need to assign all <code>Progress</code> objects that are about to be removed to a variable.</p>
 </li>
 <li>
-<p>When <code>GenerateOppositeCommand</code> is called, as mentioned, the opposite command will be an <code>Assign</code> Command.
-Instead, this time you will need to instantiate a new <code>Assign</code> using the <code>Progress</code> objects that you have saved via an overloaded constructor:</p>
+<p>When <code>GenerateOppositeCommand</code> is called, via an overloaded constructor,  you will need to instantiate a new <code>Assign</code> using the <code>Progress</code> objects that you have saved:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> AssignAssignmentToCourseCommand(AssignDescriptor assignDescriptor, <span class="predefined-type">Set</span>&lt;Progress&gt; undoProgresses)</code></pre>
@@ -1137,7 +1307,7 @@ Undo Progress will be added back in.</p>
 <div class="content">
 <img src="images/Ivan-ActivityDiagramAssignUndo.png" alt="Ivan ActivityDiagramAssignUndo">
 </div>
-<div class="title">Figure 17. Activity Diagram of executing executeUndoableCommand of Assign Commands</div>
+<div class="title">Figure 19. Activity Diagram of executing executeUndoableCommand of Assign Commands</div>
 </div>
 <hr>
 <div class="paragraph">
@@ -1193,7 +1363,7 @@ delete-command. All the entities links are restored.</p>
 <div class="content">
 <img src="images/SeqDiagramDeleteStaff.png" alt="SeqDiagramDeleteStaff">
 </div>
-<div class="title">Figure 18. Sequence Diagram of Delete Staff (teacher)</div>
+<div class="title">Figure 20. Sequence Diagram of Delete Staff (teacher)</div>
 </div>
 </div>
 </div>
@@ -1295,7 +1465,7 @@ is taken from the salary of the teacher. The payment will automatically have rec
 <div class="content">
 <img src="images/FinanceDiagram.png" alt="FinanceDiagram">
 </div>
-<div class="title">Figure 19. Class diagram of CourseStudent and CourseTeacher</div>
+<div class="title">Figure 21. Class diagram of CourseStudent and CourseTeacher</div>
 </div>
 <div class="paragraph">
 <p>Finance type <code>CourseStudent</code> or <code>cs</code> add command will access <code>CourseAddressBook</code> and <code>StudentAddressBook</code> to ensure <code>Course</code> and
@@ -2992,7 +3162,7 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 20. Structure of Commands and Parser</div>
+<div class="title">Figure 22. Structure of Commands and Parser</div>
 </div>
 <hr>
 <div class="sect2">
@@ -3010,4 +3180,4 @@ So we have AssignDescriptor which stores this information.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 09:19:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 10:02:33 UTC</div></div></div></body></html>
