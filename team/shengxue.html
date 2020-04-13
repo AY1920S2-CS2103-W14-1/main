@@ -27,6 +27,9 @@
 <div class="ulist">
 <ul>
 <li>
+<p>Pull requests <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/46">#46</a></p>
+</li>
+<li>
 <p>What it does: implemented the major functionality needed for each of the <strong>four main features</strong>.
 This includes the fields needed for each features such as ID and course fee amount, Add, Delete, Edit, Clear, Find, List.</p>
 </li>
@@ -47,6 +50,10 @@ because alternative design implementations need to be considered, and numerous c
 <div class="ulist">
 <ul>
 <li>
+<p>Pull requests <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/45">#45</a>(First iteration), <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/73/commits">#73</a>(Second iteration),
+<a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/117">#117</a>(Third iteration)</p>
+</li>
+<li>
 <p>First iteration: added four different <strong>tabs</strong> to the GUI, displaying Student, Staff, Course and Finance</p>
 </li>
 <li>
@@ -54,8 +61,7 @@ because alternative design implementations need to be considered, and numerous c
 </li>
 <li>
 <p>Third iteration: revamped the GUI by improving the color schemes further. Added sub-panels in each tab.
-For example, the Student tab now has an additional selected Student panel, along with a panel showing the list of courses assigned to the student
-T</p>
+For example, the Student tab now has an additional selected Student panel, along with a panel showing the list of courses assigned to the student.</p>
 </li>
 <li>
 <p>Justification: This feature improves the product significantly because a user can see clearly the effects of the changes made in the GUI
@@ -64,6 +70,37 @@ and ensuring that the GUI is suitable for every member of the team.</p>
 </li>
 <li>
 <p>Highlights: This enhancement also supports the clicking of the GUI. For example, the Student bar can be clicked to show the list of course assigned to the student. Every GUI interaction can be be replicated using a CLI command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: added assigning commands (which forms the crux of designing our application) for the <strong>four main features</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pull requests <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/81">#81</a>, <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/91">#91</a></p>
+</li>
+<li>
+<p>What it does: allows the assigning of students/teachers/assignments to courses
+This includes the GUI support mentioned in the previous section. For example, as students can be assigned to a course,
+each course will have a list of students. This must be supported by the GUI as well, where the course tab
+will display the list of students assigned to the selected course.</p>
+</li>
+<li>
+<p>Justification: This feature improves the product significantly because assigning of the various items
+is the most important part of our application. This implementation is especially challenging, as the design implementation
+needs to be considered carefully due to the large amount of potential one-to-one relationships. After the discussion
+with the team about the code structure, I implemented the assigning commands.</p>
+</li>
+<li>
+<p>Highlights: This enhancement is tedious, due to the potential of bugs appearing. The design
+implementation must be considered carefully. For example, when the user deletes an assignment, the assignment
+should be removed from every course that the assignment is assigned to. Also, the assignment
+must be removed from every student that is taking a course with this assignment. As can be seen,
+the user commands will cuase significant changes to the relationships among the <strong>four main features</strong>,
+which have to each to notified of the changes made. The GUI must also be updated
+automatically when the user performs the command, in every tabs.</p>
 </li>
 </ul>
 </div>
@@ -78,7 +115,7 @@ and ensuring that the GUI is suitable for every member of the team.</p>
 <p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/ShengXue97/main">Functional code</a>]</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -89,89 +126,27 @@ and ensuring that the GUI is suitable for every member of the team.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
+<p>Managed releases <code>v1.1</code>, <code>v1.3</code> (2 releases) on GitHub</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Enhancements to existing features:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
+<p>Documentation: Claim-Did around 90% of the User Guide.
+Pull requests <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/59">#59</a>, <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/66">#66</a>,
+<a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/117/commits/4e2cc99944858ae13a109980d659170907a57b09">#117</a>,
+<a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/119">#119</a>, <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/221">#221</a></p>
 </li>
 <li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Documentation:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Community:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
-</li>
-<li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Tools:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
-</li>
-<li>
-<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
+<p>Bug Fix/Bug Finding. Pull request <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/117">#117</a>, <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/207">#207</a>
+List of commands tested by me(Checked that it actually saved, undo/redo works for these commands, and whether GUI auto-updates):
+all add, edit, delete, assign, unassign, find, list, switch, clear-all commands</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect1">
@@ -187,14 +162,536 @@ and ensuring that the GUI is suitable for every member of the team.</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>The sections below give more details of each component.</p>
+</div>
+<div class="sect2">
+<h3 id="Design-Ui"><a class="link" href="#Design-Ui">View/UI component [Sim Sheng Xue]</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ViewUI.png" alt="ViewUI">
+</div>
+<div class="title">Figure 1. Structure of the UI Component</div>
+</div>
+<div class="paragraph">
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>StatusBarFooter</code> etc.
+All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component uses JavaFx UI framework.
+The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Executes user commands using the <code>ViewController</code> component.</p>
+</li>
+<li>
+<p>Listens for changes to <code>ViewModel</code> data so that the UI can be updated with the modified data.
+<code>ListPanel</code> objects store a list of <code>Card</code> objects.<br>
+<code>DetailedPanel</code> objects store a list of <code>VeryDetailedCard</code> objects.
+For example, for the Student Tab: <br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>StudentListPanel</code> is the top left panel. This stores a list of <code>StudentCard</code>,
+which only displays the basic information about the Student.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>StudentDetailedCard</code> is the top right panel. This is viewed when a specific
+Student is selected using a command. This will show the detailed information about
+the Student, such as the courses assigned to this Student.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>StudentDetailedPanel</code> is the bottom
+right panel. This stores a list of <code>CourseVeryDetailedCard</code>.
+Each <code>CourseVeryDetailedCard</code> displays the list of assignments assigned
+to the Course of this Student.<br></p>
+</div>
+<div class="paragraph">
+<p>Only the Student and Course tabs contain <code>DetailedPanel</code>(bottom right panel). All tabs
+contain the <code>ListPanel</code> (top left panel) and <code>DetailedCard</code>(top right panel).
+This is because <code>ListPanel</code> is needed to show the basic information of each
+item, while <code>DetailedCard</code> is needed to show the detailed information of each
+selected item. <code>DetailedPanel</code> is only needed for Student to show list of Courses for a Student,
+and for Course to show list of Student for a Course.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>As can be seen from the UI diagram above, each of the <code>Card</code>, <code>DetailedCard</code> and <code>VeryDetailedCard</code>
+will subscribe and listen to the <code>ViewModel</code> through the logic layers.</p>
+</li>
+<li>
+<p>Each of these classes will correspond to the observableMap in <code>ViewModel</code></p>
+</li>
+<li>
+<p>When there is a change to the model, the <code>ViewModel</code> will update its observableMap</p>
+</li>
+<li>
+<p>As each of these classes in <code>View</code> subscribe to the <code>ViewModel</code>, the UI will update automatically.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewcontroller-logic-component-sim-sheng-xue"><a class="link" href="#viewcontroller-logic-component-sim-sheng-xue">ViewController/Logic component [Sim Sheng Xue]</a></h3>
+<div id="fig-LogicClassDiagram" class="imageblock">
+<div class="content">
+<img src="../images/ViewController.png" alt="ViewController">
+</div>
+<div class="title">Figure 2. Structure of the View Controller Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> :
+<a href="{repoURL}/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>ViewController</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
+</li>
+<li>
+<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
+</li>
+<li>
+<p>The command execution can affect the <code>Model</code> (e.g. adding a student).</p>
+</li>
+<li>
+<p>The <code>LogicManager</code> will invoke the relevant class located inside <code>Model</code>.
+For Entity CRUD commands, the <code>ModelManager</code> will be invoked.
+For Link CRUD commands, the <code>EdgeManager</code> will be invoked.
+For Progress CRUD commands, the <code>ProgressManager</code> will be invoked.</p>
+</li>
+<li>
+<p>The Managers will post events to the <code>EventsCenterSingleton</code>. The subscribing
+managers <code>DetailManager</code> and <code>StorageManager</code> will listen to new publish events in the event bus.
+The <code>View</code> also subscribes to <code>DetailManager</code>. This allows for the commands executed by
+the <code>LogicManager</code> to moify both the View and Storage.</p>
+</li>
+<li>
+<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>View</code>.</p>
+</li>
+<li>
+<p>In addition, the <code>CommandResult</code> object can also instruct the <code>View</code> to perform certain actions, such as displaying help to the user.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">Storage component [Sim Sheng Xue]</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/StorageComponent.png" alt="StorageComponent">
+</div>
+<div class="title">Figure 3. Structure of the Storage Component</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>The <code>Storage</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+</li>
+<li>
+<p>can save the Address Book data in json format and read it back.</p>
+</li>
+<li>
+<p>The <code>StorageManager</code> subscribes to the <code>EventCenter</code>. It will listen to
+both DataStorageChangeEvent and DeleteEntitySyncEvent. DataStorageChangeEvent occurs
+when basic information about each object is changed, except for deletion.
+DeleteEntitySyncEvent occurs when an object is deleted, and the storage has to
+be update to maintain consistency. For example, when a Course is deleted,
+the DeleteEntitySyncEvent will trigger the storage to remove the Course from
+every Student assigned to this Course.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unique-identification-of-entities-sim-sheng-xue"><a class="link" href="#unique-identification-of-entities-sim-sheng-xue">Unique Identification of Entities [Sim Sheng Xue]</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>UUID Manager</code> - Ensures ID of all entities are unique, allowing each object to be uniquely identifiable</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="uuid-manager"><a class="link" href="#uuid-manager">UUID Manager</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>All ModelObjects have their own ID which is generated by UUID manager</p>
+</li>
+<li>
+<p>For Progress objects, the ID is a composite ID of assignmentID and studentID</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Consideration:<br>
+Each ModelObjects should have a ID generated that is unique among the entire application, across history.
+For example, not only can two Students not have the same ID, but a Student and a Staff cannot have
+the same ID. This design consideration is taken due to the existence of Finance.<br></p>
+</div>
+<div class="paragraph">
+<p>The Finance object can represent a Student paying for a Course. When the Student is deleted,
+the Finance object is not deleted. This is due to the need to track the Finance of the coding camp,
+even though the Student has left the camp(and assuming there is no refund, if not the owner
+can delete the Finance object).<br></p>
+</div>
+<div class="paragraph">
+<p>Hence, this means that if the ID is not unique among deleted objects, there may be inconsistent
+information located in the Finance objects.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-sim-sheng-xue"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-sim-sheng-xue">Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings [Sim Sheng Xue]</a></h3>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FinanceDiagram.png" alt="FinanceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Finance type <code>Miscellaneous</code> or <code>m</code> add command will add a <code>Finance</code> with a given Name (description) from the user.
+The amount is sign sensitive, meaning miscellaneous can take in a positive amount or a negative amount corresponding to
+earning or expense depending on the user.</p>
+</div>
+<div class="paragraph">
+<p>Miscellaneous transactions can either be payments or earnings,
+such as purchases of stationary or
+advertisement revenue. Teacher payments are tracked by courses,
+where the teacher is paid for each course taught. Student earnings
+are also tracked by courses, where the student pays for each course taken.</p>
+</div>
+<div class="paragraph">
+<p>Finance type <code>Miscellaneous</code> or <code>m</code> will create a Miscellaneous transaction,
+where the <code>Amount</code> is specified by the user.</p>
+</div>
+<div class="paragraph">
+<p>Finance type <code>CourseTeacher</code> or <code>ct</code> add command will access <code>CourseAddressBook</code> and <code>StaffAddressBook</code> to ensure <code>Course</code> and
+<code>Staff</code> exist and make sure this staff is teaching this course. The <code>Amount</code> is set to the amount of the <code>Course</code>
+(student fee).</p>
+</div>
+<div class="paragraph">
+<p>Finance type <code>CourseStudent</code> or <code>cs</code> add command will access <code>CourseAddressBook</code> and <code>StudentAddressBook</code> to ensure <code>Course</code> and
+<code>Student</code> exist and make sure this student is taking this course. The <code>Amount</code> is set to the amount of the <code>Course</code>
+(student fee).</p>
+</div>
+<div class="paragraph">
+<p>All three Finance types will create a <code>Finance</code> object to store the transaction,
+which will be saved in the <code>FinanceAddressBook</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="navigation-among-command-history-in-the-command-box-sim-sheng-xue"><a class="link" href="#navigation-among-command-history-in-the-command-box-sim-sheng-xue">Navigation among command history in the command box [Sim Sheng Xue]</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandHistory.png" alt="CommandHistory">
+</div>
+<div class="title">Figure 4. Activity diagram of Command History</div>
+</div>
+<div class="paragraph">
+<p>Coding Camp X supports quick navigation among command history in the command box.
+Whenever the user executes a command, it will be added to a stack. If the command
+fails to execute or is exactly the same as the previous command executed,
+it will not be added to the stack.<br></p>
+</div>
+<div class="paragraph">
+<p>The user can click the [UP ARROW] or [DOWN ARROW] keys in the command box
+to navigate through the executed command history. Since the implementation
+for [UP ARROW] is similar(as seen in the activity diagram), this guide will explain
+[DOWN ARROW] in details.</p>
+</div>
+<div class="paragraph">
+<p>When the user clicks the [DOWN ARROW], the application will check
+if the Right Stack is empty. If the Right Stack is empty, this means
+that there is no commands below to navigate to. In this case, the command
+box will still show the initial command.(No change)<br></p>
+</div>
+<div class="paragraph">
+<p>Else if the Right Stack is not empty, the next command will be popped
+from the top of the Right Stack. Now, two actions will occur in parallel.
+The command will be added to the Left Stack, and this command will also be
+shown in the command box. This allows the user to navigate back to
+the command after with an [UP ARROW] key command. The process will then
+come to an end.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
 <div class="sectionbody">
-<hr>
-<div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. <strong>Claim: I did around 90% of the entire
+user guide. Due to the page limit, I will only show the command summary table.</strong> They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 12:43:26 UTC</div></div></div></body></html>
+<div class="sect1">
+<h2 id="command-summary"><a class="link" href="#command-summary">Command Summary</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all">
+<caption class="title">Table 1. Summary of command formats</caption>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Section</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Command</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Format</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Help</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>help</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>help</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Undo/Redo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Undo an undoable command</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>undo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>undo</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Redo a redoable command</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>redo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>redo</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Select item</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Select a Student</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select sid/STUDENTID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select sid/1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Select a Staff</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select tid/STAFFID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select tid/31</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Select a Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select cid/COURSEID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select cid/1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Select Assignment belonging to the Course of a Student:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select sid/STUDENTID cid/COURSEID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select sid/11 cid/1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Select Assignment belonging to the Student of a Course:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select cid/COURSEID sid/STUDENTID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select cid/1 sid/11</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">Switch tab</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Switch to Summary Tab</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>m</code> or <code>summary</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>m</code> or <code>summary</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Switch to Student Tab</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>s</code> or <code>student</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>s</code> or <code>student</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Switch to Staff Tab</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>t</code> or <code>staff</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>t</code> or <code>staff</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Switch to Course Tab</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>c</code> or <code>course</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>c</code> or <code>course</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Switch to Finance Tab</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>f</code> or <code>finance</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>f</code> or <code>finance</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Switch to Assignment Tab</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>a</code> or <code>assignment</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>a</code> or <code>assignment</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">Assigning to Course</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Assign Student to a Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>assign cid/COURSEID sid/STUDENTID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>assign cid/829 sid/33</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Assign Teacher to a Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>assign cid/COURSEID tid/TEACHERID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>assign cid/829 tid/21</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Assign Assignment to a Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>assign cid/COURSEID aid/ASSIGNMENTID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>assign cid/829 aid/21</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Unassign Student from a Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unassign cid/COURSEID sid/STUDENTID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unassign cid/829 sid/33</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Unassign Teacher from a Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unassign cid/COURSEID tid/TEACHERID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unassign cid/829 tid/21</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Unassign Assignment from a Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unassign cid/COURSEID aid/ASSIGNMENTID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unassign cid/829 aid/21</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Student Commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Student</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-student n/NAME [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-student n/Jon Snow t/Hardworking</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Student</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-student ID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-student 16100</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Student</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-student KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-student Lannister Targaryen Stark</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List Student</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-student</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-student</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Edit Student</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-student ID [n/NAME] [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-student 16100 n/Aegon Targaryen t/knownothing</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Teacher Commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-staff n/NAME [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-staff n/Jon Snow t/Hardworking</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-staff ID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-staff 16100</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-staff KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-staff Lannister Targaryen Stark</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-staff</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-staff</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Edit Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-staff ID [n/NAME] [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-staff 16100 n/Aegon Targaryen t/Son of Lyanna Stark and Rhaegar Targaryen</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Course Commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-course n/NAME a/AMOUNT [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-course n/Cozmo Programming a/2000 t/Fun t/Robot</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-course ID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-course 16100</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-course KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-course Java Python C</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-course</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-course</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Edit Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-course ID [n/NAME] [a/AMOUNT] [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-course 16100 n/Java Programming a/2000</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="8"><p class="tableblock">Finance Commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Finance Type 1 (ft/m)</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/FINANCETYPE d/DATE n/NAME a/AMOUNT [t/TAG]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/m d/2020-12-09 n/Paid NTU a/1200 t/Partnership t/Monthly</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Finance Type 2 (ft/cs)</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/FINANCETYPE d/DATE cid/COURSEID sid/STUDENTID [t/TAG]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/cs d/2020-12-09 cid/829 sid/33 t/Late</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Finance Type 3 (ft/ct)</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/FINANCETYPE d/DATE cid/COURSEID tid/TEACHERID [t/TAG]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/ct d/2020-12-09 cid/829 tid/21 t/Early</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Finance</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-finance ID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-finance 16100</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Finance</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-finance KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-finance Lannister Targaryen Stark</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List Finance</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-finance</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-finance</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Calculate Earnings</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>earnings</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>earnings</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Calculate Expenses</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>expenses</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>expenses</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 13:06:55 UTC</div></div></div></body></html>

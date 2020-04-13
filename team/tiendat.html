@@ -522,13 +522,13 @@ is taken from the salary of the teacher. The payment will automatically have rec
 </div>
 </div>
 <div class="sect2">
-<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-dat"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-dat">Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings [Dat]</a></h3>
+<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-sim-sheng-xue"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-sim-sheng-xue">Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings [Sim Sheng Xue]</a></h3>
 <div class="sect3">
 <h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
-<div class="paragraph">
-<p>Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue.
-Teacher payments are tracked by courses, where the teacher is paid for each course taught.
-Student earnings are also tracked by courses, where the student pays for each course taken.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FinanceDiagram.png" alt="FinanceDiagram">
+</div>
 </div>
 <div class="paragraph">
 <p>Finance type <code>Miscellaneous</code> or <code>m</code> add command will add a <code>Finance</code> with a given Name (description) from the user.
@@ -536,15 +536,1771 @@ The amount is sign sensitive, meaning miscellaneous can take in a positive amoun
 earning or expense depending on the user.</p>
 </div>
 <div class="paragraph">
+<p>Miscellaneous transactions can either be payments or earnings,
+such as purchases of stationary or
+advertisement revenue. Teacher payments are tracked by courses,
+where the teacher is paid for each course taught. Student earnings
+are also tracked by courses, where the student pays for each course taken.</p>
+</div>
+<div class="paragraph">
+<p>Finance type <code>Miscellaneous</code> or <code>m</code> will create a Miscellaneous transaction,
+where the <code>Amount</code> is specified by the user.</p>
+</div>
+<div class="paragraph">
+<p>Finance type <code>CourseTeacher</code> or <code>ct</code> add command will access <code>CourseAddressBook</code> and <code>StaffAddressBook</code> to ensure <code>Course</code> and
+<code>Staff</code> exist and make sure this staff is teaching this course. The <code>Amount</code> is set to the amount of the <code>Course</code>
+(student fee).</p>
+</div>
+<div class="paragraph">
 <p>Finance type <code>CourseStudent</code> or <code>cs</code> add command will access <code>CourseAddressBook</code> and <code>StudentAddressBook</code> to ensure <code>Course</code> and
 <code>Student</code> exist and make sure this student is taking this course. The <code>Amount</code> is set to the amount of the <code>Course</code>
 (student fee).</p>
 </div>
 <div class="paragraph">
-<p>Finance type <code>CourseTeacher</code> or <code>ct</code> add command will access <code>StaffAddressBook</code> and <code>CourseAddressBook</code> to ensure <code>Staff</code> and
-<code>Course</code> exist and make sure this staff is teaching this course. The <code>Amount</code> is set to the amount salary of the <code>Staff</code>.</p>
+<p>All three Finance types will create a <code>Finance</code> object to store the transaction,
+which will be saved in the <code>FinanceAddressBook</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="navigation-among-command-history-in-the-command-box-sim-sheng-xue"><a class="link" href="#navigation-among-command-history-in-the-command-box-sim-sheng-xue">Navigation among command history in the command box [Sim Sheng Xue]</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandHistory.png" alt="CommandHistory">
+</div>
+<div class="title">Figure 7. Activity diagram of Command History</div>
+</div>
+<div class="paragraph">
+<p>Coding Camp X supports quick navigation among command history in the command box.
+Whenever the user executes a command, it will be added to a stack. If the command
+fails to execute or is exactly the same as the previous command executed,
+it will not be added to the stack.<br></p>
+</div>
+<div class="paragraph">
+<p>The user can click the [UP ARROW] or [DOWN ARROW] keys in the command box
+to navigate through the executed command history. Since the implementation
+for [UP ARROW] is similar(as seen in the activity diagram), this guide will explain
+[DOWN ARROW] in details.</p>
+</div>
+<div class="paragraph">
+<p>When the user clicks the [DOWN ARROW], the application will check
+if the Right Stack is empty. If the Right Stack is empty, this means
+that there is no commands below to navigate to. In this case, the command
+box will still show the initial command.(No change)<br></p>
+</div>
+<div class="paragraph">
+<p>Else if the Right Stack is not empty, the next command will be popped
+from the top of the Right Stack. Now, two actions will occur in parallel.
+The command will be added to the Left Stack, and this command will also be
+shown in the command box. This allows the user to navigate back to
+the command after with an [UP ARROW] key command. The process will then
+come to an end.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">Logging</a></h3>
+<div class="paragraph">
+<p>We are using <code>java.util.logging</code> package for logging.
+The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Configuration</a>)</p>
+</li>
+<li>
+<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
+</li>
+<li>
+<p>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Logging Levels</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</p>
+</li>
+<li>
+<p><code>WARNING</code> : Can continue, but with caution</p>
+</li>
+<li>
+<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
+</li>
+<li>
+<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">Configuration</a></h3>
+<div class="paragraph">
+<p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 12:43:26 UTC</div></div></div></body></html>
+<div class="sect1">
+<h2 id="documentation"><a class="link" href="#documentation">Documentation</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Refer to the guide <a href="Documentation.html">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="testing"><a class="link" href="#testing">Testing</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Refer to the guide <a href="Testing.html">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="dev-ops"><a class="link" href="#dev-ops">Dev Ops</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Refer to the guide <a href="DevOps.html">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="product-scope"><a class="link" href="#product-scope">Appendix A: Product Scope</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Target user profile (Coding camp owners)</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>need to manage a significant number of teachers, students, courses, assignemnts and finances</p>
+</li>
+<li>
+<p>assign teachers to specific courses</p>
+</li>
+<li>
+<p>assign students to suitable schedules</p>
+</li>
+<li>
+<p>keep track of the courses available</p>
+</li>
+<li>
+<p>keep track of the student&#8217;s progress and assignments</p>
+</li>
+<li>
+<p>manage course earnings and staff spending</p>
+</li>
+<li>
+<p>---</p>
+</li>
+<li>
+<p>prefer desktop apps over other types</p>
+</li>
+<li>
+<p>can type fast</p>
+</li>
+<li>
+<p>prefers typing over mouse input</p>
+</li>
+<li>
+<p>is reasonably comfortable using CLI apps</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Value proposition</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Manage the addition and removal of students quickly</p>
+</li>
+<li>
+<p>Manage the addition and removal of courses quickly</p>
+</li>
+<li>
+<p>Manage the addition and removal of assignments and progress quickly</p>
+</li>
+<li>
+<p>Check the financial status of courses</p>
+</li>
+<li>
+<p>Track student progress for courses quickly</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 59%;">
+<colgroup>
+<col style="width: 22%;">
+<col style="width: 23%;">
+<col style="width: 25%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Priority</th>
+<th class="tableblock halign-left valign-top">As a &#8230;&#8203;</th>
+<th class="tableblock halign-left valign-top">I want to &#8230;&#8203;</th>
+<th class="tableblock halign-left valign-top">So that I can&#8230;&#8203;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">new user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see usage instructions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">refer to instructions when I forget how to use the App</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a assignment with a deadline</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list all assignment tasks</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list all assignment to be done for a course</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find a particular assignment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate the details of the assignment without going through the whole list of all assignments</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit a assignment&#8217;s detail</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quickly change the details of the assignment without creating a new entry and deleting the old one</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assign a assignment to course</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assign a list of assignment to course</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quickly add all assignments to a course without going through them one by one</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">for every student added to a course, assign a list of progress items to them automatically based on the assignment for the course</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">make it more convenient for the administrative staff to assign students to courses</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">track the progress of an individual student</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to ensure that students are caught up on study materials</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">track the progress of all students in a particular course</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to get an overview understanding of all students' progress in a course</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mark as done the assignment of a student</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mark as done the assignment of a few/all students for a particular week</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quickly mark students' assignment as done without iterating through all of the assignment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">get notified if there is a student with too many undone assignment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">help to easily inform the teachers on the student progress</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">automate the spendings of the tuition centre due to the salary of the staff</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">do not need to manually deduct the savings from the salary at the end of the month</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">automate the income generated by each of the students according to the course fees payable by the students</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">do not need to manually add the income generated at the end of the month</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">able to know how much we are spending by adding the name and price of the items or services bought</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of the expenses of the tuition centre</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">be able to know how much we are earning by adding the various sources of income such as through students course fees, or miscellaneous sources like textbook sales</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of the earnings of the tuition centre</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tag each of the spendings of the tuition centre with the priority levels, such as “must-have”, “nice-to-have”, or “not-needed”</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">evaluate the necessity of the spendings of the tuition centre</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">be able to tag each of the spendings with the department that they are from</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">better understand which department is spending on what types of goods and services</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view the statistics of the finances at periods such as day, week of month</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">better plan ahead</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">be able to track the payment status of each customer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ensure that all customers have paid on time</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><em>{More to be added}</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(For all use cases below, the <strong>System</strong> is the <code>Code Camp X</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+</div>
+<h3 id="use-case-1-adding-a-assignment" class="discrete">Use Case 1: Adding a assignment</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User inputs an 'add assignment' command with name and deadline</p>
+</li>
+<li>
+<p>CCX adds the assignment into the system + Use case ends.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a.
+No name/deadline is provided.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1b.
+The Date deadline is wrongly formatted.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. CCX shows an error message.</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-2-listing-all-assignment" class="discrete">Use Case 2: Listing all assignment</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see all assignment</p>
+</li>
+<li>
+<p>CCX outputs all assignment in its database</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a.
+List is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-3-deleting-a-assignment" class="discrete">Use Case 3: Deleting a assignment</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User sees all assignment using UC2</p>
+</li>
+<li>
+<p>User requests to delete assignment using its respective assignmentID</p>
+</li>
+<li>
+<p>CCX finds the assignment using UC4</p>
+</li>
+<li>
+<p>CCX removes the assignment from the system</p>
+</li>
+<li>
+<p>CCX outputs a success message with the details for the assignment</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. assignmentID does not exist.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-4-finding-a-assignment-by-assignmentid" class="discrete">Use Case 4: Finding a assignment by assignmentID</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User sees all assignment using UC2</p>
+</li>
+<li>
+<p>User requests to view a assignment using its respective assignmentID</p>
+</li>
+<li>
+<p>CCX searches the the system for the relevant assignment</p>
+</li>
+<li>
+<p>CCX outputs a success message with the details for the assignment</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. assignmentID does not exist.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-5-edit-a-assignment-using-assignmentid" class="discrete">Use Case 5: Edit a assignment using assignmentID</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User sees all assignment using UC2</p>
+</li>
+<li>
+<p>CCX outputs the whole list of assignment</p>
+</li>
+<li>
+<p>User requests to edit a assignment using its respective assignmentID</p>
+</li>
+<li>
+<p>CCX finds for the specific assignment using UC4</p>
+</li>
+<li>
+<p>CCX changes the details of the assignment</p>
+</li>
+<li>
+<p>CCX outputs a success message with the updated details for the assignment</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. assignmentID does not exist.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3b.
+New deadline provided is not properly formatted.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3c.
+No new details are provided.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3c1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-6-assign-a-assignment-to-a-course" class="discrete">Use Case 6: Assign a assignment to a course</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see assignment using UC2</p>
+</li>
+<li>
+<p>CCX outputs the whole list of assignment</p>
+</li>
+<li>
+<p>User requests to see all courses using <strong>UC??</strong></p>
+</li>
+<li>
+<p>User requests to assign a assignment to a course using their respective IDs</p>
+</li>
+<li>
+<p>CCX adds the assignmentID into the course&#8217;s list of assignment</p>
+</li>
+<li>
+<p>CCX outputs a success message with the successful addition of assignment</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a. assignmentID does not exist.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>4b. courseID does not exist.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4b1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-7-assign-several-assignment-to-a-course" class="discrete">Use Case 7: Assign several assignment to a course</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see assignment using UC2</p>
+</li>
+<li>
+<p>CCX outputs the whole list of assignment</p>
+</li>
+<li>
+<p>User requests to see all courses using <strong>UC??</strong></p>
+</li>
+<li>
+<p>User requests to assign a list of assignment to a course using their respective IDs</p>
+</li>
+<li>
+<p>CCX adds the list of assignmentID into the course&#8217;s list of assignment</p>
+</li>
+<li>
+<p>CCX outputs a success message with the successful addition of assignment</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a.
+Any one of the assignmentID does not exist.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>4b. courseID does not exist.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4b1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-8-signup-a-student-to-a-course" class="discrete">Use Case 8: Signup a student to a course</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see all students using <strong>UC??</strong></p>
+</li>
+<li>
+<p>CCX outputs the whole list of students</p>
+</li>
+<li>
+<p>User requests to see all courses using <strong>UC??</strong></p>
+</li>
+<li>
+<p>User requests to signup a student to a course using their respective IDs</p>
+</li>
+<li>
+<p>CCX finds all assignment assigned to the course</p>
+</li>
+<li>
+<p>CCX creates a Progress object for each assignment and ties it to the student ID</p>
+</li>
+<li>
+<p>CCX adds the Progress object into the system</p>
+</li>
+<li>
+<p>CCX outputs a success message</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a. studentID does not exist.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>4b. courseID does not exist.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4b1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-9-view-progress-for-a-particular-student-for-a-certain-course" class="discrete">Use Case 9: View progress for a particular student, for a certain course</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see all students using <strong>UC??</strong></p>
+</li>
+<li>
+<p>CCX outputs the whole list of students</p>
+</li>
+<li>
+<p>User requests to see all courses using <strong>UC??</strong></p>
+</li>
+<li>
+<p>User requests to view the progress for a student, for a course using their respective IDs</p>
+</li>
+<li>
+<p>CCX finds all Progress objects using the courseID and studentID</p>
+</li>
+<li>
+<p>CCX outputs all the respective Progress objects</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a. studentID does not exist.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>4b. courseID does not exist.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4b1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>4c.
+Student is not assigned to the course.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4c1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-10-view-progress-for-all-students-for-a-certain-course" class="discrete">Use Case 10: View progress for all students, for a certain course</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see all courses using <strong>UC??</strong></p>
+</li>
+<li>
+<p>User requests to view the progress for all students for a course using their respective IDs using UC9</p>
+</li>
+<li>
+<p>CCX finds all Progress objects using the courseID and studentID</p>
+</li>
+<li>
+<p>CCX outputs all the respective Progress objects</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. courseID does not exist.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-11-mark-a-student-s-progress-object-as-done" class="discrete">Use Case 11: Mark a student&#8217;s Progress object as done</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see a student&#8217;s Progress for a certain course using UC9</p>
+</li>
+<li>
+<p>User requests to view the mark a particular Progress as 'Done' using the progressID</p>
+</li>
+<li>
+<p>CCX outputs a success message with the updated Progress object</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. progressID does not exist.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-12-adding-a-finance" class="discrete">Use Case 12: Adding a finance</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User inputs an 'add finance' command with name and amount</p>
+</li>
+<li>
+<p>CCX adds the finance into the system + Use case ends.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a.
+No name/amount is provided.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1b.
+The amount is wrongly formatted (such as containing a non-number character).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. CCX shows an error message.</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-13-listing-all-finance" class="discrete">Use Case 13: Listing all finance</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see all finance</p>
+</li>
+<li>
+<p>CCX outputs all finance in its database</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a.
+List is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-14-deleting-a-finance" class="discrete">Use Case 14: Deleting a finance</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User sees all finance using UC13</p>
+</li>
+<li>
+<p>User requests to delete finance using its respective financeID</p>
+</li>
+<li>
+<p>CCX finds the finance using UC15</p>
+</li>
+<li>
+<p>CCX removes the finance from the system</p>
+</li>
+<li>
+<p>CCX outputs a success message with the details for the finance</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. financeID does not exist.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-15-finding-a-finance-by-financeid" class="discrete">Use Case 15: Finding a finance by financeID</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User sees all finance using UC13</p>
+</li>
+<li>
+<p>User requests to view a finance using its respective financeID</p>
+</li>
+<li>
+<p>CCX searches the the system for the relevant finance</p>
+</li>
+<li>
+<p>CCX outputs a success message with the details for the finance</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. financeID does not exist.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-16-edit-a-finance-using-financeid" class="discrete">Use Case 16: Edit a finance using financeID</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User sees all finance using UC13</p>
+</li>
+<li>
+<p>CCX outputs the whole list of finance</p>
+</li>
+<li>
+<p>User requests to edit a finance using its respective financeID</p>
+</li>
+<li>
+<p>CCX finds for the specific finance using UC15</p>
+</li>
+<li>
+<p>CCX changes the details of the finance</p>
+</li>
+<li>
+<p>CCX outputs a success message with the updated details for the finance</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. financeID does not exist.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3b.
+New finance provided is not properly formatted (such as containing a non-number character).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3c.
+No new details are provided.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3c1. CCX shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-17-view-details-for-a-particular-student" class="discrete">Use Case 17: View details for a particular student</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to see a student&#8217;s details</p>
+</li>
+<li>
+<p>CCX outputs a success message with student&#8217;s detail with name, description and payment list</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. studentID does not exist</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. CCX shows an error message</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-18-mark-a-student-s-course-payment-object-as-paid" class="discrete">Use Case 18: Mark a student&#8217;s course payment object as paid</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see a student&#8217;s payment list using UC12</p>
+</li>
+<li>
+<p>User requests to mark a particular unpaid payment as 'Paid' using the paymentID</p>
+</li>
+<li>
+<p>CCX outputs a success message with the updated payment list object<br>
+Use case end</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. studentID does not exist</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. CCX shows an error message</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a. no payments exists</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>2a1. CCX shows a message saying no payment list found</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-19-edit-a-student-info-using-studentid" class="discrete">Use Case 19: Edit a student info using studentID</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see a student info using UC17</p>
+</li>
+<li>
+<p>User requests to edit the student&#8217;s information and provide edit information</p>
+</li>
+<li>
+<p>CCX outputs a success message with the updated student description<br>
+Use case ends</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. studentID does not exist</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. CCX shows an error message</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-20-view-all-on-going-courses" class="discrete">Use Case 20: View all on going courses</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see all on going courses</p>
+</li>
+<li>
+<p>CCX outputs a success message with a list of all on going courses<br>
+Use case ends</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a.
+No on going courses available</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. CCX shows an empty list of courses</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-21-view-all-students" class="discrete">Use Case 21: View all students</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to see all the students</p>
+</li>
+<li>
+<p>CCX outputs a success message with a list of all students<br>
+Use case ends</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a.
+No student in the database</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1a1. CCX shows an empty list of students</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-22-adding-a-new-student" class="discrete">Use Case 22: Adding a new Student</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to add a new Student</p>
+</li>
+<li>
+<p>User input student&#8217;s name and other information</p>
+</li>
+<li>
+<p>CCX outputs a success message with student object and studentID<br>
+Use case ends</p>
+</li>
+</ol>
+</div>
+<h3 id="use-case-23-adding-a-new-teacher" class="discrete">Use Case 23: Adding a new Teacher</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to add a new teacher</p>
+</li>
+<li>
+<p>User input teacher&#8217;s name and other information</p>
+</li>
+<li>
+<p>CCX outputs a success message with teacher object and teacherID<br>
+Use case ends</p>
+</li>
+</ol>
+</div>
+<h3 id="use-case-24-adding-a-new-staff" class="discrete">Use Case 24: Adding a new Staff</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to add a new staff</p>
+</li>
+<li>
+<p>User input teacher&#8217;s name and other information</p>
+</li>
+<li>
+<p>CCX outputs a success message with staff object and staffID<br>
+Use case ends</p>
+</li>
+</ol>
+</div>
+<h3 id="use-case-25-adding-a-new-course" class="discrete">Use Case 25: Adding a new course</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to add a new course</p>
+</li>
+<li>
+<p>User input course&#8217;s name and other information</p>
+</li>
+<li>
+<p>CCX outputs a success message with course object and courseID<br>
+Use case ends</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><em>{More to be added}</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <code>CCX</code> program should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>11</code> or above installed.</p>
+</li>
+<li>
+<p>The <code>CCX</code> program should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.</p>
+</li>
+<li>
+<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
+</li>
+<li>
+<p>The <code>CCX</code> program supports one-shot command - command that are executed using only one single line of user input.</p>
+</li>
+<li>
+<p>User must ensure to have a free disk space of at least 100 Megabytes (MBs) in the drive to store the program.</p>
+</li>
+<li>
+<p>The <code>CCX</code> program should be able to run with or without internet connection.</p>
+</li>
+<li>
+<p>The <code>CCX</code> program should work for a single user only.</p>
+</li>
+<li>
+<p>The <code>CCX</code> program should not require user to make any software installments.</p>
+</li>
+<li>
+<p>The <code>CCX</code> program should support English language only.</p>
+</li>
+<li>
+<p>The <code>CCX</code> program Graphic User Interface (GUI) should support screen resolution of 1920 x 1080 or higher.
+<em>{More to be added}</em></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Student</strong> </dt>
+<dd>
+<p>A student that has a studentID and description</p>
+</dd>
+<dt class="hdlist1"><strong>Teacher</strong> </dt>
+<dd>
+<p>A teacher that has a teacherID and description</p>
+</dd>
+<dt class="hdlist1"><strong>Staff</strong> </dt>
+<dd>
+<p>A staff that has a staffID and description</p>
+</dd>
+<dt class="hdlist1"><strong>Course</strong> </dt>
+<dd>
+<p>A course that contains a list of attended students, a teacher and a list of assignments</p>
+</dd>
+<dt class="hdlist1"><strong>Assignment</strong> </dt>
+<dd>
+<p>A task that is to be done before a certain date</p>
+</dd>
+<dt class="hdlist1"><strong>Progress</strong> </dt>
+<dd>
+<p>An object that contains a assignment, a isDone boolean and is tied to student.</p>
+</dd>
+<dt class="hdlist1"><strong>Signup</strong> </dt>
+<dd>
+<p>Officially adds a paying student to a course</p>
+</dd>
+<dt class="hdlist1"><strong>Finance</strong> </dt>
+<dd>
+<p>An object that contains payments, and whether it is an earning or expense</p>
+</dd>
+<dt class="hdlist1"><strong>Payment</strong> </dt>
+<dd>
+<p>An object that contains the amount, a deadline to pay and pay date</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Product Name</strong></p>
+</div>
+<div class="paragraph">
+<p>Author: &#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Pros:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Given below are instructions to test the app manually.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+These instructions only provide a starting point for testers to work on; testers are expected to do more <em>exploratory</em> testing.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">Launch and Shutdown</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Initial launch</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Download the jar file and copy into an empty folder</p>
+</li>
+<li>
+<p>Double-click the jar file<br>
+Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Saving window preferences</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Resize the window to an optimum size. Move the window to a different location. Close the window.</p>
+</li>
+<li>
+<p>Re-launch the app by double-clicking the jar file.<br>
+   Expected: The most recent window size and location is retained.
+<em>{ more test cases &#8230;&#8203; }</em></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">Deleting a person</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a person while all persons are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+</li>
+<li>
+<p>Test case: <code>delete 1</code><br>
+   Expected: First contact is deleted from the list.
+Details of the deleted contact shown in the status message.
+Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>delete 0</code><br>
+   Expected: No person is deleted.
+Error details shown in the status message.
+Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">Saving data</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Dealing with missing/corrupted data files</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em>
+<em>{ more test cases &#8230;&#8203; }</em></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation-3"><a class="link" href="#implementation-3">Appendix H: Implementation</a></h2>
+<div class="sectionbody">
+<h3 id="assigning-linking-2-entities" class="discrete">Assigning/ linking 2 entities</h3>
+<div class="paragraph">
+<p>All assign command variants (i.e <code>AssignTeacherToCourseCommand</code>, <code>AssignStudentToCourseCommand</code> extends from <code>AssignCommandBase</code>
+instead of the abstract <code>Command</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The diagram below shows a simplified flow</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
+</div>
+<div class="title">Figure 8. Structure of Commands and Parser</div>
+</div>
+<hr>
+<div class="sect2">
+<h3 id="design-considerations"><a class="link" href="#design-considerations">Design considerations:</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Since all assign commands are just linking between two entities, where each of them is distinguised based on its ID and its entity name (e.g course, student, teacher, etc).
+So we have AssignDescriptor which stores this information.</p>
+</li>
+<li>
+<p>A factory design pattern to select which assign command based on the AssignDescriptor content.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 13:06:55 UTC</div></div></div></body></html>

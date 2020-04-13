@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">CodeCampX</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S2-CS2103-W14-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>CodeCampX - Developer Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team CS2103-AY1920S2-CS2103-W14</code>      Since: <code>Jan 2020</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -12,24 +12,24 @@
 <li><a href="#setting-up">1. Setting up</a>
 <ul class="sectlevel2">
 <li><a href="#Design-Architecture">1.1. Architecture [Hieu]</a></li>
-<li><a href="#Design-Ui">1.2. View/UI component [NEED TO UPDATE]</a></li>
-<li><a href="#Design-Logic">1.3. ViewController/Logic component [NEED TO UPDATE]</a></li>
+<li><a href="#Design-Ui">1.2. View/UI component [Sim Sheng Xue]</a></li>
+<li><a href="#viewcontroller-logic-component-sim-sheng-xue">1.3. ViewController/Logic component [Sim Sheng Xue]</a></li>
 <li><a href="#Design-ViewController">1.4. ViewModel component [Hieu]</a></li>
 <li><a href="#Design-Model">1.5. Model component [Tee Jun Jie Ivan]</a></li>
-<li><a href="#Design-Storage">1.6. Storage component [NEED TO UPDATE]</a></li>
+<li><a href="#Design-Storage">1.6. Storage component [Sim Sheng Xue]</a></li>
 <li><a href="#Design-Commons">1.7. Common classes</a></li>
 </ul>
 </li>
 <li><a href="#implementation">2. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#command-handling-by-managers-sheng-xue">2.1. Command Handling by Managers [Sheng Xue]</a></li>
-<li><a href="#unique-identification-of-entities-sheng-xue">2.2. Unique Identification of Entities [Sheng Xue]</a></li>
-<li><a href="#entity-linking">2.3. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></li>
-<li><a href="#progress-management">2.4. Student Progress Management [Tee Jun Jie Ivan]</a></li>
-<li><a href="#undo-redo-hieu">2.5. Undo/Redo [Hieu]</a></li>
-<li><a href="#view-switching-hieu">2.6. View Switching [HIEU]</a></li>
-<li><a href="#managing-staff-feature-dat">2.7. Managing Staff Feature [Dat]</a></li>
-<li><a href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-dat">2.8. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings [Dat]</a></li>
+<li><a href="#unique-identification-of-entities-sim-sheng-xue">2.1. Unique Identification of Entities [Sim Sheng Xue]</a></li>
+<li><a href="#entity-linking">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></li>
+<li><a href="#progress-management">2.3. Student Progress Management [Tee Jun Jie Ivan]</a></li>
+<li><a href="#undo-redo-hieu">2.4. Undo/Redo [Hieu]</a></li>
+<li><a href="#view-switching-hieu">2.5. View Switching [HIEU]</a></li>
+<li><a href="#managing-staff-feature-dat">2.6. Managing Staff Feature [Dat]</a></li>
+<li><a href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-sim-sheng-xue">2.7. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings [Sim Sheng Xue]</a></li>
+<li><a href="#navigation-among-command-history-in-the-command-box-sim-sheng-xue">2.8. Navigation among command history in the command box [Sim Sheng Xue]</a></li>
 <li><a href="#logging">2.9. Logging</a></li>
 <li><a href="#Implementation-Configuration">2.10. Configuration</a></li>
 </ul>
@@ -249,24 +249,20 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Ui"><a class="link" href="#Design-Ui">1.2. View/UI component [NEED TO UPDATE]</a></h3>
+<h3 id="Design-Ui"><a class="link" href="#Design-Ui">1.2. View/UI component [Sim Sheng Xue]</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/UiClassDiagram.png" alt="UiClassDiagram">
+<img src="images/ViewUI.png" alt="ViewUI">
 </div>
 <div class="title">Figure 5. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
-</div>
-<div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc.
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>StatusBarFooter</code> etc.
 All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework.
-The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.
-For example, the layout of the <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -274,21 +270,64 @@ For example, the layout of the <a href="https://github.com/AY1920S2-CS2103-W14-1
 <div class="ulist">
 <ul>
 <li>
-<p>Executes user commands using the <code>Logic</code> component.</p>
+<p>Executes user commands using the <code>ViewController</code> component.</p>
 </li>
 <li>
-<p>Listens for changes to <code>Model</code> data so that the UI can be updated with the modified data.</p>
+<p>Listens for changes to <code>ViewModel</code> data so that the UI can be updated with the modified data.
+<code>ListPanel</code> objects store a list of <code>Card</code> objects.<br>
+<code>DetailedPanel</code> objects store a list of <code>VeryDetailedCard</code> objects.
+For example, for the Student Tab: <br></p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>The <code>StudentListPanel</code> is the top left panel. This stores a list of <code>StudentCard</code>,
+which only displays the basic information about the Student.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>StudentDetailedCard</code> is the top right panel. This is viewed when a specific
+Student is selected using a command. This will show the detailed information about
+the Student, such as the courses assigned to this Student.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>StudentDetailedPanel</code> is the bottom
+right panel. This stores a list of <code>CourseVeryDetailedCard</code>.
+Each <code>CourseVeryDetailedCard</code> displays the list of assignments assigned
+to the Course of this Student.<br></p>
+</div>
+<div class="paragraph">
+<p>Only the Student and Course tabs contain <code>DetailedPanel</code>(bottom right panel). All tabs
+contain the <code>ListPanel</code> (top left panel) and <code>DetailedCard</code>(top right panel).
+This is because <code>ListPanel</code> is needed to show the basic information of each
+item, while <code>DetailedCard</code> is needed to show the detailed information of each
+selected item. <code>DetailedPanel</code> is only needed for Student to show list of Courses for a Student,
+and for Course to show list of Student for a Course.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>As can be seen from the UI diagram above, each of the <code>Card</code>, <code>DetailedCard</code> and <code>VeryDetailedCard</code>
+will subscribe and listen to the <code>ViewModel</code> through the logic layers.</p>
+</li>
+<li>
+<p>Each of these classes will correspond to the observableMap in <code>ViewModel</code></p>
+</li>
+<li>
+<p>When there is a change to the model, the <code>ViewModel</code> will update its observableMap</p>
+</li>
+<li>
+<p>As each of these classes in <code>View</code> subscribe to the <code>ViewModel</code>, the UI will update automatically.</p>
+</li>
+</ol>
+</div>
 </div>
 <div class="sect2">
-<h3 id="Design-Logic"><a class="link" href="#Design-Logic">1.3. ViewController/Logic component [NEED TO UPDATE]</a></h3>
+<h3 id="viewcontroller-logic-component-sim-sheng-xue"><a class="link" href="#viewcontroller-logic-component-sim-sheng-xue">1.3. ViewController/Logic component [Sim Sheng Xue]</a></h3>
 <div id="fig-LogicClassDiagram" class="imageblock">
 <div class="content">
-<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
+<img src="images/ViewController.png" alt="ViewController">
 </div>
-<div class="title">Figure 6. Structure of the Logic Component</div>
+<div class="title">Figure 6. Structure of the View Controller Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
@@ -297,42 +336,33 @@ For example, the layout of the <a href="https://github.com/AY1920S2-CS2103-W14-1
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
+<p><code>ViewController</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
 </li>
 <li>
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person).</p>
+<p>The command execution can affect the <code>Model</code> (e.g. adding a student).</p>
 </li>
 <li>
-<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
+<p>The <code>LogicManager</code> will invoke the relevant class located inside <code>Model</code>.
+For Entity CRUD commands, the <code>ModelManager</code> will be invoked.
+For Link CRUD commands, the <code>EdgeManager</code> will be invoked.
+For Progress CRUD commands, the <code>ProgressManager</code> will be invoked.</p>
 </li>
 <li>
-<p>In addition, the <code>CommandResult</code> object can also instruct the <code>Ui</code> to perform certain actions, such as displaying help to the user.</p>
+<p>The Managers will post events to the <code>EventsCenterSingleton</code>. The subscribing
+managers <code>DetailManager</code> and <code>StorageManager</code> will listen to new publish events in the event bus.
+The <code>View</code> also subscribes to <code>DetailManager</code>. This allows for the commands executed by
+the <code>LogicManager</code> to moify both the View and Storage.</p>
+</li>
+<li>
+<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>View</code>.</p>
+</li>
+<li>
+<p>In addition, the <code>CommandResult</code> object can also instruct the <code>View</code> to perform certain actions, such as displaying help to the user.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/DeleteSequenceDiagram.png" alt="DeleteSequenceDiagram">
-</div>
-<div class="title">Figure 7. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The lifeline for <code>DeleteCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -370,7 +400,7 @@ observableMap, which in turn will automatically update the corresponding <code>D
 <div class="content">
 <img src="images/Ivan-ModelClassDiagram.png" alt="Ivan ModelClassDiagram">
 </div>
-<div class="title">Figure 8. Structure of the Model Component</div>
+<div class="title">Figure 7. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
@@ -424,7 +454,7 @@ The 6 types are namely</p>
 <div class="content">
 <img src="images/Ivan-AssignmentClassDiagram.png" alt="Ivan AssignmentClassDiagram">
 </div>
-<div class="title">Figure 9. Class Diagram of Assignment</div>
+<div class="title">Figure 8. Class Diagram of Assignment</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -502,17 +532,14 @@ Future features that involve creating new AddressBooks can be developed very qui
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Storage"><a class="link" href="#Design-Storage">1.6. Storage component [NEED TO UPDATE]</a></h3>
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">1.6. Storage component [Sim Sheng Xue]</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
+<img src="images/StorageComponent.png" alt="StorageComponent">
 </div>
-<div class="title">Figure 10. Structure of the Storage Component</div>
+<div class="title">Figure 9. Structure of the Storage Component</div>
 </div>
 <hr>
-<div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
-</div>
 <div class="paragraph">
 <p>The <code>Storage</code> component,</p>
 </div>
@@ -523,6 +550,15 @@ Future features that involve creating new AddressBooks can be developed very qui
 </li>
 <li>
 <p>can save the Address Book data in json format and read it back.</p>
+</li>
+<li>
+<p>The <code>StorageManager</code> subscribes to the <code>EventCenter</code>. It will listen to
+both DataStorageChangeEvent and DeleteEntitySyncEvent. DataStorageChangeEvent occurs
+when basic information about each object is changed, except for deletion.
+DeleteEntitySyncEvent occurs when an object is deleted, and the storage has to
+be update to maintain consistency. For example, when a Course is deleted,
+the DeleteEntitySyncEvent will trigger the storage to remove the Course from
+every Student assigned to this Course.</p>
 </li>
 </ul>
 </div>
@@ -542,18 +578,7 @@ Future features that involve creating new AddressBooks can be developed very qui
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="command-handling-by-managers-sheng-xue"><a class="link" href="#command-handling-by-managers-sheng-xue">2.1. Command Handling by Managers [Sheng Xue]</a></h3>
-<div class="sect3">
-<h4 id="crud-commands-handled-by-modelmanager"><a class="link" href="#crud-commands-handled-by-modelmanager">2.1.1. CRUD Commands Handled by ModelManager</a></h4>
-<div class="literalblock">
-<div class="content">
-<pre>Explain the flow of a CRUD command from LogicManager -&gt; ModelManager -&gt; publish events -&gt; StorageManager captures the events</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="unique-identification-of-entities-sheng-xue"><a class="link" href="#unique-identification-of-entities-sheng-xue">2.2. Unique Identification of Entities [Sheng Xue]</a></h3>
+<h3 id="unique-identification-of-entities-sim-sheng-xue"><a class="link" href="#unique-identification-of-entities-sim-sheng-xue">2.1. Unique Identification of Entities [Sim Sheng Xue]</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -562,7 +587,7 @@ Future features that involve creating new AddressBooks can be developed very qui
 </ol>
 </div>
 <div class="sect3">
-<h4 id="uuid-manager"><a class="link" href="#uuid-manager">2.2.1. UUID Manager</a></h4>
+<h4 id="uuid-manager"><a class="link" href="#uuid-manager">2.1.1. UUID Manager</a></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -574,18 +599,25 @@ Future features that involve creating new AddressBooks can be developed very qui
 </ol>
 </div>
 <div class="paragraph">
-<p>Explain rationale behind using IDs</p>
+<p>Consideration:<br>
+Each ModelObjects should have a ID generated that is unique among the entire application, across history.
+For example, not only can two Students not have the same ID, but a Student and a Staff cannot have
+the same ID. This design consideration is taken due to the existence of Finance.<br></p>
 </div>
 <div class="paragraph">
-<p>Consideration 1</p>
+<p>The Finance object can represent a Student paying for a Course. When the Student is deleted,
+the Finance object is not deleted. This is due to the need to track the Finance of the coding camp,
+even though the Student has left the camp(and assuming there is no refund, if not the owner
+can delete the Finance object).<br></p>
 </div>
 <div class="paragraph">
-<p>Consideration 2</p>
+<p>Hence, this means that if the ID is not unique among deleted objects, there may be inconsistent
+information located in the Finance objects.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="entity-linking"><a class="link" href="#entity-linking">2.3. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></h3>
+<h3 id="entity-linking"><a class="link" href="#entity-linking">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></h3>
 <div class="paragraph">
 <p>In order to allow the tracking of the students/assignments/teachers that are assigned to a course and vice versa, this required us to implement a structure which allowed us to obtain information from the aforementioned objects, without causing any circular referencing errors.</p>
 </div>
@@ -593,7 +625,7 @@ Future features that involve creating new AddressBooks can be developed very qui
 <div class="content">
 <img src="images/Ivan-OODMForEntityRS.png" alt="Ivan OODMForEntityRS">
 </div>
-<div class="title">Figure 11. Relationship between Entities</div>
+<div class="title">Figure 10. Relationship between Entities</div>
 </div>
 <hr>
 <div class="paragraph">
@@ -615,7 +647,7 @@ Every non-directed association between 2 objects ensures that both objects have 
 </div>
 <div class="paragraph">
 <p>The only exception is <code>Progress</code> objects which are created via a composite ID of <code>studentID</code> and <code>assignmentID</code>.
-A more detailed explanation of Progress Management is explained in <a href="#progress-management">Section 2.4, &#8220;Student Progress Management [Tee Jun Jie Ivan]&#8221;</a>.</p>
+A more detailed explanation of Progress Management is explained in <a href="#progress-management">Section 2.3, &#8220;Student Progress Management [Tee Jun Jie Ivan]&#8221;</a>.</p>
 </div>
 <div class="paragraph">
 <p>Entity Linking is managed exclusively by <code>Edge Manager</code></p>
@@ -629,7 +661,7 @@ A more detailed explanation of Progress Management is explained in <a href="#pro
 </ul>
 </div>
 <div class="sect3">
-<h4 id="execution-of-assign-un-assign-command-tee-jun-jie-ivan"><a class="link" href="#execution-of-assign-un-assign-command-tee-jun-jie-ivan">2.3.1. Execution of Assign/Un-assign Command [Tee Jun Jie Ivan]</a></h4>
+<h4 id="execution-of-assign-un-assign-command-tee-jun-jie-ivan"><a class="link" href="#execution-of-assign-un-assign-command-tee-jun-jie-ivan">2.2.1. Execution of Assign/Un-assign Command [Tee Jun Jie Ivan]</a></h4>
 <div class="paragraph">
 <p>For the actual execution of an assign/un-assign command, 2 main steps are performed.</p>
 </div>
@@ -676,7 +708,7 @@ The diagram can be generalized for un-assign commands by checking if the course 
 <div class="content">
 <img src="images/Ivan-PreprocessAssignActivityDiagram.png" alt="Ivan PreprocessAssignActivityDiagram">
 </div>
-<div class="title">Figure 12. Activity Diagram of Pre-processing for Assign/Un-assign commands</div>
+<div class="title">Figure 11. Activity Diagram of Pre-processing for Assign/Un-assign commands</div>
 </div>
 <hr>
 <div class="paragraph">
@@ -724,7 +756,7 @@ The diagram can be generalized for un-assign commands by checking if the course 
 <div class="content">
 <img src="images/Ivan-SeqDiagEdgeManagerAssignCommand.png" alt="Ivan SeqDiagEdgeManagerAssignCommand">
 </div>
-<div class="title">Figure 13. Sequence Diagram of EdgeManager&#8217;s AssignXtoCourse commands</div>
+<div class="title">Figure 12. Sequence Diagram of EdgeManager&#8217;s AssignXtoCourse commands</div>
 </div>
 <hr>
 <div class="paragraph">
@@ -870,14 +902,14 @@ The table below shows the method calls made to <code>EdgeManager</code> during a
 <div class="content">
 <img src="images/Ivan-AssignSummary.png" alt="Ivan AssignSummary">
 </div>
-<div class="title">Figure 14. Table Summary of EdgeManager&#8217;s involvement during Assign/Un-assign Commands</div>
+<div class="title">Figure 13. Table Summary of EdgeManager&#8217;s involvement during Assign/Un-assign Commands</div>
 </div>
 <hr>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="progress-management"><a class="link" href="#progress-management">2.4. Student Progress Management [Tee Jun Jie Ivan]</a></h3>
+<h3 id="progress-management"><a class="link" href="#progress-management">2.3. Student Progress Management [Tee Jun Jie Ivan]</a></h3>
 <div class="paragraph">
 <p>The <code>Progress</code> of students is managed exclusively by the <code>ProgressManager</code> class.</p>
 </div>
@@ -885,7 +917,7 @@ The table below shows the method calls made to <code>EdgeManager</code> during a
 <p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/manager/ProgressManager.java"><code>ProgressManager.java</code></a></p>
 </div>
 <div class="sect3">
-<h4 id="student-progress-creation-removal"><a class="link" href="#student-progress-creation-removal">2.4.1. Student Progress Creation/Removal</a></h4>
+<h4 id="student-progress-creation-removal"><a class="link" href="#student-progress-creation-removal">2.3.1. Student Progress Creation/Removal</a></h4>
 <div class="sect5">
 <h6 id="u-rationale-u-3"><a class="link" href="#u-rationale-u-3"><u>Rationale</u></a></h6>
 <div class="paragraph">
@@ -915,7 +947,7 @@ The table below shows the method calls made to <code>EdgeManager</code> during a
 <div class="content">
 <img src="images/Ivan-ProgressManagerAssignStudentToCourse.png" alt="Ivan ProgressManagerAssignStudentToCourse">
 </div>
-<div class="title">Figure 15. Activity Diagram for creating Progress objects when assigning a Student to a Course</div>
+<div class="title">Figure 14. Activity Diagram for creating Progress objects when assigning a Student to a Course</div>
 </div>
 <hr>
 <div class="paragraph">
@@ -929,7 +961,7 @@ The table below shows the method calls made to <code>EdgeManager</code> during a
 <ol class="loweralpha" type="a">
 <li>
 <p>This only occurs when undo-ing an <code>Un-assign/Delete</code> command.
-Refer to <a href="#undo-assign-command">Section 2.5.2, &#8220;Opposite command for assign/ un-assign [Tee Jun Jie Ivan]&#8221;</a> for more information.</p>
+Refer to <a href="#undo-assign-command">Section 2.4.2, &#8220;Opposite command for assign/ un-assign [Tee Jun Jie Ivan]&#8221;</a> for more information.</p>
 </li>
 </ol>
 </div>
@@ -982,12 +1014,12 @@ Instead, we are looking to remove Progress objects rather than adding them back 
 <div class="content">
 <img src="images/Ivan-ProgressSummary.png" alt="Ivan ProgressSummary">
 </div>
-<div class="title">Figure 16. Table Summary of ProgressManager method calls() for Assign/Un-assign Commands</div>
+<div class="title">Figure 15. Table Summary of ProgressManager method calls() for Assign/Un-assign Commands</div>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-progress-as-code-done-code-code-undone-code"><a class="link" href="#marking-progress-as-code-done-code-code-undone-code">2.4.2. Marking Progress as <code>Done</code>/<code>Undone</code></a></h4>
+<h4 id="marking-progress-as-code-done-code-code-undone-code"><a class="link" href="#marking-progress-as-code-done-code-code-undone-code">2.3.2. Marking Progress as <code>Done</code>/<code>Undone</code></a></h4>
 <div class="sect5">
 <h6 id="u-rationale-u-4"><a class="link" href="#u-rationale-u-4"><u>Rationale</u></a></h6>
 <div class="paragraph">
@@ -1005,7 +1037,7 @@ to mark the <code>Assignment</code> as <code>Undone</code>.</p>
 <div class="content">
 <img src="images/Ivan-SequenceDiagramDoneCommand.png" alt="Ivan SequenceDiagramDoneCommand">
 </div>
-<div class="title">Figure 17. Sequence Diagram for Progress Manager&#8217;s Handling of Done Command</div>
+<div class="title">Figure 16. Sequence Diagram for Progress Manager&#8217;s Handling of Done Command</div>
 </div>
 <div class="paragraph">
 <p>The implementation of <code>Done</code> command is very straight-forward. Only 2 parameter is needed - assignmentID (aid) and studentID (sid).</p>
@@ -1160,7 +1192,7 @@ the details will be automatically changed for all <code>Progress</code> objects.
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-hieu"><a class="link" href="#undo-redo-hieu">2.5. Undo/Redo [Hieu]</a></h3>
+<h3 id="undo-redo-hieu"><a class="link" href="#undo-redo-hieu">2.4. Undo/Redo [Hieu]</a></h3>
 <div class="paragraph">
 <p>Currently we only support undo/redo for commands that modify the storage (or state of the app).
 I.e add / delete, assign / un-assign, edit commands.</p>
@@ -1241,7 +1273,7 @@ Pros: Reduce a lot of memory issue.</p>
 <p>Cons: Harder to implement</p>
 </div>
 <div class="sect3">
-<h4 id="opposite-command-for-edit-dat"><a class="link" href="#opposite-command-for-edit-dat">2.5.1. Opposite Command for edit [Dat]</a></h4>
+<h4 id="opposite-command-for-edit-dat"><a class="link" href="#opposite-command-for-edit-dat">2.4.1. Opposite Command for edit [Dat]</a></h4>
 <div class="paragraph">
 <p>In EditCommand class, method <code>preprocessUndoableCommand</code> to get the toEdit Object and edited Object.</p>
 </div>
@@ -1249,7 +1281,7 @@ Pros: Reduce a lot of memory issue.</p>
 <div class="content">
 <img src="images/ActivityDiagramEditCommand.png" alt="ActivityDiagramEditCommand">
 </div>
-<div class="title">Figure 18. Activity Diagram of Pre-processing for Edit commands</div>
+<div class="title">Figure 17. Activity Diagram of Pre-processing for Edit commands</div>
 </div>
 <div class="paragraph">
 <p>Method <code>executeUndoableCommand</code> will set the toEdit Object in the ObjectAddressBook to the edited Object.</p>
@@ -1263,7 +1295,7 @@ is opposite to this EditCommand) with editing information of the original toEdit
 </div>
 </div>
 <div class="sect3">
-<h4 id="undo-assign-command"><a class="link" href="#undo-assign-command">2.5.2. Opposite command for assign/ un-assign [Tee Jun Jie Ivan]</a></h4>
+<h4 id="undo-assign-command"><a class="link" href="#undo-assign-command">2.4.2. Opposite command for assign/ un-assign [Tee Jun Jie Ivan]</a></h4>
 <div class="paragraph">
 <p>Generating of opposite commands for assign and un-assign commands is very intuitive. The opposite of assign is un-assign and vice versa.</p>
 </div>
@@ -1307,7 +1339,7 @@ Undo Progress will be added back in.</p>
 <div class="content">
 <img src="images/Ivan-ActivityDiagramAssignUndo.png" alt="Ivan ActivityDiagramAssignUndo">
 </div>
-<div class="title">Figure 19. Activity Diagram of executing executeUndoableCommand of Assign Commands</div>
+<div class="title">Figure 18. Activity Diagram of executing executeUndoableCommand of Assign Commands</div>
 </div>
 <hr>
 <div class="paragraph">
@@ -1319,7 +1351,7 @@ Undo Progress will be added back in.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities"><a class="link" href="#opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities">2.5.3. Opposite command for add/ delete (and maintain the corresponding links between entities)</a></h4>
+<h4 id="opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities"><a class="link" href="#opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities">2.4.3. Opposite command for add/ delete (and maintain the corresponding links between entities)</a></h4>
 <div class="paragraph">
 <p><code>AddCommand</code> and <code>DeleteCommand</code> extends from abstract class UndoableCommand. Thus, user can undo/ redo this command.</p>
 </div>
@@ -1363,12 +1395,12 @@ delete-command. All the entities links are restored.</p>
 <div class="content">
 <img src="images/SeqDiagramDeleteStaff.png" alt="SeqDiagramDeleteStaff">
 </div>
-<div class="title">Figure 20. Sequence Diagram of Delete Staff (teacher)</div>
+<div class="title">Figure 19. Sequence Diagram of Delete Staff (teacher)</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="view-switching-hieu"><a class="link" href="#view-switching-hieu">2.6. View Switching [HIEU]</a></h3>
+<h3 id="view-switching-hieu"><a class="link" href="#view-switching-hieu">2.5. View Switching [HIEU]</a></h3>
 <div class="paragraph">
 <p>To see sub-view details of each section we can issue a select command.
 Let&#8217;s see an example of how selecting sub-view data of a student 1 works.</p>
@@ -1422,9 +1454,9 @@ To query that, after executing <code>select sid/ student_id</code>, the user nee
 </div>
 </div>
 <div class="sect2">
-<h3 id="managing-staff-feature-dat"><a class="link" href="#managing-staff-feature-dat">2.7. Managing Staff Feature [Dat]</a></h3>
+<h3 id="managing-staff-feature-dat"><a class="link" href="#managing-staff-feature-dat">2.6. Managing Staff Feature [Dat]</a></h3>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">2.7.1. Implementation</a></h4>
+<h4 id="implementation-2"><a class="link" href="#implementation-2">2.6.1. Implementation</a></h4>
 <div class="paragraph">
 <p>This feature is implemented with the main classes - <code>Staff</code>, with a permission level specifying <code>Teacher</code> and <code>Admin</code>.</p>
 </div>
@@ -1455,13 +1487,13 @@ is taken from the salary of the teacher. The payment will automatically have rec
 </div>
 </div>
 <div class="sect2">
-<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-dat"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-dat">2.8. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings [Dat]</a></h3>
+<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-sim-sheng-xue"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-sim-sheng-xue">2.7. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings [Sim Sheng Xue]</a></h3>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">2.8.1. Implementation</a></h4>
-<div class="paragraph">
-<p>Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue.
-Teacher payments are tracked by courses, where the teacher is paid for each course taught.
-Student earnings are also tracked by courses, where the student pays for each course taken.</p>
+<h4 id="implementation-3"><a class="link" href="#implementation-3">2.7.1. Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/FinanceDiagram.png" alt="FinanceDiagram">
+</div>
 </div>
 <div class="paragraph">
 <p>Finance type <code>Miscellaneous</code> or <code>m</code> add command will add a <code>Finance</code> with a given Name (description) from the user.
@@ -1469,14 +1501,65 @@ The amount is sign sensitive, meaning miscellaneous can take in a positive amoun
 earning or expense depending on the user.</p>
 </div>
 <div class="paragraph">
+<p>Miscellaneous transactions can either be payments or earnings,
+such as purchases of stationary or
+advertisement revenue. Teacher payments are tracked by courses,
+where the teacher is paid for each course taught. Student earnings
+are also tracked by courses, where the student pays for each course taken.</p>
+</div>
+<div class="paragraph">
+<p>Finance type <code>Miscellaneous</code> or <code>m</code> will create a Miscellaneous transaction,
+where the <code>Amount</code> is specified by the user.</p>
+</div>
+<div class="paragraph">
+<p>Finance type <code>CourseTeacher</code> or <code>ct</code> add command will access <code>CourseAddressBook</code> and <code>StaffAddressBook</code> to ensure <code>Course</code> and
+<code>Staff</code> exist and make sure this staff is teaching this course. The <code>Amount</code> is set to the amount of the <code>Course</code>
+(student fee).</p>
+</div>
+<div class="paragraph">
 <p>Finance type <code>CourseStudent</code> or <code>cs</code> add command will access <code>CourseAddressBook</code> and <code>StudentAddressBook</code> to ensure <code>Course</code> and
 <code>Student</code> exist and make sure this student is taking this course. The <code>Amount</code> is set to the amount of the <code>Course</code>
 (student fee).</p>
 </div>
 <div class="paragraph">
-<p>Finance type <code>CourseTeacher</code> or <code>ct</code> add command will access <code>StaffAddressBook</code> and <code>CourseAddressBook</code> to ensure <code>Staff</code> and
-<code>Course</code> exist and make sure this staff is teaching this course. The <code>Amount</code> is set to the amount salary of the <code>Staff</code>.</p>
+<p>All three Finance types will create a <code>Finance</code> object to store the transaction,
+which will be saved in the <code>FinanceAddressBook</code>.</p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="navigation-among-command-history-in-the-command-box-sim-sheng-xue"><a class="link" href="#navigation-among-command-history-in-the-command-box-sim-sheng-xue">2.8. Navigation among command history in the command box [Sim Sheng Xue]</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/CommandHistory.png" alt="CommandHistory">
+</div>
+<div class="title">Figure 20. Activity diagram of Command History</div>
+</div>
+<div class="paragraph">
+<p>Coding Camp X supports quick navigation among command history in the command box.
+Whenever the user executes a command, it will be added to a stack. If the command
+fails to execute or is exactly the same as the previous command executed,
+it will not be added to the stack.<br></p>
+</div>
+<div class="paragraph">
+<p>The user can click the [UP ARROW] or [DOWN ARROW] keys in the command box
+to navigate through the executed command history. Since the implementation
+for [UP ARROW] is similar(as seen in the activity diagram), this guide will explain
+[DOWN ARROW] in details.</p>
+</div>
+<div class="paragraph">
+<p>When the user clicks the [DOWN ARROW], the application will check
+if the Right Stack is empty. If the Right Stack is empty, this means
+that there is no commands below to navigate to. In this case, the command
+box will still show the initial command.(No change)<br></p>
+</div>
+<div class="paragraph">
+<p>Else if the Right Stack is not empty, the next command will be popped
+from the top of the Right Stack. Now, two actions will occur in parallel.
+The command will be added to the Left Stack, and this command will also be
+shown in the command box. This allows the user to navigate back to
+the command after with an [UP ARROW] key command. The process will then
+come to an end.</p>
 </div>
 </div>
 <div class="sect2">
@@ -3185,4 +3268,4 @@ So we have AssignDescriptor which stores this information.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 12:43:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 13:06:54 UTC</div></div></div></body></html>
