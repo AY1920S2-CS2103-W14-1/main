@@ -41,9 +41,10 @@
 <li><a href="#undo-an-undoable-command-code-undo-code-redo-a-redoable-command-code-redo-code">5.1.3. Undo an undoable command : <code>undo</code>/Redo a redoable command : <code>redo</code></a></li>
 <li><a href="#assigning-unassigning-type-to-a-course-code-assign-code-or-code-unassign-code-respectively">5.1.4. Assigning/Unassigning -TYPE- to a Course : <code>assign</code> or <code>unassign</code> respectively</a></li>
 <li><a href="#select-a-student-staff-course-code-select-code-or-simply-click-the-bar">5.1.5. Select a Student/Staff/Course : <code>select</code> or simply click the bar</a></li>
-<li><a href="#switch-between-tabs-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code">5.1.6. Switch between tabs : <code>m</code>, <code>s</code>, <code>t</code>, <code>c</code>, <code>f</code>, <code>a</code></a></li>
-<li><a href="#saving-the-data">5.1.7. Saving the data</a></li>
-<li><a href="#clearing-all-the-data">5.1.8. Clearing all the data</a></li>
+<li><a href="#switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code">5.1.6. Switch between tabs : <code>[CTRL] + [UP ARROW]</code>, <code>[CTRL] + [DOWN ARROW]</code> <code>m</code>, <code>s</code>, <code>t</code>, <code>c</code>, <code>f</code>, <code>a</code></a></li>
+<li><a href="#navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code">5.1.7. Navigate through your command history: <code>[UP ARROW]</code> or <code>[DOWN ARROW]</code></a></li>
+<li><a href="#saving-the-data">5.1.8. Saving the data</a></li>
+<li><a href="#clearing-all-the-data">5.1.9. Clearing all the data</a></li>
 </ul>
 </li>
 <li><a href="#student">5.2. Student</a>
@@ -68,10 +69,10 @@
 <ul class="sectlevel3">
 <li><a href="#add-a-course-code-add-course-code">5.4.1. Add a course: <code>add-course</code></a></li>
 <li><a href="#remove-a-course-code-delete-course-code">5.4.2. Remove a course: <code>delete-course</code></a></li>
-<li><a href="#edit-a-course-code-edit-course-code">5.4.3. Edit a course: <code>edit-course</code></a></li>
+<li><a href="#edit-information-about-a-course-code-edit-course-code">5.4.3. Edit information about a course: <code>edit-course</code></a></li>
 <li><a href="#locating-items-by-name-code-find-course-code">5.4.4. Locating items by name: <code>find-course</code></a></li>
 <li><a href="#list-all-courses-code-list-course-code">5.4.5. List all courses: <code>list-course</code></a></li>
-<li><a href="#edit-information-about-a-course-code-edit-course-code">5.4.6. Edit information about a course: <code>edit-course</code></a></li>
+<li><a href="#edit-information-about-a-course-code-edit-course-code-2">5.4.6. Edit information about a course: <code>edit-course</code></a></li>
 </ul>
 </li>
 <li><a href="#finance">5.5. Finance</a>
@@ -115,14 +116,13 @@
 <p>Code Camp X (CCX) is for those who <strong>prefer to use a desktop app to manage the administrative tasks of running a coding camp</strong>.
 More importantly, CCX is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, CCX can allow you to manage your camp&#8217;s administrative tasks faster than traditional GUI apps.
-Interested?
-Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started.
-Enjoy!</p>
+Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 <div class="sect2">
 <h3 id="legend"><a class="link" href="#legend">1.1. Legend</a></h3>
 <div class="paragraph">
-<p>The following <strong>3</strong> callouts will be used throughout the documentation which you may wish to pay attention to as it may contain important details:</p>
+<p>The following <strong>3</strong> callouts will be used throughout the documentation which you may wish to pay attention to as it may
+contain important details:</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -131,8 +131,7 @@ Enjoy!</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Just for your info, do not be alarmed.
-Be sure to read these notes as it might contain some important information.
+Just for your info, do not be alarmed. Be sure to read these notes as it might contain some important information.
 </td>
 </tr>
 </table>
@@ -144,8 +143,8 @@ Be sure to read these notes as it might contain some important information.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Perhaps something can be done using another approach, but it is up to you to decide.
-Tips are often not important and can be safely ignored.
+Perhaps something can be done using another approach, but it is up to you to decide. Tips are often not important and
+can be safely ignored.
 </td>
 </tr>
 </table>
@@ -157,8 +156,8 @@ Tips are often not important and can be safely ignored.
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Some things might go wrong if you are not careful, or did not follow the instructions correctly.
-You are strongly advised to read whatever is in this block.
+Some things might go wrong if you are not careful, or did not follow the instructions correctly. You are strongly
+advised to read whatever is in this block.
 </td>
 </tr>
 </table>
@@ -167,8 +166,7 @@ You are strongly advised to read whatever is in this block.
 <div class="sect2">
 <h3 id="user-interface"><a class="link" href="#user-interface">1.2. A Quick Look at CodeCampX</a></h3>
 <div class="paragraph">
-<p><strong>CodeCampX</strong>’s user interface is split into a few sections.
-These sections are highlighted in the image below.</p>
+<p><strong>CodeCampX</strong>’s user interface is split into a few sections. These sections are highlighted in the image below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -225,8 +223,7 @@ These sections are highlighted in the image below.</p>
 <p>Copy the file to the folder you want to use as the home folder.</p>
 </li>
 <li>
-<p>Double-click the file to start the app.
-The GUI should appear in a few seconds.</p>
+<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
 </li>
 <li>
 <p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
@@ -268,29 +265,31 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <h3 id="teachers"><a class="link" href="#teachers">3.2. Teachers</a></h3>
 <div class="paragraph">
 <p>You can manage the teachers by providing information such as the phone number and email address.
-This is critical as teachers are the main point of contact during an emergency.
-You can keep track of which teachers you have paid for teaching a course.</p>
+This is critical as teachers are the main point of contact during an emergency. You can keep track
+of which teachers you have paid for teaching a course.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="courses"><a class="link" href="#courses">3.3. Courses</a></h3>
 <div class="paragraph">
-<p>You can keep track of the ongoing courses in your Coding Camp.
-Each course will have an assigned teacher, as well as a list of assigned students.
-The course fee should also be specified.</p>
+<p>You can keep track of the ongoing courses in your Coding Camp. Each course will have an assigned teacher,
+as well as a list of assigned students. The course fee should also be specified.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="finances"><a class="link" href="#finances">3.4. Finances</a></h3>
 <div class="paragraph">
-<p>The built-in Sales Management component in CodeCampX provides you with the tools you will need to keep track of financial records efficiently.
-Several analytical features are also incorporated to assist you in financial decision-making and devising marketing strategies.</p>
+<p>The built-in Sales Management component in CodeCampX provides you with the tools you will need to keep track of financial
+records efficiently. Several analytical features are also incorporated to assist you in financial decision-making
+and devising marketing strategies.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="assignments"><a class="link" href="#assignments">3.5. Assignments</a></h3>
 <div class="paragraph">
-<p>You can keep track of the available assignments of the various students or courses through this functionality.</p>
+<p>You can keep track of the available assignments of the various students or courses through this functionality. Additionally,
+the progress of the assignments can be viewed for the course of the student (In Student Tab)
+or the student of a course (In Course Tab).</p>
 </div>
 </div>
 </div>
@@ -301,8 +300,8 @@ Several analytical features are also incorporated to assist you in financial dec
 <div class="sect2">
 <h3 id="convenience"><a class="link" href="#convenience">4.1. Convenience</a></h3>
 <div class="paragraph">
-<p><strong>CodeCampX</strong> is an integrated application that will provide you with the utmost convenience and tools you will need to manage your Coding Camps.
-It allows you to:</p>
+<p><strong>CodeCampX</strong> is an integrated application that will provide you with the utmost convenience and tools you will need to
+manage your Coding Camps. It allows you to:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -315,8 +314,7 @@ It allows you to:</p>
 <div class="sect2">
 <h3 id="security"><a class="link" href="#security">4.2. Security</a></h3>
 <div class="paragraph">
-<p>We understand that digital security is your biggest concern.
-<strong>CodeCampX</strong> is capable of securing your restaurants' data by:</p>
+<p>We understand that digital security is your biggest concern. <strong>CodeCampX</strong> is capable of securing your restaurants' data by:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -332,8 +330,7 @@ It allows you to:</p>
 <div class="sect2">
 <h3 id="efficiency"><a class="link" href="#efficiency">4.3. Efficiency</a></h3>
 <div class="paragraph">
-<p>Time is money.
-<strong>CodeCampX</strong> ensures that the application will:</p>
+<p>Time is money. <strong>CodeCampX</strong> ensures that the application will:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -352,8 +349,8 @@ It allows you to:</p>
 <h2 id="Commands"><a class="link" href="#Commands">5. Commands</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>CodeCampX</strong> is jam-packed with features and it may be daunting for new users.
-The subsequent sections of the user guide provides a step by step walk-through of all the commands <strong>CodeCampX</strong> has to offer.</p>
+<p><strong>CodeCampX</strong> is jam-packed with features and it may be daunting for new users. The subsequent sections of the user guide
+provides a step by step walk-through of all the commands <strong>CodeCampX</strong> has to offer.</p>
 </div>
 <div class="paragraph">
 <p>Do read our short explanation about Command Format below so that the subsequent portions of this section will make sense to you.</p>
@@ -366,7 +363,8 @@ The subsequent sections of the user guide provides a step by step walk-through o
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add-student n/STUDENT_NAME</code>, <code>STUDENT_NAME</code> is a parameter which can be used as <code>add-student n/Bob</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add-student n/STUDENT_NAME</code>, <code>STUDENT_NAME</code> is a
+parameter which can be used as <code>add-student n/Bob</code>.</p>
 </li>
 <li>
 <p>Items in square brackets are optional e.g <code>n/STUDENT_NAME [t/TAG]</code> can be used as <code>n/Bob t/loyal</code> or as <code>n/Bob</code>.</p>
@@ -391,8 +389,7 @@ is also acceptable.</p>
 <div class="sect3">
 <h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">5.1.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
-<p>Opens up the help window.
-Very useful if you are a new user.<br>
+<p>Opens up the help window. Very useful if you are a new user.<br>
 Format: <code>help</code></p>
 </div>
 </div>
@@ -423,6 +420,23 @@ Example: <code>assign cid/829 sid/33</code></p>
 Format: <code>unassign cid/COURSEID sid/STUDENTID</code><br>
 Example: <code>unassign cid/829 sid/33</code></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When a student is assigned to a course, a progress will be
+created for the student for every assignment of the course.
+This progress tracks whether the student has completed the
+specific assignment (Done) or not (Not Done)</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect4">
 <h5 id="a-teacher-to-a-course-code-assign-code-or-code-unassign-code-respectively"><a class="link" href="#a-teacher-to-a-course-code-assign-code-or-code-unassign-code-respectively">A Teacher to a Course : <code>assign</code> or <code>unassign</code> respectively</a></h5>
@@ -449,28 +463,59 @@ Example: <code>assign cid/829 aid/21</code></p>
 Format: <code>unassign cid/COURSEID aid/ASSIGNMENTID</code><br>
 Example: <code>unassign cid/829 aid/21</code></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When an assignment is assigned to a course, a progress will be
+created for every student currently assigned to the course.
+This progress tracks whether the student has completed the
+specific assignment (Done) or not (Not Done)</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="select-a-student-staff-course-code-select-code-or-simply-click-the-bar"><a class="link" href="#select-a-student-staff-course-code-select-code-or-simply-click-the-bar">5.1.5. Select a Student/Staff/Course : <code>select</code> or simply click the bar</a></h4>
 <div class="paragraph">
 <p>Selecting means to view the specified item in detail.
-As mentioned in the previous section, a course may be assigned student/s, a teacher, or assignment/s.
-When you select a course for example, you can view the list of students assigned in the list on the right.</p>
+As mentioned in the previous section, a course may be assigned
+student/s, a teacher, or assignment/s. When you select a course
+for example, you can view the list of students assigned in
+the list on the right.</p>
+</div>
+<div class="paragraph">
+<p>If the specified ID does not exist, the selected panel will become empty.</p>
 </div>
 <div class="sect4">
 <h5 id="select-a-student"><a class="link" href="#select-a-student">Select a Student:</a></h5>
 <div class="paragraph">
-<p>Views the list of courses of a student<br>
+<p>Views details of a student and list of courses of a student<br>
 Format: <code>select sid/STUDENTID</code><br>
-Example: <code>select sid/1</code>
+Example: <code>select sid/11</code>
 or click the desired Student bar</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="select-assignment-belonging-to-the-course-of-a-student"><a class="link" href="#select-assignment-belonging-to-the-course-of-a-student">Select Assignment belonging to the Course of a Student:</a></h5>
+<div class="paragraph">
+<p>Views list of Assignment belong to Course of a Student<br>
+Format: <code>select sid/STUDENTID cid/COURSEID</code><br>
+Example: <code>select sid/11 cid/1</code>
+or click the desired Course bar under the Student</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="select-a-staff"><a class="link" href="#select-a-staff">Select a Staff:</a></h5>
 <div class="paragraph">
-<p>Views the list of courses of a staff<br>
+<p>Views the details of a staff and list of courses of a staff<br>
 Format: <code>select tid/STAFFID</code><br>
 Example: <code>select tid/31</code>
 or click the desired Staff bar</p>
@@ -479,17 +524,53 @@ or click the desired Staff bar</p>
 <div class="sect4">
 <h5 id="select-a-course"><a class="link" href="#select-a-course">Select a Course:</a></h5>
 <div class="paragraph">
-<p>Views the list of students of a course<br>
+<p>Views the details of a course and list of students of a course<br>
 Format: <code>select cid/COURSEID</code><br>
 Example: <code>select cid/1</code>
 or click the desired Course bar</p>
 </div>
 </div>
+<div class="sect4">
+<h5 id="select-assignment-belonging-to-the-student-of-a-course"><a class="link" href="#select-assignment-belonging-to-the-student-of-a-course">Select Assignment belonging to the Student of a Course:</a></h5>
+<div class="paragraph">
+<p>Views list of Assignment belong to Student of a Course<br>
+Format: <code>select cid/COURSEID sid/STUDENTID</code><br>
+Example: <code>select cid/1 sid/11</code>
+or click the desired Student bar under the Course</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="select-a-finance"><a class="link" href="#select-a-finance">Select a Finance:</a></h5>
+<div class="paragraph">
+<p>Views the details of a finance<br>
+Format: <code>select fid/FINANCEID</code><br>
+Example: <code>select fid/801</code>
+or click the desired Finance bar</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="select-an-assignment"><a class="link" href="#select-an-assignment">Select an Assignment:</a></h5>
+<div class="paragraph">
+<p>Views the details of an assignment<br>
+Format: <code>select aid/ASSIGNMENTID</code><br>
+Example: <code>select aid/901</code>
+or click the desired Assignment bar</p>
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="switch-between-tabs-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code"><a class="link" href="#switch-between-tabs-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code">5.1.6. Switch between tabs : <code>m</code>, <code>s</code>, <code>t</code>, <code>c</code>, <code>f</code>, <code>a</code></a></h4>
+<h4 id="switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code"><a class="link" href="#switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code">5.1.6. Switch between tabs : <code>[CTRL] + [UP ARROW]</code>, <code>[CTRL] + [DOWN ARROW]</code> <code>m</code>, <code>s</code>, <code>t</code>, <code>c</code>, <code>f</code>, <code>a</code></a></h4>
 <div class="ulist">
 <ul>
+<li>
+<p>The tab orders are: Summary, Staff, Course, Finance, Assignment</p>
+</li>
+<li>
+<p>Switch quickly to previous Tab (with wrap around) : Click command box + <code>[CTRL]</code> + <code>[UP ARROW]</code></p>
+</li>
+<li>
+<p>Switch quickly to next Tab (with wrap around):  Click command box + <code>[CTRL]</code> + <code>[DOWN ARROW]</code></p>
+</li>
 <li>
 <p>Switch quickly to Summary Tab : <code>m</code> or <code>summary</code></p>
 </li>
@@ -512,17 +593,37 @@ or click the desired Course bar</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-data"><a class="link" href="#saving-the-data">5.1.7. Saving the data</a></h4>
-<div class="paragraph">
-<p>Coding Camp book data are saved in the hard disk automatically after any command that changes the data.
-No manual saving is required.</p>
+<h4 id="navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code"><a class="link" href="#navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code">5.1.7. Navigate through your command history: <code>[UP ARROW]</code> or <code>[DOWN ARROW]</code></a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Just like a typical CLI application, you can use up and down arrow keys
+to navigate through your command history</p>
+</li>
+<li>
+<p>Click the command box and press <code>[UP ARROW]</code> or <code>[DOWN ARROW]</code></p>
+</li>
+<li>
+<p>Only complete and successfully executed commands will be added to this history</p>
+</li>
+<li>
+<p>There will not be two identical commands beside each other</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="clearing-all-the-data"><a class="link" href="#clearing-all-the-data">5.1.8. Clearing all the data</a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">5.1.8. Saving the data</a></h4>
 <div class="paragraph">
-<p>Coding Camp book data can be cleared by <code>clear-all</code> command.
-This action will <strong>CLEAR</strong> all the entire address book and this action can not undo.</p>
+<p>Coding Camp book data are saved in the hard disk automatically after any command that changes the data. No manual
+saving is required.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clearing-all-the-data"><a class="link" href="#clearing-all-the-data">5.1.9. Clearing all the data</a></h4>
+<div class="paragraph">
+<p>Coding Camp book data can be cleared by <code>clear-all</code> command. This action will <strong>CLEAR</strong> all the entire address book and
+this action can not undone.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -532,8 +633,7 @@ This action will <strong>CLEAR</strong> all the entire address book and this act
 </td>
 <td class="content">
 <div class="paragraph">
-<p>This will irrevocably clear the entire address book and you cannot undo it!
-Be very careful with this command.</p>
+<p>This will irrevocably clear the entire address book and you cannot undo it! Be very careful with this command.</p>
 </div>
 </td>
 </tr>
@@ -547,7 +647,7 @@ Be very careful with this command.</p>
 <div class="content">
 <img src="images/studentTab.png" alt="studentTab" width="1000">
 </div>
-<div class="title">Figure 2. Student label. The assigned courses display the course names with the course ID beside</div>
+<div class="title">Figure 2. List of Students. Shows details and list of courses of selected student. The list of Assignments is also shown for the selected course</div>
 </div>
 <div class="sect3">
 <h4 id="add-a-student-code-add-student-code"><a class="link" href="#add-a-student-code-add-student-code">5.2.1. Add a student: <code>add-student</code></a></h4>
@@ -556,6 +656,22 @@ Be very careful with this command.</p>
 Format: <code>add student n/NAME g/GENDER [t/TAG]…</code><br>
 Example:
 * <code>add student n/Jon Snow g/m t/Hardworking</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Gender of the Student is shown in the form of a little icon
+on the left. This automatically updates when you <code>edit-student 12 g/f</code> or <code>edit-student 12 g/m</code> as well.
+Try it!</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -577,8 +693,7 @@ Example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the item at the specified <code>ID</code>.
-The ID refers to the ID number shown in the displayed item panel list</p>
+<p>Deletes the item at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed item panel list</p>
 </li>
 <li>
 <p>The ID <strong>must be a positive integer</strong> 16100, 25200, 55250, &#8230;&#8203;</p>
@@ -587,17 +702,16 @@ The ID refers to the ID number shown in the displayed item panel list</p>
 </div>
 </div>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
 <p>Be reminded that when you delete a student, the student will be deleted from every course as well<br>
-For example, a course that was only assigned to this student <strong>Bob</strong> will change to <strong>None</strong> if student <strong>Bob</strong> is deleted.<br>
-Similarly, all finances that involve this student will be deleted.</p>
+For example, a course that was only assigned to this student <strong>Bob</strong> will change to <strong>None</strong> if student <strong>Bob</strong> is deleted.<br></p>
 </div>
 </td>
 </tr>
@@ -653,13 +767,15 @@ Returns any student having names <code>Lannister</code>, <code>Targaryen</code>,
 <div class="sect3">
 <h4 id="list-all-students-code-list-student-code"><a class="link" href="#list-all-students-code-list-student-code">5.2.4. List all students: <code>list-student</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of all students Format: <code>list-student</code></p>
+<p>Shows a list of all students
+Format: <code>list-student</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="edit-information-about-a-student-code-edit-student-code"><a class="link" href="#edit-information-about-a-student-code-edit-student-code">5.2.5. Edit information about a student: <code>edit-student</code></a></h4>
 <div class="paragraph">
-<p>Edits an existing student in the student list Format: <code>edit-student ID [n/NAME] [t/TAG]…</code><br>
+<p>Edits an existing student in the student list
+Format: <code>edit-student ID [n/NAME] [g/GENDER] [t/TAG]…</code><br>
 Example:</p>
 </div>
 <div class="ulist">
@@ -674,8 +790,7 @@ Example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the student at the specified <code>ID</code>.
-The ID refers to the ID number shown in the displayed student panel list</p>
+<p>Edits the student at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed student panel list</p>
 </li>
 <li>
 <p>The ID <strong>must be a positive integer</strong> 16100, 25200, 52500, &#8230;&#8203;</p>
@@ -704,15 +819,51 @@ The ID refers to the ID number shown in the displayed student panel list</p>
 <div class="content">
 <img src="images/teacherTab.png" alt="teacherTab" width="1000">
 </div>
-<div class="title">Figure 3. Staff label. For staffs that are teachers, the assigned courses display the course names with the course ID beside</div>
+<div class="title">Figure 3. List of Staffs. Shows details and list of courses of selected staff</div>
 </div>
 <div class="sect3">
 <h4 id="add-a-staff-code-add-staff-code"><a class="link" href="#add-a-staff-code-add-staff-code">5.3.1. Add a staff: <code>add-staff</code></a></h4>
 <div class="paragraph">
 <p>Add a new staff to the list of staff<br>
-Format: <code>add-staff n/NAME [t/TAG]…</code><br>
-Example:
-* <code>add-staff n/Jon Snow lvl/teacher g/m t/Hardworking</code></p>
+Format: <code>add-staff  n/NAME lvl/LEVEL g/GENDER p/PHONE e/EMAIL s/SALARY a/ADDRESS [t/TAG]&#8230;&#8203;</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example:
+* <code>add-staff n/Bob Ross lvl/teacher g/m p/98765432 e/bob.ross@gmail.com s/1000 a/311, Clementi Ave 2, #02-25 t/LovesArt t/Friendly</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The lvl of the staff refers to the Staff Type. It can only be
+specified as <code>teacher</code> or <code>admin</code>. Only a <code>teacher</code> can be assigned
+to a course. An <code>admin</code> cannot be assigned to a course.<br>
+A <code>teacher</code> is paid by the courses that he/she teaches. (finance type ft/ct)
+An <code>admin</code> is paid by miscellaneous transactions. (finance type ft/m)</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Gender of the Staff is shown in the form of a little icon
+on the left. This automatically updates when you <code>edit-staff 31 g/f</code> or <code>edit-staff 31 g/m</code> as well.
+Try it!</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -734,8 +885,7 @@ Example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the item at the specified <code>ID</code>.
-The ID refers to the ID number shown in the displayed item panel</p>
+<p>Deletes the item at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed item panel</p>
 </li>
 <li>
 <p>The ID <strong>must be a positive integer</strong> 16100, 25200, 52500, &#8230;&#8203;</p>
@@ -744,17 +894,16 @@ The ID refers to the ID number shown in the displayed item panel</p>
 </div>
 </div>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Be reminded that when you delete a staff having Level is a teacher, the teacher will be deleted from every course as well.<br>
-For example, a course that was assigned teacher <strong>Bob</strong> will change to <strong>None</strong> if teacher <strong>Bob</strong> is deleted.<br>
-Similarly, all finances that involve this teacher will be deleted.</p>
+<p>Be reminded that when you delete a staff that is of staff type: Teacher, the teacher will be deleted from every course as well.<br>
+For example, a course that was assigned teacher <strong>Bob</strong> will change to <strong>None</strong> if teacher <strong>Bob</strong> is deleted.<br></p>
 </div>
 </td>
 </tr>
@@ -810,13 +959,15 @@ Returns any teacher having names <code>Lannister</code>, <code>Targaryen</code>,
 <div class="sect3">
 <h4 id="list-all-teachers-code-list-staff-code"><a class="link" href="#list-all-teachers-code-list-staff-code">5.3.4. List all teachers: <code>list-staff</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of all staffs Format: <code>list-staff</code></p>
+<p>Shows a list of all staffs
+Format: <code>list-staff</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="edit-information-about-a-staff-code-edit-staff-code"><a class="link" href="#edit-information-about-a-staff-code-edit-staff-code">5.3.5. Edit information about a staff: <code>edit-staff</code></a></h4>
 <div class="paragraph">
-<p>Edits an existing staff in the staff list Format: <code>edit-teacher ID [n/NAME] [t/TAG]…</code><br>
+<p>Edits an existing staff in the staff list
+Format: <code>edit-staff ID [n/NAME] [g/GENDER] [p/PHONE] [e/EMAIL] [s/SALARY] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
 Example:</p>
 </div>
 <div class="ulist">
@@ -831,8 +982,7 @@ Example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the staff at the specified <code>ID</code>.
-The ID refers to the ID number shown in the displayed staff panel</p>
+<p>Edits the staff at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed staff panel</p>
 </li>
 <li>
 <p>The ID <strong>must be a positive integer</strong> 16100, 25200, 52500, &#8230;&#8203;</p>
@@ -861,7 +1011,7 @@ The ID refers to the ID number shown in the displayed staff panel</p>
 <div class="content">
 <img src="images/courseTab.png" alt="courseTab" width="1000">
 </div>
-<div class="title">Figure 4. Course label. The assigned teachers/students display the teacher/student names with the teacher/student ID beside</div>
+<div class="title">Figure 4. List of Courses. Shows details and list of students of selected Course. The list of Assignments is also shown for the selected Student</div>
 </div>
 <div class="sect3">
 <h4 id="add-a-course-code-add-course-code"><a class="link" href="#add-a-course-code-add-course-code">5.4.1. Add a course: <code>add-course</code></a></h4>
@@ -886,17 +1036,16 @@ Example:</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
 <p>Be reminded that when you delete a course, the course will be deleted from every student and teacher as well.<br>
-For example, a teacher that was only assigned to this course <strong>Java</strong> will change to <strong>None</strong> if course <strong>Java</strong> is deleted.<br>
-Similarly, all finances that involve this course will be deleted.</p>
+For example, a teacher that was only assigned to this course <strong>Java</strong> will change to <strong>None</strong> if course <strong>Java</strong> is deleted.<br></p>
 </div>
 </td>
 </tr>
@@ -904,17 +1053,40 @@ Similarly, all finances that involve this course will be deleted.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="edit-a-course-code-edit-course-code"><a class="link" href="#edit-a-course-code-edit-course-code">5.4.3. Edit a course: <code>edit-course</code></a></h4>
+<h4 id="edit-information-about-a-course-code-edit-course-code"><a class="link" href="#edit-information-about-a-course-code-edit-course-code">5.4.3. Edit information about a course: <code>edit-course</code></a></h4>
+<div class="paragraph">
+<p>Edits an existing course in the course list
+Format: <code>edit-course ID [n/NAME] [a/AMOUNT] [t/TAG]&#8230;&#8203;</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit-course 1 n/Java 101 a/1000 t/intermediate</code></p>
+</li>
+</ul>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the item at the specified <code>ID</code>.
-The ID refers to the ID number shown in the displayed item list</p>
+<p>Edits the course at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed course panel</p>
 </li>
 <li>
-<p>The ID <strong>must be a positive integer</strong> 16100, 25200, 55250, &#8230;&#8203;</p>
+<p>The ID <strong>must be a positive integer</strong> 16100, 25200, 52500, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative</p>
+</li>
+<li>
+<p>You can remove all the course&#8217;s tags by typing <code>t/</code> without specifying any tags after it</p>
 </li>
 </ul>
 </div>
@@ -970,13 +1142,15 @@ Returns any course having names <code>Java</code>, <code>Python</code>, or <code
 <div class="sect3">
 <h4 id="list-all-courses-code-list-course-code"><a class="link" href="#list-all-courses-code-list-course-code">5.4.5. List all courses: <code>list-course</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of all courses Format: <code>list-course</code></p>
+<p>Shows a list of all courses
+Format: <code>list-course</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="edit-information-about-a-course-code-edit-course-code"><a class="link" href="#edit-information-about-a-course-code-edit-course-code">5.4.6. Edit information about a course: <code>edit-course</code></a></h4>
+<h4 id="edit-information-about-a-course-code-edit-course-code-2"><a class="link" href="#edit-information-about-a-course-code-edit-course-code-2">5.4.6. Edit information about a course: <code>edit-course</code></a></h4>
 <div class="paragraph">
-<p>Edits an existing course in the course list Format: <code>edit-course ID [n/NAME] [a/AMOUNT] [t/TAG]…</code><br>
+<p>Edits an existing course in the course list
+Format: <code>edit-course ID [n/NAME] [a/AMOUNT] [t/TAG]…</code><br>
 Example:</p>
 </div>
 <div class="ulist">
@@ -991,8 +1165,7 @@ Example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the course at the specified <code>ID</code>.
-The ID refers to the ID number shown in the displayed course panel</p>
+<p>Edits the course at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed course panel</p>
 </li>
 <li>
 <p>The ID <strong>must be a positive integer</strong> 16100, 25200, 55250, &#8230;&#8203;</p>
@@ -1021,7 +1194,7 @@ The ID refers to the ID number shown in the displayed course panel</p>
 <div class="content">
 <img src="images/financeTab.png" alt="financeTab" width="1000">
 </div>
-<div class="title">Figure 5. Finance labels. Type m is Finance Type 1, Type cs is Finance Type 2, and Type ct is Finance Type 3</div>
+<div class="title">Figure 5. List of Finances. Shows details of selected Finance. Type m is Finance Type 1, Type cs is Finance Type 2, and Type ct is Finance Type 3</div>
 </div>
 <div class="sect3">
 <h4 id="add-a-finance-code-add-finance-code"><a class="link" href="#add-a-finance-code-add-finance-code">5.5.1. Add a finance: <code>add-finance</code></a></h4>
@@ -1089,7 +1262,8 @@ Type 3 additionally requires cid/COURSEID tid/TEACHERID<br></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For Type 1 miscellaneous transactions, you can specify the amount as negative(with a "-" in front) or positive(without a "-" in front) For example, a/100 or a/-100</p>
+<p>For Type 1 miscellaneous transactions, you can specify the amount as negative(with a "-" in front) or
+positive(without a "-" in front) For example, a/100 or a/-100</p>
 </div>
 <div class="paragraph">
 <p>For Type 2 student paying for a course, the amount will be positive automatically, as it is an earning</p>
@@ -1098,9 +1272,9 @@ Type 3 additionally requires cid/COURSEID tid/TEACHERID<br></p>
 <p>For Type 3 teacher being paid for teaching a course, the amount will be negative automatically, as it is an expense</p>
 </div>
 <div class="paragraph">
-<p>To make Payment for a teacher, it is important to check the salary value of the teacher.
-This value is set to 0 by default when adding a new staff (teacher) without specifying salary.
-A result of payment with amount 0 will be added if the salary of the teacher is 0.</p>
+<p>To make Payment for a teacher, it is important to check the salary value of the teacher. This value is set to 0 by default
+when adding a new staff (teacher) without specifying salary. A result of payment with amount 0 will be added if the
+salary of the teacher is 0.</p>
 </div>
 <div class="paragraph">
 <p>The positive and negative amount is important (for miscellaneous type) as it is used under "earnings" and "expenses" commands.</p>
@@ -1129,9 +1303,8 @@ Example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the item at the specified <code>ID</code>.
-The ID refers to the ID number shown in the displayed item panel.
-Each finance has a unique ID number</p>
+<p>Deletes the item at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed item panel. Each finance
+has a unique ID number</p>
 </li>
 <li>
 <p>The ID <strong>must be a positive integer</strong> 16100, 25270, &#8230;&#8203;</p>
@@ -1144,7 +1317,8 @@ Each finance has a unique ID number</p>
 <div class="sect3">
 <h4 id="edit-a-finance"><a class="link" href="#edit-a-finance">5.5.3. Edit a finance</a></h4>
 <div class="paragraph">
-<p>Edits an existing finance in the finance list Format: <code>edit-finance ID [n/NAME] [d/DATE] [a/AMOUNT] [t/TAG]…</code><br>
+<p>Edits an existing finance in the finance list
+Format: <code>edit-finance ID [n/NAME] [d/DATE] [a/AMOUNT] [t/TAG]…</code><br>
 Example:</p>
 </div>
 <div class="ulist">
@@ -1159,8 +1333,7 @@ Example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the finance with the specified <code>ID</code>.
-The ID refers to the ID number shown in the displayed payment panel</p>
+<p>Edits the finance with the specified <code>ID</code>. The ID refers to the ID number shown in the displayed payment panel</p>
 </li>
 <li>
 <p>The ID <strong>must be a positive integer</strong> 16100, 25200, 55250, &#8230;&#8203;</p>
@@ -1231,7 +1404,8 @@ Returns any finance having names <code>Course</code>, <code>Student</code>, or <
 <div class="sect3">
 <h4 id="list-all-finances-code-list-finance-code"><a class="link" href="#list-all-finances-code-list-finance-code">5.5.5. List all finances: <code>list-finance</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of all finances Format: <code>list-finance</code></p>
+<p>Shows a list of all finances
+Format: <code>list-finance</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -1255,15 +1429,15 @@ Format: <code>expenses</code></p>
 <div class="content">
 <img src="images/assignmentTab.png" alt="assignmentTab" width="1000">
 </div>
-<div class="title">Figure 6. Assignment labels.</div>
+<div class="title">Figure 6. List of Assignments. Shows details of selected Assignment.</div>
 </div>
 <div class="sect3">
 <h4 id="add-an-assignment-code-add-assignment-code"><a class="link" href="#add-an-assignment-code-add-assignment-code">5.6.1. Add an assignment: <code>add-assignment</code></a></h4>
 <div class="paragraph">
 <p>Add a new assignment to the list of all assignments<br>
-Format: <code>add assignment n/NAME dl/DEADLINE [t/TAG]…</code><br>
+Format: <code>n/NAME dl/DEADLINE [t/TAG]&#8230;&#8203;</code><br>
 Example:
-* <code>add course n/Cozmo Programming a/2000 t/Fun t/Robot</code></p>
+* <code>add-assignment n/Adversarial Search Assignment 2 dl/2020-12-30 t/AI t/Difficult</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1298,8 +1472,7 @@ Example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the item at the specified <code>ID</code>.
-The ID refers to the ID number shown in the displayed item list</p>
+<p>Deletes the item at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed item list</p>
 </li>
 <li>
 <p>The ID <strong>must be a positive integer</strong> 16100, 25200, 52500, &#8230;&#8203;</p>
@@ -1308,11 +1481,29 @@ The ID refers to the ID number shown in the displayed item list</p>
 </div>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Be reminded that when you delete an assignment, the assignment will be deleted from every course as well.<br>
+Furthermore, the progress of the assignment will also be removed from every course of any student<br>
+and every student of any course.<br>
+For example, a student that was only assigned to a course that contains only this assignment
+will have no assignment left after this assignment is deleted.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="edit-an-assignment-code-edit-assignment-code"><a class="link" href="#edit-an-assignment-code-edit-assignment-code">5.6.3. Edit an assignment: <code>edit-assignment</code></a></h4>
 <div class="paragraph">
-<p>Format: <code>edit-assignment ID [n/NAME dl/DEADLINE t/TAGS]</code><br>
+<p>Format: <code>edit-assignment ID [n/NAME] dl/DEADLINE t/TAGS]</code><br>
 Example:</p>
 </div>
 <div class="ulist">
@@ -1327,8 +1518,7 @@ Example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the assignment at the specified <code>ID</code>.
-The ID refers to the ID number shown in the displayed course list panel</p>
+<p>Edits the assignment at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed course list panel</p>
 </li>
 <li>
 <p>The ID <strong>must be a positive integer</strong> 16100, 2520, 52500, &#8230;&#8203;</p>
@@ -1417,8 +1607,7 @@ Returns <code>java</code> and <code>Java Assignment</code></p>
 <div class="sect3">
 <h4 id="User-Role"><a class="link" href="#User-Role">5.7.2. Creating user role <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>Creates a user role.
-User assigned with higher ranking role can execute more commands.<br></p>
+<p>Creates a user role. User assigned with higher ranking role can execute more commands.<br></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>create-role r/RANK n/ROLE_NAME</code></p>
@@ -1485,7 +1674,8 @@ Format: <code>delete-role r/RANK</code></p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q: How do I transfer my data to another Computer?</strong><br>
-<strong>A</strong>: Install the application in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous <strong>CodeCampX</strong> folder.</p>
+<strong>A</strong>: Install the application in the other computer and overwrite the empty data file it creates with the file that
+contains the data of your previous <strong>CodeCampX</strong> folder.</p>
 </div>
 <div class="paragraph">
 <p><strong>Q: Where do I find the latest release of the application?</strong><br>
@@ -1531,7 +1721,7 @@ Format: <code>delete-role r/RANK</code></p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>redo</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Select item</p></td>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Select item</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Select a Student</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>select sid/STUDENTID</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>select sid/1</code></p></td>
@@ -1545,6 +1735,16 @@ Format: <code>delete-role r/RANK</code></p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Select a Course</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>select cid/COURSEID</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>select cid/1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Select Assignment belonging to the Course of a Student:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select sid/STUDENTID cid/COURSEID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select sid/11 cid/1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Select Assignment belonging to the Student of a Course:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select cid/COURSEID sid/STUDENTID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select cid/1 sid/11</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">Switch tab</p></td>
@@ -1609,7 +1809,7 @@ Format: <code>delete-role r/RANK</code></p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>unassign cid/829 aid/21</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">Student Commands</p></td>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Student Commands</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Student</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-student n/NAME [t/TAG]…</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-student n/Jon Snow t/Hardworking</code></p></td>
@@ -1635,61 +1835,59 @@ Format: <code>delete-role r/RANK</code></p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-student 16100 n/Aegon Targaryen t/knownothing</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">Teacher Commands</p></td>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Teacher Commands</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Teacher</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-staff n/NAME [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-staff n/Jon Snow t/Hardworking</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-staff n/Jon Snow t/Hardworking</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Teacher</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-staff ID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-staff 16100</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-staff 16100</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Teacher</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-staff KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-staff Lannister Targaryen Stark</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-staff Lannister Targaryen Stark</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List Teacher</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-staff</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-staff</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-staff</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Edit Teacher</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-staff ID [n/NAME] [t/TAG]…</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-staff 16100 n/Aegon Targaryen t/Son of Lyanna Stark and Rhaegar Targaryen</code></p></td>
-<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">Course Commands</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Course</strong></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Course Commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Course</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-course n/NAME a/AMOUNT [t/TAG]…</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-course n/Cozmo Programming a/2000 t/Fun t/Robot</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Course</strong></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Course</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-course ID</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-course 16100</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Course</strong></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Course</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-course KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-course Java Python C</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List Course</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-course</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-course</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-course</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-course</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Edit Course</strong></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-course ID [n/NAME] [a/AMOUNT] [t/TAG]…</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-course 16100 n/Java Programming a/2000</code></p></td>
-<td class="tableblock halign-left valign-top" rowspan="9"><p class="tableblock">Finance Commands</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top" rowspan="8"><p class="tableblock">Finance Commands</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Finance Type 1 (ft/m)</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/FINANCETYPE d/DATE n/NAME a/AMOUNT [t/TAG]&#8230;&#8203;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-finance ft/m d/2020-12-09 n/Paid NTU a/1200 t/Partnership t/Monthly</code></p></td>
@@ -1732,4 +1930,4 @@ Format: <code>delete-role r/RANK</code></p>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 18:00:46 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 02:38:25 UTC</div></div></div></body></html>
