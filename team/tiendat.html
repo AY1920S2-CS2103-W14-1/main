@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Nguyen Tien Dat - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">CodeCampX</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S2-CS2103-W14-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Nguyen Tien Dat - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-codecampx"><a class="link" href="#project-codecampx">PROJECT: CodeCampX</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>CodeCampX is a personal manager application for Coding BootCamp manager. The user interacts with it via
+a Command Line Interface (CLI) along with a Graphical User Interface (GUI) created with JavaFX.
+The application is written in Java.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: Implement <strong>Staff</strong> of CodeCampX</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Staff is one of the major classes in CodeCampX. It represents all the Staffs or employees in CodeCampX.
+There are two type of Staff differentiated by permission Level: teacher and admin. Only a Teacher Staff can teach a course.
+Moreover, making a payment for Teacher Staff for teaching a course is supported.</p>
+</li>
+<li>
+<p>Justification: Name and details of the payment is auto recorded based on information of the salary and the course that
+teacher staff is teaching (implemented by ShengXue). Teacher can be assign and unassigned to a course (implemented by Ivan).
+For internal employee management purpose, it is more desirable to make Staff class holds many identity and data fields (more than student).
+However, for user&#8217;s convenience, it is not always the case that user has all the information about a Staff when adding him, so it is optional
+for the user to specify these information. These information are viewable in Staff Tab.</p>
+</li>
+<li>
+<p>Highlights: With permission level, it is very easy to implement Teacher and Admin, which seems to be two different classes, with just one
+time implementation for Staff class. This also simplifies work for AddressBook Storage and Managers when they only have to work with one class
+instead of two.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: Extended <strong>Refer Object by ID</strong> of CodeCampX</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Let user select and refer an Object in CodeCampX by ID instead of Index for selecting and tracking
+information of the object.</p>
+</li>
+<li>
+<p>Justification: This implementation is essential for the user to refer, select, modify objects and manage their entities links among themselves.
+Whenever the user delete an object, he/she would want to track all the entities link connections associated with this
+object and delete them.
+Referring by ID can help track and manage entities link easily since many classes have 1-to-1 relationship with each other.
+If the user want to delete a student, he or she can key in student&#8217;s ID. All the objects storing this student&#8217;s ID will remove it; thus,
+all the entities connection are broken. This ensure consistency of all the objects whenever user use a CRUD command.
+Teachers can now easily see which students have not submitted and chase them for their work without having to count one by one to find the missing submission.
+Furthermore, being able to refer by ID can help user identify correctly and keep track of each object. In AB3, each person is selected by its index.
+However, CodeCampX is much more complicating with multiple classes and relationships. Whenever a CRUD operation execute, indexes of objects are subjected to change.
+Referring by index cannot support well in this scenario.</p>
+</li>
+<li>
+<p>Highlights: Getting object from model now becomes extremely easy when we just need to specify ID number and Entity Type of the object. Similarly for finding and setting objects.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Extended <strong>UndoableCommand</strong> for Add, Delete and Edit command</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Follow up UndoableCommand implementation of Developer Le Trung Hieu, extends the functionality of UndoableCommand to Add, Delete and Edit Command.
+Add, Delete and Edit command can be undo and redo sequentially.</p>
+</li>
+<li>
+<p>Justification: Refactoring AddCommand, DeleteCommand and EditCommand from extending Command to extending from UndoableCommand. In each command, override preprocessUndoableCommand() method
+and generateOppositeCommand() method corresponding to characteristic and functionality in each of these commands. For AddCommand, opposite command is DeleteCommand and vice verse. For Edit
+Command, opposite command is still Edit Command but edited Object is the original object itself.</p>
+</li>
+<li>
+<p>Highlights: This enhancement improved CodeCampX interaction and convenience a lot since user can undo and redo most of the commands.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=tiendat161&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2020-02-14&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=zoom&amp;zA=tiendat161&amp;zR=AY1920S2-CS2103-W14-1%2Fmain%5Bmaster%5D&amp;zACS=350.7003424657534&amp;zS=2020-02-14&amp;zU=2020-04-13&amp;zMG=false&amp;zFTF=commit&amp;zFGS=groupByRepos&amp;zSO=undefined&amp;zSWO=undefined&amp;zSD=false&amp;zSWD=false">Tracked by RepoSense</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Refactor code to improve code quality, improve code usability and extendability.</p>
+</li>
+<li>
+<p>Do the documentation of code and ensures that it is corrected and understandable.</p>
+</li>
+<li>
+<p>Refactor commands and create check condition to minimize bugs.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>User Guide Contribution</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Developer Guide Contribution</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 09:05:45 UTC</div></div></div></body></html>
