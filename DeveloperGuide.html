@@ -51,11 +51,7 @@
 <li><a href="#undo-deleting-a-student">G.4. Undo deleting a student</a></li>
 </ul>
 </li>
-<li><a href="#implementation-4">Appendix H: Implementation</a>
-<ul class="sectlevel2">
-<li><a href="#design-considerations">H.1. Design considerations:</a></li>
-</ul>
-</li>
+<li><a href="#effort">Appendix H: Effort</a></li>
 </ul>
 </div>
 </div>
@@ -624,7 +620,7 @@ information located in the Finance objects.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ivan-OODMForEntityRS.png" alt="Ivan OODMForEntityRS">
+<img src="images/Ivan-OODMEntityRS.png" alt="Ivan OODMEntityRS">
 </div>
 <div class="title">Figure 10. Relationship between Entities</div>
 </div>
@@ -1005,6 +1001,10 @@ Hence, rather than obtain all assignmentIDs, we will need to obtain all
 <li>
 <p>The flow is also largely the same for UnassignCommands!
 Instead, we are looking to remove Progress objects rather than adding them back in.</p>
+</li>
+<li>
+<p>Notice that we have hidden all access to <code>Progress</code> objects behind <code>ProgressManager</code>. Hence, the user cannot, and should not,
+be able to create their own <code>Progress</code> objects.</p>
 </li>
 </ul>
 </div>
@@ -1995,7 +1995,7 @@ List is empty.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-4-finding-a-assignment-by-assignmentid" class="discrete">Use Case 4: Finding a assignment by assignmentID</h3>
+<h3 id="use-case-4-finding-an-assignment-by-assignmentid" class="discrete">Use Case 4: Finding an assignment by assignmentID</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -3293,36 +3293,33 @@ Expected: Error throws saying no commands that are redo/undoable. (No CRUD comma
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation-4"><a class="link" href="#implementation-4">Appendix H: Implementation</a></h2>
+<h2 id="effort"><a class="link" href="#effort">Appendix H: Effort</a></h2>
 <div class="sectionbody">
-<h3 id="assigning-linking-2-entities" class="discrete">Assigning/ linking 2 entities</h3>
 <div class="paragraph">
-<p>All assign command variants (i.e <code>AssignTeacherToCourseCommand</code>, <code>AssignStudentToCourseCommand</code> extends from <code>AssignCommandBase</code>
-instead of the abstract <code>Command</code> class.</p>
+<p>Overall, the level of effort required by this project is high due to many factors which I will point out.</p>
 </div>
 <div class="paragraph">
-<p>The diagram below shows a simplified flow</p>
+<p>The first and most obvious is that, AB3 only deals with one entity type, however, our program deals with 6 entity types. While this is not
+that impressive by itself since the code base can be copy and pasted to form 6 different yet very, very similar addressbooks,
+we have refactored AddressBook into AddressBookGeneric&lt;K extends ModelObject&gt; and made it such that AddressBookGeneric can take in any entity which extends from modelObject,
+thereby saving on a lot of unnecessary work and repeated code. This also makes it immensely simpler for extension of code in the future
+should we decide to implement other entities.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
+<div class="paragraph">
+<p>Secondly, with the increase in the number of AddressBooks, the amount of work for the UI has also increased drastically.
+Almost every entity except for Progress has it&#8217;s own Tab in the UI. Not only that, each page is broken up to 3 different sections, each showing
+different levels of details which we think is more intuitive for the user. Moreover, we have made it such that for certain commands
+such as find and list that the UI will automatically change to the Tab that is affected. Furthermore, we have made it such that the
+user is able to switch between tabs very easily and can even specify certain sections in the tabs that they want to specifically view.
+A huge portion of work is put into not only beautifying the UI, but also make it work seamlessly with the program while making it intuitive
+enough for the user to use.</p>
 </div>
-<div class="title">Figure 21. Structure of Commands and Parser</div>
-</div>
-<hr>
-<div class="sect2">
-<h3 id="design-considerations"><a class="link" href="#design-considerations">H.1. Design considerations:</a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Since all assign commands are just linking between two entities, where each of them is distinguised based on its ID and its entity name (e.g course, student, teacher, etc).
-So we have AssignDescriptor which stores this information.</p>
-</li>
-<li>
-<p>A factory design pattern to select which assign command based on the AssignDescriptor content.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Thirdly, the entity linking aspect is a very tedious and tricky part of the program that the group has put numerous hours
+into perfecting. In AB3, there is only 1 entity - person. However, in our program, we have up to 6 different entities, 5 of which has relationships to one another.
+We needed to think of a way to allow different entities to hold references to each other while making sure that there was no circular referencing errors.
+Hence, we decided to implement an ID to every different entity, except Progress which can be identified by a CompositeID of assignmentID and studentID.
+This also meant that we needed to implement methods in ModelManager such that we are able to get and set entities via the ID instead of index.</p>
 </div>
 </div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:07:13 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:19:37 UTC</div></div></div></body></html>
