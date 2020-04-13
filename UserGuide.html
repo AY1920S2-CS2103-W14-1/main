@@ -19,7 +19,7 @@
 <li><a href="#Components">3. Components</a>
 <ul class="sectlevel2">
 <li><a href="#students">3.1. Students</a></li>
-<li><a href="#teachers">3.2. Teachers</a></li>
+<li><a href="#staffs">3.2. Staffs</a></li>
 <li><a href="#courses">3.3. Courses</a></li>
 <li><a href="#finances">3.4. Finances</a></li>
 <li><a href="#assignments">3.5. Assignments</a></li>
@@ -41,11 +41,12 @@
 <li><a href="#undo-command-code-undo-code">5.1.3. Undo Command: <code>undo</code></a></li>
 <li><a href="#redo-command-code-redo-code">5.1.4. Redo Command: <code>redo</code></a></li>
 <li><a href="#assigning-unassigning-type-to-a-course-code-assign-code-or-code-unassign-code-respectively">5.1.5. Assigning/Unassigning -TYPE- to a Course : <code>assign</code> or <code>unassign</code> respectively</a></li>
-<li><a href="#select-a-student-staff-course-code-select-code-or-simply-click-the-bar">5.1.6. Select a Student/Staff/Course : <code>select</code> or simply click the bar</a></li>
-<li><a href="#switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code">5.1.7. Switch between tabs : <code>[CTRL] + [UP ARROW]</code>, <code>[CTRL] + [DOWN ARROW]</code> <code>m</code>, <code>s</code>, <code>t</code>, <code>c</code>, <code>f</code>, <code>a</code></a></li>
-<li><a href="#navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code">5.1.8. Navigate through your command history: <code>[UP ARROW]</code> or <code>[DOWN ARROW]</code></a></li>
-<li><a href="#saving-the-data">5.1.9. Saving the data</a></li>
-<li><a href="#clearing-all-the-data">5.1.10. Clearing all the data</a></li>
+<li><a href="#add-an-assignment-to-a-course-code-assign-code-or-code-unassign-code-respectively">5.1.6. Add An Assignment to a Course : <code>assign</code> or <code>unassign</code> respectively</a></li>
+<li><a href="#select-a-student-staff-course-code-select-code-or-simply-click-the-bar">5.1.7. Select a Student/Staff/Course : <code>select</code> or simply click the bar</a></li>
+<li><a href="#switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code">5.1.8. Switch between tabs : <code>[CTRL] + [UP ARROW]</code>, <code>[CTRL] + [DOWN ARROW]</code> <code>m</code>, <code>s</code>, <code>t</code>, <code>c</code>, <code>f</code>, <code>a</code></a></li>
+<li><a href="#navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code">5.1.9. Navigate through your command history: <code>[UP ARROW]</code> or <code>[DOWN ARROW]</code></a></li>
+<li><a href="#saving-the-data">5.1.10. Saving the data</a></li>
+<li><a href="#clearing-all-the-data">5.1.11. Clearing all the data</a></li>
 </ul>
 </li>
 <li><a href="#student">5.2. Student</a>
@@ -61,8 +62,8 @@
 <ul class="sectlevel3">
 <li><a href="#add-a-staff-code-add-staff-code">5.3.1. Add a staff: <code>add-staff</code></a></li>
 <li><a href="#remove-a-staff-code-delete-staff-code">5.3.2. Remove a staff: <code>delete-staff</code></a></li>
-<li><a href="#locating-items-by-name-code-find-teacher-code">5.3.3. Locating items by name: <code>find-teacher</code></a></li>
-<li><a href="#list-all-teachers-code-list-staff-code">5.3.4. List all teachers: <code>list-staff</code></a></li>
+<li><a href="#locating-items-by-name-code-find-staff-code">5.3.3. Locating items by name: <code>find-staff</code></a></li>
+<li><a href="#list-all-staffs-code-list-staff-code">5.3.4. List all staffs: <code>list-staff</code></a></li>
 <li><a href="#edit-information-about-a-staff-code-edit-staff-code">5.3.5. Edit information about a staff: <code>edit-staff</code></a></li>
 </ul>
 </li>
@@ -254,7 +255,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <h2 id="Components"><a class="link" href="#Components">3. Components</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>CodeCampX</strong> consists of five core components: Students, Teachers, Courses, Finances, Assignments</p>
+<p><strong>CodeCampX</strong> consists of five core components: Students, Staffs, Courses, Finances, Assignments</p>
 </div>
 <div class="sect2">
 <h3 id="students"><a class="link" href="#students">3.1. Students</a></h3>
@@ -263,11 +264,11 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="teachers"><a class="link" href="#teachers">3.2. Teachers</a></h3>
+<h3 id="staffs"><a class="link" href="#staffs">3.2. Staffs</a></h3>
 <div class="paragraph">
-<p>You can manage the teachers by providing information such as the phone number and email address.
-This is critical as teachers are the main point of contact during an emergency. You can keep track
-of which teachers you have paid for teaching a course.</p>
+<p>You can manage the staffs by providing information such as the phone number and email address.
+This is critical as staffs are the main point of contact during an emergency. You can keep track
+of which teacher staffs you have paid for teaching a course by checking via Finances.</p>
 </div>
 </div>
 <div class="sect2">
@@ -608,8 +609,9 @@ Example: <code>unassign cid/829 tid/21</code></p>
 In Selected Staff Tab, after unassign Command, the course&#8217;s ID and details no longer appears.</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="an-assignment-to-a-course-code-assign-code-or-unassign-respectively"><a class="link" href="#an-assignment-to-a-course-code-assign-code-or-unassign-respectively">An Assignment to a Course : <code>assign</code> or 'unassign' respectively</a></h5>
+</div>
+<div class="sect3">
+<h4 id="add-an-assignment-to-a-course-code-assign-code-or-code-unassign-code-respectively"><a class="link" href="#add-an-assignment-to-a-course-code-assign-code-or-code-unassign-code-respectively">5.1.6. Add An Assignment to a Course : <code>assign</code> or <code>unassign</code> respectively</a></h4>
 <div class="paragraph">
 <p>Adds the Assignment ID to the Course ID specified.<br>
 Format: <code>assign cid/COURSEID aid/ASSIGNMENTID</code><br>
@@ -638,13 +640,12 @@ specific assignment (Done) or not (Not Done)</p>
 </table>
 </div>
 </div>
-</div>
 <div class="sect3">
-<h4 id="select-a-student-staff-course-code-select-code-or-simply-click-the-bar"><a class="link" href="#select-a-student-staff-course-code-select-code-or-simply-click-the-bar">5.1.6. Select a Student/Staff/Course : <code>select</code> or simply click the bar</a></h4>
+<h4 id="select-a-student-staff-course-code-select-code-or-simply-click-the-bar"><a class="link" href="#select-a-student-staff-course-code-select-code-or-simply-click-the-bar">5.1.7. Select a Student/Staff/Course : <code>select</code> or simply click the bar</a></h4>
 <div class="paragraph">
 <p>Selecting means to view the specified item in detail.
 As mentioned in the previous section, a course may be assigned
-student/s, a teacher, or assignment/s. When you select a course
+student/s, a teacher staff, or assignment/s. When you select a course
 for example, you can view the list of students assigned in
 the list on the right.</p>
 </div>
@@ -716,7 +717,7 @@ or click the desired Assignment bar</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code"><a class="link" href="#switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code">5.1.7. Switch between tabs : <code>[CTRL] + [UP ARROW]</code>, <code>[CTRL] + [DOWN ARROW]</code> <code>m</code>, <code>s</code>, <code>t</code>, <code>c</code>, <code>f</code>, <code>a</code></a></h4>
+<h4 id="switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code"><a class="link" href="#switch-between-tabs-code-ctrl-up-arrow-code-code-ctrl-down-arrow-code-code-m-code-code-s-code-code-t-code-code-c-code-code-f-code-code-a-code">5.1.8. Switch between tabs : <code>[CTRL] + [UP ARROW]</code>, <code>[CTRL] + [DOWN ARROW]</code> <code>m</code>, <code>s</code>, <code>t</code>, <code>c</code>, <code>f</code>, <code>a</code></a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -750,7 +751,7 @@ or click the desired Assignment bar</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code"><a class="link" href="#navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code">5.1.8. Navigate through your command history: <code>[UP ARROW]</code> or <code>[DOWN ARROW]</code></a></h4>
+<h4 id="navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code"><a class="link" href="#navigate-through-your-command-history-code-up-arrow-code-or-code-down-arrow-code">5.1.9. Navigate through your command history: <code>[UP ARROW]</code> or <code>[DOWN ARROW]</code></a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -770,14 +771,14 @@ to navigate through your command history</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-data"><a class="link" href="#saving-the-data">5.1.9. Saving the data</a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">5.1.10. Saving the data</a></h4>
 <div class="paragraph">
 <p>Coding Camp book data are saved in the hard disk automatically after any command that changes the data. No manual
 saving is required.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="clearing-all-the-data"><a class="link" href="#clearing-all-the-data">5.1.10. Clearing all the data</a></h4>
+<h4 id="clearing-all-the-data"><a class="link" href="#clearing-all-the-data">5.1.11. Clearing all the data</a></h4>
 <div class="paragraph">
 <p>Coding Camp book data can be cleared by <code>clear-all</code> command. This action will <strong>CLEAR</strong> all the entire address book and
 this action can not undone.</p>
@@ -1006,20 +1007,6 @@ An <code>admin</code> is paid by miscellaneous transactions. (finance type ft/m)
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>A</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -1040,7 +1027,7 @@ Try it!</p>
 <div class="sect3">
 <h4 id="remove-a-staff-code-delete-staff-code"><a class="link" href="#remove-a-staff-code-delete-staff-code">5.3.2. Remove a staff: <code>delete-staff</code></a></h4>
 <div class="paragraph">
-<p>Remove a staff from the list of teachers<br>
+<p>Remove a staff from the list of staffs<br>
 Format: <code>delete-staff ID</code><br>
 Example:</p>
 </div>
@@ -1082,9 +1069,9 @@ For example, a course that was assigned teacher <strong>Bob</strong> will change
 </div>
 </div>
 <div class="sect3">
-<h4 id="locating-items-by-name-code-find-teacher-code"><a class="link" href="#locating-items-by-name-code-find-teacher-code">5.3.3. Locating items by name: <code>find-teacher</code></a></h4>
+<h4 id="locating-items-by-name-code-find-staff-code"><a class="link" href="#locating-items-by-name-code-find-staff-code">5.3.3. Locating items by name: <code>find-staff</code></a></h4>
 <div class="paragraph">
-<p>Finds teacher whose names contain any of the given keywords.<br>
+<p>Finds staff whose names contain any of the given keywords.<br>
 Format: <code>find-staff KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
@@ -1122,13 +1109,13 @@ Returns <code>ned</code> and <code>Ned Stark</code></p>
 </li>
 <li>
 <p><code>find-staff Lannister Targaryen Stark</code><br>
-Returns any teacher having names <code>Lannister</code>, <code>Targaryen</code>, or <code>Stark</code></p>
+Returns any staffs having names <code>Lannister</code>, <code>Targaryen</code>, or <code>Stark</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="list-all-teachers-code-list-staff-code"><a class="link" href="#list-all-teachers-code-list-staff-code">5.3.4. List all teachers: <code>list-staff</code></a></h4>
+<h4 id="list-all-staffs-code-list-staff-code"><a class="link" href="#list-all-staffs-code-list-staff-code">5.3.4. List all staffs: <code>list-staff</code></a></h4>
 <div class="paragraph">
 <p>Shows a list of all staffs
 Format: <code>list-staff</code></p>
@@ -1173,6 +1160,25 @@ Example:</p>
 </ul>
 </div>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You only can edit Name, Gender, Phone, Email, Salary, Address and Tags of a Staff.</p>
+</div>
+<div class="paragraph">
+<p>If you edit a salary of a Teacher Staff, all the Finance associated with him still <strong>remain the same</strong>. This is because
+a Finance is added based on the salary of a Teacher at that moment and it records the transaction made. If a Teacher Staff&#8217;s salary
+is edited (for example: increased), it means this Teacher&#8217;s salary base is increased and it has nothing to do with the Finances that has been made.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -2006,28 +2012,28 @@ contains the data of your previous <strong>CodeCampX</strong> folder.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-student 16100 n/Aegon Targaryen t/knownothing</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Teacher Commands</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Staff Commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add Staff</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-staff n/NAME [t/TAG]…</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add-staff n/Jon Snow t/Hardworking</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Staff</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-staff ID</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete-staff 16100</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find Staff</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-staff KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>find-staff Lannister Targaryen Stark</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List Staff</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-staff</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list-staff</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Edit Teacher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Edit Staff</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-staff ID [n/NAME] [t/TAG]…</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit-staff 16100 n/Aegon Targaryen t/Son of Lyanna Stark and Rhaegar Targaryen</code></p></td>
 </tr>
@@ -2101,4 +2107,4 @@ contains the data of your previous <strong>CodeCampX</strong> folder.</p>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 10:02:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 11:31:26 UTC</div></div></div></body></html>

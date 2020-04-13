@@ -91,20 +91,23 @@ Command, opposite command is still Edit Command but edited Object is the origina
 </div>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=tiendat161&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2020-02-14&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=zoom&amp;zA=tiendat161&amp;zR=AY1920S2-CS2103-W14-1%2Fmain%5Bmaster%5D&amp;zACS=350.7003424657534&amp;zS=2020-02-14&amp;zU=2020-04-13&amp;zMG=false&amp;zFTF=commit&amp;zFGS=groupByRepos&amp;zSO=undefined&amp;zSWO=undefined&amp;zSD=false&amp;zSWD=false">Tracked by RepoSense</a>]</p>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=tiendat161&amp;sort=groupTitle&amp;sortWithin=title&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=false">Functional and Test Code</a>]</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Refactor code to improve code quality, improve code usability and extendability.</p>
+<p>Refactor code to improve code quality, improve code usability and extendability. (<a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/182">#182</a>, <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/184">#184</a>, <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/188">#188</a>)</p>
 </li>
 <li>
-<p>Do the documentation of code and ensures that it is corrected and understandable.</p>
+<p>Do the documentation of code and ensures that it is corrected and understandable. (<a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/211">#211</a>)</p>
 </li>
 <li>
-<p>Refactor commands and create check condition to minimize bugs.</p>
+<p>Refactor commands and create check condition to minimize bugs. (<a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/209">#209</a>)</p>
+</li>
+<li>
+<p>Add JUnit tests for Student and Staff classes. (<a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/214">#214</a>, <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/215">215</a>)</p>
 </li>
 </ul>
 </div>
@@ -126,6 +129,328 @@ Command, opposite command is still Edit Command but edited Object is the origina
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="assigning-unassigning-type-to-a-course-code-assign-code-or-code-unassign-code-respectively"><a class="link" href="#assigning-unassigning-type-to-a-course-code-assign-code-or-code-unassign-code-respectively">Assigning/Unassigning -TYPE- to a Course : <code>assign</code> or <code>unassign</code> respectively</a></h4>
+<div class="sect4">
+<h5 id="a-student-to-a-course-code-assign-code-or-code-unassign-code-respectively"><a class="link" href="#a-student-to-a-course-code-assign-code-or-code-unassign-code-respectively">A Student to a Course : <code>assign</code> or <code>unassign</code> respectively</a></h5>
+<div class="paragraph">
+<p>Adds the Student ID to the Course ID specified.<br>
+Format: <code>assign cid/COURSEID sid/STUDENTID</code><br>
+Example: <code>assign cid/829 sid/33</code></p>
+</div>
+<div class="paragraph">
+<p>Removes the Student ID from the Course ID specified.<br>
+Format: <code>unassign cid/COURSEID sid/STUDENTID</code><br>
+Example: <code>unassign cid/829 sid/33</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When a student is assigned to a course, a progress will be
+created for the student for every assignment of the course.
+This progress tracks whether the student has completed the
+specific assignment (Done) or not (Not Done)</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In Student Tab, Under Selected Student and Assigned Courses Panel, after assigning student to course, it can be seen that
+the progresses have been added for every assignment in the course. The Student&#8217;s progresses can be tracked by specific
+assignment status Done/ Not done. Total done progresses can be viewed under "Number of progress done" field.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/StudentViewAssignToCourse.png" alt="StudentViewAssignToCourse" width="500">
+</div>
+<div class="title">Figure 1. Selected Student and Assigned Courses Panel. Shows ID and details of assigned Courses and Assignments.</div>
+</div>
+<div class="paragraph">
+<p>Student&#8217;s details and Assigned Assignments for this courses can also be viewed under Course Tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CourseViewAssignToStudent.png" alt="CourseViewAssignToStudent" width="500">
+</div>
+<div class="title">Figure 2. Selected Course and Assigned Students Panel. Shows ID and details of assigned Students and their Assignments.</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="a-teacher-to-a-course-code-assign-code-or-code-unassign-code-respectively"><a class="link" href="#a-teacher-to-a-course-code-assign-code-or-code-unassign-code-respectively">A Teacher to a Course : <code>assign</code> or <code>unassign</code> respectively</a></h5>
+<div class="paragraph">
+<p>Adds the Teacher ID to the Course ID specified.<br>
+Format: <code>assign cid/COURSEID tid/TEACHERID</code><br>
+Example: <code>assign cid/829 tid/21</code></p>
+</div>
+<div class="paragraph">
+<p>When a teacher is assigned to a course, the teacher&#8217;s ID is added to course and course&#8217;s ID is added to teacher. In
+Selected Staff Tab, it can be seen that a course ID is added under "Assigned Courses" and the course can be viewed in
+Assigned Courses Tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/StaffViewAssignToCourse.png" alt="StaffViewAssignToCourse" width="500">
+</div>
+<div class="title">Figure 3. Selected Staff and Assigned Courses Panel. Shows ID and details of assigned Courses.</div>
+</div>
+<div class="paragraph">
+<p>In Selected Course Tab, it can be seen that a staff ID is added under "Assigned Staff".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CourseViewAssignToStaff.png" alt="CourseViewAssignToStaff" width="500">
+</div>
+<div class="title">Figure 4. Selected Staff and Assigned Courses Panel. Shows ID and details of assigned Courses.</div>
+</div>
+<div class="paragraph">
+<p>Removes the Teacher ID from the Course ID specified.<br>
+Format: <code>unassign cid/COURSEID tid/TEACHERID</code><br>
+Example: <code>unassign cid/829 tid/21</code></p>
+</div>
+<div class="paragraph">
+<p>When a teacher is unassigned to a course, the teacher&#8217;s ID is removed from course and course&#8217;s ID is removed from teacher.
+In Selected Staff Tab, after unassign Command, the course&#8217;s ID and details no longer appears.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clearing-all-the-data"><a class="link" href="#clearing-all-the-data">Clearing all the data</a></h4>
+<div class="paragraph">
+<p>Coding Camp book data can be cleared by <code>clear-all</code> command. This action will <strong>CLEAR</strong> all the entire address book and
+this action can not undone.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This will irrevocably clear the entire address book and you cannot undo it! Be very careful with this command.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="staff"><a class="link" href="#staff">Staff</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/teacherTab.png" alt="teacherTab" width="1000">
+</div>
+<div class="title">Figure 5. List of Staffs. Shows details and list of courses of selected staff</div>
+</div>
+<div class="sect3">
+<h4 id="add-a-staff-code-add-staff-code"><a class="link" href="#add-a-staff-code-add-staff-code">Add a staff: <code>add-staff</code></a></h4>
+<div class="paragraph">
+<p>Add a new staff to the list of staff<br>
+Format: <code>add-staff  n/NAME lvl/LEVEL g/GENDER p/PHONE e/EMAIL s/SALARY a/ADDRESS [t/TAG]&#8230;&#8203;</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example:
+* <code>add-staff n/Bob Ross lvl/teacher g/m p/98765432 e/bob.ross@gmail.com s/1000 a/311, Clementi Ave 2, #02-25 t/LovesArt t/Friendly</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The lvl of the staff refers to the Staff Type. It can only be
+specified as <code>teacher</code> or <code>admin</code>. Only a <code>teacher</code> can be assigned
+to a course. An <code>admin</code> cannot be assigned to a course.<br>
+A <code>teacher</code> is paid by the courses that he/she teaches. (finance type ft/ct)
+An <code>admin</code> is paid by miscellaneous transactions. (finance type ft/m)</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Gender of the Staff is shown in the form of a little icon
+on the left. This automatically updates when you <code>edit-staff 31 g/f</code> or <code>edit-staff 31 g/m</code> as well.
+Try it!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-a-staff-code-delete-staff-code"><a class="link" href="#remove-a-staff-code-delete-staff-code">Remove a staff: <code>delete-staff</code></a></h4>
+<div class="paragraph">
+<p>Remove a staff from the list of staffs<br>
+Format: <code>delete-staff ID</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-staff 16100</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the item at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed item panel</p>
+</li>
+<li>
+<p>The ID <strong>must be a positive integer</strong> 16100, 25200, 52500, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Be reminded that when you delete a staff that is of staff type: Teacher, the teacher will be deleted from every course as well.<br>
+For example, a course that was assigned teacher <strong>Bob</strong> will change to <strong>None</strong> if teacher <strong>Bob</strong> is deleted.<br></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="locating-items-by-name-code-find-staff-code"><a class="link" href="#locating-items-by-name-code-find-staff-code">Locating items by name: <code>find-staff</code></a></h4>
+<div class="paragraph">
+<p>Finds staff whose names contain any of the given keywords.<br>
+Format: <code>find-staff KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>bob</code> will match <code>Bob</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Ned Stark</code> will match <code>Stark Ned</code></p>
+</li>
+<li>
+<p>Only the name is searched</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Sta</code> will not match <code>Stark</code></p>
+</li>
+<li>
+<p>Items matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Ned Stark</code> will return
+<code>Ned Stark</code>, <code>Bran Stark</code> and <code>Ned Targaryen</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find-staff Ned</code><br>
+Returns <code>ned</code> and <code>Ned Stark</code></p>
+</li>
+<li>
+<p><code>find-staff Lannister Targaryen Stark</code><br>
+Returns any staffs having names <code>Lannister</code>, <code>Targaryen</code>, or <code>Stark</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="list-all-staffs-code-list-staff-code"><a class="link" href="#list-all-staffs-code-list-staff-code">List all staffs: <code>list-staff</code></a></h4>
+<div class="paragraph">
+<p>Shows a list of all staffs
+Format: <code>list-staff</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-information-about-a-staff-code-edit-staff-code"><a class="link" href="#edit-information-about-a-staff-code-edit-staff-code">Edit information about a staff: <code>edit-staff</code></a></h4>
+<div class="paragraph">
+<p>Edits an existing staff in the staff list
+Format: <code>edit-staff ID [n/NAME] [g/GENDER] [p/PHONE] [e/EMAIL] [s/SALARY] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit-staff 16100 n/Aegon Targaryen t/legend</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the staff at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed staff panel</p>
+</li>
+<li>
+<p>The ID <strong>must be a positive integer</strong> 16100, 25200, 52500, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative</p>
+</li>
+<li>
+<p>You can remove all the staff&#8217;s tags by typing <code>t/</code> without specifying any tags after it</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You only can edit Name, Gender, Phone, Email, Salary, Address and Tags of a Staff.</p>
+</div>
+<div class="paragraph">
+<p>If you edit a salary of a Teacher Staff, all the Finance associated with him still <strong>remain the same</strong>. This is because
+a Finance is added based on the salary of a Teacher at that moment and it records the transaction made. If a Teacher Staff&#8217;s salary
+is edited (for example: increased), it means this Teacher&#8217;s salary base is increased and it has nothing to do with the Finances that has been made.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -141,5 +466,85 @@ Command, opposite command is still Edit Command but edited Object is the origina
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="opposite-command-for-edit-dat"><a class="link" href="#opposite-command-for-edit-dat">Opposite Command for edit [Dat]</a></h4>
+<div class="paragraph">
+<p>In EditCommand class, method <code>preprocessUndoableCommand</code> to get the toEdit Object and edited Object.</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 10:02:33 UTC</div></div></div></body></html>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ActivityDiagramEditCommand.png" alt="ActivityDiagramEditCommand">
+</div>
+<div class="title">Figure 6. Activity Diagram of Pre-processing for Edit commands</div>
+</div>
+<div class="paragraph">
+<p>Method <code>executeUndoableCommand</code> will set the toEdit Object in the ObjectAddressBook to the edited Object.</p>
+</div>
+<div class="paragraph">
+<p>Method <code>generateOppositeCommand()</code> will generate another <code>EditCommand</code> (which
+is opposite to this EditCommand) with editing information of the original toEdit Object and push it to undoStack.</p>
+</div>
+<div class="paragraph">
+<p>When <code>undo</code> and <code>redo</code> commands are executed, the process is carried out as described above.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="managing-staff-feature-dat"><a class="link" href="#managing-staff-feature-dat">Managing Staff Feature [Dat]</a></h3>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>This feature is implemented with the main classes - <code>Staff</code>, with a permission level specifying <code>Teacher</code> and <code>Admin</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Staff</span> <span class="directive">extends</span> ModelObject {
+    <span class="directive">public</span> <span class="type">enum</span> <span class="predefined-type">Level</span> {
+        TEACHER,
+        ADMIN
+    }
+    <span class="comment">//...</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One of the features is to display all the <code>courses</code> that a <code>teacher</code> is teaching.</p>
+</div>
+<div class="paragraph">
+<p>Another feature is to keep track of salary payment for <code>teacher</code>. A <code>teacher</code> is paid by teaching a course and the amount
+is taken from the salary of the teacher. The payment will automatically have records of respective course and teacher ID.</p>
+</div>
+<div class="paragraph">
+<p>To pay for <code>admin</code>, user has to do it manually using miscellaneous <code>FinanceType</code>.</p>
+</div>
+<div class="paragraph">
+<p>Certain approaches have some certain pros and cons. It depends on how the user want to keep track of payment and method to pay to <code>teacher</code> and <code>admin</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-dat"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-dat">Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings [Dat]</a></h3>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<div class="paragraph">
+<p>Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue.
+Teacher payments are tracked by courses, where the teacher is paid for each course taught.
+Student earnings are also tracked by courses, where the student pays for each course taken.</p>
+</div>
+<div class="paragraph">
+<p>Finance type <code>Miscellaneous</code> or <code>m</code> add command will add a <code>Finance</code> with a given Name (description) from the user.
+The amount is sign sensitive, meaning miscellaneous can take in a positive amount or a negative amount corresponding to
+earning or expense depending on the user.</p>
+</div>
+<div class="paragraph">
+<p>Finance type <code>CourseStudent</code> or <code>cs</code> add command will access <code>CourseAddressBook</code> and <code>StudentAddressBook</code> to ensure <code>Course</code> and
+<code>Student</code> exist and make sure this student is taking this course. The <code>Amount</code> is set to the amount of the <code>Course</code>
+(student fee).</p>
+</div>
+<div class="paragraph">
+<p>Finance type <code>CourseTeacher</code> or <code>ct</code> add command will access <code>StaffAddressBook</code> and <code>CourseAddressBook</code> to ensure <code>Staff</code> and
+<code>Course</code> exist and make sure this staff is teaching this course. The <code>Amount</code> is set to the amount salary of the <code>Staff</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 11:31:26 UTC</div></div></div></body></html>

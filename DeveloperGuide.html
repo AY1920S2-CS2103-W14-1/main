@@ -1459,18 +1459,23 @@ is taken from the salary of the teacher. The payment will automatically have rec
 <div class="sect3">
 <h4 id="implementation-3"><a class="link" href="#implementation-3">2.8.1. Implementation</a></h4>
 <div class="paragraph">
-<p>Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue. Teacher payments are tracked by courses, where the teacher is paid for each course taught. Student earnings are also tracked by courses, where the student pays for each course taken.</p>
+<p>Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue.
+Teacher payments are tracked by courses, where the teacher is paid for each course taught.
+Student earnings are also tracked by courses, where the student pays for each course taken.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/FinanceDiagram.png" alt="FinanceDiagram">
-</div>
-<div class="title">Figure 21. Class diagram of CourseStudent and CourseTeacher</div>
+<div class="paragraph">
+<p>Finance type <code>Miscellaneous</code> or <code>m</code> add command will add a <code>Finance</code> with a given Name (description) from the user.
+The amount is sign sensitive, meaning miscellaneous can take in a positive amount or a negative amount corresponding to
+earning or expense depending on the user.</p>
 </div>
 <div class="paragraph">
 <p>Finance type <code>CourseStudent</code> or <code>cs</code> add command will access <code>CourseAddressBook</code> and <code>StudentAddressBook</code> to ensure <code>Course</code> and
 <code>Student</code> exist and make sure this student is taking this course. The <code>Amount</code> is set to the amount of the <code>Course</code>
 (student fee).</p>
+</div>
+<div class="paragraph">
+<p>Finance type <code>CourseTeacher</code> or <code>ct</code> add command will access <code>StaffAddressBook</code> and <code>CourseAddressBook</code> to ensure <code>Staff</code> and
+<code>Course</code> exist and make sure this staff is teaching this course. The <code>Amount</code> is set to the amount salary of the <code>Staff</code>.</p>
 </div>
 </div>
 </div>
@@ -3162,7 +3167,7 @@ instead of the abstract <code>Command</code> class.</p>
 <div class="content">
 <img src="images/AssignCommandImplementation.png" alt="AssignCommandImplementation">
 </div>
-<div class="title">Figure 22. Structure of Commands and Parser</div>
+<div class="title">Figure 21. Structure of Commands and Parser</div>
 </div>
 <hr>
 <div class="sect2">
@@ -3180,4 +3185,4 @@ So we have AssignDescriptor which stores this information.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 10:02:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 11:31:26 UTC</div></div></div></body></html>
