@@ -11,7 +11,7 @@
 <ul class="sectlevel1">
 <li><a href="#setting-up">1. Setting up</a>
 <ul class="sectlevel2">
-<li><a href="#Design-Architecture">1.1. Architecture</a></li>
+<li><a href="#Design-Architecture">1.1. Architecture [Hieu]</a></li>
 <li><a href="#Design-Ui">1.2. View/UI component [NEED TO UPDATE]</a></li>
 <li><a href="#Design-Logic">1.3. ViewController/Logic component [NEED TO UPDATE]</a></li>
 <li><a href="#Design-ViewController">1.4. ViewModel component [Hieu]</a></li>
@@ -22,14 +22,16 @@
 </li>
 <li><a href="#implementation">2. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#command-handling-by-managers">2.1. Command Handling by Managers</a></li>
-<li><a href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></li>
-<li><a href="#undo-redo-hieu">2.3. Undo/Redo [Hieu]</a></li>
-<li><a href="#view-switching-hieu">2.4. View Switching [HIEU]</a></li>
-<li><a href="#managing-staff-feature">2.5. Managing Staff Feature</a></li>
-<li><a href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.6. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></li>
-<li><a href="#logging">2.7. Logging</a></li>
-<li><a href="#Implementation-Configuration">2.8. Configuration</a></li>
+<li><a href="#command-handling-by-managers-sheng-xue">2.1. Command Handling by Managers [Sheng Xue]</a></li>
+<li><a href="#unique-identification-of-entities-sheng-xue">2.2. Unique Identification of Entities [Sheng Xue]</a></li>
+<li><a href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan">2.3. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></li>
+<li><a href="#progress-management">2.4. Student Progress Management [Tee Jun Jie Ivan]</a></li>
+<li><a href="#undo-redo-hieu">2.5. Undo/Redo [Hieu]</a></li>
+<li><a href="#view-switching-hieu">2.6. View Switching [HIEU]</a></li>
+<li><a href="#managing-staff-feature-dat">2.7. Managing Staff Feature [Dat]</a></li>
+<li><a href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-dat">2.8. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings [Dat]</a></li>
+<li><a href="#logging">2.9. Logging</a></li>
+<li><a href="#Implementation-Configuration">2.10. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">3. Documentation</a></li>
@@ -63,7 +65,7 @@
 <p>Refer to the guide <a href="SettingUp.html">here</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">1.1. Architecture</a></h3>
+<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">1.1. Architecture [Hieu]</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ArchitectureNewDiagram.png" alt="ArchitectureNewDiagram">
@@ -255,7 +257,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 5. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc.
@@ -264,7 +266,7 @@ All these, including the <code>MainWindow</code>, inherit from the abstract <cod
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework.
 The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.
-For example, the layout of the <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+For example, the layout of the <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -290,7 +292,7 @@ For example, the layout of the <a href="https://github.com/se-edu/addressbook-le
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
-<a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -342,7 +344,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 </div>
 <hr>
 <div class="paragraph">
-<p><strong>API</strong>: <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/viewmodel/ViewModel.java"><code>ViewModel.java</code></a></p>
+<p><strong>API</strong>: <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/viewmodel/ViewModel.java"><code>ViewModel.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>ViewModel</code>,</p>
@@ -371,7 +373,7 @@ observableMap, which in turn will automatically update the corresponding <code>D
 <div class="title">Figure 8. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Model</code>,</p>
@@ -509,7 +511,7 @@ Future features that involve creating new AddressBooks can be developed very qui
 </div>
 <hr>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Storage</code> component,</p>
@@ -540,7 +542,7 @@ Future features that involve creating new AddressBooks can be developed very qui
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="command-handling-by-managers"><a class="link" href="#command-handling-by-managers">2.1. Command Handling by Managers</a></h3>
+<h3 id="command-handling-by-managers-sheng-xue"><a class="link" href="#command-handling-by-managers-sheng-xue">2.1. Command Handling by Managers [Sheng Xue]</a></h3>
 <div class="sect3">
 <h4 id="crud-commands-handled-by-modelmanager"><a class="link" href="#crud-commands-handled-by-modelmanager">2.1.1. CRUD Commands Handled by ModelManager</a></h4>
 <div class="literalblock">
@@ -551,7 +553,39 @@ Future features that involve creating new AddressBooks can be developed very qui
 </div>
 </div>
 <div class="sect2">
-<h3 id="entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan"><a class="link" href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan">2.2. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></h3>
+<h3 id="unique-identification-of-entities-sheng-xue"><a class="link" href="#unique-identification-of-entities-sheng-xue">2.2. Unique Identification of Entities [Sheng Xue]</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>UUID Manager</code> - Ensures ID of all entities are unique, allowing each object to be uniquely identifiable</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="uuid-manager"><a class="link" href="#uuid-manager">2.2.1. UUID Manager</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>All ModelObjects have their own ID which is generated by UUID manager</p>
+</li>
+<li>
+<p>For Progress objects, the ID is a composite ID of assignmentID and studentID</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Explain rationale behind using IDs</p>
+</div>
+<div class="paragraph">
+<p>Consideration 1</p>
+</div>
+<div class="paragraph">
+<p>Consideration 2</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan"><a class="link" href="#entity-linking-assigning-un-assigning-an-entity-to-from-a-course-tee-jun-jie-ivan">2.3. Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></h3>
 <div class="paragraph">
 <p>In order to allow the tracking of the students/assignments/teachers that are assigned to a course and vice versa, this required us to implement a structure which allowed us to obtain information from the aforementioned objects, without causing any circular referencing errors.</p>
 </div>
@@ -575,54 +609,29 @@ Future features that involve creating new AddressBooks can be developed very qui
 Notice that <code>Student</code> does <strong>not</strong> hold a <code>Course</code>, but a set of <code>CourseIDs</code>. Hence, there should be an association between <code>Student</code> and <code>ID</code> instead of <code>Student</code> and <code>Course</code>.
 However, the group found it much more <strong>intuitive</strong> to think of the associations to be from 2 modelObjects rather than to and from IDs.
 Every non-directed association between 2 objects ensures that both objects have each other&#8217;s ID.
-The only exception is <code>Progress</code> objects which are created via a composite ID of <code>studentID</code> and <code>assignmentID</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>There are 3 crucial managers involved in order to ensure that the links are successfully maintained during each any command which involves manipulation of entity links.
-The three managers are:</p>
+<p>The only exception is <code>Progress</code> objects which are created via a composite ID of <code>studentID</code> and <code>assignmentID</code>.
+A more detailed explanation of Progress Management is explained in <a href="#progress-management">Section 2.4, &#8220;Student Progress Management [Tee Jun Jie Ivan]&#8221;</a>.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="paragraph">
+<p>Entity Linking is managed exclusively by <code>Edge Manager</code></p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p><code>UUID Manager</code> - Ensures ID of all entities are unique, allowing each object to be uniquely identifiable</p>
+<p>Ensures that links are maintained/removed properly during assign, un-assign, delete commands
+<strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/manager/EdgeManager.java"><code>EdgeManager.java</code></a></p>
 </li>
-<li>
-<p><code>Edge Manager</code> - Ensures that links are maintained/removed properly during assign, un-assign, delete commands</p>
-</li>
-<li>
-<p><code>Progress Manager</code> - Ensures that Progress objects are successfully created/deleted during assign, un-assign, delete commands</p>
-</li>
-</ol>
+</ul>
 </div>
 <div class="sect3">
-<h4 id="uuid-manager-sim-sheng-xue"><a class="link" href="#uuid-manager-sim-sheng-xue">2.2.1. UUID Manager [Sim Sheng Xue]</a></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>All ModelObjects have their own ID which is generated by UUID manager</p>
-</li>
-<li>
-<p>For Progress objects, the ID is a composite ID of assignmentID and studentID</p>
-</li>
-</ol>
-</div>
+<h4 id="execution-of-assign-un-assign-command-tee-jun-jie-ivan"><a class="link" href="#execution-of-assign-un-assign-command-tee-jun-jie-ivan">2.3.1. Execution of Assign/Un-assign Command [Tee Jun Jie Ivan]</a></h4>
 <div class="paragraph">
-<p>Explain rationale behind using IDs</p>
-</div>
-<div class="paragraph">
-<p>Consideration 1</p>
-</div>
-<div class="paragraph">
-<p>Consideration 2</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="execution-of-assign-un-assign-command-tee-jun-jie-ivan"><a class="link" href="#execution-of-assign-un-assign-command-tee-jun-jie-ivan">2.2.2. Execution of Assign/Un-assign Command [Tee Jun Jie Ivan]</a></h4>
-<div class="paragraph">
-<p>For the actual execution of an assign/un-assign command, 3 main steps are performed.</p>
+<p>For the actual execution of an assign/un-assign command, 2 main steps are performed.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -630,23 +639,35 @@ The three managers are:</p>
 <p>Pre-process the targeted entities to ensure consistent state - Via <code>PreprocessUndoCommand</code> method call</p>
 </li>
 <li>
-<p>Add both object&#8217;s ID into each other - Handled by <code>EdgeManager</code></p>
-</li>
-<li>
-<p>Create/remove Progress objects when assignments/students are involved - Handled by <code>Progress Manager</code></p>
+<p>Add/Remove both object&#8217;s ID into/from each other - Handled by <code>EdgeManager</code></p>
 </li>
 </ol>
 </div>
 <div class="sect4">
 <h5 id="step-1-preprocess-entities"><a class="link" href="#step-1-preprocess-entities">Step 1: Preprocess Entities</a></h5>
 <div class="sect5">
-<h6 id="rationale"><a class="link" href="#rationale">Rationale</a></h6>
+<h6 id="u-rationale-u"><a class="link" href="#u-rationale-u"><u>Rationale</u></a></h6>
 <div class="paragraph">
-<p>Firstly, a <code>pre-processing step</code> must be performed before executing an undo-able assign/un-assign command to ensure that all entity links are in correct state before command execution.</p>
+<p>Firstly, a <code>pre-processing step</code> must be performed before executing an undo-able assign/un-assign command to ensure
+that all entity links are in correct state before command execution.
+This means that either</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Both targeted objects have each other&#8217;s IDs or</p>
+</li>
+<li>
+<p>They do not</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>There should be no instance where Course has an Assignment/Student/Staff&#8217;s ID but they do not have the Course&#8217;s ID or vice versa.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h6>
+<h6 id="u-current-implementation-u"><a class="link" href="#u-current-implementation-u"><u>Current Implementation</u></a></h6>
 <div class="paragraph">
 <p>Below is an activity diagram showing the pre-processing performed for assign commands.
 The diagram can be generalized for un-assign commands by checking if the course contains X and vice versa in the second stage instead.</p>
@@ -689,13 +710,13 @@ The diagram can be generalized for un-assign commands by checking if the course 
 <div class="sect4">
 <h5 id="step-2-assign-ids-via-edgemanager"><a class="link" href="#step-2-assign-ids-via-edgemanager">Step 2: Assign IDs via EdgeManager</a></h5>
 <div class="sect5">
-<h6 id="u-rationale-u"><a class="link" href="#u-rationale-u"><u>Rationale</u></a></h6>
+<h6 id="u-rationale-u-2"><a class="link" href="#u-rationale-u-2"><u>Rationale</u></a></h6>
 <div class="paragraph">
 <p>After the necessary checks have been performed, respective IDs need to be added to the targeted course and targeted object in order to ensure correct and consistent assigning of objects.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="u-current-implementation-u"><a class="link" href="#u-current-implementation-u"><u>Current Implementation</u></a></h6>
+<h6 id="u-current-implementation-u-2"><a class="link" href="#u-current-implementation-u-2"><u>Current Implementation</u></a></h6>
 <div class="paragraph">
 <p>Below is a sequence diagram of how EdgeManager adds the IDs to the two objects involved.</p>
 </div>
@@ -840,9 +861,33 @@ Some performance can be sacrificed in order to ensure that the links between obj
 </div>
 </div>
 <div class="sect4">
-<h5 id="step-3-add-progress-objects-via-progressmanager"><a class="link" href="#step-3-add-progress-objects-via-progressmanager">Step 3: Add Progress objects via ProgressManager</a></h5>
+<h5 id="summary-of-entity-linking"><a class="link" href="#summary-of-entity-linking">Summary of Entity Linking</a></h5>
+<div class="paragraph">
+<p>Overall, in order to ensure successful entity linking, all 3 managers involved must be involved.
+The table below shows the involvement of 3 managers with regards to each variant of the <code>Assign</code>/<code>Un-assign</code> commands.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ivan-AssignSummaryTable.png" alt="Ivan AssignSummaryTable">
+</div>
+<div class="title">Figure 14. Table Summary of Manager&#8217;s involvement during Assign/Un-assign Commands</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="progress-management"><a class="link" href="#progress-management">2.4. Student Progress Management [Tee Jun Jie Ivan]</a></h3>
+<div class="paragraph">
+<p>The <code>Progress</code> of students is managed exclusively by the <code>ProgressManager</code> class.</p>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103-W14-1/main/tree/master/src/main/java/seedu/address/manager/ProgressManager.java"><code>ProgressManager.java</code></a></p>
+</div>
+<div class="sect3">
+<h4 id="student-progress-creation-removal"><a class="link" href="#student-progress-creation-removal">2.4.1. Student Progress Creation/Removal</a></h4>
 <div class="sect5">
-<h6 id="u-rationale-u-2"><a class="link" href="#u-rationale-u-2"><u>Rationale</u></a></h6>
+<h6 id="u-rationale-u-3"><a class="link" href="#u-rationale-u-3"><u>Rationale</u></a></h6>
 <div class="paragraph">
 <p>New <code>Progress</code> objects must be created in 2 main scenarios.</p>
 </div>
@@ -862,7 +907,7 @@ Some performance can be sacrificed in order to ensure that the links between obj
 </div>
 </div>
 <div class="sect5">
-<h6 id="u-current-implementation-u-2"><a class="link" href="#u-current-implementation-u-2"><u>Current Implementation</u></a></h6>
+<h6 id="u-current-implementation-u-3"><a class="link" href="#u-current-implementation-u-3"><u>Current Implementation</u></a></h6>
 <div class="paragraph">
 <p>Below is a sequence diagram illustrating how the ProgressManager adds Progress objects into the ProgressAddressBook when a <code>AssignStudentToCourse</code> command is run.</p>
 </div>
@@ -870,7 +915,7 @@ Some performance can be sacrificed in order to ensure that the links between obj
 <div class="content">
 <img src="images/Ivan-ProgressManagerAssignStudentToCourse.png" alt="Ivan ProgressManagerAssignStudentToCourse">
 </div>
-<div class="title">Figure 14. Activity Diagram for creating Progress objects when assigning a Student to a Course</div>
+<div class="title">Figure 15. Activity Diagram for creating Progress objects when assigning a Student to a Course</div>
 </div>
 <hr>
 <div class="paragraph">
@@ -884,7 +929,7 @@ Some performance can be sacrificed in order to ensure that the links between obj
 <ol class="loweralpha" type="a">
 <li>
 <p>This only occurs when undo-ing an <code>Un-assign/Delete</code> command.
-Refer to <code>Section 3.2.2</code> for more information.</p>
+Refer to <a href="#undo-assign-command">Section 2.5.2, &#8220;Opposite command for assign/ un-assign [Tee Jun Jie Ivan]&#8221;</a> for more information.</p>
 </li>
 </ol>
 </div>
@@ -914,7 +959,7 @@ Refer to <code>Section 3.2.2</code> for more information.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>Notes:</p>
+<p>Notes</p>
 </div>
 <div class="ulist">
 <ul>
@@ -932,24 +977,19 @@ Instead, we are looking to remove Progress objects rather than adding them back 
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="summary-of-entity-linking"><a class="link" href="#summary-of-entity-linking">Summary of Entity Linking</a></h5>
+<div class="sect3">
+<h4 id="marking-progress-as-code-done-code-code-undone-code"><a class="link" href="#marking-progress-as-code-done-code-code-undone-code">2.4.2. Marking Progress as <code>Done</code>/<code>Undone</code></a></h4>
+<div class="sect5">
+<h6 id="u-rationale-u-4"><a class="link" href="#u-rationale-u-4"><u>Rationale</u></a></h6>
 <div class="paragraph">
-<p>Overall, in order to ensure successful entity linking, all 3 managers involved must be involved.
-The table below shows the involvement of 3 managers with regards to each variant of the <code>Assign</code>/<code>Un-assign</code> commands.</p>
+<p>When a <code>Student</code> finishes an <code>Assignment</code> that is allocated to him, you want to be able to mark his work
+as <code>Done</code>. Similarly, if an <code>Assignment</code> has been mistakenly marked as done or</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/Ivan-AssignSummaryTable.png" alt="Ivan AssignSummaryTable">
-</div>
-<div class="title">Figure 15. Table Summary of Manager&#8217;s involvement during Assign/Un-assign Commands</div>
-</div>
-<hr>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-hieu"><a class="link" href="#undo-redo-hieu">2.3. Undo/Redo [Hieu]</a></h3>
+<h3 id="undo-redo-hieu"><a class="link" href="#undo-redo-hieu">2.5. Undo/Redo [Hieu]</a></h3>
 <div class="paragraph">
 <p>Currently we only support undo/redo for commands that modify the storage (or state of the app).
 I.e add / delete, assign / un-assign, edit commands.</p>
@@ -1030,7 +1070,7 @@ Pros: Reduce a lot of memory issue.</p>
 <p>Cons: Harder to implement</p>
 </div>
 <div class="sect3">
-<h4 id="opposite-command-for-edit-dat"><a class="link" href="#opposite-command-for-edit-dat">2.3.1. Opposite Command for edit [Dat]</a></h4>
+<h4 id="opposite-command-for-edit-dat"><a class="link" href="#opposite-command-for-edit-dat">2.5.1. Opposite Command for edit [Dat]</a></h4>
 <div class="paragraph">
 <p>In EditCommand class, method <code>preprocessUndoableCommand</code> to get the toEdit Object and edited Object.</p>
 </div>
@@ -1052,7 +1092,7 @@ is opposite to this EditCommand) with editing information of the original toEdit
 </div>
 </div>
 <div class="sect3">
-<h4 id="opposite-command-for-assign-un-assign-tee-jun-jie-ivan"><a class="link" href="#opposite-command-for-assign-un-assign-tee-jun-jie-ivan">2.3.2. Opposite command for assign/ un-assign [Tee Jun Jie Ivan]</a></h4>
+<h4 id="undo-assign-command"><a class="link" href="#undo-assign-command">2.5.2. Opposite command for assign/ un-assign [Tee Jun Jie Ivan]</a></h4>
 <div class="paragraph">
 <p>Generating of opposite commands for assign and un-assign commands is very intuitive. The opposite of assign is un-assign and vice versa.</p>
 </div>
@@ -1109,7 +1149,7 @@ Undo Progress will be added back in.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities"><a class="link" href="#opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities">2.3.3. Opposite command for add/ delete (and maintain the corresponding links between entities)</a></h4>
+<h4 id="opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities"><a class="link" href="#opposite-command-for-add-delete-and-maintain-the-corresponding-links-between-entities">2.5.3. Opposite command for add/ delete (and maintain the corresponding links between entities)</a></h4>
 <div class="paragraph">
 <p><code>AddCommand</code> and <code>DeleteCommand</code> extends from abstract class UndoableCommand. Thus, user can undo/ redo this command.</p>
 </div>
@@ -1158,7 +1198,7 @@ delete-command. All the entities links are restored.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="view-switching-hieu"><a class="link" href="#view-switching-hieu">2.4. View Switching [HIEU]</a></h3>
+<h3 id="view-switching-hieu"><a class="link" href="#view-switching-hieu">2.6. View Switching [HIEU]</a></h3>
 <div class="paragraph">
 <p>To see sub-view details of each section we can issue a select command.
 Let&#8217;s see an example of how selecting sub-view data of a student 1 works.</p>
@@ -1212,9 +1252,9 @@ To query that, after executing <code>select sid/ student_id</code>, the user nee
 </div>
 </div>
 <div class="sect2">
-<h3 id="managing-staff-feature"><a class="link" href="#managing-staff-feature">2.5. Managing Staff Feature</a></h3>
+<h3 id="managing-staff-feature-dat"><a class="link" href="#managing-staff-feature-dat">2.7. Managing Staff Feature [Dat]</a></h3>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">2.5.1. Implementation</a></h4>
+<h4 id="implementation-2"><a class="link" href="#implementation-2">2.7.1. Implementation</a></h4>
 <div class="paragraph">
 <p>This feature is implemented with the main classes - <code>Staff</code>, with a permission level specifying <code>Teacher</code> and <code>Admin</code>.</p>
 </div>
@@ -1245,9 +1285,9 @@ is taken from the salary of the teacher. The payment will automatically have rec
 </div>
 </div>
 <div class="sect2">
-<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings">2.6. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings</a></h3>
+<h3 id="tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-dat"><a class="link" href="#tracking-miscellaneous-payments-earnings-teacher-payments-and-student-earnings-dat">2.8. Tracking Miscellaneous Payments/Earnings, Teacher Payments and Student earnings [Dat]</a></h3>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">2.6.1. Implementation</a></h4>
+<h4 id="implementation-3"><a class="link" href="#implementation-3">2.8.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Miscellaneous transactions can either be payments or earnings, such as purchases of stationary or advertisement revenue. Teacher payments are tracked by courses, where the teacher is paid for each course taught. Student earnings are also tracked by courses, where the student pays for each course taken.</p>
 </div>
@@ -1265,7 +1305,7 @@ is taken from the salary of the teacher. The payment will automatically have rec
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">2.7. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">2.9. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging.
 The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
@@ -1273,7 +1313,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 2.8, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 2.10, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1304,7 +1344,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">2.8. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">2.10. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2970,4 +3010,4 @@ So we have AssignDescriptor which stores this information.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 09:05:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 09:08:09 UTC</div></div></div></body></html>
