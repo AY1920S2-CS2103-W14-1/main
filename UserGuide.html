@@ -437,6 +437,26 @@ specific assignment (Done) or not (Not Done)</p>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>In Student Tab, Under Selected Student and Assigned Courses Panel, after assigning student to course, it can be seen that
+the progresses have been added for every assignment in the course. The Student&#8217;s progresses can be tracked by specific
+assignment status Done/ Not done. Total done progresses can be viewed under "Number of progress done" field.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/StudentViewAssignToCourse.png" alt="StudentViewAssignToCourse" width="500">
+</div>
+<div class="title">Figure 2. Selected Student and Assigned Courses Panel. Shows ID and details of assigned Courses and Assignments.</div>
+</div>
+<div class="paragraph">
+<p>Student&#8217;s details and Assigned Assignments for this courses can also be viewed under Course Tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CourseViewAssignToStudent.png" alt="CourseViewAssignToStudent" width="500">
+</div>
+<div class="title">Figure 3. Selected Course and Assigned Students Panel. Shows ID and details of assigned Students and their Assignments.</div>
+</div>
 </div>
 <div class="sect4">
 <h5 id="a-teacher-to-a-course-code-assign-code-or-code-unassign-code-respectively"><a class="link" href="#a-teacher-to-a-course-code-assign-code-or-code-unassign-code-respectively">A Teacher to a Course : <code>assign</code> or <code>unassign</code> respectively</a></h5>
@@ -446,9 +466,33 @@ Format: <code>assign cid/COURSEID tid/TEACHERID</code><br>
 Example: <code>assign cid/829 tid/21</code></p>
 </div>
 <div class="paragraph">
+<p>When a teacher is assigned to a course, the teacher&#8217;s ID is added to course and course&#8217;s ID is added to teacher. In
+Selected Staff Tab, it can be seen that a course ID is added under "Assigned Courses" and the course can be viewed in
+Assigned Courses Tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/StaffViewAssignToCourse.png" alt="StaffViewAssignToCourse" width="500">
+</div>
+<div class="title">Figure 4. Selected Staff and Assigned Courses Panel. Shows ID and details of assigned Courses.</div>
+</div>
+<div class="paragraph">
+<p>In Selected Course Tab, it can be seen that a staff ID is added under "Assigned Staff".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CourseViewAssignToStaff.png" alt="CourseViewAssignToStaff" width="500">
+</div>
+<div class="title">Figure 5. Selected Staff and Assigned Courses Panel. Shows ID and details of assigned Courses.</div>
+</div>
+<div class="paragraph">
 <p>Removes the Teacher ID from the Course ID specified.<br>
 Format: <code>unassign cid/COURSEID tid/TEACHERID</code><br>
 Example: <code>unassign cid/829 tid/21</code></p>
+</div>
+<div class="paragraph">
+<p>When a teacher is unassigned to a course, the teacher&#8217;s ID is removed from course and course&#8217;s ID is removed from teacher.
+In Selected Staff Tab, after unassign Command, the course&#8217;s ID and details no longer appears.</p>
 </div>
 </div>
 <div class="sect4">
@@ -647,7 +691,7 @@ this action can not undone.</p>
 <div class="content">
 <img src="images/studentTab.png" alt="studentTab" width="1000">
 </div>
-<div class="title">Figure 2. List of Students. Shows details and list of courses of selected student. The list of Assignments is also shown for the selected course</div>
+<div class="title">Figure 6. List of Students. Shows details and list of courses of selected student. The list of Assignments is also shown for the selected course</div>
 </div>
 <div class="sect3">
 <h4 id="add-a-student-code-add-student-code"><a class="link" href="#add-a-student-code-add-student-code">5.2.1. Add a student: <code>add-student</code></a></h4>
@@ -819,7 +863,7 @@ Example:</p>
 <div class="content">
 <img src="images/teacherTab.png" alt="teacherTab" width="1000">
 </div>
-<div class="title">Figure 3. List of Staffs. Shows details and list of courses of selected staff</div>
+<div class="title">Figure 7. List of Staffs. Shows details and list of courses of selected staff</div>
 </div>
 <div class="sect3">
 <h4 id="add-a-staff-code-add-staff-code"><a class="link" href="#add-a-staff-code-add-staff-code">5.3.1. Add a staff: <code>add-staff</code></a></h4>
@@ -1011,7 +1055,7 @@ Example:</p>
 <div class="content">
 <img src="images/courseTab.png" alt="courseTab" width="1000">
 </div>
-<div class="title">Figure 4. List of Courses. Shows details and list of students of selected Course. The list of Assignments is also shown for the selected Student</div>
+<div class="title">Figure 8. List of Courses. Shows details and list of students of selected Course. The list of Assignments is also shown for the selected Student</div>
 </div>
 <div class="sect3">
 <h4 id="add-a-course-code-add-course-code"><a class="link" href="#add-a-course-code-add-course-code">5.4.1. Add a course: <code>add-course</code></a></h4>
@@ -1194,7 +1238,7 @@ Example:</p>
 <div class="content">
 <img src="images/financeTab.png" alt="financeTab" width="1000">
 </div>
-<div class="title">Figure 5. List of Finances. Shows details of selected Finance. Type m is Finance Type 1, Type cs is Finance Type 2, and Type ct is Finance Type 3</div>
+<div class="title">Figure 9. List of Finances. Shows details of selected Finance. Type m is Finance Type 1, Type cs is Finance Type 2, and Type ct is Finance Type 3</div>
 </div>
 <div class="sect3">
 <h4 id="add-a-finance-code-add-finance-code"><a class="link" href="#add-a-finance-code-add-finance-code">5.5.1. Add a finance: <code>add-finance</code></a></h4>
@@ -1429,7 +1473,7 @@ Format: <code>expenses</code></p>
 <div class="content">
 <img src="images/assignmentTab.png" alt="assignmentTab" width="1000">
 </div>
-<div class="title">Figure 6. List of Assignments. Shows details of selected Assignment.</div>
+<div class="title">Figure 10. List of Assignments. Shows details of selected Assignment.</div>
 </div>
 <div class="sect3">
 <h4 id="add-an-assignment-code-add-assignment-code"><a class="link" href="#add-an-assignment-code-add-assignment-code">5.6.1. Add an assignment: <code>add-assignment</code></a></h4>
@@ -1930,4 +1974,4 @@ contains the data of your previous <strong>CodeCampX</strong> folder.</p>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 05:30:53 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 05:31:33 UTC</div></div></div></body></html>
