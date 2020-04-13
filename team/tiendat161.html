@@ -488,38 +488,5 @@ is opposite to this EditCommand) with editing information of the original toEdit
 <p>When <code>undo</code> and <code>redo</code> commands are executed, the process is carried out as described above.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="managing-staff-feature-dat"><a class="link" href="#managing-staff-feature-dat">Managing Staff Feature [Dat]</a></h3>
-<div class="sect3">
-<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
-<div class="paragraph">
-<p>This feature is implemented with the main classes - <code>Staff</code>, with a permission level specifying <code>Teacher</code> and <code>Admin</code>.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Staff</span> <span class="directive">extends</span> ModelObject {
-    <span class="directive">public</span> <span class="type">enum</span> <span class="predefined-type">Level</span> {
-        TEACHER,
-        ADMIN
-    }
-    <span class="comment">//...</span>
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>One of the features is to display all the <code>courses</code> that a <code>teacher</code> is teaching.</p>
-</div>
-<div class="paragraph">
-<p>Another feature is to keep track of salary payment for <code>teacher</code>. A <code>teacher</code> is paid by teaching a course and the amount
-is taken from the salary of the teacher. The payment will automatically have records of respective course and teacher ID.</p>
-</div>
-<div class="paragraph">
-<p>To pay for <code>admin</code>, user has to do it manually using miscellaneous <code>FinanceType</code>.</p>
-</div>
-<div class="paragraph">
-<p>Certain approaches have some certain pros and cons. It depends on how the user want to keep track of payment and method to pay to <code>teacher</code> and <code>admin</code>.</p>
-</div>
-</div>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:13:19 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:27:16 UTC</div></div></div></body></html>

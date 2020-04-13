@@ -452,7 +452,7 @@ The 6 types are namely</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ivan-AssignmentClassDiagram.png" alt="Ivan AssignmentClassDiagram">
+<img src="images/Ivan-AssignmentClassDiagram.png" alt="%autowidth">
 </div>
 <div class="title">Figure 8. Class Diagram of Assignment</div>
 </div>
@@ -678,7 +678,7 @@ A more detailed explanation of Progress Management is explained in <a href="#pro
 <div class="sect4">
 <h5 id="step-1-preprocess-entities"><a class="link" href="#step-1-preprocess-entities">Step 1: Preprocess Entities</a></h5>
 <div class="sect5">
-<h6 id="u-rationale-u"><a class="link" href="#u-rationale-u"><u>Rationale</u></a></h6>
+<h6 id="rationale"><a class="link" href="#rationale">Rationale</a></h6>
 <div class="paragraph">
 <p>Firstly, a <code>pre-processing step</code> must be performed before executing an undo-able assign/un-assign command to ensure
 that all entity links are in correct state before command execution.
@@ -699,7 +699,7 @@ This means that either</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="u-current-implementation-u"><a class="link" href="#u-current-implementation-u"><u>Current Implementation</u></a></h6>
+<h6 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h6>
 <div class="paragraph">
 <p>Below is an activity diagram showing the pre-processing performed for assign commands.
 The diagram can be generalized for un-assign commands by checking if the course contains X and vice versa in the second stage instead.</p>
@@ -742,13 +742,13 @@ The diagram can be generalized for un-assign commands by checking if the course 
 <div class="sect4">
 <h5 id="step-2-assign-ids-via-edgemanager"><a class="link" href="#step-2-assign-ids-via-edgemanager">Step 2: Assign IDs via EdgeManager</a></h5>
 <div class="sect5">
-<h6 id="u-rationale-u-2"><a class="link" href="#u-rationale-u-2"><u>Rationale</u></a></h6>
+<h6 id="rationale-2"><a class="link" href="#rationale-2">Rationale</a></h6>
 <div class="paragraph">
 <p>After the necessary checks have been performed, respective IDs need to be added to the targeted course and targeted object in order to ensure correct and consistent assigning of objects.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="u-current-implementation-u-2"><a class="link" href="#u-current-implementation-u-2"><u>Current Implementation</u></a></h6>
+<h6 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h6>
 <div class="paragraph">
 <p>Below is a sequence diagram of how EdgeManager adds the IDs to the two objects involved.</p>
 </div>
@@ -819,7 +819,7 @@ Instead of adding IDs, un-assign will remove each other&#8217;s ID from the resp
 </div>
 </div>
 <div class="sect5">
-<h6 id="Design-Assign-Copy"><a class="link" href="#Design-Assign-Copy"><u>Design Considerations</u></a></h6>
+<h6 id="Design-Assign-Copy"><a class="link" href="#Design-Assign-Copy">Design Considerations</a></h6>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -919,7 +919,7 @@ The table below shows the method calls made to <code>EdgeManager</code> during a
 <div class="sect3">
 <h4 id="student-progress-creation-removal"><a class="link" href="#student-progress-creation-removal">2.3.1. Student Progress Creation/Removal</a></h4>
 <div class="sect5">
-<h6 id="u-rationale-u-3"><a class="link" href="#u-rationale-u-3"><u>Rationale</u></a></h6>
+<h6 id="rationale-3"><a class="link" href="#rationale-3">Rationale</a></h6>
 <div class="paragraph">
 <p>New <code>Progress</code> objects must be created in 2 main scenarios.</p>
 </div>
@@ -939,7 +939,7 @@ The table below shows the method calls made to <code>EdgeManager</code> during a
 </div>
 </div>
 <div class="sect5">
-<h6 id="u-current-implementation-u-3"><a class="link" href="#u-current-implementation-u-3"><u>Current Implementation</u></a></h6>
+<h6 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h6>
 <div class="paragraph">
 <p>Below is a sequence diagram illustrating how the ProgressManager adds Progress objects into the ProgressAddressBook when a <code>AssignStudentToCourse</code> command is run.</p>
 </div>
@@ -1021,7 +1021,7 @@ Instead, we are looking to remove Progress objects rather than adding them back 
 <div class="sect3">
 <h4 id="marking-progress-as-code-done-code-code-undone-code"><a class="link" href="#marking-progress-as-code-done-code-code-undone-code">2.3.2. Marking Progress as <code>Done</code>/<code>Undone</code></a></h4>
 <div class="sect5">
-<h6 id="u-rationale-u-4"><a class="link" href="#u-rationale-u-4"><u>Rationale</u></a></h6>
+<h6 id="rationale-4"><a class="link" href="#rationale-4">Rationale</a></h6>
 <div class="paragraph">
 <p>When a <code>Student</code> finishes an <code>Assignment</code> that is allocated to him, you want to be able to mark his work
 as <code>Done</code>.</p>
@@ -1032,7 +1032,7 @@ to mark the <code>Assignment</code> as <code>Undone</code>.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="u-current-implementation-u-4"><a class="link" href="#u-current-implementation-u-4"><u>Current Implementation</u></a></h6>
+<h6 id="current-implementation-4"><a class="link" href="#current-implementation-4">Current Implementation</a></h6>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ivan-SequenceDiagramDoneCommand.png" alt="Ivan SequenceDiagramDoneCommand">
@@ -1083,7 +1083,7 @@ to mark the <code>Assignment</code> as <code>Undone</code>.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="u-design-consideration-u"><a class="link" href="#u-design-consideration-u"><u>Design Consideration</u></a></h6>
+<h6 id="design-consideration"><a class="link" href="#design-consideration">Design Consideration</a></h6>
 <div class="paragraph">
 <p>There is 1 main considerations when implementing <code>Progress</code> objects.</p>
 </div>
@@ -2135,7 +2135,7 @@ No new details are provided.</p>
 <p>CCX outputs the whole list of assignment</p>
 </li>
 <li>
-<p>User requests to see all courses using <strong>UC??</strong></p>
+<p>User requests to see all courses using <strong>UC20</strong></p>
 </li>
 <li>
 <p>User requests to assign a assignment to a course using their respective IDs</p>
@@ -2201,7 +2201,7 @@ No new details are provided.</p>
 <p>CCX outputs the whole list of assignment</p>
 </li>
 <li>
-<p>User requests to see all courses using <strong>UC??</strong></p>
+<p>User requests to see all courses using <strong>UC20</strong></p>
 </li>
 <li>
 <p>User requests to assign a list of assignment to a course using their respective IDs</p>
@@ -2262,13 +2262,13 @@ Any one of the assignmentID does not exist.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to see all students using <strong>UC??</strong></p>
+<p>User requests to see all students using <strong>UC21</strong></p>
 </li>
 <li>
 <p>CCX outputs the whole list of students</p>
 </li>
 <li>
-<p>User requests to see all courses using <strong>UC??</strong></p>
+<p>User requests to see all courses using <strong>UC20</strong></p>
 </li>
 <li>
 <p>User requests to signup a student to a course using their respective IDs</p>
@@ -2334,13 +2334,13 @@ Any one of the assignmentID does not exist.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to see all students using <strong>UC??</strong></p>
+<p>User requests to see all students using <strong>UC21</strong></p>
 </li>
 <li>
 <p>CCX outputs the whole list of students</p>
 </li>
 <li>
-<p>User requests to see all courses using <strong>UC??</strong></p>
+<p>User requests to see all courses using <strong>UC20</strong></p>
 </li>
 <li>
 <p>User requests to view the progress for a student, for a course using their respective IDs</p>
@@ -2418,7 +2418,7 @@ Student is not assigned to the course.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to see all courses using <strong>UC??</strong></p>
+<p>User requests to see all courses using <strong>UC20</strong></p>
 </li>
 <li>
 <p>User requests to view the progress for all students for a course using their respective IDs using UC9</p>
@@ -3268,4 +3268,4 @@ So we have AssignDescriptor which stores this information.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:13:19 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:27:17 UTC</div></div></div></body></html>

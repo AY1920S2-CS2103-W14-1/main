@@ -1,0 +1,1151 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Tee Jun Jie Ivan - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">CodeCampX</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S2-CS2103-W14-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Tee Jun Jie Ivan - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-code-camp-x"><a class="link" href="#project-code-camp-x">PROJECT: Code Camp X</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Code Camp X (CCX) is for those who prefer to use a desktop app to manage the administrative tasks of running a coding camp.
+More importantly, CCX is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, CCX can allow you to manage your camp’s administrative tasks faster than traditional GUI apps.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: Implemented Code Base for <code>Assignment</code> and <code>Progress</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: This allows the user to add <code>Assignments</code>, with a name and deadline into the program.
+This also allowed for future extension where a <code>Progress</code> object can be created to tie a <code>Student</code> and <code>Assignment</code> together.</p>
+</li>
+<li>
+<p>Justification: This allows the users to track all the <code>Assignments</code> that is in the camp and will help in the implementation of
+tracking student progress in the subsequent extension.</p>
+</li>
+<li>
+<p>Highlights:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>An in-depth analysis was required to determine if <code>Progress</code> was really required since
+it takes up a lot of time to successfully add another <code>AddressBookGeneric</code> into the program, while taking into account the UI, the storage
+the commands, parsers, etc. However, the group decided that by splitting the logic of <code>Assignment</code> and <code>Progress</code>, this will
+allow for better usability and testability. This was discussed within the Developer&#8217;s Guide as well.</p>
+</li>
+<li>
+<p>Another highlight is that I needed to implement a special form of ID, which I call <code>CompositeID</code>, just for <code>Progress</code> object, since <code>Progress</code> objects
+are identified by 2 IDs, studentID and assignmentID. Due to this, I needed to implement many methods in <code>ModelManager</code> in order
+to allow for model handling via this <code>compositeID</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: Implemented all <strong>Undo/Redo-able</strong> <code>Assign</code> &amp; <code>Un-assign</code> commands</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Allow user to assign/un-assign a <code>Student</code>/<code>Teacher</code>/<code>Assignment</code> to a <code>Course</code> and allow for them to undo/redo those commands</p>
+</li>
+<li>
+<p>Justification:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>This allows the user add/remove a student/teacher/assignment to and from a course, allowing for them to better manage the
+their coding camp.</p>
+</li>
+<li>
+<p>Should they have executed the command wrongly, they are able to undo or redo the commands they have just executed
+while returning to the <strong>correct</strong> previous state.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Highlights:
+This was one of the most challenging portions of the program due to these reasons:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It ties in many of the functionality and classes implemented.
+For example, the Assign/Un-assign commands need to make sure that entity linking is <strong>correct</strong> and that <code>Progress</code> objects added/removed <strong>correctly</strong>.
+As such, it is very dependent on <code>EdgeManager</code> and <code>ProgressManager</code> for correct implementation.</p>
+</li>
+<li>
+<p>Many design alternatives were considered. Initially, the logic of assigning the edges was within the <code>Assign</code>/<code>Un-assign</code> command itself,
+but I refactored everything out to the <code>ModelManager</code> and subsequently <code>EdgeManager</code> to ensure that we better follow design principle of <code>Single-Responsibility Principle</code>.</p>
+</li>
+<li>
+<p>Pre-processing of Command was <strong>vital</strong> since our program works via IDs. The method is crucial in making sure that the entities
+are in a <code>consistent state</code> before executing the assign command. <code>Consistent state</code> means that either the two targeting objects have
+each other&#8217;s IDs or they do not. There should never be the case where one party has the other&#8217;s ID but not vice versa.</p>
+</li>
+<li>
+<p>Allow for Undo/Redo-ability into the <strong>correct</strong> state</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Generally, when undo/redo is called, we just have to execute the opposite command.</p>
+</li>
+<li>
+<p>However, we realized that it was not so trivial when we discovered a huge bug where undo-ing an un-assign command
+does not put back the specific <code>Progress</code> objects that were removed.</p>
+</li>
+<li>
+<p>As such, special considerations had to be implemented to ensure that these <code>Assign</code>/<code>Un-assign</code> commands can work correctly.</p>
+</li>
+<li>
+<p>These considerations are included in the Developer&#8217;s Guide as well.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Implemented ProgressManager to allow for successful Creation/Deletion of `Progress objects</p>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Implemented Assign/Un-assign portion of EdgeManager</p>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Implemented Done/Undone Commands to mark Progress objects as <code>Done</code>/<code>Undone</code></p>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=ivanteejj&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2020-02-14&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false">Functional code</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed releases <code>v1.2</code> (1 release) on GitHub</p>
+</li>
+<li>
+<p>Managed Deadlines and Deliverable</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Allow for additions and removal of <code>Assigment</code> object entities</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Complete documentation of <code>Model</code>, <code>Entity Linking</code> and <code>Student Progress Management</code> in Developer&#8217;s Guide</p>
+</li>
+<li>
+<p>Added <code>Assignment</code> and <code>Done</code>/<code>Undone</code> Commands into User Guide</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/91">#91</a>, <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/111">#111</a>, <a href="https://github.com/AY1920S2-CS2103-W14-1/main/pull/188">#188</a></p>
+</li>
+<li>
+<p>Contributed to forum discussions (examples:  <a href="https://github.com/nus-cs2103-AY1920S2/forum/issues/46">1</a>)</p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com/ivanteejj/ped/issues/2">1</a>, <a href="https://github.com/ivanteejj/ped/issues/13">2</a>, <a href="https://github.com/ivanteejj/ped/issues/10">3</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="assignment"><a class="link" href="#assignment">Assignment</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/assignmentTab.png" alt="assignmentTab" width="1000">
+</div>
+<div class="title">Figure 1. List of Assignments. Shows details of selected Assignment.</div>
+</div>
+<div class="sect3">
+<h4 id="add-an-assignment-code-add-assignment-code"><a class="link" href="#add-an-assignment-code-add-assignment-code">Add an assignment: <code>add-assignment</code></a></h4>
+<div class="paragraph">
+<p>Add a new assignment to the list of all assignments<br>
+Format: <code>n/NAME dl/DEADLINE [t/TAG]&#8230;&#8203;</code><br>
+Example:
+* <code>add-assignment n/Adversarial Search Assignment 2 dl/2020-12-30 t/AI t/Difficult</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>DEADLINE</code> must be in <code>YYYY - MM - DD</code> or <code>YYY - MM - DD</code> format else an error will be thrown.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-an-assignment-code-delete-assignment-code"><a class="link" href="#delete-an-assignment-code-delete-assignment-code">Delete an assignment: <code>delete-assignment</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>delete-assignment ID</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete-assignment 16100</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the item at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed item list</p>
+</li>
+<li>
+<p>The ID <strong>must be a positive integer</strong> 16100, 25200, 52500, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Be reminded that when you delete an assignment, the assignment will be deleted from every course as well.<br>
+Furthermore, the progress of the assignment will also be removed from every course of any student<br>
+and every student of any course.<br>
+For example, a student that was only assigned to a course that contains only this assignment
+will have no assignment left after this assignment is deleted.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-an-assignment-code-edit-assignment-code"><a class="link" href="#edit-an-assignment-code-edit-assignment-code">Edit an assignment: <code>edit-assignment</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>edit-assignment ID [n/NAME] dl/DEADLINE t/TAGS]</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit-assignment 16100 n/Edit Python Assignment 1</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the assignment at the specified <code>ID</code>. The ID refers to the ID number shown in the displayed course list panel</p>
+</li>
+<li>
+<p>The ID <strong>must be a positive integer</strong> 16100, 2520, 52500, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative</p>
+</li>
+<li>
+<p>You can remove all the assignment&#8217;s tags by typing <code>t/</code> without specifying any tags after it</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="locating-items-by-name-code-find-assignment-code"><a class="link" href="#locating-items-by-name-code-find-assignment-code">Locating items by name: <code>find-assignment</code></a></h4>
+<div class="paragraph">
+<p>Finds assignments whose names contain any of the given keywords.<br>
+Format: <code>find-assignment KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>java</code> will match <code>Java</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Java Assignment</code> will match <code>Assignment Java</code></p>
+</li>
+<li>
+<p>Only the name is searched</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Java</code> will not match <code>Javascript</code></p>
+</li>
+<li>
+<p>Items matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Java Assignment</code> will return
+<code>Java Course</code>, <code>Java Code</code> and <code>Python Assignment</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find-assignment java</code><br>
+Returns <code>java</code> and <code>Java Assignment</code></p>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mark-a-student-s-assignment-as-code-done-code-code-undone-code"><a class="link" href="#mark-a-student-s-assignment-as-code-done-code-code-undone-code">Mark a Student&#8217;s Assignment as <code>Done</code>/<code>Undone</code></a></h3>
+<div class="paragraph">
+<p>Mark a student&#8217;s assignment as <code>Done</code>.<br>
+Format: <code>done aid/ASSIGNMENTID sid/STUDENTID</code><br>
+Example: <code>done aid/829 sid/21</code></p>
+</div>
+<div class="paragraph">
+<p>Mark a student&#8217;s assignment as <code>Undone</code>.<br>
+Format: <code>undone aid/ASSIGNMENTID sid/STUDENTID</code><br>
+Example: <code>undone aid/829 sid/21</code></p>
+</div>
+<div class="paragraph">
+<p>Illustration:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ivan-done1.PNG" alt="Ivan done1">
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that George has initially not completed Assignment 44736.</p>
+</div>
+<div class="paragraph">
+<p>After <code>done aid/44736 sid/63865</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ivan-done2.png" alt="Ivan done2">
+</div>
+</div>
+<div class="paragraph">
+<p>Now observe 3 updates:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Success message as displayed in message box</p>
+</li>
+<li>
+<p>The <code>status</code> of the Assignment has been marked as done</p>
+</li>
+<li>
+<p>The <code>Number of Done Progress</code> has been incremented by 1</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="Design-Model"><a class="link" href="#Design-Model">Model component [Tee Jun Jie Ivan]</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ivan-ModelClassDiagram.png" alt="Ivan ModelClassDiagram">
+</div>
+<div class="title">Figure 2. Structure of the Model Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Model</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+</li>
+<li>
+<p>stores the 6 AddressBookGeneric&lt;K extends ModelObject&gt;, each of which holds a different type of ModelObject.
+The 6 types are namely</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Student</p>
+</li>
+<li>
+<p>Course</p>
+</li>
+<li>
+<p>Staff</p>
+</li>
+<li>
+<p>Assignment</p>
+</li>
+<li>
+<p>Progress</p>
+</li>
+<li>
+<p>Finance</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;K extends ModelObject&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>does not depend on any of the other components.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Below is an example of the different types of RelevantFields that can be tied to an Assignment.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ivan-AssignmentClassDiagram.png" alt="%autowidth">
+</div>
+<div class="title">Figure 3. Class Diagram of Assignment</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The AddressBookGeneric in the diagram above is actually an AddressBookGeneric&lt;Assignment&gt;.
+The AddressBookGeneric has been made to accept any class that extends ModelObject.
+This cannot be shown due to limitations in PlantUML.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="notable-implementations-in-model"><a class="link" href="#notable-implementations-in-model">Notable Implementations in Model</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>By making use of <code>Generics</code> and <code>Polymorphism</code>, the group has made it such that <code>AddressBookGeneric&lt;K extends ModelObject&gt;</code> can hold any class that extends from ModelObject</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Benefits</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Allows for code optimization by having reusable code.
+There is significant decrease in workload when code can be reused for each others' benefit instead of having duplicated code.</p>
+</li>
+<li>
+<p>Allows for extension easily for future features.
+Future features that involve creating new AddressBooks can be developed very quickly and allow for faster development of future features.</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>All <code>ModelObjects</code> implement <code>Cloneable</code> so as to allow for Defensive Programming more easily.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Please refer to <a href="#Design-Assign-Copy"><code>Step 2 of Section 2.2.2</code></a> for the team&#8217;s rationale behind having ModelObject implement Cloneable.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>All Non-Crud Commands such as <code>Assign</code>/<code>Un-assign</code>/<code>Done</code> are handled in <code>DiffTypesOfManagers</code> such as <code>EdgeManager</code> or
+<code>ProgressManager</code> instead of having all implementations being done in <code>ModelManager</code></p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Benefits</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Easier implementation since lower level implementations can be abstracted away</p>
+</li>
+<li>
+<p>More decoupling which will lead to be better testability and easier debugging</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="entity-linking"><a class="link" href="#entity-linking">Entity Linking - Assigning/Un-Assigning an Entity to/from a Course [Tee Jun Jie Ivan]</a></h3>
+<div class="paragraph">
+<p>In order to allow the tracking of the students/assignments/teachers that are assigned to a course and vice versa, this required us to implement a structure which allowed us to obtain information from the aforementioned objects, without causing any circular referencing errors.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ivan-OODMForEntityRS.png" alt="Ivan OODMForEntityRS">
+</div>
+<div class="title">Figure 4. Relationship between Entities</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>The group came up with the structure above where we centralize most links around the <code>Course</code> object so as for easier management of entity links.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Notice that <code>Student</code> does <strong>not</strong> hold a <code>Course</code>, but a set of <code>CourseIDs</code>. Hence, there should be an association between <code>Student</code> and <code>ID</code> instead of <code>Student</code> and <code>Course</code>.
+However, the group found it much more <strong>intuitive</strong> to think of the associations to be from 2 modelObjects rather than to and from IDs.
+Every non-directed association between 2 objects ensures that both objects have each other&#8217;s ID.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The only exception is <code>Progress</code> objects which are created via a composite ID of <code>studentID</code> and <code>assignmentID</code>.
+A more detailed explanation of Progress Management is explained in <a href="#progress-management">Student Progress Management [Tee Jun Jie Ivan]</a>.</p>
+</div>
+<div class="paragraph">
+<p>Entity Linking is managed exclusively by <code>Edge Manager</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensures that links are maintained/removed properly during assign, un-assign, delete commands
+<strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/manager/EdgeManager.java"><code>EdgeManager.java</code></a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="execution-of-assign-un-assign-command-tee-jun-jie-ivan"><a class="link" href="#execution-of-assign-un-assign-command-tee-jun-jie-ivan">Execution of Assign/Un-assign Command [Tee Jun Jie Ivan]</a></h4>
+<div class="paragraph">
+<p>For the actual execution of an assign/un-assign command, 2 main steps are performed.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Pre-process the targeted entities to ensure consistent state - Via <code>PreprocessUndoCommand</code> method call</p>
+</li>
+<li>
+<p>Add/Remove both object&#8217;s ID into/from each other - Handled by <code>EdgeManager</code></p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="step-1-preprocess-entities"><a class="link" href="#step-1-preprocess-entities">Step 1: Preprocess Entities</a></h5>
+<div class="sect5">
+<h6 id="rationale"><a class="link" href="#rationale">Rationale</a></h6>
+<div class="paragraph">
+<p>Firstly, a <code>pre-processing step</code> must be performed before executing an undo-able assign/un-assign command to ensure
+that all entity links are in correct state before command execution.
+This means that either</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Both targeted objects have each other&#8217;s IDs or</p>
+</li>
+<li>
+<p>They do not</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>There should be no instance where Course has an Assignment/Student/Staff&#8217;s ID but they do not have the Course&#8217;s ID or vice versa.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h6>
+<div class="paragraph">
+<p>Below is an activity diagram showing the pre-processing performed for assign commands.
+The diagram can be generalized for un-assign commands by checking if the course contains X and vice versa in the second stage instead.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ivan-PreprocessAssignActivityDiagram.png" alt="Ivan PreprocessAssignActivityDiagram">
+</div>
+<div class="title">Figure 5. Activity Diagram of Pre-processing for Assign/Un-assign commands</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>Notice that there are 2 main exit points in the activity diagram.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The success case is straightforward and will lead to a the program continuing to execute the actual assign/un-assign command.</p>
+</li>
+<li>
+<p>For the failure case, should any of the conditions fail, this means that either that the</p>
+<div class="ulist">
+<ul>
+<li>
+<p>specified objects does <code>not exist</code>,</p>
+</li>
+<li>
+<p>both entities are <code>already assigned</code> to each other or,</p>
+</li>
+<li>
+<p>most importantly, that the model is in an <code>inconsistent state</code> where one entity is assigned to the other but not vice versa.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-2-assign-ids-via-edgemanager"><a class="link" href="#step-2-assign-ids-via-edgemanager">Step 2: Assign IDs via EdgeManager</a></h5>
+<div class="sect5">
+<h6 id="rationale-2"><a class="link" href="#rationale-2">Rationale</a></h6>
+<div class="paragraph">
+<p>After the necessary checks have been performed, respective IDs need to be added to the targeted course and targeted object in order to ensure correct and consistent assigning of objects.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h6>
+<div class="paragraph">
+<p>Below is a sequence diagram of how EdgeManager adds the IDs to the two objects involved.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ivan-SeqDiagEdgeManagerAssignCommand.png" alt="Ivan SeqDiagEdgeManagerAssignCommand">
+</div>
+<div class="title">Figure 6. Sequence Diagram of EdgeManager&#8217;s AssignXtoCourse commands</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>The flow of an assign command is as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Obtain a copy of the requested <code>modelObjects</code> from <code>ModelManager</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>One of which must be a <code>Course</code> modelObject, the other being either a <code>Student</code>/<code>Staff</code>/<code>Assignment</code> modelObject</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>For object X', add the <code>courseID</code> into the assignedCourseIDs in X`</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For assignments, every assignment can only be assigned to at most <strong>one course</strong>.
+Hence, it&#8217;ll hold just an assignedCourseID instead of a set of Course IDs.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>For Course C', add <code>X&#8217;s ID</code> into assignedXIDs in C'</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For courses, every course may only have at most <strong>one teacher</strong>.
+Hence, course will have an assignedTeacherID instead of a set of Teacher IDs.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Update the 2 affected models by executing <code>set(targetObj, editedObj)</code> in modelManager for both changed modelObjects</p>
+</li>
+<li>
+<p>Update the storage by running postDataStorageChangeEvent() - ref to <code>Figure 2</code> to understand how storage save is triggered</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This sequence diagram can be generalized for <code>un-assign command</code> as well.
+Instead of adding IDs, un-assign will remove each other&#8217;s ID from the respective objects.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect5">
+<h6 id="Design-Assign-Copy"><a class="link" href="#Design-Assign-Copy">Design Considerations</a></h6>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Manipulating the <code>actual</code> modelObjects by having modelManager#get() return referenced variable of the actual <code>modelObjectTags</code>.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Pros</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Simpler implementation since any changes to the model will change the actual object directly</p>
+</li>
+<li>
+<p>Faster execution since any changes is done to the actual modelObject</p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">Cons</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Might allow for unintentional changes to the actual modelObject</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>(Current Implementation) Manipulate a <code>cloned</code> modelObject by having modelManager#get() return a copy of actual modelObject.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Pros</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prevents unintentional modifications of the shared object</p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">Cons</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Extra processing required.
+For example, a method is required to replace the old modelObject with the new model object.
+Also, requires all ModelObject classes to implement a clone() method.</p>
+</li>
+<li>
+<p>More memory intensive and can hurt overall program performance.</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Overall, the second option was chosen since the program is very dependent on maintaining a <code>consistent state</code>, where either 2 modelObjects have each other&#8217;s ID or they do not.
+Some performance can be sacrificed in order to ensure that the links between objects cannot be modified by mistake.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="summary-of-entity-linking"><a class="link" href="#summary-of-entity-linking">Summary of Entity Linking</a></h5>
+<div class="paragraph">
+<p>Overall, in order to ensure successful entity linking, the role that <code>EdgeManager</code> plays is crucial.
+The table below shows the method calls made to <code>EdgeManager</code> during an <code>Assign</code>/<code>Un-assign</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ivan-AssignSummary.png" alt="Ivan AssignSummary">
+</div>
+<div class="title">Figure 7. Table Summary of EdgeManager&#8217;s involvement during Assign/Un-assign Commands</div>
+</div>
+<hr>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="progress-management"><a class="link" href="#progress-management">Student Progress Management [Tee Jun Jie Ivan]</a></h3>
+<div class="paragraph">
+<p>The <code>Progress</code> of students is managed exclusively by the <code>ProgressManager</code> class.</p>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/manager/ProgressManager.java"><code>ProgressManager.java</code></a></p>
+</div>
+<div class="sect3">
+<h4 id="student-progress-creation-removal"><a class="link" href="#student-progress-creation-removal">Student Progress Creation/Removal</a></h4>
+<div class="sect5">
+<h6 id="rationale-3"><a class="link" href="#rationale-3">Rationale</a></h6>
+<div class="paragraph">
+<p>New <code>Progress</code> objects must be created in 2 main scenarios.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If a <code>Student</code> has been added to a <code>Course</code>, the <code>Student</code> will need to complete all <code>Assignments</code> that have already been assigned to the <code>Course</code>.</p>
+</li>
+<li>
+<p>If an <code>Assignment</code> has been added to a <code>Course</code>, all <code>Students</code> currently taking the <code>Course</code> must now complete that <code>Assignment</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The rationale is similar when un-assigning either <code>Student</code> or <code>Assignment</code> from a <code>Course</code>.
+<code>Progress</code> objects need to be removed instead.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h6>
+<div class="paragraph">
+<p>Below is a sequence diagram illustrating how the ProgressManager adds Progress objects into the ProgressAddressBook when a <code>AssignStudentToCourse</code> command is run.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ivan-ProgressManagerAssignStudentToCourse.png" alt="Ivan ProgressManagerAssignStudentToCourse">
+</div>
+<div class="title">Figure 8. Activity Diagram for creating Progress objects when assigning a Student to a Course</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>The flow of adding Progress objects in a AssignStudentToCourse is as follows</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If there are <code>Progress</code> objects that were previously in ProgressAddressBook but were removed due to an <code>Un-assign/Delete</code> command, add those <code>Progress</code> objects back in.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>This only occurs when undo-ing an <code>Un-assign/Delete</code> command.
+Refer to <a href="#undo-assign-command">[undo-assign-command]</a> for more information.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Else, i.e. if this is an entirely new AssignStudentToCourse command,</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Obtain <strong>C'</strong>, a copy of the targeted <code>Course</code></p>
+</li>
+<li>
+<p>From <strong>C'</strong>, obtain all assignmentIDs that are assigned to it.</p>
+</li>
+<li>
+<p>For each of the obtained assignmentIDs, create a new CompositeID of assignmentID and studentID</p>
+</li>
+<li>
+<p>Create a <code>Progress</code> object using each of the <code>CompositeID</code></p>
+</li>
+<li>
+<p>Finally, add these <code>Progress</code> objects into the <code>ProgressAddressBook</code>.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Notes</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The flow is largely the same for AssignAssignmentToCourse!
+Instead, we want every <code>Student</code> that is currently studying in course <strong>C'</strong> to complete the particular <code>Assignment</code>.
+Hence, rather than obtain all assignmentIDs, we will need to obtain all
+<code>studentIDs</code> that are studying <strong>C'</strong>, and create a <code>Progress</code> object so that we can track whether those students have completed the assignment.</p>
+</li>
+<li>
+<p>The flow is also largely the same for UnassignCommands!
+Instead, we are looking to remove Progress objects rather than adding them back in.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The table below shows the summary of method calls from <code>ProgressManager</code> for each variant of <code>Assign</code>/<code>Un-assign</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ivan-ProgressSummary.png" alt="Ivan ProgressSummary">
+</div>
+<div class="title">Figure 9. Table Summary of ProgressManager method calls() for Assign/Un-assign Commands</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="marking-progress-as-code-done-code-code-undone-code"><a class="link" href="#marking-progress-as-code-done-code-code-undone-code">Marking Progress as <code>Done</code>/<code>Undone</code></a></h4>
+<div class="sect5">
+<h6 id="rationale-4"><a class="link" href="#rationale-4">Rationale</a></h6>
+<div class="paragraph">
+<p>When a <code>Student</code> finishes an <code>Assignment</code> that is allocated to him, you want to be able to mark his work
+as <code>Done</code>.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, if an <code>Assignment</code> has been mistakenly marked as <code>Done</code> or is actually <code>Undone</code>, you want to be able
+to mark the <code>Assignment</code> as <code>Undone</code>.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="current-implementation-4"><a class="link" href="#current-implementation-4">Current Implementation</a></h6>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ivan-SequenceDiagramDoneCommand.png" alt="Ivan SequenceDiagramDoneCommand">
+</div>
+<div class="title">Figure 10. Sequence Diagram for Progress Manager&#8217;s Handling of Done Command</div>
+</div>
+<div class="paragraph">
+<p>The implementation of <code>Done</code> command is very straight-forward. Only 2 parameter is needed - assignmentID (aid) and studentID (sid).</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create the CompositeID of <code>Progress</code> objects using the aid and sid</p>
+</li>
+<li>
+<p>Using this newly created compositeID, call modelManager#get(ID id, entity.type)</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>This returns a <code>copy</code> of the <code>Progress</code> object - P'.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Execute <code>P'#done()</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If <code>P'</code> is already done, an exception will be thrown</p>
+</li>
+<li>
+<p>Else, <code>P'</code> will be set its internal boolean isDone to be true.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Save the edited <code>Progress</code> object to model</p>
+</li>
+<li>
+<p>Save the edited <code>Progress</code> object to storage</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>With this, the implementation of <code>Undone</code> command is about the same, we just have to call <code>P'#undone()</code> instead.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="design-consideration"><a class="link" href="#design-consideration">Design Consideration</a></h6>
+<div class="paragraph">
+<p>There is 1 main considerations when implementing <code>Progress</code> objects.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Is there a need to separate <code>Assignment</code> and <code>Progress</code>?</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Implementation 1 - Have <code>Assignment</code> hold 1 <code>StudentID</code> and a 1 <code>isDone</code> boolean</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Pros</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Simple to implement</p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">Cons</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Memory-intensive since every student can have up to N number of <code>Assignments</code></p>
+</li>
+<li>
+<p>Suppose that a field in the <code>Assignment</code> needs to be updated, the program needs to loop through every single <code>Assignment</code> object
+to update that particular field, resulting in high computational costs.</p>
+</li>
+<li>
+<p>With an additional link from <code>Assignment</code> to <code>Student</code>, it will be require more work to maintain the correctness of the linking.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>In <a href="#entity-linking"><code>Section 2.3</code></a>, the decided implementation was to <strong>centralize all links around <code>Course</code></strong>.</p>
+</li>
+<li>
+<p>Hence, if another type of link was to be introduced, another <code>manager</code> will need to be implemented.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Implementation 2 (Current Implementation) - Separate the logic of <code>Assignment</code> and <code>Progress</code>.
+<code>Assignments</code> just need to hold its ID, name and deadline while <code>Progress</code> will handle whether a <code>Student</code> has completed that <code>Assignment</code> or not.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Pros</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Intuitive and simple to understand</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>In-line with Object Oriented Programming since it can be modelled as a real world object.</p>
+</li>
+<li>
+<p>As most people have been through school, they can understand that when given a homework/assignment in school,
+there is actually only <strong>1</strong> <code>Assignment</code> that <strong>every</strong> <code>Student</code> has to complete. This idea is basically what we have implemented.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Solves the first disadvantage of Implementation 1. Any time the details of the <code>Assignment</code> is changed,
+the details will be automatically changed for all <code>Progress</code> objects.</p>
+</li>
+<li>
+<p>Works well with current implementation of AddressBookGeneric which has <code>getters</code> and <code>setters</code> via <code>ID</code> since every <code>Progress</code> object will have its own <code>ID</code></p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">Cons</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Also very memory intensive</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:27:16 UTC</div></div></div></body></html>
